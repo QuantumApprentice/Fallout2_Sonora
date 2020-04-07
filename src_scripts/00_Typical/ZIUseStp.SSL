@@ -36,6 +36,7 @@ procedure map_enter_p_proc begin
           end
           end
        end
+       /*
        if (cur_map_index == MAP_SAN_BRAHMIN_SIGN) then begin
           if (getQuest(GVAR_BRAHMIN_QST_COMMANDER) <= qStop) then begin
           if ((item_amnt(self_obj,PID_Q_PWR_HEAD)<=0) and (item_amnt(self_obj,PID_Q_PWR_PROC)<=0) and (item_amnt(self_obj,PID_NUKE_BOMB_DETONATOR)<=0) and (item_amnt(self_obj,PID_Q_DIANA_MUTAGEN)<=0) and (item_amnt(self_obj,PID_Q_INSECTICIDES)<=0)) then begin
@@ -45,6 +46,7 @@ procedure map_enter_p_proc begin
           end
           end
        end
+       */
    end
 end
 

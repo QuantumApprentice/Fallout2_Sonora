@@ -218,12 +218,12 @@ procedure step_proc begin
 end
 
 procedure trap_destroy begin
-   call trap_invis;
    if trapObj(TRAP_DSTR) then begin
    end
    else begin
    create_object_sid(TRAP_DSTR,self_tile,self_elevation,-1);
    end
+   call trap_invis;
    //destroy_object(self_obj);
 end
 

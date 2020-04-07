@@ -293,7 +293,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-20) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,20) // Поправка к отношению за принадлежность к фракциям
 
-   if (map_var(MVAR_RNGRS_JclTalk) == 1) then begin
+   if ((map_var(MVAR_RNGRS_JclTalk) == 1) and (global_var(GVAR_STATUS_RANGERS_AGATA) > 0)) then begin
    floater(self_obj,104,COLOR_MSG_NEAR_WHITE);
    end
    else if (global_var(GVAR_GAME_END) != 0) then begin
@@ -1223,6 +1223,9 @@ end
 
 procedure NodeSBrahmin102 begin
    Reply(466)
+   if (getQuest(GVAR_BRAHMIN_QST_RANGER) != qZero) then begin
+   NAnswer(525,1,NodeSBrahmin200)
+   end
    NAnswer(467,1,Node999)
 end
 

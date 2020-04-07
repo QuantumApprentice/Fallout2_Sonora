@@ -38,8 +38,10 @@ procedure NodeStopDialog100;
 procedure NodeStopDialog101;
 procedure NodeStopDialog102;
 procedure NodeStopDialog103;
+procedure NodeStopDialog103b;
 procedure NodeStopDialog104;
 procedure NodeStopDialog105;
+procedure NodeStopDialog105b;
 procedure NodeStopDialog106;
 procedure NodeStopDialog107;
 procedure NodeStopDialog200;
@@ -239,15 +241,13 @@ end
 
 procedure NodeStopDialog101 begin
    Reply(332)
-   BAnswer(333,1,NodeStopDialog102)
+   BAnswer(333,1,NodeStopDialog103b)
    GAnswer(338,1,NodeStopDialog103)
 end
 
 procedure NodeStopDialog102 begin
-   setBonusReaction(-10)
-   set_SLAVA(-3)
    Reply(334)
-   BAnswer(335,1,NodeStopDialog104)
+   BAnswer(335,1,NodeStopDialog105b)
    if (global_var(GVAR_CGRANDE_STATUS_MER) < 0) then begin
    GAnswer(339,1,NodeStopDialog105)
    end
@@ -262,9 +262,13 @@ procedure NodeStopDialog103 begin
    call NodeStopDialog102;
 end
 
-procedure NodeStopDialog104 begin
+procedure NodeStopDialog103b begin
    setBonusReaction(-10)
    set_SLAVA(-3)
+   call NodeStopDialog102;
+end
+
+procedure NodeStopDialog104 begin
    Reply(336)
    if (local_var(LVAR_Game_Stop) > 0) then begin
    NAnswer(337,1,NodeStopDialog106)
@@ -279,6 +283,12 @@ end
 procedure NodeStopDialog105 begin
    setBonusReaction(10)
    set_SLAVA(3)
+   call NodeStopDialog104;
+end
+
+procedure NodeStopDialog105b begin
+   setBonusReaction(-10)
+   set_SLAVA(-3)
    call NodeStopDialog104;
 end
 

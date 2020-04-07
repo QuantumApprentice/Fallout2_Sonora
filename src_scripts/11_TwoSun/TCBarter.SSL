@@ -118,10 +118,9 @@ end
 procedure setBarterA begin
         check_restock_item(PID_ARMOR_METALIC_A, 1, 1, 100)
         check_restock_item(PID_M_NOODLES, 5, 10, 100)
-        check_restock_item(PID_TOOL_CAR_GAZ, 1, 1, 100)
+        check_restock_item(PID_TOOL_CAR_GAZ, 2, 2, 100)
         check_restock_item(PID_TOOL_PARTS_MECHANICAL, 4, 5, 100)
         check_restock_item(PID_TOOL_PARTS_ELECTRONIC, 2, 3, 100)
-        check_restock_item(PID_OIL, 2, 3, 100)
         check_restock_item(PID_TOOL_GEIGER_COUNTER, 1, 1, 100)
         check_restock_item(PID_TOOL_MOTION_SENSOR, 1, 1, 100)
         check_restock_item(PID_TOOL_LOCKPICKS_EL, 1, 2, 100)
@@ -214,7 +213,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-25) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,-20) // Поправка к отношению за принадлежность к фракциям
 
-   dialog_proc_barter(1,102,NodeStartDialog,-1,-1)
+   dialog_proc_barter(1,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -306,7 +305,12 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else begin
    Reply(210)
+   end
 
    if (local_var(LVAR_Bonus_A) == 0) then begin
       if ((getQuest(GVAR_TWOSUN_QST_BAND_SLAVES) == 10) and (getQuest(GVAR_TWOSUN_STATUS_BOSS) >= 0)) then begin
@@ -417,8 +421,14 @@ end
 
 procedure NodeRepairArm begin
    Reply(351)
+
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   NAnswer(354,1,NodeSndDialog)
+   end
+   else begin
    NAnswer(352,1,NodeRepairArm2)
    NAnswer(353,1,NodeSndDialog)
+   end
 end
 
 procedure NodeRepairArm2 begin
@@ -726,7 +736,12 @@ end
 
 procedure NodeBarter307 begin
    call NodeBarter308;
+   if (is_skill_tagged(SKILL_ENERGY_WEAPONS) == true) then begin
+   skill_up(SKILL_ENERGY_WEAPONS,6);
+   end
+   else begin
    skill_up(SKILL_ENERGY_WEAPONS,5);
+   end
    Reply(411)
    NAnswer(412,1,Node999)
 end

@@ -607,7 +607,12 @@ procedure NodeTrener304 begin
    if dude_skill(SKILL_UNARMED_COMBAT,200) then begin
    end
    else begin
-   skill_up(SKILL_UNARMED_COMBAT,5);
+      if (is_skill_tagged(SKILL_UNARMED_COMBAT) == true) then begin
+      skill_up(SKILL_UNARMED_COMBAT,6);
+      end
+      else begin
+      skill_up(SKILL_UNARMED_COMBAT,5);
+      end
    end
    set_local_var(LVAR_Trener_Timer, ONE_GAME_DAY + game_time);
    call Node999;

@@ -397,12 +397,14 @@ procedure NodeSndDialog begin
       end
    end
 
-   if (item_amnt(dude_obj,PID_Q_DIANA_PACKET) > 0) then begin
    if (getQuest(GVAR_INF_QST_APOSTOL_B) == qStart) then begin
-   NAnswer(430,1,NodeQst100)
+      if (item_amnt(dude_obj,PID_Q_DIANA_PACKET) > 0) then begin
+      NAnswer(430,1,NodeQst100)
+      end
+      else begin
+      NAnswer(424,1,NodeAnswer415)
+      end
    end
-   end
-
    NAnswer(450,1,NodeAnswer500)
    NAnswer(251,1,Node999)
 end
@@ -620,7 +622,8 @@ end
 
 procedure NodeAnswer301 begin
    Reply(363)
-   NAnswer(364,1,NodeAnswer302)
+   NAnswer(364,1,NodeAnswer303)
+   //NAnswer(364,1,NodeAnswer302)
    NAnswer(371,1,NodeAnswerEnd)
 end
 
@@ -978,6 +981,7 @@ procedure NodePartyNon2 begin
 
    critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,NUM_TEAM);
    set_local_var(LVAR_Flag_Run,0);
+   set_local_var(LVAR_Flags,0);
    set_global_var(GVAR_INF_STATUS_APOC,0);
    if (getQuest(GVAR_NUEVA_QST_APOC_HOME) == qEnd) then begin
    set_global_var(GVAR_INF_STATUS_APOC,2);

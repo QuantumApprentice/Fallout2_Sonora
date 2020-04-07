@@ -805,6 +805,7 @@ procedure NodeQst300 begin
    (впрочем это может быть избыточным и спойлерным)
    */
 
+   /*
    if (bitDialog(bit_9) != 0) then begin
    if (global_var(GVAR_BRAHMIN_STATUS_HEAD_GERONIMO)<0) then begin
    if (global_var(GVAR_BRAHMIN_STATUS_RANGER)!=0) then begin
@@ -812,6 +813,13 @@ procedure NodeQst300 begin
    GAnswer(660,1,NodeQst310)
    end
    end
+   end
+   end
+   */
+
+   if (bitDialog(bit_9) != 0) then begin
+   if (global_var(GVAR_BRAHMIN_STATUS_HEAD_GERONIMO)<0) then begin
+   GAnswer(660,1,NodeQst310)
    end
    end
 
@@ -1168,7 +1176,7 @@ procedure NodeFollower200 begin
    NAnswer(531,1,NodeFollower201)
    end
    else begin
-   NAnswer(534,1,Node999)
+   NAnswer(536,1,Node999)
    end
 end
 

@@ -212,7 +212,9 @@ procedure NodeSndDialog begin
 
    if (getQuest(GVAR_PHENIX_PARTY_QST_B) == qStart) then begin
       if (bitDialog(bit_5) == 0) then begin
-      NAnswer(250,1,NodeAnswer300)
+      if (map_var(MVAR_PNX_CULT_SPY_SHRIFT) == 0) then begin
+      zNAnswer(250,1,NodeAnswer300)
+      end
       end
    end
 

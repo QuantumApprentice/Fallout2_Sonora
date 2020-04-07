@@ -678,17 +678,32 @@ procedure NodeIguana204 begin
 end
 
 procedure NodeIguana205a begin
+   if (is_skill_tagged(SKILL_SCOUT) == true) then begin
+   skill_up(SKILL_SCOUT,4);
+   end
+   else begin
    skill_up(SKILL_SCOUT,3);
+   end
    call NodeIguana206;
 end
 
 procedure NodeIguana205b begin
+   if (is_skill_tagged(SKILL_TRAPS) == true) then begin
+   skill_up(SKILL_TRAPS,4);
+   end
+   else begin
    skill_up(SKILL_TRAPS,3);
+   end
    call NodeIguana206;
 end
 
 procedure NodeIguana205c begin
+   if (is_skill_tagged(SKILL_REPAIR) == true) then begin
+   skill_up(SKILL_REPAIR,4);
+   end
+   else begin
    skill_up(SKILL_REPAIR,3);
+   end
    call NodeIguana206;
 end
 

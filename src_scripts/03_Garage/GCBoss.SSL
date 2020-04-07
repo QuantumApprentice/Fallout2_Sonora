@@ -235,9 +235,12 @@ procedure destroy_p_proc begin
    if (getQuest(GVAR_GARAGE_QST_BOSS_TRADE) < 3) then begin
    setQuest(GVAR_GARAGE_QST_BOSS_TRADE,-1);
    end
+   if (getQuest(GVAR_GARAGE_QST_BOSS) <= qEnd) then begin
    setQuest(GVAR_GARAGE_QST_BOSS,qZero);
+   end
+   if (getQuest(GVAR_GARAGE_QST_BOSS) == qStart) then begin
    setQuest(GVAR_GARAGE_QST_FABRICA,qStop);
-
+   end
    if (local_var(LVAR_ITEM_CARAVAN) > 0) then begin
       if (getQuest(GVAR_GARAGE_QST_BOSS_TRADE) < 2) then begin
       item_add(self_obj,PID_Q_GARAGE_DETALS,1)

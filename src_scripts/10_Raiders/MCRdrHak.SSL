@@ -226,7 +226,7 @@ procedure NodeSndDialog begin
       zGAnswer(237,1,NodeQst105)
       end
       if (global_var(GVAR_RAIDER_STATUS_HAK)>0) then begin
-      zGAnswer(240,1,NodeQst106)
+      GAnswer(240,1,NodeQst106)
       end
       if (global_var(GVAR_CGRANDE_STATUS_MER)<0) then begin
       GAnswer(246,1,NodeQst107)

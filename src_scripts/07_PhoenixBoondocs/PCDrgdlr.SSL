@@ -101,9 +101,9 @@ procedure setBarterA begin
         check_restock_item(PID_WAT_WIPES, 3, 6, 100)
         check_restock_item(PID_HYPO, 3, 6, 100)
         check_restock_item(PID_M_STIMPAK, 4, 6, 100)
-        check_restock_item(PID_TOOL_DOCTORS_BAG, 1, 1, 100)
+        check_restock_item(PID_TOOL_DOCTORS_BAG, 1, 2, 100)
         check_restock_item(PID_M_ANTIDOTE, 2, 5, 100)
-        check_restock_item(PID_M_RADAWAY, 1, 3, 100)
+        check_restock_item(PID_M_RADAWAY, 2, 3, 100)
         check_restock_item(PID_M_RAD_X, 1, 2, 100)
 
         //- крышки
@@ -359,6 +359,13 @@ procedure NodeSndDialog begin
       end
    end
    NAnswer(256,1,NodeBarter)
+
+   if (get_BarterDopusk == 0) then begin
+   if (global_var(GVAR_PHENIX_STATUS_CARDINAL) > 0) then begin
+   NAnswer(255,1,NodeBarterOk)
+   end
+   end
+
    NAnswer(random(216,219),1,Node999)
 end
 
@@ -517,6 +524,7 @@ end
 
 procedure NodeBarterOk begin
    call setBarterB;
+   goBarterMod;
    Reply(260)
    NAnswer(261,1,Node999)
    NAnswer(262,1,Node999)

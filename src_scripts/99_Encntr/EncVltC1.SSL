@@ -1,5 +1,5 @@
 #include "..\headers\define.h"
-//---------------------
+//--------------------- Паладин
 
 #define NAME                            SCRIPT_EncVltC1
 #define TOWN_REP_VAR                    GVAR_TOWN_REP_PUERTO  // привязка к репутации (-1, если не нужно)

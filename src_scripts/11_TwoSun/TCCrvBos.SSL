@@ -339,7 +339,7 @@ procedure NodeAnswer302 begin
 end
 
 procedure NodePuerto begin
-   if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
+   if (getQuest(GVAR_PUERTO_BOS_DESTROY) >= qEnd) then begin
    Reply(306)
    NAnswer(307,1,NodeSndDialog)
    end

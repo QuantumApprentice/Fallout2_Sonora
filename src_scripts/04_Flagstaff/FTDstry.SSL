@@ -3,7 +3,7 @@
 //#define NAME                            SCRIPT_FTDstry
 
 procedure start;
-procedure map_enter_p_proc;
+procedure spatial_p_proc;
 procedure damage_p_proc;
 
 
@@ -11,7 +11,8 @@ procedure damage_p_proc;
 procedure start begin
 end
 
-procedure map_enter_p_proc begin
+procedure spatial_p_proc begin
+   //display_msg(" "+1+".");
 end
 
 procedure damage_p_proc begin
@@ -23,8 +24,7 @@ procedure damage_p_proc begin
          display_mstr(102);
          setQuest(GVAR_FLAGSTAFF_MINES_DESTROY, qEnd);
          setQuest(GVAR_FLAGSTAFF_EVIL_WARDEN, qStop);
-         set_global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN, 1);
-         //addExpressBoxToDude
+         set_global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN, -1);
          load_map(MAP_FLAGSTAFF_MINE, 10697);
          end
       end

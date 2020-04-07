@@ -189,7 +189,12 @@ procedure timed_event_p_proc begin
       set_map_var(MVAR_Plaza_Council,1);
       if (bitDialog(bit_2) != 0) then begin
          if (bitDialog(bit_3) == 0) then begin
+         if (is_skill_tagged(SKILL_GAMBLING) == true) then begin
+         skill_up(SKILL_GAMBLING,6);
+         end
+         else begin
          skill_up(SKILL_GAMBLING,5);
+         end
          bitDialogExp(bit_3,0)
          end
       end
@@ -213,7 +218,7 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
-   set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   set_critter_options(3,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 end
 
 procedure use_skill_on_p_proc begin
@@ -609,7 +614,7 @@ procedure NodeConcuilA303 begin
 end
 
 procedure NodeConcuilA304 begin
-   bitDialogExp(bit_5,25)
+   bitDialogExp(bit_4,25)
    replyNum += 1;
    inc_map_var(MVAR_Plaza_OldRespect);
    Reply(321)
@@ -678,7 +683,7 @@ procedure NodeConcuilA400 begin
    Reply(mstr(350)+dude_name+mstr(351))
    NAnswer(352,1,NodeConcuilA402)
    end
-   else if (getQuest(GVAR_VILLA_QST_CHRIS) == 2) then begin
+   else if ((getQuest(GVAR_VILLA_QST_CHRIS) == 2) and (global_var(GVAR_VILLA_STATUS_CHRIS)<2)) then begin
    inc_map_var(MVAR_Plaza_OldRespect);
    Reply(mstr(363)+dude_name+mstr(364)+dude_name+mstr(365))
    NAnswer(366,1,NodeConcuilA405)

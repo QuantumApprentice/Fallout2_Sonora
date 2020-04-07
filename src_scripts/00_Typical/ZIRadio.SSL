@@ -40,6 +40,10 @@ procedure NodeRanders200;
 procedure NodeRanders201;
 procedure NodeRanders202;
 procedure NodeCult;
+procedure NodeCult100;
+procedure NodeCult101;
+procedure NodeCult102;
+procedure NodeCult103;
 procedure NodePhenix;
 procedure NodeTwoSun;
 procedure NodeBoS;
@@ -263,7 +267,7 @@ procedure NodeAll101 begin
 end
 
 procedure NodeAll102 begin
-   if getPosWorld(525,475,25) then begin
+   if getPosWorld(525,475,75) then begin
    Reply(267)
    NAnswer(268,1,NodeAll103)
    NAnswer(231,1,NodeDialog)
@@ -465,8 +469,9 @@ end
 
 procedure NodeRanders201 begin
    Reply(271)
-   NAnswer(272,1,NodeRanders202)
+   //NAnswer(272,1,NodeRanders202)
    NAnswer(273,1,NodeDialog)
+   NAnswer(274,1,NodeDialog)
 end
 
 procedure NodeRanders202 begin
@@ -479,10 +484,37 @@ end
 
 procedure NodeCult begin
    Reply(230)
-   /*
-      реакция на появление и действия ГГ
-   */
+   if (getQuest(GVAR_PHENIX_QST_PLANT_SPY) == qStart) then begin
+   giQ_Option(5, SCRIPT_PSRadio, 250, NodeCult100, HEAD_REACTION_NEUTRAL); //!!! Синхронизировать с SCRIPT_PSRadio
+   end
    NAnswer(231,1,NodeDialog)
+end
+
+procedure NodeCult100 begin
+   gSay_Reply(SCRIPT_PSRadio,251);
+   giQ_Option(5, SCRIPT_PSRadio, 252, NodeCult101, HEAD_REACTION_NEUTRAL);
+end
+
+procedure NodeCult101 begin
+   gSay_Reply(SCRIPT_PSRadio,253);
+   giQ_Option(5, SCRIPT_PSRadio, 254, NodeCult102, HEAD_REACTION_NEUTRAL);
+end
+
+procedure NodeCult102 begin
+   gSay_Reply(SCRIPT_PSRadio,255);
+   giQ_Option(5, SCRIPT_PSRadio, 256, NodeCult103, HEAD_REACTION_NEUTRAL);
+end
+
+procedure NodeCult103 begin
+   setQuest(GVAR_PHENIX_QST_PLANT_SPY,qEnd);
+   exp_add(250);
+   gSay_Reply(SCRIPT_PSRadio,257);
+   if (getQuest(GVAR_PHENIX_QST_CARDINAL_SPY) >= qEnd) then begin
+   giQ_Option(5, SCRIPT_PSRadio, 259, Node999, HEAD_REACTION_NEUTRAL);
+   end
+   else begin
+   giQ_Option(5, SCRIPT_PSRadio, 258, Node999, HEAD_REACTION_NEUTRAL);
+   end
 end
 
 procedure NodePhenix begin

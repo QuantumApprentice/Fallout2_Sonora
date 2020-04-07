@@ -35,6 +35,7 @@ procedure NodeStartDialog;
 procedure NodeTitul;
 procedure NodeTitul2;
 procedure NodeTitul3;
+procedure NodeTitul4;
 procedure NodeFstDialog;
 procedure NodeFstDialog101;
 procedure NodeFstDialog102;
@@ -176,6 +177,7 @@ procedure critter_p_proc begin
    end
    set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 
+/*
    if (combat_is_initialized == false) then begin
    if (partyPidBos != 0) then begin
       if (elevation(partyPidBos) == self_elevation) then begin
@@ -191,7 +193,7 @@ procedure critter_p_proc begin
       end
    end
    end
-
+*/
    if ((map_var(MVAR_INF_DOPUSK) == 0) and (bitDialog(bit_1) == 0)) then begin
    dialogue_system_forcing(10)
    end
@@ -268,19 +270,19 @@ end
 
 procedure NodeTitul2 begin
    set_global_var(GVAR_TITUL_REBIRTH,1);
+   radiation_dec(dude_obj,get_critter_stat(dude_obj,STAT_current_rad));
    //critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_start,1); -- !!! начало гулификации, завершение через месяц, прописать в скрипте ГГ
    critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_fiziology,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   radiation_dec(dude_obj,get_critter_stat(dude_obj,STAT_current_rad));
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
    call NodeQst203;
    zReply(362)
    NAnswer(363,1,NodeTitul3)
@@ -289,6 +291,13 @@ end
 procedure NodeTitul3 begin
    Reply(364)
    NAnswer(365,1,Node999)
+end
+
+procedure NodeTitul4 begin
+   //critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
+   if (dude_charisma>2) then begin
+   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
+   end
 end
 
 //--- ПЕРВЫЙ ДИАЛОГ

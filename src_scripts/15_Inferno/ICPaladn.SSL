@@ -91,6 +91,7 @@ procedure NodeQst210;
 procedure NodeQst211;
 procedure NodeQst212;
 procedure NodeQst213;
+procedure NodeQst214;
 procedure NodePartyAdd;
 procedure NodePartyNon;
 procedure NodeParty100;
@@ -266,8 +267,13 @@ procedure destroy_p_proc begin
 end
 
 procedure talk_p_proc begin
+   if ((cur_map_index == MAP_INFERNO_CHURCH) and (elevation(partyPidBos) == 2)) then begin
+   floater(self_obj, 106, COLOR_MSG_RED);
+   end
+   else begin
    setReaction(1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    dialog_proc(0,0,NodeStartDialog,-1,-1)
+   end
 end
 
 procedure Node998 begin
@@ -275,6 +281,7 @@ procedure Node998 begin
 end
 
 procedure Node999 begin
+   off_enemy_dude;
 end
 
 procedure NodeStartDialog begin
@@ -438,11 +445,15 @@ procedure NodeSndDialog begin
       end
 
       if (getQuest(GVAR_INF_QST_PALADIN_B) == qEnd) then begin
+
          if (item_amnt(dude_obj,PID_ARMOR_POWER_A)>0) then begin
-         GAnswer(379,1,NodeQst210)
+         zGAnswer(379,1,NodeQst210)
          end
-         if (item_amnt(dude_obj,PID_ARMOR_POWER_B)>0) then begin
-         GAnswer(379,1,NodeQst210)
+         else if (item_amnt(dude_obj,PID_ARMOR_POWER_B)>0) then begin
+         zGAnswer(379,1,NodeQst210)
+         end
+         else if (getQuest(GVAR_PUERTO_POWER_ARMOR) > qZero) then begin
+         NAnswer(389,1,NodeQst214)
          end
       end
 
@@ -763,9 +774,10 @@ procedure NodeQst207 begin
    else if (armor_pid_dude_var == PID_ARMOR_POWER_B) then begin
    NAnswer(374,1,NodeQst211)
    end
-   else begin
-   NAnswer(374,1,NodeQst208)
+   else if (getQuest(GVAR_PUERTO_POWER_ARMOR) > qZero) then begin
+   NAnswer(389,1,NodeQst214)
    end
+   NAnswer(374,1,NodeQst208)
 end
 
 procedure NodeQst208 begin
@@ -776,10 +788,13 @@ end
 procedure NodeQst209 begin
    Reply(377)
    if (item_amnt(dude_obj,PID_ARMOR_POWER_A)>0) then begin
-   GAnswer(379,1,NodeQst210)
+   zGAnswer(379,1,NodeQst210)
    end
-   if (item_amnt(dude_obj,PID_ARMOR_POWER_B)>0) then begin
-   GAnswer(379,1,NodeQst210)
+   else if (item_amnt(dude_obj,PID_ARMOR_POWER_B)>0) then begin
+   zGAnswer(379,1,NodeQst210)
+   end
+   else if (getQuest(GVAR_PUERTO_POWER_ARMOR) > qZero) then begin
+   NAnswer(389,1,NodeQst214)
    end
    NAnswer(378,1,Node999)
 end
@@ -804,11 +819,26 @@ end
 
 procedure NodeQst213 begin
    setQuest(GVAR_INF_QST_PALADIN_A,qEnd);
-   exp_add(500);
+   exp_add(750);
    set_SLAVA(25)
    setBonusReaction(35)
    Reply(387)
    NAnswer(388,1,Node999)
+end
+
+procedure NodeQst214 begin
+   setQuest(GVAR_INF_QST_PALADIN_A,qEnd);
+   exp_add(750);
+   set_SLAVA(25)
+   setBonusReaction(35)
+   if (global_var(GVAR_INF_STATUS_PALADIN)>0) then begin
+   Reply(392)
+   NAnswer(393,1,Node999)
+   end
+   else begin
+   Reply(390)
+   NAnswer(388,1,Node999)
+   end
 end
 
 //--- ПАРТИЯ
@@ -830,6 +860,7 @@ procedure NodePartyNon begin
    critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_CULT_ATOMIC);
    end
    set_local_var(LVAR_Flag_Run,0);
+   set_local_var(LVAR_Flags,0);
    set_global_var(GVAR_INF_STATUS_PALADIN,0);
    set_local_var(LVAR_Home_Tile,self_tile);
    set_local_var(LVAR_Home_Rotat,self_cur_rot);

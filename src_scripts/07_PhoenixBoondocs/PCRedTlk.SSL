@@ -40,6 +40,7 @@ procedure NodeFstDialog2;
 procedure NodeFstDialog3;
 procedure NodeFstDialog4;
 procedure NodeSndDialog;
+procedure NodeSndDialog2;
 procedure NodeArena100;
 procedure NodeArena101;
 procedure NodeArena102;
@@ -56,6 +57,10 @@ procedure NodeArena206;
 procedure NodeArena207;
 procedure NodeArena300;
 procedure NodeArena301;
+procedure NodeArena500;
+procedure NodeArena501;
+procedure NodeArena502;
+procedure NodeArena503;
 
 //---------------------
 
@@ -114,7 +119,10 @@ end
 procedure critter_p_proc begin
    if (obj_critter_a>0) then begin
       if (map_var(MVAR_PNX_CARDINALS_ATTAK)>0) then begin
+         bitDialogExp(bit_2,0)
          if (self_elevation != 2) then begin
+         critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_CULT_ATOMIC);
+         critter_add_trait(obj_critter_a,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PHOENIX_BANDIT);
          move_to(self_obj,HomeTile,2);
          end
          attack(obj_critter_a);
@@ -150,16 +158,20 @@ procedure destroy_p_proc begin
 end
 
 procedure talk_p_proc begin
+   setReaction(-1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
+   fracReaction(GVAR_TITUL_ARENA_MASTER,40) // Поправка к отношению за принадлежность к фракциям
+
    if (local_var(LVAR_Flag_Dialog)>=10) then begin
-   floater(self_obj,105,COLOR_MSG_GREEN);
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
    else if (map_var(MVAR_PNX_CARDINALS_ATTAK)>0) then begin
    z_floater(self_obj,104,COLOR_MSG_RED);
    end
+   else if (bitDialog(bit_2) != 0) then begin
+   z_floater(self_obj,104,COLOR_MSG_RED);
+   end
    else if (map_var(MVAR_PNX_CARDINALS_DOPUSK)>0) then begin
-   setReaction(-1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   fracReaction(GVAR_TITUL_ARENA_MASTER,40) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(0,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
    else begin
    floater(self_obj,103,COLOR_MSG_RED);
@@ -174,7 +186,10 @@ procedure Node999 begin
 end
 
 procedure NodeStartDialog begin
-   if (local_var(LVAR_Flag_Dialog) > 0) then begin
+   if (local_var(LVAR_Flag_Dialog) >= 10) then begin
+   call NodeSndDialog2;
+   end
+   else if (local_var(LVAR_Flag_Dialog) > 0) then begin
    call NodeArena200;
    end
    else if (bitDialog(bit_1) == 0) then begin
@@ -215,7 +230,10 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if (getReaction>10) then begin
+   if (getReaction>=50) then begin
+   Reply(212)
+   end
+   else if (getReaction>10) then begin
    Reply(212)
    end
    else begin
@@ -231,6 +249,10 @@ procedure NodeSndDialog begin
       NAnswer(220,1,NodeArena100)
    end
 
+   if (getQuest(GVAR_PHENIX_QST_PLANT_SPY) == qStart) then begin
+   NAnswer(260,1,NodeArena500)
+   end
+
    /*
    !!! обучит ГГ взлому+скрытности+краже по выбору при хороших отношениях
    */
@@ -239,11 +261,34 @@ procedure NodeSndDialog begin
    NAnswer(253,3,NodeArena104)
    NAnswer(256,4,NodeArena105)
 
-   if (getReaction>10) then begin
+   if (getReaction>=50) then begin
+   NAnswer(215,1,Node999)
+   end
+   else if (getReaction>10) then begin
    NAnswer(213,1,Node999)
    end
    else begin
    NAnswer(211,1,Node999)
+   end
+end
+
+procedure NodeSndDialog2 begin
+   if (getReaction>=50) then begin
+   Reply(212)
+   end
+   else begin
+   Reply(216)
+   end
+
+   if (getQuest(GVAR_PHENIX_QST_PLANT_SPY) == qStart) then begin
+   NAnswer(260,1,NodeArena500)
+   end
+
+   if (getReaction>=50) then begin
+   NAnswer(215,1,Node999)
+   end
+   else begin
+   NAnswer(217,1,Node999)
    end
 end
 
@@ -254,6 +299,7 @@ procedure NodeArena100 begin
 end
 
 procedure NodeArena101 begin
+   //!!! здесь должна быть поправка на убийство Орриса
    Reply(225)
    BAnswer(226,3,NodeArena102)
    NAnswer(227,1,Node999)
@@ -282,16 +328,24 @@ procedure NodeArena105 begin
 end
 
 procedure NodeArena200 begin
-   if (local_var(LVAR_Flag_Dialog) == 1) then begin
-   call NodeArena201;
+   critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,NUM_TEAM);
+   if (local_var(LVAR_Flag_Dialog) > 1) then begin
+      if (global_var(GVAR_PHENIX_STATUS_CARDINAL) < 0) then begin
+      Reply(245)
+      NAnswer(246,1,NodeArena300)
+      end
+      else begin
+      Reply(230)
+      NAnswer(259,1,NodeArena206)
+      NAnswer(231,1,Node999)
+      end
    end
-   else if (global_var(GVAR_PHENIX_STATUS_CARDINAL) < 0) then begin
-   Reply(245)
-   NAnswer(246,1,NodeArena300)
+   else if (local_var(LVAR_Flag_Dialog) == 1) then begin
+      call NodeArena201;
    end
    else begin
-   Reply(230)
-   NAnswer(231,1,Node999)
+      Reply(230)
+      NAnswer(231,1,Node999)
    end
 end
 
@@ -343,11 +397,41 @@ procedure NodeArena300 begin
    setBonusReaction(100)
    set_CITY_REP(GVAR_TOWN_REP_PHOENIX_CULT,5)
 
-   Reply(247)
+   if (getQuest(GVAR_PHENIX_CULT_DESTROY)>=qEnd) then begin
+   Reply(249)
    NAnswer(248,1,NodeArena301)
+   end
+   else begin
+   zReply(247)
+   NAnswer(248,1,NodeArena301)
+   end
 end
 
 procedure NodeArena301 begin
    move_to(self_obj,HomeTile,2);
    call Node999;
+end
+
+procedure NodeArena500 begin
+   Reply(261)
+   NAnswer(262,1,NodeArena501)
+end
+
+procedure NodeArena501 begin
+   Reply(263)
+   NAnswerSkill(272,3,NodeArena503,SKILL_CONVERSANT,70,271,NodeArena502)
+   NAnswerReaction(268,1,NodeArena503,35,265,NodeArena502)
+   NAnswer(264,1,Node999)
+end
+
+procedure NodeArena502 begin
+   Reply(266)
+   NAnswer(267,1,Node999)
+end
+
+procedure NodeArena503 begin
+   setQuest(GVAR_PHENIX_QST_PLANT_SPY,qEnd);
+   exp_add(250);
+   Reply(269)
+   NAnswer(270,1,Node999)
 end

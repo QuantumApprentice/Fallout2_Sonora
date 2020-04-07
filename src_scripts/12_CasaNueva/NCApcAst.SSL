@@ -77,10 +77,10 @@ procedure map_enter_p_proc begin
 end
 
 procedure setBarterA begin
-        check_restock_item(PID_TOOL_DOCTORS_BAG, 1, 2, 100)
+        check_restock_item(PID_TOOL_DOCTORS_BAG, 2, 4, 100)
         check_restock_item(PID_WAT_WIPES, 3, 6, 100)
         check_restock_item(PID_HYPO, 6, 10, 100)
-        check_restock_item(PID_M_RADAWAY, 2, 4, 100)
+        check_restock_item(PID_M_RADAWAY, 3, 5, 100)
         check_restock_item(PID_M_RAD_X, 3, 5, 100)
         check_restock_item(PID_M_ANTIDOTE, 3, 5, 100)
         check_restock_item(PID_M_STIMPAK, 5, 8, 100)
@@ -273,8 +273,6 @@ procedure NodeAnswer105 begin
    NAnswer(224,1,NodeSndDialog)
 end
 
-
-
 procedure NodeAnswer200 begin
    Reply(251)
    NAnswer(253,1,NodeAnswer201)
@@ -302,9 +300,17 @@ end
 procedure NodeAnswer202 begin
    Reply(257)
    if (get_BarterDopusk == 0) then begin
-   NAnswerSkill(263,3,NodeAnswer203,SKILL_BARTER,90,259,NodeAnswer204)
-   NAnswerSkill(269,3,NodeAnswer203,SKILL_SCIENCE,90,268,NodeAnswer204)
-   NAnswerRep(267,3,NodeAnswer203,30,266,NodeAnswer204)
+      NAnswerSkill(263,3,NodeAnswer203,SKILL_BARTER,90,259,NodeAnswer204)
+      NAnswerSkill(269,3,NodeAnswer203,SKILL_SCIENCE,90,268,NodeAnswer204)
+      if (getQuest(GVAR_NUEVA_QST_APOC_HOME) >= qEnd) then begin
+      GAnswer(274,1,NodeAnswer203)
+      end
+      if (getQuest(GVAR_NUEVA_QST_PLANT_INSECT) >= qEnd) then begin
+      NAnswerRep(267,3,NodeAnswer203,25,266,NodeAnswer204)
+      end
+      else begin
+      GAnswer(267,1,NodeAnswer203)
+      end
    end
    NAnswer(258,1,Node999)
 end

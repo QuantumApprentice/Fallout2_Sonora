@@ -349,6 +349,7 @@ procedure NodeSndDialog begin
    Reply(210)
 
    //--- Торговый маршрут
+
    if (getQuest(GVAR_GARAGE_QST_BARMEN_SB) == qStart) then begin
       if (global_var(GVAR_BRAHMIN_STATUS_LTHR) > 0) then begin
       GAnswer(440,1,NodeBrahmin200)
@@ -376,7 +377,7 @@ procedure NodeSndDialog begin
    //--- Расспросы
 
    if (getQuest(GVAR_GARAGE_QST_BAR) == qEnd) then begin
-   GAnswer(367,3,NodeAnswer302)
+   GAnswer(367,1,NodeAnswer302)
    end
 
    if (getQuest(GVAR_MAIN_QUEST_VILLA) < qEnd) then begin

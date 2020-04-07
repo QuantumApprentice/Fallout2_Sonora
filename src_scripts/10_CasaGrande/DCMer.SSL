@@ -492,7 +492,7 @@ procedure NodeSndDialog begin
    end
    if ((getQuest(GVAR_CGRANDE_QST_ROADSTOP) == qStart) or (getQuest(GVAR_CGRANDE_QST_ROADSTOP) == qStop)) then begin
    if (getQuest(GVAR_RAIDER_OIL_DESTROY) == qEnd) then begin
-   NAnswer(550,1,NodeQst300)
+   zNAnswer(550,1,NodeQst300)
    end
    end
 

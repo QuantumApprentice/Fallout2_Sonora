@@ -520,7 +520,12 @@ procedure NodeAnswer207 begin
    inc_local_var(LVAR_SkillUp);
    PLAY_FADE
    game_time_advance(ONE_GAME_HOUR*3);
+   if (is_skill_tagged(SKILL_THROWING) == true) then begin
+   skill_up(SKILL_THROWING,6);
+   end
+   else begin
    skill_up(SKILL_THROWING,5);
+   end
    call Node999;
 end
 

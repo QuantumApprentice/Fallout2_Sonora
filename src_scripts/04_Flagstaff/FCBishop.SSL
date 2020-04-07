@@ -611,7 +611,12 @@ end
 procedure NodeAnswer207 begin
    if (item_amnt(dude_obj,PID_BOOTLE_CAPS) >= 100) then begin
       item_remove(dude_obj, PID_BOOTLE_CAPS, -100)
+      if (is_skill_tagged(SKILL_SCIENCE) == true) then begin
+      skill_up(SKILL_SCIENCE,6);
+      end
+      else begin
       skill_up(SKILL_SCIENCE,5);
+      end
       PLAY_FADE
       game_time_advance(ONE_GAME_HOUR*5);
       Reply(234)
@@ -891,7 +896,7 @@ procedure NodeQuestEnd begin
    NAnswer(341,1,NodeQuestEnd3)
    NAnswer(342,1,NodeQuestEnd4)
    if (gvar_bit(GVAR_BIBL_FLAGS_BIT, bit_2) == 0) then begin
-   NAnswer(344,1,NodeQuestEnd6)
+   //NAnswer(344,1,NodeQuestEnd6)
    end
    if ((getQuest(GVAR_PHENIX_CULT_DESTROY) < qEnd) and (global_var(GVAR_PHENIX_CULT_LETTER) == 0))then begin
    //NAnswer(343,4,NodeQuestEnd5)

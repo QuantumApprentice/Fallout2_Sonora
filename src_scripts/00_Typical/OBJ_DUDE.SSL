@@ -64,8 +64,13 @@ procedure map_update_p_proc begin
    end
    elevation_dude_var := dude_elevation;
 
+   //--- Поправка к репутации Виллы в обход движковой опции с роликами-напоминалками
+   if ((global_var(GVAR_TOWN_REP_VILLA) >-90) and (global_var(GVAR_TOWN_REP_VILLA) <-15)) then begin
+   set_global_var(GVAR_TOWN_REP_VILLA,-15);
+   end
+
    //--- Нанесение травмы от превышении веса
-   if (who_carry_amount(dude_obj)>(50*dude_strength)) then begin
+   if (who_carry_amount(dude_obj)>(50*dude_strength)+250) then begin
        if ((critter_state(dude_obj) bwand DAM_CRIP_LEG_LEFT) or (critter_state(dude_obj) bwand DAM_CRIP_LEG_RIGHT)) then begin
        end else begin
             dam_to_dude_LEG
@@ -95,16 +100,18 @@ procedure map_update_p_proc begin
        critter_add_trait(dude_obj,TRAIT_PERK,PERK_radiactiv_hp_II,1);
    end
 
-   if (get_critter_stat(dude_obj,STAT_current_rad)>=100) then begin
+   if (get_critter_stat(dude_obj,STAT_current_rad)>=200) then begin
    set_global_var(GVAR_ENDGAME_DEATH_RAD,1);
    end
 
    //--- начисление опыта за бой
    if (combat_is_initialized == false) then begin
+   if (is_loading_game == false) then begin
       if (global_var(GVAR_EXPOINT_COMBAT_CHECK)>0) then begin
       exp_add(global_var(GVAR_EXPOINT_COMBAT_CHECK));
       set_global_var(GVAR_EXPOINT_COMBAT_CHECK,0);
       end
+   end
    end
 end
 
@@ -155,18 +162,24 @@ procedure critter_p_proc begin
    end
 
    //--- Облучение по таймеру на локациях
-   if (local_var(LVAR_RAD_TIMER) < game_time) then begin
+   //if (local_var(LVAR_RAD_TIMER) < game_time) then begin
+   if (global_var(GVAR_RADIOACTIV_GLBLTIMER) < game_time) then begin
        //! сюда можно добавить облучение предметами из инвентаря
        if (item_amnt(dude_obj,PID_RAD_ITEM) >0) then begin
        set_global_var(GVAR_RADIOACTIV_GLOBAL, global_var(GVAR_RADIOACTIV_GLOBAL) + 10);
+       end
+       if DudePerkHas(PERK_ghouling_fiziology) then begin
+       set_global_var(GVAR_RADIOACTIV_GLOBAL,0);
        end
        if (global_var(GVAR_RADIOACTIV_GLOBAL) != 0) then begin
        radiation_inc(dude_obj, global_var(GVAR_RADIOACTIV_GLOBAL));
        end
        if DudePerkHas(PERK_ranger) then begin
-       set_local_var(LVAR_RAD_TIMER, (ONE_GAME_SECOND*10) + game_time);
+       //set_local_var(LVAR_RAD_TIMER, (ONE_GAME_SECOND*40) + game_time);
+       set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*120) + game_time);
        end else begin
-       set_local_var(LVAR_RAD_TIMER, (ONE_GAME_SECOND*5) + game_time);
+       //set_local_var(LVAR_RAD_TIMER, (ONE_GAME_SECOND*20) + game_time);
+       set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*60) + game_time);
        end
    end
 
@@ -292,6 +305,7 @@ procedure critter_p_proc begin
 end
 
 procedure description_p_proc begin
+   //script_overrides;
    //exp_add(10000);
    //load_map(MAP_RAIDERS_BASA, -1);
    //world_map;

@@ -178,7 +178,13 @@ procedure destroy_p_proc begin
    obj_critter_a := 0;
    set_map_var(MVAR_GARAGE_TRADE_STATUS,-1);
    set_global_var(GVAR_GARAGE_STATUS_BOSS,-1);
-   setQuest(GVAR_GARAGE_QST_BOSS_TRADE,-1);
+   setQuest(GVAR_GARAGE_QST_BOSS_TRADE,qStop);
+   if (getQuest(GVAR_GARAGE_QST_BOSS) <= qEnd) then begin
+   setQuest(GVAR_GARAGE_QST_BOSS,qZero);
+   end
+   if (getQuest(GVAR_GARAGE_QST_BOSS) == qStart) then begin
+   setQuest(GVAR_GARAGE_QST_FABRICA,qStop);
+   end
    kill_critter_opt
 end
 

@@ -100,21 +100,23 @@ procedure critter_p_proc begin
    end
    set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 
+   /*
    if (combat_is_initialized == false) then begin
-   if (partyPidBos != 0) then begin
-      if (elevation(partyPidBos) == self_elevation) then begin
-      //if (obj_can_see_obj(self_obj,partyPidBos) == true) then begin
-      if (tile_distance_objs(self_obj,partyPidBos) <= 13) then begin
-      if (getQuest(GVAR_INF_QST_PALADIN_A) < qEnd) then begin
-         if (getQuest(GVAR_INF_QST_APOSTOL_A) < qEnd) then begin
-         floater(partyPidBos,105,COLOR_MSG_RED);
-         attack(partyPidBos);
+       if (partyPidBos != 0) then begin
+         if (elevation(partyPidBos) == self_elevation) then begin
+         //if (obj_can_see_obj(self_obj,partyPidBos) == true) then begin
+         if (tile_distance_objs(self_obj,partyPidBos) <= 13) then begin
+         if (getQuest(GVAR_INF_QST_PALADIN_A) < qEnd) then begin
+            if (getQuest(GVAR_INF_QST_APOSTOL_A) < qEnd) then begin
+            floater(partyPidBos,105,COLOR_MSG_RED);
+            attack(partyPidBos);
+            end
+         end
+         end
          end
       end
-      end
-      end
    end
-   end
+   */
 
    if ((map_var(MVAR_INF_DOPUSK) == 0) and (bitDialog(bit_1) == 0)) then begin
    dialogue_system_forcing(10)
@@ -346,13 +348,23 @@ end
 procedure NodeAnswer404 begin
    bitDialogExp(bit_5,0)
    PLAY_FADE
+   if (is_skill_tagged(SKILL_ENERGY_WEAPONS) == true) then begin
+   skill_up(SKILL_ENERGY_WEAPONS,6);
+   end
+   else begin
    skill_up(SKILL_ENERGY_WEAPONS,5);
+   end
    call Node999;
 end
 
 procedure NodeAnswer405 begin
    bitDialogExp(bit_5,0)
    PLAY_FADE
+   if (is_skill_tagged(SKILL_BIG_GUNS) == true) then begin
+   skill_up(SKILL_BIG_GUNS,6);
+   end
+   else begin
    skill_up(SKILL_BIG_GUNS,5);
+   end
    call Node999;
 end

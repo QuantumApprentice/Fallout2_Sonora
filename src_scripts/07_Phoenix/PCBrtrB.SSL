@@ -102,7 +102,7 @@ end
 procedure setBarterA begin
         check_restock_item(PID_TOOL_GEIGER_COUNTER, 1, 1, 100)
         check_restock_item(PID_CLEAR, 2, 4, 100)
-        check_restock_item(PID_TOOL_SHOVEL, 1, 3, 100)
+        check_restock_item(PID_TOOL_SHOVEL, 2, 4, 100)
         check_restock_item(PID_TOOL_ZIPPER, 1, 2, 100)
         check_restock_item(PID_TABACO, 1, 4, 100)
         check_restock_item(PID_W_CROWBAR, 1, 1, 100)
@@ -210,7 +210,7 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog2)
 end
 

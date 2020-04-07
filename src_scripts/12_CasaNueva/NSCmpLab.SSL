@@ -40,7 +40,14 @@ procedure description_p_proc begin
 end
 
 procedure use_p_proc begin
+   if (global_var(GVAR_NUEVA_STATUS_CLIMAT)>0) then begin
    CompProcUsing
+   end
+   else begin
+   script_overrides;
+   display_mstr(102);
+   floater(dude_obj, 103, COLOR_MSG_NORMAL);
+   end
 end
 
 procedure use_skill_on_p_proc begin
@@ -51,6 +58,7 @@ procedure use_skill_on_p_proc begin
    else begin
    script_overrides;
    display_mstr(102);
+   floater(dude_obj, 103, COLOR_MSG_NORMAL);
    end
 end
 

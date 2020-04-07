@@ -405,8 +405,7 @@ procedure NodeAnswer114 begin
    set_REP(3)
    set_SLAVA(15)
    setBonusReaction(50)
-   Reply(283)
-   NAnswer(284,1,Node999)
+   call Node999;
 end
 
 procedure NodeAnswer200 begin

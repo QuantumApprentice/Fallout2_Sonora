@@ -640,7 +640,9 @@ procedure NodeAnswer begin
    NAnswer(360,1,NodeAnswer200)
    NAnswer(370,1,NodeAnswer300)
    NAnswer(380,1,NodeAnswer400)
+   if (getQuest(GVAR_VAULT27_GO_MERC) < qEnd) then begin
    NAnswer(390,1,NodeAnswer500)
+   end
    NAnswer(323,1,NodeStartDialog)
 end
 
@@ -752,7 +754,7 @@ end
 procedure NodeAnswer501 begin
    bitDialogExp(bit_10,25)
    Reply(394)
-   NAnswerSkill(286,3,NodeAnswer503,SKILL_SCIENCE,60,395,NodeAnswer502)
+   NAnswerSkill(398,3,NodeAnswer503,SKILL_SCIENCE,60,395,NodeAnswer502)
    NAnswer(392,1,NodeAnswer)
 end
 

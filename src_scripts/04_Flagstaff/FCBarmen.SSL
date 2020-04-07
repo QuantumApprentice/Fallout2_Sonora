@@ -41,6 +41,7 @@ procedure NodeStartDialog;
 procedure NodeAlcoholStatus;
 procedure NodeHuligan;
 procedure NodeSndDialog;
+procedure NodeBarter;
 procedure NodeGame;
 procedure NodeGame2;
 procedure NodeGame3;
@@ -435,6 +436,11 @@ procedure NodeSndDialog begin
    NAnswer(202,1,Node999)
 end
 
+procedure NodeBarter begin
+   goBarterMod;
+   call NodeSndDialog;
+end
+
 procedure NodeAlcoholStatus begin
    set_local_var(LVAR_Alcohol_Status,2);
    Reply(301)
@@ -756,6 +762,7 @@ procedure NodeBarterTeam begin
    GAnswer(390,3,NodeBarterTeam104)
    end
 
+   NAnswer(304,1,NodeBarter)
    NAnswer(213,1,NodeAnswer)
    NAnswer(202,1,Node999)
 end
@@ -776,12 +783,13 @@ procedure NodeBarterTeam102 begin
    item_add(self_obj,PID_Q_MADRE_CULON,1)
    Reply(383)
    BAnswer(384,1,NodeBarterTeam103)
-   NAnswer(386,1,NodeSndDialog)
+   NAnswer(386,1,NodeBarter)
    NAnswer(387,1,NodeSndDialog)
 end
 
 procedure NodeBarterTeam103 begin
    Reply(385)
+   NAnswer(386,1,NodeBarter)
    NAnswer(386,1,Node999)
    BAnswer(388,1,Node999)
 end
@@ -792,7 +800,7 @@ procedure NodeBarterTeam104 begin
 end
 
 procedure NodeBarterTeam105 begin
-   setQuest(GVAR_GARAGE_QST_BAR, qEnd);
+   setQuest(GVAR_GARAGE_QST_BAR,qEnd);
    Reply(393)
    NAnswer(395,1,NodeBarterTeam)
    NAnswer(394,1,Node999)
@@ -806,6 +814,7 @@ procedure NodeBarterTeam200 begin
       end
       else begin
       NAnswerSkill(277,3,NodeBarterTeam201,SKILL_BARTER,10,277,NodeBarterTeam202)
+      NAnswerReaction(266,3,NodeBarterTeam201,50,267,NodeBarterTeam202)
       end
    end
    else begin
@@ -817,11 +826,12 @@ end
 
 procedure NodeBarterTeam201 begin
    bitDialogExp(bit_5,0)
-   item_add(self_obj,PID_M_RAD_X,1)
-   item_add(self_obj,PID_M_RADAWAY,1)
-   item_add(self_obj,PID_M_STIMPAK,3)
+   item_add(self_obj,PID_M_RAD_X,2)
+   item_add(self_obj,PID_M_RADAWAY,2)
+   item_add(self_obj,PID_M_STIMPAK,4)
 
    Reply(278)
+   NAnswer(305,1,NodeBarter)
    NAnswer(212,1,NodeBarterTeam)
    NAnswer(202,1,Node999)
 end
@@ -933,7 +943,9 @@ end
 procedure NodeQst200 begin
    Reply(421)
    NAnswer(426,1,NodeQst202)
+   if (getQuest(GVAR_FLAGSTAFF_BARMEN_DINNER) == qZero) then begin
    NAnswer(423,1,NodeQst201)
+   end
    NAnswer(422,1,NodeSndDialog)
 end
 
@@ -948,7 +960,9 @@ end
 
 procedure NodeQst202 begin
    Reply(427)
+   if (getQuest(GVAR_FLAGSTAFF_BARMEN_DINNER) == qZero) then begin
    NAnswer(423,1,NodeQst201)
+   end
    NAnswer(422,1,NodeSndDialog)
 end
 
@@ -976,7 +990,7 @@ end
 
 procedure NodeQst211 begin
    Reply(402)
-   NAnswer(428,1,NodeQst201)
+   NAnswer(428,1,NodeQst202)
    NAnswer(403,1,Node999)
 end
 
@@ -1044,7 +1058,8 @@ procedure NodeQst304 begin
    if (global_var(GVAR_FLAGSTAFF_STATUS_SAVAGE) < 0) then begin
    NAnswer(449,1,NodeQst306)
    end
-   NAnswer(445,1,NodeQst305)
+   //NAnswer(445,1,NodeQst305)
+   NAnswer(458,1,Node999)
 end
 
 procedure NodeQst305 begin
@@ -1055,6 +1070,7 @@ procedure NodeQst305 begin
    Reply(446)
    end
    NAnswer(448,1,Node999)
+   NAnswer(458,1,Node999)
 end
 
 procedure NodeQst306 begin

@@ -2,7 +2,7 @@
 //---------------------
 
 #define NAME                            SCRIPT_TCPadre
-#define TOWN_REP_VAR                    GVAR_TOWN_REP_TWO_SUN   // привязка к репутации (-1, если не нужно)
+#define TOWN_REP_VAR                    GVAR_TOWN_REP_VILLA   // привязка к репутации (-1, если не нужно)
 
 #define NUM_TEAM                        TEAM_PLAYER           // группа, к которой принадлежит персонаж (-1 если нужно оставить Team, заданный в редакторе)
 #define NUM_AI                          AI_TRIBLE_VILLA       // AI персонажа (-1 если нужно оставить AI, заданный в редакторе)
@@ -60,6 +60,7 @@ procedure NodeQstEnd1;
 procedure NodeQstEnd2;
 procedure NodeQstEnd3;
 procedure NodeQstEnd4;
+procedure NodeQstEnd5;
 
 //---------------------
 
@@ -370,18 +371,10 @@ procedure NodeQstEnd2 begin
 end
 
 procedure NodeQstEnd3 begin
-   set_global_var(GVAR_VILLA_STATUS_PADRE,1);
-   setQuest(GVAR_MAIN_QUEST_TWOSUN,qEnd);
-   setQuest(GVAR_TWOSUN_QST_KARLOS,qStart);
-   if (global_var(GVAR_TWOSUN_STATUS_KARLOS) < 0) then begin
-   setQuest(GVAR_TWOSUN_QST_KARLOS,qEnd);
-   end
-   exp_add_msg(2500,NAME,103,104);
-
    Reply(309)
 
    if (getQuest(GVAR_TWOSUN_QST_KARLOS) >= qEnd) then begin
-   NAnswer(310,1,Node999)
+   NAnswer(310,1,NodeQstEnd5)
    end
    else begin
    NAnswer(310,1,NodeQstEnd4)
@@ -390,6 +383,23 @@ end
 
 procedure NodeQstEnd4 begin
    Reply(311)
-   GAnswer(312,1,Node999)
-   NAnswer(313,1,Node999)
+   GAnswer(312,1,NodeQstEnd5)
+   NAnswer(313,1,NodeQstEnd5)
+end
+
+procedure NodeQstEnd5 begin
+   set_global_var(GVAR_VILLA_STATUS_PADRE,1);
+   setQuest(GVAR_MAIN_QUEST_TWOSUN,qEnd);
+   setQuest(GVAR_TWOSUN_QST_KARLOS,qStart);
+   if (global_var(GVAR_TWOSUN_STATUS_KARLOS) < 0) then begin
+   setQuest(GVAR_TWOSUN_QST_KARLOS,qEnd);
+   end
+   exp_add_msg(2500,NAME,103,104);
+   set_REP(15)
+
+   rm_timer_event(self_obj);
+   party_remove(self_obj);
+   set_obj_visibility(self_obj, 1);
+   //destroy_object(self_obj);
+   call Node999;
 end

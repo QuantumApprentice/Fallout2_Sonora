@@ -523,7 +523,7 @@ procedure NodeFstDialog206 begin
 end
 
 procedure NodeFstDialog300 begin
-   Reply(250)
+   zReply(250)
    if (global_var(GVAR_PHENIX_STATUS_CARD_PRISON) != 0) then begin
    NAnswer(252,1,NodeFstDialog302)
    end

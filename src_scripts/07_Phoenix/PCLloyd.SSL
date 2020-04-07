@@ -445,6 +445,6 @@ procedure NodeAnswer300 begin
    end
    NAnswer(283,1,Node999)
    */
-   Reply(284)
+   zReply(284)
    NAnswer(285,1,Node999)
 end

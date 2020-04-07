@@ -132,7 +132,7 @@ end
 procedure NodeFstDialog begin
    if ((global_var(GVAR_TOWN_REP_FLAGSTAFF)<=-15) or (global_var(GVAR_TOWN_REP_FLAGSTAFF_MERC)<0)) then begin
       Reply(212)
-      NAnswer(201,1,NodeFstDialog2)
+      NAnswer(213,1,NodeFstDialog2)
    end
    else begin
       call NodeFstDialog1;

@@ -108,6 +108,7 @@ end
 
 procedure destroy_p_proc begin
    set_map_var(MVAR_ENC_SMUTANT_ALARM, 1);
+   inc_map_var(MVAR_ENC_SMUTANT_DEAD);
    kill_critter_opt
 end
 

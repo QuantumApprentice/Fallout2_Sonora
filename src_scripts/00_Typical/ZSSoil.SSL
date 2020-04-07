@@ -61,7 +61,6 @@ procedure use_obj_on_p_proc begin
          display_mstr(111);
       end
       else begin
-         //if (random(0,100) <= (2+dude_strength)) then begin
          destroyUseShovel
          call open_proc;
       end

@@ -100,7 +100,7 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
-   set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
    if (local_var(LVAR_Flag_Party)>0) then begin
    partyRunToDude // персонаж бегает вслед за ГГ
    end

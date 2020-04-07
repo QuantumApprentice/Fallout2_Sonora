@@ -26,11 +26,11 @@ procedure use_obj_on_p_proc begin
       script_overrides;
 
       if (combat_is_initialized == true) then begin
-      g_display_mstr(328);
+         g_display_mstr(328);
       end
       else begin
-      destroyUseShovel
-      call shovel_proc;
+         destroyUseShovel
+         call shovel_proc;
       end
    end
 end

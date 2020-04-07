@@ -635,6 +635,11 @@ end
 procedure NodeRelict10 begin
    game_time_advance(ONE_GAME_HOUR*5);
    PLAY_FADE
+   if (is_skill_tagged(SKILL_SMALL_GUNS) == true) then begin
+   skill_up(SKILL_SMALL_GUNS,6);
+   end
+   else begin
    skill_up(SKILL_SMALL_GUNS,5);
+   end
    call Node999;
 end

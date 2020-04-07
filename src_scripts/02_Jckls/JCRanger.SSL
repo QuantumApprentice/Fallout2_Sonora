@@ -83,7 +83,8 @@ procedure map_enter_p_proc begin
        rm_timer_event(self_obj);
        add_timer_event(self_obj, 5, 3);
        end
-       else if ((global_var(GVAR_JACKALS_STATUS_RANGER) != 0) or (global_var(GVAR_JACKALS_RANGER_CONTRAKT) == -2)) then begin
+       else if ((global_var(GVAR_JACKALS_STATUS_RANGER) == 0) and (global_var(GVAR_JACKALS_RANGER_CONTRAKT) == -2)) then begin
+       set_global_var(GVAR_JACKALS_STATUS_RANGER,2);
        rm_timer_event(self_obj);
        set_obj_visibility(self_obj, 1);
        destroy_object(self_obj);

@@ -20,6 +20,9 @@ end
 procedure use_p_proc begin
    script_overrides;
    display_mstr(101);
+   if (getQuest(GVAR_GARAGE_QST_FAKECAPS) == qStart) then begin
+   floater(dude_obj,106,COLOR_MSG_NORMAL);
+   end
 end
 
 procedure use_skill_on_p_proc begin
@@ -29,7 +32,11 @@ procedure use_skill_on_p_proc begin
    end
    if (action_being_used == SKILL_REPAIR) then begin
       script_overrides;
-      display_mstr(101);
+      call distroySelfObj;
+   end
+   if (action_being_used == SKILL_TRAPS) then begin
+      script_overrides;
+      call distroySelfObj;
    end
 end
 
@@ -56,7 +63,7 @@ procedure use_obj_on_p_proc begin
       script_overrides;
       if (global_var(GVAR_GARAGE_STATUS_FAKECAPS) == 0) then begin
       display_mstr(105);
-      item_add(dude_obj,PID_BOOTLE_CAPS,random(10,15))
+      item_add(dude_obj,PID_BOOTLE_CAPS,random(13,18))
       item_remove(dude_obj,PID_TOOL_PARTS_MECHANICAL,1)
       end
       else begin

@@ -63,9 +63,17 @@ procedure map_enter_p_proc begin
        if (global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN) >= 3) then begin
        set_local_var(LVAR_Home_Rotat, 2);
        end
-       if ((getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) >= qEnd) or (getQuest(GVAR_FLAGSTAFF_SLAVES_RUN) >= qEnd) or (getQuest(GVAR_FLAGSTAFF_MINES_DESTROY) >= qEnd) or (map_var(MVAR_FLAG_EVIL_WARDEN) > 0)) then begin
-       rm_timer_event(self_obj);
-       set_obj_visibility(self_obj, 1);
+
+       if ((getQuest(GVAR_FLAGSTAFF_SLAVES_RUN) >= qEnd) or (getQuest(GVAR_FLAGSTAFF_MINES_DESTROY) >= qEnd)) then begin
+          if (getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) == qStart) then begin
+          setQuest(GVAR_FLAGSTAFF_EVIL_WARDEN, qStop);
+          end
+          rm_timer_event(self_obj);
+          set_obj_visibility(self_obj, 1);
+       end
+       else if ((getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) >= qEnd) or (map_var(MVAR_FLAG_EVIL_WARDEN) != 0)) then begin
+          rm_timer_event(self_obj);
+          set_obj_visibility(self_obj, 1);
        end
    end
 end
@@ -122,7 +130,11 @@ end
 
 procedure destroy_p_proc begin
    obj_critter_a := 0;
+   set_global_var(GVAR_STATUS_FLAGSTAFF_TUWARDEN, -1);
    set_map_var(MVAR_FLAG_EVIL_WARDEN, -1);
+   if (global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN) < 3) then begin
+   set_map_var(MVAR_FLAG_EVIL_WARDEN, -10);
+   end
    set_map_var(MVAR_FLAG_ATTAK_WARDEN, 0);
    kill_critter_opt
 end

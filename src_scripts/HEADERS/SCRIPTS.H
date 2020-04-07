@@ -565,6 +565,7 @@
 #define SCRIPT_PCPrtznD        (453)
 #define SCRIPT_PCPrtznE        (454)
 #define SCRIPT_PSPrtznF        (456)
+#define SCRIPT_PCScvAtm        (736)
 
 //--- Атомная станция
 #define SCRIPT_PCAtmBos        (524)

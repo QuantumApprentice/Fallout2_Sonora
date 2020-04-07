@@ -1,5 +1,5 @@
 #include "..\headers\define.h"
-//---------------------
+//--------------------- Маркос
 
 #define NAME                            SCRIPT_PCPrtznA
 #define TOWN_REP_VAR                    GVAR_TOWN_REP_PHOENIX // привязка к репутации (-1, если не нужно)
@@ -44,6 +44,7 @@ procedure NodeFstDialog108;
 procedure NodeFstDialog200;
 procedure NodeFstDialog201;
 procedure NodeFstDialog202;
+procedure NodeFstDialog203;
 procedure NodeSndDialog;
 procedure NodeAnswer100;
 procedure NodeAnswer101;
@@ -174,7 +175,7 @@ procedure NodeFstDialog begin
    bitDialogExp(bit_1,250)
    Reply(200)
    if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_19) != 0) then begin
-   GAnswer(238,1,NodeFstDialog202)
+   GAnswer(238,1,NodeFstDialog203)
    end
    if (getQuest(GVAR_RANGERS_QST_PHOENIX) == qStart) then begin
    GAnswer(234,1,NodeFstDialog202)
@@ -240,6 +241,12 @@ end
 
 procedure NodeFstDialog202 begin
    Reply(235)
+   NAnswer(236,1,NodeFstDialog108)
+   NAnswer(237,1,NodeFstDialog108)
+end
+
+procedure NodeFstDialog203 begin
+   Reply(239)
    NAnswer(236,1,NodeFstDialog108)
    NAnswer(237,1,NodeFstDialog108)
 end

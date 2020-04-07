@@ -1,5 +1,5 @@
 #include "..\headers\define.h"
-//---------------------
+//--------------------- Типовой повстанец
 
 #define NAME                            SCRIPT_PCPrtznC
 #define TOWN_REP_VAR                    GVAR_TOWN_REP_PHOENIX // привязка к репутации (-1, если не нужно)
@@ -44,7 +44,7 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
-              if ((getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) or (getQuest(GVAR_PHENIX_QST_CULT_B) >= qEnd)) then begin
+       if ((getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) or (getQuest(GVAR_PHENIX_QST_CULT_B) >= qEnd)) then begin
        rm_timer_event(self_obj);
        set_obj_visibility(self_obj, 1);
        end

@@ -1,5 +1,5 @@
 #include "..\headers\define.h"
-//---------------------
+//--------------------- Повстанец на жд станции
 
 #define NAME                            SCRIPT_PCPrtznD
 #define TOWN_REP_VAR                    GVAR_TOWN_REP_PHOENIX // привязка к репутации (-1, если не нужно)
@@ -77,6 +77,9 @@ procedure map_enter_p_proc begin
           else if (global_var(GVAR_PHENIX_STATUS_SPYPARTY) < 0) then begin
              invisParam := 1;
           end
+       end
+       if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
+          invisParam := 1;
        end
 
        if (invisParam == 0) then begin

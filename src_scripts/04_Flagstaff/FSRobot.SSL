@@ -1,0 +1,64 @@
+#include "..\headers\define.h"
+#include "..\headers\REPAIR.h"
+#define NAME                            SCRIPT_FSRobot
+
+procedure start;
+procedure map_enter_p_proc;
+procedure map_update_p_proc;
+procedure use_p_proc;
+procedure use_skill_on_p_proc;
+procedure use_obj_on_p_proc;
+procedure repair_proc;
+
+
+
+procedure start begin
+end
+
+procedure map_enter_p_proc begin
+end
+
+procedure map_update_p_proc begin
+   //   display_msg("skill " + local_var(LVAR_Status));
+   //   display_msg("bonus " + local_var(LVAR_SkillBonus));
+   if (combat_is_initialized == false) then begin
+      if (global_var(GVAR_FLAGSTAFF_ROBOT_STATUS) > 0) then begin
+      reg_anim_begin();
+      reg_anim_animate_forever(self_obj, ANIM_stand);
+      reg_anim_end();
+      end
+   end
+end
+
+procedure use_p_proc begin
+   if ((local_var(LVAR_Status) > 0) and (global_var(GVAR_FLAGSTAFF_ROBOT_STATUS) == 0)) then begin
+      script_overrides;
+      reg_anim_begin();
+      reg_anim_animate_forever(self_obj, ANIM_stand);
+      reg_anim_end();
+      obj_set_light_level(self_obj, 100, 8);
+      display_mstr(113);
+      set_global_var(GVAR_FLAGSTAFF_ROBOT_STATUS,1);
+   end
+   else begin
+      RepairProcUsing(110,111)
+   end
+end
+
+procedure use_skill_on_p_proc begin
+   RepairVarCheck(100)
+   RepairSkillRepair
+end
+
+procedure use_obj_on_p_proc begin
+   stopUseCarGaz
+   RepairUsedJunk(PID_TOOL_PARTS_MECHANICAL,5,20) // (pid,limit,bonus) - детали, лимит на число использования, бонус к навыку (обычно 20)
+   RepairUsedJunk(PID_TOOL_PARTS_ELECTRONIC,5,20)
+end
+
+procedure repair_proc begin
+   PLAY_FADE
+   RepairProcRepair(112,500,"FIXSTILL")
+   floater(dude_obj, 114, COLOR_MSG_NORMAL);
+   game_time_advance(ONE_GAME_HOUR*5);
+end

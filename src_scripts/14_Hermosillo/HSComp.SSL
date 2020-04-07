@@ -1,0 +1,96 @@
+#include "..\headers\define.h"
+#include "..\headers\COMPUTER.h"
+#define NAME                            SCRIPT_HSComp
+
+procedure start;
+procedure map_enter_p_proc;
+procedure look_at_p_proc;
+procedure description_p_proc;
+procedure use_p_proc;
+procedure use_skill_on_p_proc;
+procedure use_obj_on_p_proc;
+procedure sience_proc;
+
+procedure talk_p_proc;
+procedure Node999;
+procedure NodeDialog;
+procedure NodeDialog100;
+procedure NodeDialog200;
+procedure NodeDialog300;
+procedure NodeDialog400;
+
+
+
+procedure start begin
+end
+
+procedure map_enter_p_proc begin
+end
+
+procedure look_at_p_proc begin
+   lookProcMsg
+end
+
+procedure description_p_proc begin
+   dsrptProcMsg
+end
+
+procedure use_p_proc begin
+   CompProcUsing
+end
+
+procedure use_skill_on_p_proc begin
+   CompVarCheck(50)
+   CompSkillScience
+end
+
+procedure use_obj_on_p_proc begin
+   stopUseCarGaz
+   else CompUsedLockpic
+   else CompUsedRelict
+end
+
+procedure sience_proc begin
+   CompProcSience(100)
+end
+
+procedure talk_p_proc begin
+   dialog_proc_obj(NodeDialog)
+end
+
+procedure Node999 begin
+end
+
+procedure NodeDialog begin
+   Reply(200)
+   NAnswer(210,1,NodeDialog100)
+   NAnswer(212,3,NodeDialog200)
+   NAnswer(214,3,NodeDialog300)
+   NAnswer(216,3,NodeDialog400)
+   //NAnswer(218,3,NodeDialog500)
+   NAnswer(201,1,Node999)
+end
+
+procedure NodeDialog100 begin
+   Reply(211)
+   NAnswer(202,1,NodeDialog)
+end
+
+procedure NodeDialog200 begin
+   Reply(213)
+   NAnswer(202,1,NodeDialog)
+end
+
+procedure NodeDialog300 begin
+   Reply(215)
+   NAnswer(202,1,NodeDialog)
+end
+
+procedure NodeDialog400 begin
+   if (getQuest(GVAR_PUERTO_BOS_DESTROY) < qEnd) then begin
+   mark_on_map(AREA_PUERTO_STEEL)
+   end
+   mark_on_map(AREA_TWO_SUN)
+   Reply(217)
+   NAnswer(202,1,NodeDialog)
+end

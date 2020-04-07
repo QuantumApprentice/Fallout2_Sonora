@@ -1,0 +1,81 @@
+#include "..\headers\define.h"
+#define NAME                            SCRIPT_ZTTriger
+
+procedure start;
+procedure map_enter_p_proc;
+procedure trigerRocks;
+procedure trigerRad;
+procedure trigerWind;
+procedure trigerWater;
+
+
+
+procedure start begin
+end
+
+procedure map_enter_p_proc begin
+   if (is_loading_game == false) then begin
+       set_obj_visibility(self_obj, 1);
+       play_sfx("GUSTWIND");
+
+       if (item_amnt(self_obj,PID_TEST) == 1) then begin
+       call trigerRocks;       //обвал камней в горах
+       end
+       if (item_amnt(self_obj,PID_TEST) == 2) then begin
+       call trigerRad;        //облучение
+       end
+       if (item_amnt(self_obj,PID_TEST) == 3) then begin
+       call trigerWind;       //пылевая буря
+       end
+       if (item_amnt(self_obj,PID_TEST) == 4) then begin
+       call trigerWater;      //обезвоживание
+       end
+
+       item_remove(self_obj,PID_TEST,999)
+       destroy_object(self_obj);
+   end
+end
+
+procedure trigerRocks begin
+   if (random(0,1) == 0) then begin
+      create_object_sid(PID_W_BROCK,tile_num_in_direction(dude_tile,random(0,5),random(1,5)),0,-1);
+      if (random(0,1) == 0) then begin
+      create_object_sid(PID_W_BROCK,tile_num_in_direction(dude_tile,random(0,5),random(1,5)),0,-1);
+      end
+   end
+
+   if dude_skill(SKILL_SCOUT,random(10,90)) then begin
+   display_mstr(101);
+   end
+   else begin
+   critter_dmg(dude_obj, random(2,10), DMG_normal_dam);
+   display_mstr(100);
+   end
+end
+
+procedure trigerRad begin
+   radiation_inc(dude_obj, random(5,35));
+   display_mstr(110);
+end
+
+procedure trigerWind begin
+   critter_dmg(dude_obj, random(2,10), DMG_normal_dam);
+   display_mstr(120);
+end
+
+procedure trigerWater begin
+   if (item_amnt(dude_obj,PID_TOOL_WATER_FLASK_VB)>0) then begin
+   display_mstr(133);
+   end
+   else if (item_amnt(dude_obj,PID_M_WATER_FLASK)>0) then begin
+   item_remove(dude_obj,PID_M_WATER_FLASK,1)
+   display_mstr(132);
+   end
+   else if dude_skill(SKILL_SCOUT,random(10,90)) then begin
+   display_mstr(131);
+   end
+   else begin
+   critter_dmg(dude_obj, random(2,10), DMG_normal_dam);
+   display_mstr(130);
+   end
+end

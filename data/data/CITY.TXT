@@ -288,15 +288,17 @@ entrance_0=On,-1,-1,Car: Desert,-1,-1,0
 
 [Area 22]                ; Разрушенный Арройо (не использовать!)
 area_name=Arroyo
-world_pos=283,283
+world_pos=285,230
 start_state=Off
 size=Medium
 townmap_art_idx=-1
 townmap_label_art_idx=-1
-entrance_0=Off,50,50,Villa1,-1,-1,0
-entrance_1=On,100,100,Villa2,-1,-1,0
-entrance_2=Off,150,150,Villa3,-1,-1,0
-entrance_3=Off,200,200,Villa4,-1,-1,0
+entrance_0=Off,110,220,Villa1,-1,-1,0
+entrance_1=On,235,250,Villa2,-1,-1,0
+entrance_2=Off,-1,-1,Villa3,-1,-1,0
+entrance_3=Off,350,220,Villa4,-1,-1,0
+entrance_4=Off,235,90,VillaRuins,-1,-1,0
+entrance_5=Off,235,380,VillaCrypt,-1,-1,0
 
 [Area 23]                ; Убежище 27
 area_name=Vault27
@@ -581,7 +583,7 @@ entrance_9=On,-1,-1,Desert Encounter 999,-1,-1,0
 
 [Area 48]                ; Лагерь Уайнон
 area_name=FlagWinon
-world_pos=1041,185
+world_pos=991,185
 start_state=On
 size=Small
 townmap_art_idx=-1

@@ -550,7 +550,7 @@ enc_03=Chance:25%,Enc:(1-3) ENC_Scorpions AMBUSH Player
 enc_04=Chance:10%,Enc: ENC_RaiderA AMBUSH Player
 enc_05=Chance:5%,Enc: RNGR_Farmer
 enc_06=Chance:7%,Enc:(1-2) RNGR_Rangers, If(Global(130) == 0)
-enc_07=Chance:5%,Enc:(1-2) RNGR_Rangers FIGHTING ENC_RaiderA AND ENC_BraminWild
+enc_07=Chance:5%,Enc:(1-2) RNGR_Rangers FIGHTING ENC_RaiderA
 enc_08=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
 enc_09=Chance:1%,Counter:1,Special,Map:Special Bibl Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(601) == 0)
 enc_10=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(602) == 0)
@@ -606,7 +606,7 @@ enc_00=Chance:3%,Enc: ENC_RedRyder,If(Global(3) > 2) And If(Global(353) == 0)
 enc_01=Chance:30%,Enc:(1-3) ENC_Scorpions AMBUSH Player
 enc_02=Chance:35%,Enc:(2-6) ENC_Mantis AMBUSH Player
 enc_03=Chance:10%,Enc: MEXI_Patrul
-enc_04=Chance:9%,Enc: ENC_Citizen
+enc_04=Chance:10%,Enc: ENC_Citizen
 enc_05=Chance:1%,Enc:BODY_MEXI
 enc_06=Chance:1%,Enc: MEXI_Alejo FIGHTING ENC_Citizen, If(Global(380) == 0)
 enc_07=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
@@ -619,7 +619,6 @@ enc_13=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, I
 enc_14=Chance:1%,Counter:1,Special,Map:Special Padre Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(607) == 0)
 enc_15=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
 enc_16=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
-enc_17=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
 
 [Encounter Table 9]
 lookup_name=MEXI_M

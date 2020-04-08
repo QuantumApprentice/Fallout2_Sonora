@@ -127,7 +127,7 @@ end
 
 procedure talk_p_proc begin
    setReaction(1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   dialog_proc(1,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -171,7 +171,7 @@ end
 
 procedure NodeFstDialog4 begin
    setBonusReaction(-20)
-   Reply(210)
+   Reply(211)
    BAnswer(212,1,NodeFstDialog6)
    GAnswer(210,1,NodeFstDialog5)
 end
@@ -213,7 +213,12 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else begin
    Reply(random(250,253))
+   end
    NAnswer(260,1,NodeAnswer100)
    NAnswer(263,1,NodeAnswer101)
    if (getQuest(GVAR_PUERTO_QST_TOY) == qZero) then begin

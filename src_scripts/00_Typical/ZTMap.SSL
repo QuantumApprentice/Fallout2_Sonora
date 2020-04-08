@@ -252,6 +252,9 @@ procedure map_destroy_movie_puerto begin
            if (getQuest(GVAR_NUEVA_QST_BOOKS_PUERTO) == qStart) then begin
            setQuest(GVAR_NUEVA_QST_BOOKS_PUERTO,qStop);
            end
+           if (getQuest(GVAR_PUERTO_QST_RANGERS) == qStart) then begin
+           setQuest(GVAR_PUERTO_QST_RANGERS,qStop);
+           end
 
            //- Перемещение ГГ:
            //mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
@@ -622,9 +625,15 @@ procedure map_area_exit_proc begin
    */
 
         set_exitmap(MAP_RND_CITY_2,AREA_RND_CITY)
+   else set_exitmap(MAP_RND_MOUNTAIN_1,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_2,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_3,AREA_RND_MOUNTAIN)
    else set_exitmap(MAP_RND_MOUNTAIN_4,AREA_RND_MOUNTAIN)
    else set_exitmap(MAP_RND_MOUNTAIN_5,AREA_RND_MOUNTAIN)
    else set_exitmap(MAP_RND_MOUNTAIN_6,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_7,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_8,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_9,AREA_RND_MOUNTAIN)
 end
 
 //-----------------------------------------------------------------------------

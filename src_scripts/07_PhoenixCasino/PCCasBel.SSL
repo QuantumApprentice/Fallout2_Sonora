@@ -147,7 +147,7 @@ procedure talk_p_proc begin
    end
    else begin
    setReaction(0) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   dialog_proc(1,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -186,7 +186,10 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if ((random(0,5) == 1) and (getReaction > 0)) then begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else if ((random(0,5) == 1) and (getReaction > 0)) then begin
    zReply(214)
    end
    else if (game_time_hour < 0600) then begin

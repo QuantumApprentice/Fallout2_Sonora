@@ -162,7 +162,7 @@ procedure talk_p_proc begin
    floater(self_obj,102,COLOR_MSG_RED);
    end
    else begin
-   dialog_proc(1,1,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -534,6 +534,9 @@ procedure NodeBooks202 begin
    Reply(326)
    GAnswer(330,1,NodeBooks204)
    NAnswer(327,1,NodeBooks203)
+   if (item_amnt(dude_obj,PID_RELICT_BIBLE)>0) then begin
+   NAnswer(343,3,NodeBooks205)
+   end
 end
 
 procedure NodeBooks203 begin
@@ -544,6 +547,9 @@ end
 procedure NodeBooks204 begin
    setQuest(GVAR_PHENIX_QST_BIBLBOOK,qStart);
    Reply(331)
+   if (item_amnt(dude_obj,PID_RELICT_BIBLE)>0) then begin
+   NAnswer(343,3,NodeBooks205)
+   end
    NAnswer(342,1,Node999)
 end
 

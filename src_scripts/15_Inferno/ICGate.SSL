@@ -235,7 +235,7 @@ end
 procedure NodeSndDialog begin
    Reply(210)
 
-   if (global_var(GVAR_INF_STATUS_APOSTOL) <= 0) then begin
+   if (global_var(GVAR_INF_STATUS_APOSTOL) == 0) then begin
    NAnswer(220,3,NodeAnswer)
    NAnswer(244,3,NodeAnswer102)
    end

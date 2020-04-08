@@ -46,6 +46,15 @@ procedure map_enter_p_proc begin
        set_local_var(LVAR_Flags,0);
        set_local_var(LVAR_Self_Flags,0);
        set_start_home
+       if (self_TEAM == TEAM_PLAYER) then begin
+          if (HomeTile >0) then begin
+          move_to(self_obj, HomeTile, self_elevation);
+          anim(self_obj, ANIMATE_ROTATION, HomeRotat);
+          end
+          rm_timer_event(self_obj);
+          add_timer_event(self_obj, random(10,30), 1);
+          add_timer_event(self_obj, random(30,70), 2);
+       end
 
        if ((cur_map_index == MAP_PUERTO_BASA) or (cur_map_index == MAP_PUERTO_DOCS) or (cur_map_index == MAP_PUERTO_SIGN)) then begin
            critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_BROTHERS_STEEL);

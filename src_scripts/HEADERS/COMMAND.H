@@ -146,16 +146,16 @@
                                                          g_display_mstr(500);              \
                                                       end                                  \
                                                       else if ((arm>0) and (armor_pid_dude_var == PID_ARMOR_POWER_A)) then begin \
-                                                         if (arm == 1) then begin          \
                                                          g_display_mstr(516);              \
+                                                         if (arm == 1) then begin          \
                                                          g_floater(self_obj,517,COLOR_MSG_RED); \
                                                          end else begin                    \
                                                          floater(self_obj,arm,COLOR_MSG_RED); \
                                                          end                               \
                                                       end                                  \
                                                       else if ((arm>0) and (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin \
-                                                         if (arm == 1) then begin          \
                                                          g_display_mstr(516);              \
+                                                         if (arm == 1) then begin          \
                                                          g_floater(self_obj,517,COLOR_MSG_RED); \
                                                          end else begin                    \
                                                          floater(self_obj,arm,COLOR_MSG_RED); \
@@ -185,16 +185,16 @@
                                                          g_display_mstr(500);              \
                                                       end                                  \
                                                       else if ((arm>0) and (armor_pid_dude_var == PID_ARMOR_POWER_A)) then begin \
-                                                         if (arm == 1) then begin          \
                                                          g_display_mstr(516);              \
+                                                         if (arm == 1) then begin          \
                                                          g_floater(self_obj,517,COLOR_MSG_RED); \
                                                          end else begin                    \
                                                          floater(self_obj,arm,COLOR_MSG_RED); \
                                                          end                               \
                                                       end                                  \
                                                       else if ((arm>0) and (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin \
-                                                         if (arm == 1) then begin          \
                                                          g_display_mstr(516);              \
+                                                         if (arm == 1) then begin          \
                                                          g_floater(self_obj,517,COLOR_MSG_RED); \
                                                          end else begin                    \
                                                          floater(self_obj,arm,COLOR_MSG_RED); \

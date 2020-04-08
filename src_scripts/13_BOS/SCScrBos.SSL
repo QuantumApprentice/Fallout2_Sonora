@@ -339,7 +339,7 @@ procedure NodeAnswer203 begin
    GAnswer(267,5,NodeAnswer210)
    end
 
-   NAnswer(259,5,NodeAnswer204)
+   //NAnswer(259,5,NodeAnswer204)
    NAnswer(261,5,NodeAnswer205)
 
    NAnswer(253,1,NodeAnswer201)
@@ -358,7 +358,6 @@ procedure NodeAnswer205 begin
    if (bitDialog(bit_3) == 0) then begin
    NAnswer(263,5,NodeAnswer206)
    end
-   NAnswer(259,5,NodeAnswer204)
    NAnswer(264,1,NodeAnswer)
 end
 

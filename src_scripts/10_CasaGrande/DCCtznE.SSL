@@ -149,7 +149,7 @@ end
 procedure talk_p_proc begin
    setReaction(1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-55) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(1,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -262,7 +262,12 @@ end
 
 procedure NodeSndDialog begin
    //(титул на арене, высокая сила, навык рукопашки) Вы, мордовороты, совсем не цените мир и покой. Чего тебе, hombre-martillo?
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else begin
    Reply(250)
+   end
 
    if (bitDialog(bit_3) == 0) then begin
    NAnswer(260,3,NodeAnswer100)

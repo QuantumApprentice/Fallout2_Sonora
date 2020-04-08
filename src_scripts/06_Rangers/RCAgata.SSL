@@ -167,7 +167,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_BOS_TRAITOR,20) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-20) // Поправка к отношению за принадлежность к фракциям
 
-   dialog_proc(0,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -261,7 +261,10 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if (global_var(GVAR_TITUL_ARIZONA_RANGER) == 0) then begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else if (global_var(GVAR_TITUL_ARIZONA_RANGER) == 0) then begin
    Reply(210)
    end
    else begin

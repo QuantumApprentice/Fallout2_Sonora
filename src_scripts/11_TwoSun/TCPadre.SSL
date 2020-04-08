@@ -140,6 +140,9 @@ procedure destroy_p_proc begin
    set_global_var(GVAR_VILLA_STATUS_PADRE,-1);
    setQuest(GVAR_MAIN_QUEST_TWOSUN,qEnd);
    setQuest(GVAR_TWOSUN_QST_PADRE,qEnd);
+   if (getQuest(GVAR_MAIN_QUEST_PHENIX) == qStart) then begin
+   setQuest(GVAR_MAIN_QUEST_PHENIX,qEnd);
+   end
    set_map_var(MVAR_TWOSUN_PartyPadre,0);
    kill_critter_opt
    display_mstr(102);
@@ -390,6 +393,9 @@ end
 procedure NodeQstEnd5 begin
    set_global_var(GVAR_VILLA_STATUS_PADRE,1);
    setQuest(GVAR_MAIN_QUEST_TWOSUN,qEnd);
+   if (getQuest(GVAR_MAIN_QUEST_PHENIX) == qStart) then begin
+   setQuest(GVAR_MAIN_QUEST_PHENIX,qEnd);
+   end
    setQuest(GVAR_TWOSUN_QST_KARLOS,qStart);
    if (global_var(GVAR_TWOSUN_STATUS_KARLOS) < 0) then begin
    setQuest(GVAR_TWOSUN_QST_KARLOS,qEnd);

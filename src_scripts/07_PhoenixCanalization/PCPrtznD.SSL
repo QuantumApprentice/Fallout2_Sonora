@@ -264,6 +264,7 @@ procedure NodePartyNon begin
    end
    critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,NUM_TEAM);
    party_remove(self_obj);
+   critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,NUM_TEAM);
    call Node999;
 end
 

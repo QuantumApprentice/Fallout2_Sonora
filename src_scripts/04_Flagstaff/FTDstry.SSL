@@ -16,10 +16,11 @@ procedure spatial_p_proc begin
 end
 
 procedure damage_p_proc begin
+   //display_msg(" "+2+".");
    if (getQuest(GVAR_FLAGSTAFF_MINES_DESTROY) == qStart) then begin
       if (target_obj != 0) then begin
          if (weapon_dmg_type(target_obj) == DMG_explosion) then begin
-         set_SLAVA(-50)
+         set_SLAVA(-100)
          exp_add(750);
          display_mstr(102);
          setQuest(GVAR_FLAGSTAFF_MINES_DESTROY, qEnd);

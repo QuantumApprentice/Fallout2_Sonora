@@ -104,7 +104,7 @@ procedure set_level_lock begin
    //Индексация: карта + уровень + тайл + сложность замка + ключ + тип ловушки
 
           if (cur_map_index == MAP_VILLA_CAVE) then begin
-             set_local_var(LVAR_Locked_Level,0);
+             set_local_var(LVAR_Locked_Level,10);
           end
           else if (cur_map_index == MAP_VILLA_GARD) then begin
              set_local_var(LVAR_Locked_Level,35);
@@ -142,7 +142,6 @@ procedure set_level_lock begin
              end
              if (self_tile == 13466) then begin // черный выход казино
              set_local_var(LVAR_Locked_Level,100);
-             set_local_var(LVAR_Trap_Type,TRAP_ALARMS);
              end
              if (self_tile == 18282) then begin // дверь в кассу казино
              if (self_elevation == 0) then begin
@@ -213,6 +212,9 @@ procedure set_level_lock begin
 
           if (cur_map_index == MAP_INFERNO_CHURCH) then begin
              set_local_var(LVAR_Locked_Level,50);
+             if (self_elevation == 1) then begin
+             set_local_var(LVAR_Locked_Level,10); // дверь в подвале церкви
+             end
           end
           else if (cur_map_index == MAP_CASA_NUEVA_CITY) then begin
              set_local_var(LVAR_Locked_Level,80);

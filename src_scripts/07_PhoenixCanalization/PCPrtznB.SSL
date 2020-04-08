@@ -266,7 +266,6 @@ end
 //--- СНАРЯЖЕНИЕ
 
 procedure NodeAnswer200 begin
-   inc_local_var(LVAR_Inv_Qst);
    Reply(251)
    NAnswer(257,1,NodeAnswer202)
    NAnswer(259,1,NodeAnswer203)
@@ -281,6 +280,7 @@ procedure NodeAnswer201 begin
 end
 
 procedure NodeAnswer202 begin
+   inc_local_var(LVAR_Inv_Qst);
    item_add(dude_obj,PID_W_RIFLE_HUNTING,1)
    item_add(dude_obj,PID_AMMO_308,20)
    Reply(258)
@@ -288,6 +288,7 @@ procedure NodeAnswer202 begin
 end
 
 procedure NodeAnswer203 begin
+   inc_local_var(LVAR_Inv_Qst);
    item_add(dude_obj,PID_W_SMG_10,1)
    item_add(dude_obj,PID_AMMO_10_MM,30)
    item_add(dude_obj,PID_W_GRENADE_FRAG,2)
@@ -297,6 +298,7 @@ procedure NodeAnswer203 begin
 end
 
 procedure NodeAnswer204 begin
+   inc_local_var(LVAR_Inv_Qst);
    item_add(dude_obj,PID_M_STIMPAK,2)
    item_add(dude_obj,PID_TOOL_FLARE,3)
    item_add(dude_obj,PID_TOOL_PLASTIC_EXPLOSIVES,1)

@@ -80,9 +80,6 @@ procedure open_proc begin
       end
 
       game_time_advance((ONE_GAME_MINUTE*25) - (2*dude_strength));
-      if ((cur_map_index != MAP_VILLA_HOME) and (cur_map_index != MAP_VILLA_PLAZA) and (cur_map_index != MAP_VILLA_GARD)) then begin
-      radiation_inc(dude_obj, 5);
-      end
 
       if ((cur_map_index == MAP_RANGERS_ROAD) and (self_PID == 195)) then begin
          if (map_var(MVAR_RNGRS_DogGrv) < 2) then begin

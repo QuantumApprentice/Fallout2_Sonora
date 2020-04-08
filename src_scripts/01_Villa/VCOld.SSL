@@ -112,6 +112,7 @@ procedure NodeConcuilB204;
 procedure NodeConcuilB205;
 procedure NodeConcuilB206;
 procedure NodeConcuilB207;
+procedure NodeConcuilB207b;
 procedure NodeConcuilB208;
 procedure NodeConcuilB209;
 procedure NodeConcuilB210;
@@ -1025,6 +1026,9 @@ procedure NodeConcuilB200 begin
          NAnswer(496,1,NodeConcuilB207)
          end
       end
+      else if (global_var(GVAR_TOWN_REP_RANGERS) <= -30) then begin
+         NAnswer(496,1,NodeConcuilB207b)
+      end
       NAnswer(481,1,Node999)
    end
 end
@@ -1064,6 +1068,12 @@ end
 procedure NodeConcuilB207 begin
    Reply(497)
    NAnswer(498,1,NodeConcuilB208)
+end
+
+procedure NodeConcuilB207b begin
+   Reply(511)
+   NAnswer(512,1,Node999)
+   NAnswer(513,1,Node999)
 end
 
 procedure NodeConcuilB208 begin

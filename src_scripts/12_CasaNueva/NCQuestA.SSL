@@ -113,7 +113,7 @@ procedure timed_event_p_proc begin
        timer_move_to_home
        end
        else if (map_var(MVAR_NUEVA_MER_DIALOG) >= 2) then begin
-       timer_move_random_home(3)
+       timer_move_random_home(1)
        end
        else begin
        timer_move_to_home
@@ -218,7 +218,7 @@ end
 procedure NodeFstDialog104 begin
    bitDialogExp(bit_1,0)
    inc_map_var(MVAR_NUEVA_MER_DIALOG);
-   set_local_var(LVAR_Home_Tile,26716);
+   set_local_var(LVAR_Home_Tile,26916);
    move_to(self_obj,HomeTile,0);
    call Node999;
 end
@@ -237,7 +237,7 @@ end
 procedure NodeFstDialog200 begin
    inc_map_var(MVAR_NUEVA_MER_DIALOG);
    setQuest(GVAR_NUEVA_QST_PLANT_DEAD,qStart);
-   set_local_var(LVAR_Home_Tile,23906);
+   set_local_var(LVAR_Home_Tile,27507);
    zReply(210)
    NAnswer(211,1,NodeFstDialog201)
 end

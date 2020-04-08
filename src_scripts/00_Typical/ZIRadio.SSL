@@ -74,7 +74,12 @@ procedure timed_event_p_proc begin
    end
    if (fixed_param == 2) then begin
        set_global_var(GVAR_STATUS_SCORPION_LEGEND,1);
+       if (cur_map_index == MAP_RND_DESERT_1) then begin
+       dude_teleport_map(0,0,MAP_RND_DESERT_3,1);
+       end
+       else begin
        dude_teleport_map(0,0,MAP_RND_DESERT_1,1);
+       end
    end
 end
 
@@ -469,7 +474,7 @@ end
 
 procedure NodeRanders201 begin
    Reply(271)
-   //NAnswer(272,1,NodeRanders202)
+   NAnswer(272,1,NodeRanders202)
    NAnswer(273,1,NodeDialog)
    NAnswer(274,1,NodeDialog)
 end

@@ -72,7 +72,7 @@ end
 procedure NodeDialog begin
    Reply(200)
 
-   //!!! Р§РРў
+   //!!! ЧИТ
    //NAnswer(204,1,NodeDialog3)
    //!!!
 

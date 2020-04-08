@@ -2,7 +2,7 @@
 //#define NAME                    SCRIPT_DSGrave
 #define NAME                    SCRIPT_ZSGrvGen
 
-#define TILE_IN_GRAVE           18880 // СЃРІРµСЂСЏС‚СЊСЃСЏ СЃ SCRIPT_DSGravB!
+#define TILE_IN_GRAVE           18880 // сверяться с SCRIPT_DSGravB!
 
 procedure start;
 procedure map_enter_p_proc;

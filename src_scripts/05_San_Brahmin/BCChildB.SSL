@@ -125,7 +125,7 @@ end
 procedure talk_p_proc begin
    setReaction(1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    if (global_var(GVAR_BRAHMIN_STATUS_CHILDRUN) == 0) then begin
-   dialog_proc(0,103,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
    else begin
    floater(self_obj,104,COLOR_MSG_NORMAL);

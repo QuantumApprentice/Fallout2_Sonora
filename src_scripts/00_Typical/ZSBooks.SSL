@@ -107,9 +107,6 @@ end
 procedure reading_proc begin
    PLAY_FADE
    game_time_advance(ONE_GAME_HOUR*(24-dude_iq));
-   if (cur_map_index == MAP_INFERNO_CHURCH) then begin
-   radiation_inc(dude_obj, 75);
-   end
 
    if (local_var(LVAR_SkillControl) == 0) then begin
    call skill_check;

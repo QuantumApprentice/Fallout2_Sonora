@@ -70,7 +70,7 @@ procedure map_update_p_proc begin
    end
 
    //--- Нанесение травмы от превышении веса
-   if (who_carry_amount(dude_obj)>(50*dude_strength)+250) then begin
+   if (who_carry_amount(dude_obj)>(50*dude_strength)+500) then begin
        if ((critter_state(dude_obj) bwand DAM_CRIP_LEG_LEFT) or (critter_state(dude_obj) bwand DAM_CRIP_LEG_RIGHT)) then begin
        end else begin
             dam_to_dude_LEG
@@ -305,18 +305,14 @@ procedure critter_p_proc begin
 end
 
 procedure description_p_proc begin
-   //script_overrides;
-   //exp_add(10000);
-   //load_map(MAP_RAIDERS_BASA, -1);
-   //world_map;
-   //car_give_to_party;
-
-   //exp_add(10000);
+   //exp_add(20000);
    //call CHIT_BONUS_loot;
-   //call CHIT_BONUS_car;
    //call CHIT_BONUS_stat;
    //call CHIT_BONUS_perk;
-   //load_map(MAP_PHOENIX_SIGN, -1);
+   //call CHIT_BONUS_car;
+   //world_map;
+   //car_give_to_party;
+   //load_map(MAP_INFERNO_SHOP, -1);
 
    /* Тест концовок:
    set_global_var(GVAR_GAME_END,0);
@@ -386,9 +382,12 @@ end
 procedure CHIT_BONUS_loot begin
    item_add(dude_obj,PID_BOOTLE_CAPS,10000)
    item_add(dude_obj,PID_M_STIMPAK,10)
+   item_add(dude_obj,PID_M_RADAWAY,10)
    item_add(dude_obj,PID_W_SMG_UZI,1)
    item_add(dude_obj,PID_AMMO_10_MM,100)
    item_add(dude_obj,PID_W_GRENADE_NUKE,10)
+   item_add(dude_obj,PID_TOOL_GAS_MASK,3)
+   item_add(dude_obj,PID_TOOL_PLASTIC_EXPLOSIVES,3)
    item_add(dude_obj,PID_ARMOR_COMBAT_BOS,1)
 end
 

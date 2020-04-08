@@ -83,7 +83,7 @@ procedure NodeStopDialog begin
    NAnswer(217,1,Node999)
 end
 
-//--- РџР•Р Р’РР§РќР«Р™ Р”РРђР›РћР“
+//--- ПЕРВИЧНЫЙ ДИАЛОГ
 
 procedure NodeFstDialog begin
    Reply(200)
@@ -119,7 +119,7 @@ procedure NodeFstDialog4 begin
    NAnswer(215,1,Node999)
 end
 
-//--- РџРћР’РўРћР РќР«Р™ Р”РРђР›РћР“
+//--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
    Reply(210)
@@ -128,7 +128,7 @@ procedure NodeSndDialog begin
    NAnswer(212,1,Node999)
 end
 
-//--- РћРўР’Р•РўР«
+//--- ОТВЕТЫ
 
 procedure NodeAnswer begin
    Reply(220)
@@ -187,7 +187,7 @@ procedure NodeAnswer501 begin
    NAnswer(212,1,Node999)
 end
 
-//--- РљР’Р•РЎРў
+//--- КВЕСТ
 
 procedure NodeQst begin
    if (getQuest(GVAR_VAULT27_POISON) > qStart) then begin

@@ -254,7 +254,15 @@ procedure NodeSndDialog begin
       end
    end
 
-   if (getQuest(GVAR_NUEVA_QST_PLANT_INSECT) == qStart) then begin
+   if (getQuest(GVAR_NUEVA_QST_PLANT_INSECT) == qEnd) then begin
+      if (global_var(GVAR_NUEVA_USING_INSECTICIDES) != 0) then begin
+      zGAnswer(375,1,NodeQst205)
+      end
+      else begin
+      NAnswer(354,1,NodeQst205b)
+      end
+   end
+   else if (getQuest(GVAR_NUEVA_QST_PLANT_INSECT) == qStart) then begin
       if (global_var(GVAR_NUEVA_STATUS_LABA) != 0) then begin
       BAnswer(380,1,NodeQst300)
       end
@@ -263,12 +271,6 @@ procedure NodeSndDialog begin
       end
       else if ((item_amnt(dude_obj,PID_Q_INSECT_A)>0) or (item_amnt(dude_obj,PID_Q_INSECT_B)>0) or (item_amnt(dude_obj,PID_Q_INSECT_C)>0)) then begin
       NAnswer(395,1,NodeQst208)
-      end
-   end
-   if (getQuest(GVAR_NUEVA_QST_PLANT_INSECT) == qEnd) then begin
-      NAnswer(354,1,NodeQst205b)
-      if (global_var(GVAR_NUEVA_USING_INSECTICIDES) != 0) then begin
-      zGAnswer(375,1,NodeQst205)
       end
    end
 

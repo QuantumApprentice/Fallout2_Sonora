@@ -159,10 +159,10 @@ procedure destroy_p_proc begin
    if (getQuest(GVAR_PUERTO_QST_BANDITS_PIP) == qStart) then begin
    setQuest(GVAR_PUERTO_QST_BANDITS_PIP,qStop);
    end
-   if (getQuest(GVAR_PUERTO_QST_INFERNO) == qStart) then begin
+   if (getQuest(GVAR_PUERTO_QST_INFERNO) <= qStart) then begin
    setQuest(GVAR_PUERTO_QST_INFERNO,qStop);
    end
-   if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) == qStart) then begin
+   if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) <= qStart) then begin
    setQuest(GVAR_PUERTO_QST_HERMOSILLO,qStop);
    end
    kill_critter_opt
@@ -329,7 +329,12 @@ procedure NodeSndDialog begin
 
    //--- Разведка в Эрмосильо
    if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) == qZero) then begin
+      if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_20) != 0) then begin
+      NAnswer(277,1,NodeQst300)
+      end
+      else begin
       NAnswer(261,1,NodeQst300)
+      end
    end
    if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) == qStart) then begin
       if (town_known(AREA_HERMOSILLO) >= MARK_STATE_VISITED) then begin

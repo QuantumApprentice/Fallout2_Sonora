@@ -187,6 +187,7 @@ end
 
 procedure destroy_p_proc begin
    set_global_var(GVAR_PUERTO_STATUS_BOSS,-1);
+   setQuest(GVAR_VILLA_ALLIANCE_BOS,qStop);
    if (getQuest(GVAR_PUERTO_QST_RANGERS) == qStart) then begin
    setQuest(GVAR_PUERTO_QST_RANGERS,qStop);
    end
@@ -217,7 +218,6 @@ procedure talk_p_proc begin
    end
    else begin
    dialog_proc(0,0,NodeStartDialog,HEAD_BOSS_DIXON,BACKGROUND_WASTELND)
-   //dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 

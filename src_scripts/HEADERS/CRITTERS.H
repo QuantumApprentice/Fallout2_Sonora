@@ -1333,6 +1333,10 @@ itemTypeUseDude фиксирует успех применения предме�
                                     party_remove(partyPidBos);     \
                                     end                            \
 
+#define party_size                  (party_member_count(0) - global_var(GVAR_CAR_GOT_PLAYER))
+
+#define party_limit                 ((party_size >= (dude_charisma/2)) or (party_size >= 5))
+
 // -----------------------------------------------------------------------
 // talk_p_proc
 // -----------------------------------------------------------------------

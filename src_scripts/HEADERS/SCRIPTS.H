@@ -190,6 +190,8 @@
 #define SCRIPT_VSKerama        (589)
 #define SCRIPT_VSBnsBlc        (687)
 #define SCRIPT_VCRobot         (688)
+#define SCRIPT_VCMineA         (737)
+#define SCRIPT_VCMineB         (738)
 
 //------------------------------------------------------
 //---------------------- Шакалы

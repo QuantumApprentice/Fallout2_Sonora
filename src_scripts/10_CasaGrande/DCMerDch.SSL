@@ -187,7 +187,7 @@ procedure talk_p_proc begin
    else begin
    setReaction(1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-50) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(1,103,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -372,8 +372,11 @@ procedure NodeSndDialog begin
       NAnswer(221,1,NodeGame5)
       end
    end
+   else if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(103)
+   end
    else begin
-      Reply(210)
+   Reply(210)
    end
 
    NAnswer(300,1,NodeAnswer100)

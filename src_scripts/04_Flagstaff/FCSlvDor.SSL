@@ -121,7 +121,7 @@ procedure use_obj_on_p_proc begin
    if (itemTypeUseDude == 2) then begin
        display_mstr(103);
        floater(self_obj,102,COLOR_MSG_GREEN);
-       set_local_var(LVAR_Alcoghol,1);
+       inc_local_var(LVAR_Alcoghol);
    end
 end
 

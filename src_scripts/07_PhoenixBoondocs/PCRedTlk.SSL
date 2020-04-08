@@ -120,9 +120,9 @@ procedure critter_p_proc begin
    if (obj_critter_a>0) then begin
       if (map_var(MVAR_PNX_CARDINALS_ATTAK)>0) then begin
          bitDialogExp(bit_2,0)
-         if (self_elevation != 2) then begin
          critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_CULT_ATOMIC);
          critter_add_trait(obj_critter_a,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PHOENIX_BANDIT);
+         if (self_elevation != 2) then begin
          move_to(self_obj,HomeTile,2);
          end
          attack(obj_critter_a);

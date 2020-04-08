@@ -58,12 +58,15 @@ procedure NodeQst201;
 procedure NodeQst202;
 procedure NodeQst203;
 procedure NodeQst300;
+procedure NodeQst300b;
 procedure NodeQst301;
 procedure NodeQst302;
 procedure NodeQst303;
 procedure NodeQst304;
 procedure NodeQst305;
+procedure NodeQst305b;
 procedure NodeQst306;
+procedure NodeQst307;
 procedure NodeChites1;
 procedure NodeChites2;
 procedure NodeChites3;
@@ -181,7 +184,7 @@ procedure talk_p_proc begin
    floater(self_obj,107,COLOR_MSG_NORMAL);
    end
    else begin
-   dialog_proc(0,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -370,6 +373,11 @@ procedure NodeSndDialog begin
    if (getQuest(GVAR_BRAHMIN_QST_RANGER) == qStart) then begin
    if (getQuest(GVAR_BRAHMIN_ATTAK) == qZero) then begin
       NAnswer(254,1,NodeFstDialog111)
+
+      if (map_var(MVAR_BRAHMIN_FIRST_AID)>=3) then begin
+      GAnswer(350,1,NodeQst307)
+      end
+
       if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) < 0) then begin
       NAnswer(353,1,NodeQst305)
       end
@@ -454,6 +462,11 @@ procedure NodeQst300 begin
    NAnswer(342,1,NodeQst301)
 end
 
+procedure NodeQst300b begin
+   Reply(341)
+   NAnswer(342,1,NodeQst304)
+end
+
 procedure NodeQst301 begin
    Reply(343)
    if (map_var(MVAR_BRAHMIN_FIRST_AID)>=3) then begin
@@ -484,10 +497,31 @@ procedure NodeQst305 begin
    NAnswer(342,1,NodeQst301)
 end
 
+procedure NodeQst305b begin
+   Reply(354)
+   NAnswer(342,1,NodeQst304)
+end
+
 procedure NodeQst306 begin
    setQuest(GVAR_BRAHMIN_ATTAK,qStart);
    Reply(356)
    NAnswer(357,1,Node999)
+end
+
+procedure NodeQst307 begin
+   Reply(358)
+
+      if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) < 0) then begin
+      NAnswer(353,1,NodeQst305b)
+      end
+      else if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) == 1) then begin
+      NAnswer(340,1,NodeQst300b)
+      end
+      else if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) > 1) then begin
+      //! Чатто стал новым лидером. - Это очень плохо. Первым делом он наладит союз с Фениксом. Поэтому остаётся только одно - его придется убить.
+      end
+
+   NAnswer(359,1,Node999)
 end
 
 //--- ЧИТЫ

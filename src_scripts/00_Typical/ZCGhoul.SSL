@@ -18,9 +18,9 @@
 
 procedure start;
 procedure map_enter_p_proc;
+procedure map_update_p_proc;
 procedure loot_gener;
 procedure look_at_p_proc;
-procedure description_p_proc;
 procedure timed_event_p_proc;
 procedure critter_p_proc;
 procedure use_obj_on_p_proc;
@@ -65,10 +65,39 @@ procedure map_enter_p_proc begin
        set_local_var(LVAR_Flags,0);
        set_local_var(LVAR_Self_Flags,0);
        end
+       if ((cur_map_index == MAP_INFERNO_MONUMENT) and (global_var(GVAR_INF_TOTEM_MUTAGEN)>=5)) then begin
+       set_local_var(LVAR_Flags,0);
+       set_local_var(LVAR_Self_Flags,0);
+       end
 
    end
 end
 
+procedure map_update_p_proc begin
+   if (local_var(LVAR_Flags) != 0) then begin
+       //--- Реакция потрошителей Инферно на мутаген
+       if ((cur_map_index == MAP_INFERNO_CHURCH) and (map_var(MVAR_INF_TOTEM_A)!=0)) then begin
+       set_local_var(LVAR_Flags,0);
+       set_local_var(LVAR_Self_Flags,0);
+       end
+       if ((cur_map_index == MAP_INFERNO_POLICE) and (map_var(MVAR_INF_TOTEM_B)!=0)) then begin
+       set_local_var(LVAR_Flags,0);
+       set_local_var(LVAR_Self_Flags,0);
+       end
+       if ((cur_map_index == MAP_INFERNO_SHOP) and (map_var(MVAR_INF_TOTEM_C)!=0)) then begin
+       set_local_var(LVAR_Flags,0);
+       set_local_var(LVAR_Self_Flags,0);
+       end
+       if ((cur_map_index == MAP_INFERNO_CITY) and (map_var(MVAR_INF_TOTEM_D)!=0)) then begin
+       set_local_var(LVAR_Flags,0);
+       set_local_var(LVAR_Self_Flags,0);
+       end
+       if ((cur_map_index == MAP_INFERNO_MONUMENT) and (global_var(GVAR_INF_TOTEM_MUTAGEN)>=5)) then begin
+       set_local_var(LVAR_Flags,0);
+       set_local_var(LVAR_Self_Flags,0);
+       end
+   end
+end
 
 procedure loot_gener begin
    variable lootID;
@@ -96,14 +125,32 @@ end
 
 procedure look_at_p_proc begin
    //lookProcMsg
+
+   if (cur_map_index == MAP_INFERNO_CHURCH) then begin
+       script_overrides;
+       g_display_mstr(579);
+   end
+   if (cur_map_index == MAP_INFERNO_POLICE) then begin
+       script_overrides;
+       g_display_mstr(579);
+   end
+   if (cur_map_index == MAP_INFERNO_SHOP) then begin
+       script_overrides;
+       g_display_mstr(579);
+   end
+   if (cur_map_index == MAP_INFERNO_CITY) then begin
+       script_overrides;
+       g_display_mstr(579);
+   end
+   if (cur_map_index == MAP_INFERNO_MONUMENT) then begin
+       script_overrides;
+       g_display_mstr(579);
+   end
+
    if (cur_map_index == MAP_RANGERS_QUARTZ) then begin
        script_overrides;
        g_display_mstr(511);
    end
-end
-
-procedure description_p_proc begin
-   //dsrptProcMsg
 end
 
 procedure timed_event_p_proc begin
@@ -142,6 +189,9 @@ procedure critter_p_proc begin
    attakToDude := 0;
    end
    if ((cur_map_index == MAP_INFERNO_CITY) and (map_var(MVAR_INF_TOTEM_D)!=0)) then begin
+   attakToDude := 0;
+   end
+   if ((cur_map_index == MAP_INFERNO_MONUMENT) and (global_var(GVAR_INF_TOTEM_MUTAGEN)>=5)) then begin
    attakToDude := 0;
    end
 

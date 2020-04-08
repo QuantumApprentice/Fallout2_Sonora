@@ -39,7 +39,7 @@ end
 procedure ClimatUp begin
    if (global_var(GVAR_NUEVA_STATUS_CLIMAT) == 0) then begin
       display_mstr(110);
-      dude_floater_NON;
+      floater(source_obj, 102, COLOR_MSG_NORMAL);
    end
    else if ((self_elevation == 0) and (map_var(MVAR_NUEVA_LAB_CLIMAT_A) == 0)) then begin
       play_sfx("STEAM");

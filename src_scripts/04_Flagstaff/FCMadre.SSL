@@ -182,8 +182,8 @@ end
 
 procedure NodeFstDialog begin
    Reply(dude_name+mstr(200))
-   BAnswer(201,1,NodeFstDialog001)
-   NAnswer(202,1,NodeFstDialog002)
+   zBAnswer(201,1,NodeFstDialog001)
+   zNAnswer(202,1,NodeFstDialog002)
 end
 
 procedure NodeFstDialog001 begin

@@ -143,7 +143,7 @@ procedure open_proc begin
    end
 
    game_time_advance(ONE_GAME_MINUTE*(60-(5*dude_strength)));
-   radiation_inc(dude_obj, 10);
+   //radiation_inc(dude_obj, 3);
    gfade_in(ONE_GAME_SECOND);
 
    //--- Поправки на отдельные локации

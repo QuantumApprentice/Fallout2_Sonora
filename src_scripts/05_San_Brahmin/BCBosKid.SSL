@@ -143,7 +143,7 @@ procedure talk_p_proc begin
    floater(self_obj,103,COLOR_MSG_RED);
    end
    else begin
-   dialog_proc(1,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -268,7 +268,10 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if (getReaction<0) then begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else if (getReaction<0) then begin
    Reply(221)
    end
    else begin

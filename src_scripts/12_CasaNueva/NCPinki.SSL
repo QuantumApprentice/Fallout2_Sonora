@@ -126,6 +126,12 @@ procedure pickup_p_proc begin
    pickupProcCritter
 end
 
+procedure push_p_proc begin
+   if (global_var(GVAR_NUEVA_STATUS_PINKI) < 2) then begin
+   push_options(HomeTile,5,102)
+   end
+end
+
 procedure use_obj_on_p_proc begin
    UsedItemToCrit_Proc
    UsedToCrit_Stimpak_Doctor

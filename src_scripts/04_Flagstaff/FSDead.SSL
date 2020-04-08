@@ -9,7 +9,7 @@ procedure use_p_proc;
 procedure use_skill_on_p_proc;
 procedure use_obj_on_p_proc;
 
-#define LVAR_Invis_Timer                     (1) // Р’СЂРµРјСЏ РґР»СЏ РёСЃС‡РµР·РЅРѕРІРµРЅРёСЏ
+#define LVAR_Invis_Timer                     (1) // Время для исчезновения
 
 
 

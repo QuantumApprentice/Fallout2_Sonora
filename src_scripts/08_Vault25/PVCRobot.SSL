@@ -41,6 +41,14 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+       if (self_TEAM == TEAM_PLAYER) then begin
+          if (HomeTile >0) then begin
+          move_to(self_obj, HomeTile, self_elevation);
+          anim(self_obj, ANIMATE_ROTATION, HomeRotat);
+          end
+          rm_timer_event(self_obj);
+          add_timer_event(self_obj, random(10,30), 1);
+       end
    end
 end
 

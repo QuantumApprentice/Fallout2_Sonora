@@ -550,7 +550,6 @@ music=f1_infrn
 ambient_sfx=blank:100
 saved=Yes
 dead_bodies_age=No
-can_rest_here=No,No,No
 
 [Map 061]
 lookup_name=InfernoCity

@@ -425,7 +425,7 @@ entrance_0=On,-1,-1,Special Bibl Encounter,-1,-1,0
 
 [Area 33]                ; Специальная встреча - Придорожное кафе (в F2 - Говорящая голова)
 area_name=Special33
-world_pos=100,100
+world_pos=891,435
 start_state=Off
 lock_state=On
 size=Small
@@ -445,7 +445,7 @@ entrance_0=On,-1,-1,Special Bomber Encounter,-1,-1,0
 
 [Area 35]                ; Специальная встреча - Грузовик Петро-Чико (в F2 - Немытая деревенщина)
 area_name=Special35
-world_pos=100,100
+world_pos=1291,735
 start_state=Off
 lock_state=On
 size=Small
@@ -505,7 +505,7 @@ entrance_0=On,-1,-1,Special Snow Encounter,-1,-1,0
 
 [Area 41]                ; Специальная встреча - Убежище из Ван-Бюрен (в F2 - Свалка токсичных отходов)
 area_name=Special41
-world_pos=100,100
+world_pos=1191,385
 start_state=Off
 lock_state=On
 size=Small
@@ -515,7 +515,7 @@ entrance_0=On,-1,-1,Special Vault Encounter,-1,-1,0
 
 [Area 42]                ; Специальная встреча - Мобильная крепость армии Создателя (в F2 - Pariahs)
 area_name=Special42
-world_pos=100,100
+world_pos=191,785
 start_state=Off
 lock_state=On
 size=Small

@@ -736,3 +736,4 @@ SSCmpMus.int    ; Пуэрто: муз аппарат в Каборке                 # local_vars=3
 PCScvAtm.int    ; Феникс: свидетель в канализации по квесту АЭС # local_vars=7
 VCMineA.int     ; Вилла: Санчо после возвращения из шахты       # local_vars=8
 VCMineB.int     ; Вилла: Уго после возвращения из шахты         # local_vars=8
+NCCarlos.int    ; КНуэвa: Карлос из Виллы                       # local_vars=8

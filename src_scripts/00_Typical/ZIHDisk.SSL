@@ -31,15 +31,10 @@ procedure use_p_proc begin
    PID_from_GVAR(PID_HOLODSK_VAULT_TEC,GVAR_HOLODISK_08)
 
    //--- Собственно загрузка записи
-   /*
-   Проверка Науки удалена.
-   if (has_skill(dude_obj, SKILL_SCIENCE) < 0) then begin
-       skill_display_mstr(103,SKILL_SCIENCE,0)
+   if (has_skill(dude_obj, SKILL_SCIENCE) <= 0) then begin
+       skill_display_mstr(103,SKILL_SCIENCE,1)
    end
-   else
-   */
-
-   if (numberGVAR <= 0) then begin
+   else if (numberGVAR <= 0) then begin
        //play_sfx("IISXXXX1");
        display_mstr(102);
    end

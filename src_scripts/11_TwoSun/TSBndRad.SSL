@@ -44,6 +44,7 @@ procedure repair_proc begin
    set_gvar_bit_on(GVAR_TWOSUN_QST_BAND_STATUS, bit_5);
    gfade_out(ONE_GAME_SECOND);
    game_time_advance(ONE_GAME_MINUTE*10);
+   radiation_inc(dude_obj, 50);
    gfade_in(ONE_GAME_SECOND);
    RepairProcRepair(112,100,"FIXSTILL")
 end

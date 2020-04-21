@@ -11,7 +11,7 @@
 #define KILL_TOWN_REP                   REP_KILL_CRITICAL     // репутация за убийство этого персонажа (-100 для враждебности всего поселения)
 #define KILL_FRAC_REP                   FRAC_CASINO           // принадлежность определенной фракции (-1, если не нужно)
 
-#define FLAG_STEAL                      100 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
+#define FLAG_STEAL                      120 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
 #define FLAG_ALCOHOL                    1  // Примет ли алкоголь от ГГ: 0 - принимает, 1 - не принимает
 #define FLAG_FOOD                       1  // Примет ли пищу от ГГ: 0 - принимает, 1 - не принимает
 
@@ -155,15 +155,11 @@ procedure destroy_p_proc begin
 end
 
 procedure talk_p_proc begin
-
-   /*
-   else if (tile_distance(HomeTile, dude_tile) <= 2) then begin
-   floater(self_obj,103,COLOR_MSG_RED);
-   end
-   */
-
    if (tile_distance(self_tile, HomeTile) > 3) then begin
    floater(self_obj,104,COLOR_MSG_NORMAL);
+   end
+   else if (tile_distance(HomeTile, dude_tile) <= 2) then begin
+   floater(self_obj,103,COLOR_MSG_RED);
    end
    else begin
    setReaction(0) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)

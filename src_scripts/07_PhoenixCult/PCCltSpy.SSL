@@ -18,7 +18,6 @@
 
 procedure start;
 procedure map_enter_p_proc;
-procedure map_update_p_proc;
 procedure look_at_p_proc;
 procedure description_p_proc;
 procedure timed_event_p_proc;
@@ -98,13 +97,6 @@ procedure map_enter_p_proc begin
    end
 end
 
-procedure map_update_p_proc begin
-       if (global_var(GVAR_PHENIX_QST_CULT_A_BIT) >= 20) then begin
-       rm_timer_event(self_obj);
-       set_obj_visibility(self_obj, 1);
-       end
-end
-
 procedure look_at_p_proc begin
    lookProcMsg
 end
@@ -167,7 +159,7 @@ procedure talk_p_proc begin
    end
    else begin
    fracReaction(GVAR_TITUL_PHENIX_CULT,50) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(1,1,NodeStartDialog,-1,-1)
    end
 end
 
@@ -220,9 +212,7 @@ procedure NodeSndDialog begin
 
    if (getQuest(GVAR_PHENIX_PARTY_QST_B) == qStart) then begin
       if (bitDialog(bit_5) == 0) then begin
-      if (map_var(MVAR_PNX_CULT_SPY_SHRIFT) == 0) then begin
-      zNAnswer(250,1,NodeAnswer300)
-      end
+      NAnswer(250,1,NodeAnswer300)
       end
    end
 

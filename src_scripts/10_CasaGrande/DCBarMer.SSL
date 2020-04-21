@@ -47,7 +47,6 @@ procedure NodeSndDialog;
 procedure NodeSndDialog2;
 procedure NodeAnswer100;
 procedure NodeAnswer101;
-procedure NodeAnswer101b;
 procedure NodeAnswer102;
 procedure NodeAnswer103;
 procedure NodeAnswer104;
@@ -200,7 +199,6 @@ procedure NodeFstDialog100 begin
    Reply(202)
    NAnswer(203,1,NodeFstDialog101)
 end
-
 procedure NodeFstDialog101 begin
    Reply(204)
    NAnswer(205,1,NodeSndDialog)
@@ -243,15 +241,10 @@ procedure NodeSndDialog begin
    end
 
    if (global_var(GVAR_CGRANDE_STATUS_MERDCH) < 0) then begin
-      zBAnswer(256,1,NodeAnswer202)
+   zBAnswer(256,1,NodeAnswer202)
    end
-   if (global_var(GVAR_CGRANDE_STATUS_MERDCH) >= 0) then begin
-      if (map_var(MVAR_CGRANDE_BAR_PARTY) == 1) then begin
-      GAnswer(250,1,NodeAnswer200)
-      end
-      if ((map_var(MVAR_CGRANDE_BAR_PARTY) == 0) and (map_var(MVAR_CGRANDE_BAR_RUN) == 0)) then begin
-      NAnswer(272,1,NodeAnswer101b)
-      end
+   if (map_var(MVAR_CGRANDE_BAR_PARTY) == 1) then begin
+   GAnswer(250,1,NodeAnswer200)
    end
 
    NAnswer(218,1,NodeAnswer102)
@@ -291,12 +284,6 @@ procedure NodeAnswer101 begin
    GAnswer(217,1,Node999)
 end
 
-procedure NodeAnswer101b begin
-   Reply(273)
-   NAnswer(275,1,NodeAnswer103)
-   NAnswer(274,1,Node999)
-end
-
 procedure NodeAnswer102 begin
    Reply(219)
    NAnswer(221,1,NodeAnswer103)
@@ -305,7 +292,6 @@ end
 
 procedure NodeAnswer103 begin
    set_map_var(MVAR_CGRANDE_BAR_ATTAK,1);
-   setQuest(GVAR_CGRANDE_ATTAK_TO_BAR,qEnd);
    Reply(222)
    NAnswer(223,1,Node999)
 end

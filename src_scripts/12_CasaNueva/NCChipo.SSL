@@ -128,7 +128,7 @@ procedure talk_p_proc begin
    end
    else begin
    setReaction(1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   dialog_proc(102,0,NodeStartDialog,-1,-1)
+   dialog_proc(102,103,NodeStartDialog,-1,-1)
    end
 end
 
@@ -179,9 +179,6 @@ procedure NodeSndDialog begin
    end
    else if (global_var(GVAR_NUEVA_STATUS_PINKI) == 1) then begin
    Reply(213)
-   end
-   else if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
-   Reply(103)
    end
    else if town_rep_is_liked then begin
    Reply(212)

@@ -55,8 +55,6 @@ procedure NodeQst200;
 procedure NodeQst201;
 procedure NodeQst202;
 procedure NodeQst203;
-procedure NodeQst204;
-procedure NodeQst205;
 procedure NodeQst300;
 procedure NodeQst301;
 procedure NodeQst302;
@@ -154,15 +152,14 @@ procedure damage_p_proc begin
 end
 
 procedure destroy_p_proc begin
-   //mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
-   set_map_var(MVAR_PUERTO_PATRLBOSS_DEAD, -1);
+   mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
    if (getQuest(GVAR_PUERTO_QST_BANDITS_PIP) == qStart) then begin
    setQuest(GVAR_PUERTO_QST_BANDITS_PIP,qStop);
    end
-   if (getQuest(GVAR_PUERTO_QST_INFERNO) <= qStart) then begin
+   if (getQuest(GVAR_PUERTO_QST_INFERNO) == qStart) then begin
    setQuest(GVAR_PUERTO_QST_INFERNO,qStop);
    end
-   if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) <= qStart) then begin
+   if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) == qStart) then begin
    setQuest(GVAR_PUERTO_QST_HERMOSILLO,qStop);
    end
    kill_critter_opt
@@ -199,10 +196,7 @@ procedure NodeStartDialog begin
    bitDialogExp(bit_2,0)
    end
 
-   if ((getQuest(GVAR_PUERTO_QST_INFERNO) <= qStart) and (armor_pid_dude_var == PID_ARMOR_POWER_A)) then begin
-   call NodeQst204;
-   end
-   else if (DudePerkHas(PERK_ghouling_charisma) and (bitDialog(bit_3) == 0)) then begin
+   if (DudePerkHas(PERK_ghouling_charisma) and (bitDialog(bit_3) == 0)) then begin
    call NodeFstDialog2;
    end
    else if (bitDialog(bit_1) == 0) then begin
@@ -319,22 +313,14 @@ procedure NodeSndDialog begin
    //--- Поиск пропавшего отряда
    if (getQuest(GVAR_PUERTO_QST_INFERNO) == qStart) then begin
       NAnswer(240,1,NodeQst200)
-      if ((getQuest(GVAR_INF_QST_PALADIN_A) >= qEnd) or (global_var(GVAR_INF_STATUS_PALADIN)>0)) then begin
-      GAnswer(247,1,NodeQst202)
-      end
-      else if ((getQuest(GVAR_INF_QST_PALADIN_A) <= qStop) or (global_var(GVAR_INF_STATUS_PALADIN)<0)) then begin
+      if ((getQuest(GVAR_INF_QST_PALADIN_A) >= qEnd) or (global_var(GVAR_INF_STATUS_PALADIN)>=2)) then begin
       GAnswer(247,1,NodeQst202)
       end
    end
 
    //--- Разведка в Эрмосильо
    if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) == qZero) then begin
-      if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_20) != 0) then begin
-      NAnswer(277,1,NodeQst300)
-      end
-      else begin
       NAnswer(261,1,NodeQst300)
-      end
    end
    if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) == qStart) then begin
       if (town_known(AREA_HERMOSILLO) >= MARK_STATE_VISITED) then begin
@@ -433,7 +419,6 @@ procedure NodeQst202 begin
    exp_add(500);
    setBonusReaction(25)
    set_REP(5)
-
    Reply(248)
    NAnswer(249,1,NodeQst203)
 end
@@ -442,17 +427,6 @@ procedure NodeQst203 begin
    Reply(250)
    NAnswer(251,1,Node999)
    BAnswer(252,1,Node999)
-end
-
-procedure NodeQst204 begin
-   Reply(253)
-   GAnswer(254,1,NodeQst205)
-end
-
-procedure NodeQst205 begin
-   Reply(255)
-   NAnswer(256,1,NodeQst202)
-   BAnswer(257,1,Node999)
 end
 
 procedure NodeQst300 begin
@@ -625,7 +599,7 @@ procedure NodeQst506 begin
    setBonusReaction(50)
    set_REP(7)
    exp_add(1500);
-   //mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
+   mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
 
    Reply(348)
    NAnswer(349,1,Node999)
@@ -635,7 +609,7 @@ procedure NodeQst507 begin
    setQuest(GVAR_PUERTO_QST_BANDITS_PIP,qStop);
    setQuest(GVAR_PUERTO_QST_BANDITS_CMP,qStop);
    setBonusReaction(-75)
-   //mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
+   mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
 
    Reply(351)
    NAnswer(352,1,Node999)
@@ -652,7 +626,7 @@ procedure NodeQst509 begin
    setQuest(GVAR_PUERTO_QST_BANDITS_CMP,qStop);
    setBonusReaction(-25)
    exp_add(500);
-   //mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
+   mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
 
    Reply(357)
    NAnswer(358,1,Node999)

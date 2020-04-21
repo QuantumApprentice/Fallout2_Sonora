@@ -22,7 +22,7 @@ procedure use_p_proc begin
 end
 
 procedure use_skill_on_p_proc begin
-   RepairVarCheck(0)
+   RepairVarCheck(25)
    RepairSkillRepair
 end
 

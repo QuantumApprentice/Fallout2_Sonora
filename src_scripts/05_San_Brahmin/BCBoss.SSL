@@ -177,7 +177,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-10) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,10) // Поправка к отношению за принадлежность к фракциям
 
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(0,102,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -330,6 +330,7 @@ procedure NodeSndDialog begin
       end
    end
 
+
    //--- Расспросы
    if (bitDialog(bit_3) == 0) then begin
       NAnswer(300,1,NodeAnswer100)
@@ -460,18 +461,12 @@ procedure NodeAnswer102 begin
 end
 
 procedure NodeAnswer103 begin
-   if (getQuest(GVAR_BRAHMIN_QST_COMMANDER)>=qEnd) then begin
+   if (global_var(GVAR_BRAHMIN_STATUS_HEAD_GERONIMO)>0) then begin
       Reply(273)
       NAnswer(274,1,NodeAnswer104)
    end
    else begin
-      if (global_var(GVAR_BRAHMIN_QST_GERONIMO) == 10) then begin
-      Reply(278)
-      end
-      else begin
       Reply(271)
-      end
-
       if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
       GAnswer(275,1,NodeAnswer104)
       end

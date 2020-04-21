@@ -59,7 +59,6 @@ procedure NodeAnswer202;
 procedure NodeAnswer300;
 procedure NodeAnswer301;
 procedure NodeAnswer302;
-procedure NodeAnswer303;
 procedure NodeQst100;
 procedure NodeQst101;
 procedure NodeQst102;
@@ -310,23 +309,20 @@ procedure NodeSndDialog begin
    NAnswer(230,1,NodeAnswer100)
    NAnswer(236,1,NodeAnswer200)
    if (map_is_known(MAP_FLAGSTAFF_MINE) == true) then begin
-      if (bitDialog(bit_4) == 0) then begin
-      zNAnswer(291,4,NodeAnswer102)
-      end
+   if (bitDialog(bit_4) == 0) then begin
+   zNAnswer(291,4,NodeAnswer102)
+   end
    end
    if (getQuest(GVAR_PHENIX_QST_PLANT_SPY) == qStart) then begin
-      if (bitDialog(bit_3) == 0) then begin
-      NAnswer(244,3,NodeAnswer300)
-      end
-      else begin
-      NAnswer(244,3,NodeAnswer303)
-      end
+   if (bitDialog(bit_3) == 0) then begin
+   NAnswer(244,3,NodeAnswer300)
+   end
    end
    if (getQuest(GVAR_PHENIX_QST_PLANT_REPAIR) == qStart) then begin
-      NAnswer(266,3,NodeAnswer302)
+   NAnswer(266,3,NodeAnswer302)
    end
    if (getQuest(GVAR_PHENIX_QST_PLANT_SPY) == qEnd) then begin
-      NAnswer(270,1,NodeQst100)
+   NAnswer(270,1,NodeQst100)
    end
 
    NAnswer(221,1,Node999)
@@ -393,11 +389,6 @@ procedure NodeAnswer302 begin
    NAnswer(268,1,Node999)
 end
 
-procedure NodeAnswer303 begin
-   Reply(249)
-   NAnswer(248,1,Node999)
-end
-
 procedure NodeQst100 begin
    Reply(271)
    NAnswer(272,1,NodeQst101)
@@ -428,7 +419,7 @@ procedure NodeQst104 begin
 end
 
 procedure NodeQst105 begin
-   zReply(281)
+   Reply(281)
    NAnswer(282,1,Node999)
 end
 

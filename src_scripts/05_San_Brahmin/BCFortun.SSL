@@ -176,9 +176,6 @@ procedure NodeFstDialog104 begin
    bitDialogExp(bit_2,100)
    item_remove(dude_obj,PID_BOOTLE_CAPS,100)
    PLAY_FADE
-   /*
-   ? По предложению некоторых игроков здесь можно сделать повышение и понижение Удачи по рендому аналогично хабологу в НКР в F2.
-   */
    Reply(213)
    NAnswer(214,1,NodeFstDialog105)
 end

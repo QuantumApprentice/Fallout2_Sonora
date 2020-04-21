@@ -1,24 +1,24 @@
 #ifndef SCENEPID_H
 #define SCENEPID_H
 
-#define PID_ZERO_NUMBER                     33554432 // СЃС‚Р°СЂС‚РѕРІС‹Р№ РЅСѓР»РµРІРѕР№ РѕР±СЉРµРєС‚ (РїРѕСЃР»Рµ РЅРµРіРѕ 1Р№ РѕР±СЉРµРєС‚ - РіРѕСЂСЏС‰Р°СЏ Р±РѕС‡РєР°)
+#define PID_ZERO_NUMBER                     33554432 // стартовый нулевой объект (после него 1й объект - горящая бочка)
 #define PID_HEX_MAPEXIT                     33554481
 #define PID_HEX_BLOCKING                    33554499
 #define PID_HEX_SOLAR                       33554573
 #define PID_HEX_NOT_GOO                     PID_ZERO_NUMBER+1082
 
-// РўСЂР°РЅСЃРїРѕСЂС‚ Р“Р“
+// Транспорт ГГ
 #define PID_CAR_GENERATOR                   33554434
 #define PID_CAR_OBJ                         33555441
 #define PID_CAR_TRUNK                       455
 
-// Р”РІРµСЂРё СѓР±РµР¶РёС‰Р°
-#define PID_DOOR_VLT_AA                     33554932  // С‡РёСЃС‚Р°СЏ РґРІРµСЂСЊ РЎ-Р®
-#define PID_DOOR_VLT_AB                     33554933  // С‡РёСЃС‚Р°СЏ РґРІРµСЂСЊ Р—-Р’
-#define PID_DOOR_VLT_BA                     33554936  // СЂР¶Р°РІР°СЏ РґРІРµСЂСЊ РЎ-Р®
-#define PID_DOOR_VLT_BB                     33554937  // СЂР¶Р°РІР°СЏ РґРІРµСЂСЊ Р—-Р’
+// Двери убежища
+#define PID_DOOR_VLT_AA                     33554932  // чистая дверь С-Ю
+#define PID_DOOR_VLT_AB                     33554933  // чистая дверь З-В
+#define PID_DOOR_VLT_BA                     33554936  // ржавая дверь С-Ю
+#define PID_DOOR_VLT_BB                     33554937  // ржавая дверь З-В
 
-// Р”РІРµСЂРё РєРѕСЂР°Р±Р»СЏ РІ РџСѓСЌСЂС‚Рѕ
+// Двери корабля в Пуэрто
 #define PID_DOOR_PRT_A                      33556278  //
 #define PID_DOOR_PRT_B                      33556279  //
 #define PID_DOOR_PRT_C                      33556280  //
@@ -28,31 +28,31 @@
 #define PID_DOOR_PRT_G                      33556284  //
 #define PID_DOOR_PRT_H                      33556285  //
 
-// РЎРёР»РѕРІС‹Рµ РїРѕР»СЏ
-#define PID_POWER_POLE_AA                   33555168  // РѕР±С‹С‡РЅРѕРµ Р¶РµР»С‚РѕРµ РїРѕР»Рµ Р—-Р’
-#define PID_POWER_POLE_AB                   33555169  // РѕР±С‹С‡РЅРѕРµ Р¶РµР»С‚РѕРµ РїРѕР»Рµ РЎ-Р®
-#define PID_POWER_POLE_BA                   33555170  // РєСЂР°СЃРЅРѕРµ РїРѕР»Рµ Р—-Р’
-#define PID_POWER_POLE_BB                   33555171  // РєСЂР°СЃРЅРѕРµ РїРѕР»Рµ РЎ-Р®
-#define PID_POWER_POLE_CA                   33555172  // Р¶РµР»С‚РѕРµ РїРѕР»Рµ РђРЅРєР»Р°РІР° Р—-Р’
-#define PID_POWER_POLE_CB                   33555173  // Р¶РµР»С‚РѕРµ РїРѕР»Рµ РђРЅРєР»Р°РІР° РЎ-Р®
-#define PID_POWER_POLE_DA                   33555174  // Р»РёРЅРёРё Р—-Р’
-#define PID_POWER_POLE_DB                   33555175  // Р»РёРЅРёРё РЎ-Р®
+// Силовые поля
+#define PID_POWER_POLE_AA                   33555168  // обычное желтое поле З-В
+#define PID_POWER_POLE_AB                   33555169  // обычное желтое поле С-Ю
+#define PID_POWER_POLE_BA                   33555170  // красное поле З-В
+#define PID_POWER_POLE_BB                   33555171  // красное поле С-Ю
+#define PID_POWER_POLE_CA                   33555172  // желтое поле Анклава З-В
+#define PID_POWER_POLE_CB                   33555173  // желтое поле Анклава С-Ю
+#define PID_POWER_POLE_DA                   33555174  // линии З-В
+#define PID_POWER_POLE_DB                   33555175  // линии С-Ю
 
-// Р›РѕРІСѓС€РєРё
-#define PID_TRAP_Aa                         33554435   // РєР°РјРµРЅРЅР°СЏ РїР»РёС‚Р° РІРєР»
-#define PID_TRAP_Ab                         33554436   // РєР°РјРµРЅРЅР°СЏ РїР»РёС‚Р° РІС‹РєР»
-#define PID_TRAP_Ba                         33554437   // РЅР°РїРѕР»СЊРЅР°СЏ РїР»РёС‚Р° РІРєР»
-#define PID_TRAP_Bb                         33554438   // РЅР°РїРѕР»СЊРЅР°СЏ РїР»РёС‚Р° РІС‹РєР»
-#define PID_TRAP_Ca                         33554439   // РєСЂС‹СЃРѕР»РѕРІРєР° РІРєР»
-#define PID_TRAP_Cb                         33554440   // РєСЂС‹СЃРѕР»РѕРІРєР° РІС‹РєР»
-#define PID_TRAP_Da                         33554441   // СЂР°СЃС‚СЏР¶РєР° РІРєР»
-#define PID_TRAP_Db                         33554442   // СЂР°СЃС‚СЏР¶РєР° РІС‹РєР»
-#define PID_TRAP_Ea                         33554443   // СЂР°СЃС‚СЏР¶РєР° РІРєР»
-#define PID_TRAP_Eb                         33554444   // СЂР°СЃС‚СЏР¶РєР° РІС‹РєР»
+// Ловушки
+#define PID_TRAP_Aa                         33554435   // каменная плита вкл
+#define PID_TRAP_Ab                         33554436   // каменная плита выкл
+#define PID_TRAP_Ba                         33554437   // напольная плита вкл
+#define PID_TRAP_Bb                         33554438   // напольная плита выкл
+#define PID_TRAP_Ca                         33554439   // крысоловка вкл
+#define PID_TRAP_Cb                         33554440   // крысоловка выкл
+#define PID_TRAP_Da                         33554441   // растяжка вкл
+#define PID_TRAP_Db                         33554442   // растяжка выкл
+#define PID_TRAP_Ea                         33554443   // растяжка вкл
+#define PID_TRAP_Eb                         33554444   // растяжка выкл
 
 #define trapObj(pid)                        (tile_contains_obj_pid(self_tile,self_elevation,pid) == true) \
 
-// Р“РµРЅРµСЂР°С‚РѕСЂС‹ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ РѕРєСЂСѓР¶РµРЅРёСЏ
+// Генераторы случайного окружения
 #define PID_GENERATOR_POSTER_A              33554561
 #define PID_GENERATOR_POSTER_B              33554562
 #define PID_GENERATOR_ROADSIGN_A            33554563
@@ -66,18 +66,18 @@
 #define PID_GENERATOR_RESERV_c              33554571
 #define PID_GENERATOR_RESERV_d              33554572
 
-// РљСЂРѕРІСЊ
-#define PID_BLOOD_1                         33554874   // Р±РµР· РєРѕСЃС‚РµР№
+// Кровь
+#define PID_BLOOD_1                         33554874   // без костей
 #define PID_BLOOD_2                         33554875
 #define PID_BLOOD_3                         33554876
 #define PID_BLOOD_4                         33554877
 #define PID_BLOOD_5                         33554878
 #define PID_BLOOD_6                         33554879
-#define PID_BLOOD_7                         33554880   //СЃ РєРѕСЃС‚СЏРјРё
+#define PID_BLOOD_7                         33554880   //с костями
 #define PID_BLOOD_8                         33554881
 #define PID_BLOOD_9                         33554882
 
-// РРіСЂР°Р»СЊРЅС‹Рµ Р°РІС‚РѕРјР°С‚
+// Игральные автомат
 #define PID_GAME_SLOT_A                    33555542
 #define PID_GAME_SLOT_B                    33555543
 #define PID_GAME_SLOT_DSTR_A               33555544

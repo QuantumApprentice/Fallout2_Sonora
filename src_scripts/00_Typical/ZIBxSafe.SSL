@@ -306,7 +306,7 @@ procedure use_obj_on_p_proc begin
          set_local_var(LVAR_Lockpick_Flag,1);
          dec_local_var_amt(LVAR_Locked_Level,20);
          play_sfx("WOR1XXX1");
-         //dude_floater_OK; - вводит в заблуждение, игрок думает, что уже взломал замок
+         dude_floater_OK;
          display_mstr(161);
          item_remove(dude_obj, objUsedPid, 1)
       end

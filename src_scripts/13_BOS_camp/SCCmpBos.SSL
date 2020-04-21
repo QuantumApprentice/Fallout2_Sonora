@@ -73,8 +73,7 @@ procedure map_enter_p_proc begin
        if (self_cur_hits<self_max_hits) then begin
        critter_heal(self_obj,self_max_hits-self_cur_hits);
        end
-       set_obj_visibility(self_obj, 0);
-       if ((getQuest(GVAR_PUERTO_BOS_DESTROY) >= qEnd) or (getQuest(GVAR_PUERTO_QST_BANDITS_PIP) >= qEnd) or (getQuest(GVAR_PUERTO_QST_BANDITS_PIP) <= qStop) or (getQuest(GVAR_PUERTO_QST_BANDITS_CMP) <= qStop)) then begin
+       if ((getQuest(GVAR_PUERTO_QST_BANDITS_PIP) >= qEnd) or (getQuest(GVAR_PUERTO_QST_BANDITS_PIP) <= qStop) or (getQuest(GVAR_PUERTO_QST_BANDITS_CMP) <= qStop)) then begin
        rm_timer_event(self_obj);
        set_obj_visibility(self_obj, 1);
        end
@@ -99,9 +98,15 @@ procedure timed_event_p_proc begin
        //timer_float_reply(120,121)
    end
    if (fixed_param == 3) then begin
+       if (global_var(GVAR_CAR_MAP_INDEX) == cur_map_index) then begin
+       set_global_var(GVAR_CAR_MAP_INDEX,MAP_BOS_CAMP_B);
+       end
        dude_teleport_map(0,0,MAP_BOS_CAMP_B,1);
    end
    if (fixed_param == 4) then begin
+       if (global_var(GVAR_CAR_MAP_INDEX) == cur_map_index) then begin
+       set_global_var(GVAR_CAR_MAP_INDEX,MAP_BOS_CAMP_C);
+       end
        dude_teleport_map(0,0,MAP_BOS_CAMP_C,1);
    end
 end
@@ -113,9 +118,7 @@ procedure critter_p_proc begin
    else begin
    if (getQuest(GVAR_PUERTO_QST_BANDITS_CMP) == qStart) then begin
    if (global_var(GVAR_PUERTO_RUN_BANDITS_CAMP) > 0) then begin
-   if (self_elevation == dude_elevation) then begin
    partyRunToDude // персонаж бегает вслед за ГГ
-   end
    end
    end
    end

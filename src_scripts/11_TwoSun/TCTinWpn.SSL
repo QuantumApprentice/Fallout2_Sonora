@@ -206,7 +206,7 @@ procedure NodeSkillUp10 begin
 end
 
 procedure NodeSkillUp11 begin
-   item_remove(dude_obj, PID_TOOL_PARTS_ELECTRONIC, 5)
+   item_remove(dude_obj, PID_TOOL_PARTS_ELECTRONIC, -5)
    Reply(240)
    NAnswer(241,1,NodeSkillUp50)
 end
@@ -225,7 +225,7 @@ procedure NodeSkillUp30 begin
 end
 
 procedure NodeSkillUp31 begin
-   item_remove(dude_obj, PID_TOOL_PARTS_ELECTRONIC, 2)
+   item_remove(dude_obj, PID_TOOL_PARTS_ELECTRONIC, -2)
    Reply(240)
    NAnswer(241,1,NodeSkillUp50)
 end
@@ -250,18 +250,8 @@ procedure NodeSkillUp51 begin
    PLAY_FADE
    game_time_advance(ONE_GAME_HOUR*5);
    bitDialogExp(bit_2,250)
-   if (is_skill_tagged(SKILL_REPAIR) == true) then begin
-   skill_up(SKILL_REPAIR,6);
-   end
-   else begin
    skill_up(SKILL_REPAIR,5);
-   end
-   if (is_skill_tagged(SKILL_ENERGY_WEAPONS) == true) then begin
-   skill_up(SKILL_ENERGY_WEAPONS,6);
-   end
-   else begin
    skill_up(SKILL_ENERGY_WEAPONS,5);
-   end
    display_mstr(244);
    call Node999;
 end

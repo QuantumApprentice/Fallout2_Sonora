@@ -116,7 +116,7 @@ procedure critter_p_proc begin
       end
       end
    end
-   set_critter_options(3,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 end
 
 procedure use_skill_on_p_proc begin
@@ -296,7 +296,7 @@ end
 
 procedure NodeQuest begin
    if (getQuest(GVAR_MAIN_QUEST_SYNOD_VILLA) != qZero) then begin
-      if (getQuest(GVAR_FLAGSTAFF_SLAVES_MINE) < qEnd) then begin
+      if (getQuest(GVAR_FLAGSTAFF_SLAVES_MINE) >= qEnd) then begin
       Reply(262)
       NAnswer(264,1,NodeSndDialog)
       NAnswer(263,1,Node999)

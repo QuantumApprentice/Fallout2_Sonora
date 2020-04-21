@@ -88,17 +88,7 @@ procedure destroy_p_proc begin
 end
 
 procedure talk_p_proc begin
-   if (random(0,100)>75) then begin
-      if DudePerkHas(PERK_ghouling_charisma) then begin
-      floater(self_obj,random(150,154),COLOR_MSG_NORMAL);
-      end
-      else begin
-      floater(self_obj,random(130,134),COLOR_MSG_NORMAL);
-      end
-   end
-   else begin
-      floater(self_obj,random(110,128),COLOR_MSG_NORMAL);
-   end
+   floater(self_obj,random(110,130),COLOR_MSG_NORMAL);
    /*
    Темы для диалога:
       + показывают Сан-Фелипе

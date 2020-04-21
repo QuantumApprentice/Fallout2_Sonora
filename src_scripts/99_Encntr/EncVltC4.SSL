@@ -1,5 +1,5 @@
 #include "..\headers\define.h"
-//--------------------- Поврежденный робот
+//---------------------
 
 #define NAME                            SCRIPT_EncVltC4
 #define TOWN_REP_VAR                    -1  // привязка к репутации (-1, если не нужно)

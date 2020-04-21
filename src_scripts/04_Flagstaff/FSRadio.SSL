@@ -104,7 +104,6 @@ end
 
 procedure NodeDialog101 begin
    set_map_var(MVAR_RadioSlave,1);
-   set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_9);
    Reply(213)
    NAnswer(202,1,NodeDialog)
    NAnswer(201,1,Node999)

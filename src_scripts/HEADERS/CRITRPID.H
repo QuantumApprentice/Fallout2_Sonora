@@ -44,43 +44,43 @@
 #define PID_GHOUL_RIPPER                (16777257)
 #define PID_GHOUL_GLOW                  (16777258)
 #define PID_GHOUL_SPORONOS              (16777259)
-#define PID_GHOST                       (16777260) // РїСЂРёР·СЂР°Рє РёР· СѓР±РµР¶РёС‰Р° 27
+#define PID_GHOST                       (16777260) // призрак из убежища 27
 #define PID_CHILD_MALE                  (16777261)
 #define PID_CHILD_FEMALE                (16777262)
-#define PID_SAVAGE_MALE                 (16777263) // РґРёРєР°СЂСЊ
-#define PID_SAVAGE_FEMALE               (16777264) // РґРёРєР°СЂРєР°
-#define PID_PEASANT_MALE                (16777265) // РєСЂРµСЃС‚СЊСЏРЅРёРЅ РІ Р¶РµР»С‚РѕР№ СЂСѓР±Р°С…Рµ
-#define PID_PEASANT_FEMALE              (16777266) // РєСЂРµСЃС‚СЊСЏРЅРєР°
-#define PID_CITIZEN_A_MALE              (16777267) // Р»РѕС€РёРЅР° Рњ
-#define PID_CITIZEN_A_FEMALE            (16777268) // Р»РѕС€РёРЅР° Р–
-#define PID_CITIZEN_B_MALE              (16777269) // РіРѕСЂРѕР¶Р°РЅРёРЅ-РЅРµРіСЂ
-#define PID_CITIZEN_B_FEMALE            (16777270) // РіРѕСЂРѕР¶Р°РЅРєР°
-#define PID_CITIZEN_C_MALE              (16777271) // РіРѕСЂРѕР¶Р°РЅРёРЅ РІ Р·РµР»РµРЅРѕР№ СЂСѓР±Р°С…Рµ
-#define PID_CITIZEN_C_FEMALE            (16777272) // РіРѕСЂРѕР¶Р°РЅРєР°
-#define PID_DEALER_MALE                 (16777273) // С‚РѕСЂРіРѕРІРµС†
-#define PID_DEALER_FEMALE               (16777274) // С‚РѕСЂРіРѕРІРєР°
-#define PID_MERCHANT_MALE               (16777275) // С‚РѕСЂРіРѕРІРµС†-РєСѓРїРµС†
-#define PID_MERCHANT_FEMALE             (16777276) // С‚РѕСЂРіРѕРІРєР°-РєСѓРїРµС†
-#define PID_MERC_A_MALE                 (16777277) // РєРѕР¶Р°РЅРєР° Рњ
-#define PID_MERC_A_FEMALE               (16777278) // РєРѕР¶Р°РЅРєР° Р–
-#define PID_MERC_B_MALE                 (16777279) // РєРѕР¶Р°РЅРєР° Рё СЃРёРЅРёРµ С€С‚Р°РЅС‹ Рњ
-#define PID_MERC_B_FEMALE               (16777280) // РєРѕР¶Р°РЅРєР° Р– СЃ РёСЂРѕРєРµР·РѕРј
-#define PID_MERC_C_MALE                 (16777281) // РєРѕР¶Р°РЅР°СЏ Р±СЂРѕРЅСЏ Рњ
-#define PID_MERC_C_FEMALE               (16777282) // РєРѕР¶Р°РЅР°СЏ Р±СЂРѕРЅСЏ Р–
-#define PID_MERC_D_MALE                 (16777283) // РјРµС‚Р°Р»Р±СЂРѕРЅСЏ Рњ
-#define PID_MERC_D_FEMALE               (16777284) // РјРµС‚Р°Р»Р±СЂРѕРЅСЏ Р–
-#define PID_MERC_E_MALE                 (16777285) // Р±РѕРµРІР°СЏ Р±СЂРѕРЅСЏ Рњ
-#define PID_MERC_E_FEMALE               (16777286) // Р±РѕРµРІР°СЏ Р±СЂРѕРЅСЏ Рњ
-#define PID_RANGER_MALE                 (16777287) // СЂРµР№РЅРґР¶РµСЂ Рњ
-#define PID_RANGER_FEMALE               (16777288) // СЂРµР№РЅРґР¶РµСЂ Р–
-#define PID_RANGER_VETERAN              (16777289) // СЂРµР№РЅРґР¶РµСЂ-РІРµС‚РµСЂР°РЅ
-#define PID_RANGER_GENERAL              (16777290) // РіРµРЅРµСЂР°Р»-СЂРµР№РЅРґР¶РµСЂ
-#define PID_BOS_SCRIBE_MALE             (16777291) // РїРёСЃР°СЂСЊ Рњ
-#define PID_BOS_SCRIBE_FEMALE           (16777292) // РїРёСЃР°СЂСЊ Р–
-#define PID_BOS_SCOUT                   (16777293) // СЂР°Р·РІРµРґС‡РёРє
-#define PID_BOS_CAVALER                 (16777294) // СЂС‹С†Р°СЂСЊ
-#define PID_BOS_PALADIN                 (16777295) // РїР°Р»Р°РґРёРЅ РІ СЃРёР»РѕРІРѕР№ Р±СЂРѕРЅРµ
-#define PID_BOS_PALADIN_LEADER          (16777296) // РІРµСЂС…РѕРІРЅС‹Р№ РїР°Р»Р°РґРёРЅ
+#define PID_SAVAGE_MALE                 (16777263) // дикарь
+#define PID_SAVAGE_FEMALE               (16777264) // дикарка
+#define PID_PEASANT_MALE                (16777265) // крестьянин в желтой рубахе
+#define PID_PEASANT_FEMALE              (16777266) // крестьянка
+#define PID_CITIZEN_A_MALE              (16777267) // лошина М
+#define PID_CITIZEN_A_FEMALE            (16777268) // лошина Ж
+#define PID_CITIZEN_B_MALE              (16777269) // горожанин-негр
+#define PID_CITIZEN_B_FEMALE            (16777270) // горожанка
+#define PID_CITIZEN_C_MALE              (16777271) // горожанин в зеленой рубахе
+#define PID_CITIZEN_C_FEMALE            (16777272) // горожанка
+#define PID_DEALER_MALE                 (16777273) // торговец
+#define PID_DEALER_FEMALE               (16777274) // торговка
+#define PID_MERCHANT_MALE               (16777275) // торговец-купец
+#define PID_MERCHANT_FEMALE             (16777276) // торговка-купец
+#define PID_MERC_A_MALE                 (16777277) // кожанка М
+#define PID_MERC_A_FEMALE               (16777278) // кожанка Ж
+#define PID_MERC_B_MALE                 (16777279) // кожанка и синие штаны М
+#define PID_MERC_B_FEMALE               (16777280) // кожанка Ж с ирокезом
+#define PID_MERC_C_MALE                 (16777281) // кожаная броня М
+#define PID_MERC_C_FEMALE               (16777282) // кожаная броня Ж
+#define PID_MERC_D_MALE                 (16777283) // металброня М
+#define PID_MERC_D_FEMALE               (16777284) // металброня Ж
+#define PID_MERC_E_MALE                 (16777285) // боевая броня М
+#define PID_MERC_E_FEMALE               (16777286) // боевая броня М
+#define PID_RANGER_MALE                 (16777287) // рейнджер М
+#define PID_RANGER_FEMALE               (16777288) // рейнджер Ж
+#define PID_RANGER_VETERAN              (16777289) // рейнджер-ветеран
+#define PID_RANGER_GENERAL              (16777290) // генерал-рейнджер
+#define PID_BOS_SCRIBE_MALE             (16777291) // писарь М
+#define PID_BOS_SCRIBE_FEMALE           (16777292) // писарь Ж
+#define PID_BOS_SCOUT                   (16777293) // разведчик
+#define PID_BOS_CAVALER                 (16777294) // рыцарь
+#define PID_BOS_PALADIN                 (16777295) // паладин в силовой броне
+#define PID_BOS_PALADIN_LEADER          (16777296) // верховный паладин
 #define PID_CULT_FIRE_MISSIONER         (16777297)
 #define PID_CULT_FIRE                   (16777298)
 #define PID_PHENIX_BOSS                 (16777299)
@@ -121,11 +121,11 @@
 #define PID_GHOST_FEMALE                (16777334) // 118
 #define PID_EL_GARRA                    (16777338) // 122
 
-//--- FID РїРµСЂСЃРѕРЅР°Р¶РµР№
-#define FID_NAROBE                      (16777247)   // РѕС‚С€РµР»СЊРЅРёРє
-#define FID_NMBRLP                      (16777256)   // РіРѕСЂРѕР¶Р°РЅРёРЅ РІ Р¶РµР»С‚РѕР№ РѕРґРµР¶РґРµ
-#define FID_NMPEAS                      (16777264)   // РіРѕСЂРѕР¶Р°РЅРёРЅ РІ РєРµРїРєРµ (РєР°Рє Р”Р°РЅС‚РѕРЅС‹ РІ РљР»Р°РјР°С‚Рµ)
-#define FID_NMWARR                      (16777280)   // РґРёРєР°СЂСЊ Рњ
-#define FID_NWVALT                      (16777290)   // Р¶РёС‚РµР»СЊРЅРёС†Р° СѓР±РµР¶РёС‰Р°, Р±РµР· РЅРѕРјРµСЂР° РЅР° СЃРїРёРЅРµ
+//--- FID персонажей
+#define FID_NAROBE                      (16777247)   // отшельник
+#define FID_NMBRLP                      (16777256)   // горожанин в желтой одежде
+#define FID_NMPEAS                      (16777264)   // горожанин в кепке (как Дантоны в Кламате)
+#define FID_NMWARR                      (16777280)   // дикарь М
+#define FID_NWVALT                      (16777290)   // жительница убежища, без номера на спине
 
 #endif

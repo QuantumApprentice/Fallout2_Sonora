@@ -1,7 +1,7 @@
 #ifndef RANGERS_H
 #define RANGERS_H
 
-//--- РџРµСЂРµРјРµРЅРЅС‹Рµ РїРѕ РєРІРµСЃС‚Сѓ РєР°РґРµС‚Р° РџСЂРµСЃР»Рё
+//--- Переменные по квесту кадета Пресли
 
 #define MILTON_ENEMY_TO_DUDE         (gvar_bit(GVAR_RANGERS_QST_CADET_MASK, bit_1) != 0) \
 
@@ -33,7 +33,7 @@
 
 #define MILTON_ESCAPED               (gvar_bit(GVAR_RANGERS_QST_CADET_MASK, bit_14) != 0) \
 
-//--- РџРµСЂРµРјРµРЅРЅС‹Рµ РїРѕ РєРІРµСЃС‚Сѓ С‚РѕСЂРіРѕРІС†Р° Р¤Р»РёРєР°
+//--- Переменные по квесту торговца Флика
 
 #define Flick_Visible                set_obj_visibility(self_obj, 0);           \
                                      if (cur_map_index == MAP_RANGERS_ROAD) then begin \

@@ -139,7 +139,7 @@ procedure talk_p_proc begin
    end
    else begin
    setReaction(0) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   dialog_proc(0,105,NodeStartDialog,HEAD_BOSS_POST,BACKGROUND_WASTELND)
+   dialog_proc(1,105,NodeStartDialog,HEAD_BOSS_POST,BACKGROUND_WASTELND)
    end
 end
 
@@ -245,27 +245,15 @@ procedure NodeFstDialog200 begin
    if ((getQuest(GVAR_PHENIX_QST_OWRS_HOLO) == qStart) or (item_amnt(dude_obj,PID_HOLODSK_ULISS) > 0)) then begin
    GAnswer(251,1,NodeFstDialog202)
    end
-   if (global_var(GVAR_TWOSUN_STATUS_BOSS) > 0) then begin
-   GAnswer(250,1,NodeFstDialog202)
-   end
-
    if (getQuest(GVAR_PUERTO_QST_INFERNO) >= qEnd) then begin
    GAnswer(252,1,NodeFstDialog202)
    end
-   else if (getQuest(GVAR_PUERTO_QST_BANDITS_PIP) >= qEnd) then begin
-   GAnswer(252,1,NodeFstDialog202)
+   if (global_var(GVAR_TWOSUN_STATUS_BOSS) > 0) then begin
+   GAnswer(250,1,NodeFstDialog202)
    end
-   else if (global_var(GVAR_PUERTO_SKLAD_DOPUSK) > 0) then begin
-   GAnswer(252,1,NodeFstDialog202)
-   end
-
    if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_20) != 0) then begin
    GAnswer(253,1,NodeFstDialog202)
    end
-   else if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) >= qEnd) then begin
-   GAnswer(253,1,NodeFstDialog202)
-   end
-
    NAnswerSkill(254,3,NodeFstDialog202,SKILL_BARTER,110,255,NodeFstDialog204)
 
    NAnswer(242,1,NodeFstDialog201)

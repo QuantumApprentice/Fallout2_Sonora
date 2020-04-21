@@ -173,7 +173,6 @@ procedure destroy_p_proc begin
    obj_critter_a := 0;
    set_map_var(MVAR_ENC_SMUTANT_ALARM, 1);
    set_map_var(MVAR_ENC_SMUTANT_DIALOG, -100);
-   inc_map_var(MVAR_ENC_SMUTANT_DEAD);
    kill_critter_opt
 end
 

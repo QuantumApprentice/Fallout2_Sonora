@@ -302,7 +302,7 @@ procedure NodeAnswer101 begin
 end
 
 procedure NodeAnswer102 begin
-   Reply(225)
+   Reply(223)
    NAnswer(212,1,NodeSndDialog)
 end
 

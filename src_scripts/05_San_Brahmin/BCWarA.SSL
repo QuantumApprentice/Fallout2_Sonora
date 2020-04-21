@@ -153,7 +153,7 @@ procedure talk_p_proc begin
       end
    end
    else begin
-      dialog_proc(0,0,NodeStartDialog,-1,-1)
+      dialog_proc(0,102,NodeStartDialog,-1,-1)
    end
 end
 
@@ -184,12 +184,7 @@ procedure NodeDialogA100 begin
    end
 
    if ((getQuest(GVAR_BRAHMIN_QST_COMMANDER) <= qStop) or (global_var(GVAR_BRAHMIN_STATUS_COMMANDER)!=0)) then begin
-   if (map_var(MVAR_BRAHMIN_Attak) == 0) then begin
    GAnswer(363,1,NodeDialogA101)
-   end
-   else begin
-   GAnswer(372,1,NodeDialogA101)
-   end
    end
 
    if (map_var(MVAR_BRAHMIN_Attak) == 0) then begin
@@ -221,7 +216,7 @@ procedure NodeDialogB100 begin
    if (getQuest(GVAR_BRAHMIN_QST_RNGRGOHOME) == qStart) then begin
    if (getQuest(GVAR_BRAHMIN_QST_RANGER) < qEnd) then begin
    if (global_var(GVAR_BRAHMIN_STATUS_RANGER) == 0) then begin
-   NAnswer(260,1,NodeDialogB101)
+   NAnswer(260,3,NodeDialogB101)
    end
    end
    end

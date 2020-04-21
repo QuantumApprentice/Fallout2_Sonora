@@ -39,7 +39,6 @@ procedure NodeStopDialog102;
 procedure NodeStopDialog200;
 procedure NodeStopDialog201;
 procedure NodeStopDialog202;
-procedure NodeStopDialog203;
 procedure NodeFstDialog;
 procedure NodeFstDialog2;
 procedure NodeFstDialog3;
@@ -143,7 +142,7 @@ procedure talk_p_proc begin
    floater(self_obj,103,COLOR_MSG_RED);
    end
    else begin
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(1,102,NodeStartDialog,-1,-1)
    end
 end
 
@@ -200,11 +199,6 @@ procedure NodeStopDialog200 begin
       NAnswer(276,3,NodeStopDialog202)
       end
    end
-   if (getQuest(GVAR_BRAHMIN_QST_RNGRGOHOME) == qStart) then begin
-      if (global_var(GVAR_BRAHMIN_STATUS_RANGER) == 0) then begin
-      NAnswer(258,3,NodeStopDialog203)
-      end
-   end
    NAnswer(271,1,Node999)
 end
 
@@ -219,15 +213,6 @@ procedure NodeStopDialog202 begin
    set_map_var(MVAR_BRAHMIN_Garage,3);
    Reply(277)
    NAnswer(275,1,Node999)
-end
-
-procedure NodeStopDialog203 begin
-   set_global_var(GVAR_BRAHMIN_STATUS_RANGER,-1);
-   setQuest(GVAR_BRAHMIN_QST_RANGER,qStop);
-   setQuest(GVAR_BRAHMIN_ATTAK,qEnd);
-   Reply(259)
-   NAnswer(223,1,Node999)
-   BAnswer(224,1,Node999)
 end
 
 //--- ПЕРВЫЙ ДИАЛОГ
@@ -268,10 +253,7 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
-   Reply(102)
-   end
-   else if (getReaction<0) then begin
+   if (getReaction<0) then begin
    Reply(221)
    end
    else begin
@@ -379,28 +361,14 @@ procedure NodeQst202 begin
    if (global_var(GVAR_HOLODISK_07) != 0) then begin
    NAnswer(278,1,NodeQst207)
    end
-
    if (global_var(GVAR_HOLODISK_04) != 0) then begin
    NAnswer(268,1,NodeQst205)
-   end
-
-   if (getQuest(GVAR_MAIN_QUEST_FLAGSTAFF) >= qStart) then begin
-   NAnswer(269,1,NodeQst206)
-   end
-   else if (getQuest(GVAR_MAIN_QUEST_PHENIX) >= qStart) then begin
-   NAnswer(256,1,NodeQst206)
-   end
-   else if (getQuest(GVAR_MAIN_QUEST_TWOSUN) >= qStart) then begin
-   NAnswer(257,1,NodeQst206)
    end
 
    if (getQuest(GVAR_FLAGSTAFF_QST_FARM) != qZero) then begin
    NAnswer(296,1,NodeQst206)
    end
    else if (global_var(GVAR_STATUS_FLAGSTAFF_RANGER) > 0) then begin
-   NAnswer(296,1,NodeQst206)
-   end
-   else if (getQuest(GVAR_FLAGSTAFF_QST_TRAPERS) >= qStart) then begin
    NAnswer(296,1,NodeQst206)
    end
 

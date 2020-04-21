@@ -169,7 +169,7 @@ procedure damage_p_proc begin
    set_map_var(MVAR_PnxVlt_Dopusk,0);
    end
    if (source_obj == dude_obj) then begin
-   //BarklyAttakDude
+   BarklyAttakDude
    end
    set_damage_dude
 end

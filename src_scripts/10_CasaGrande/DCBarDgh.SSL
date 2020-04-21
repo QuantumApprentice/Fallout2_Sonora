@@ -167,12 +167,7 @@ end
 
 procedure NodeFstDialog2 begin
    Reply(202)
-   if (map_var(MVAR_CGRANDE_BAR_RUN)>0) then begin
-   NAnswer(212,1,NodeFstDialog3)
-   end
-   else begin
    NAnswer(203,1,NodeFstDialog3)
-   end
    NAnswer(206,1,NodeFstDialog4)
 end
 
@@ -184,15 +179,8 @@ procedure NodeFstDialog3 begin
    if (map_var(MVAR_CGRANDE_BAR_RUN) == 0) then begin
    set_map_var(MVAR_CGRANDE_BAR_RDR,2);
    end
-
-   if (map_var(MVAR_CGRANDE_BAR_RUN)>0) then begin
-   Reply(213)
-   NAnswer(214,1,Node999)
-   end
-   else begin
    Reply(204)
    NAnswer(205,1,Node999)
-   end
 end
 
 procedure NodeFstDialog4 begin

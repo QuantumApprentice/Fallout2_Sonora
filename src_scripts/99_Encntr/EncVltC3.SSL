@@ -1,5 +1,5 @@
 #include "..\headers\define.h"
-//--------------------- Житель убежища
+//---------------------
 
 #define NAME                            SCRIPT_EncVltC3
 #define TOWN_REP_VAR                    -1  // привязка к репутации (-1, если не нужно)
@@ -101,7 +101,6 @@ end
 
 procedure destroy_p_proc begin
    kill_critter_opt
-   item_add(self_obj,PID_ARMOR_VAULT,1)
 end
 
 procedure talk_p_proc begin

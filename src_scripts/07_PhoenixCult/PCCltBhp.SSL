@@ -134,7 +134,7 @@ end
 procedure talk_p_proc begin
    setReaction(-1) // Отношение к ГГ(1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    fracReaction(GVAR_TITUL_PHENIX_CULT,70) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(1,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin

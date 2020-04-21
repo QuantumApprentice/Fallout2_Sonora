@@ -52,7 +52,6 @@ procedure NodeAnswer502;
 procedure NodeAnswer503;
 procedure NodeAnswer504;
 procedure NodeAnswer505;
-procedure NodeAnswer506;
 
 //---------------------
 
@@ -129,7 +128,7 @@ end
 
 procedure talk_p_proc begin
    setReaction(1) // Отношение к ГГ(1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(1,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -166,11 +165,6 @@ procedure NodeDialog3 begin
    if (getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) == qZero) then begin
       if (map_var(MVAR_FLAG_SlavMineDlg) == 1) then begin
       NAnswer(250,1,NodeAnswer500)
-      end
-   end
-   if (getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) == qStart) then begin
-      if (map_var(MVAR_FLAG_EVIL_WARDEN) < 0) then begin
-      NAnswer(267,1,NodeAnswer506)
       end
    end
    if (getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) >= qEnd) then begin
@@ -272,9 +266,4 @@ procedure NodeAnswer505 begin
    box_stop_use := 0;
    Reply(265)
    NAnswer(266,1,Node999)
-end
-
-procedure NodeAnswer506 begin
-   zReply(268)
-   NAnswer(269,1,Node999)
 end

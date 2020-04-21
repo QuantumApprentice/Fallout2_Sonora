@@ -76,7 +76,6 @@ procedure use_obj_on_p_proc begin
    UsedToCrit_Poison(PID_M_PSYCHO,110,3)
    UsedToCrit_Poison(PID_M_BUFFOUT,110,3)
    UsedToCrit_Poison(PID_M_SUPER_STIMPAK,110,3)
-   //UsedToCrit_Poison(PID_M_MEAT_FOUL,110,3)
 end
 
 procedure combat_p_proc begin

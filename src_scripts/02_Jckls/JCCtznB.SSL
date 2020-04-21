@@ -119,7 +119,7 @@ procedure talk_p_proc begin
       floater(self_obj,102,COLOR_MSG_RED);
    end
    else begin
-      dialog_proc(0,1,NodeStartDialog,-1,-1)
+      dialog_proc(1,1,NodeStartDialog,-1,-1)
    end
 end
 

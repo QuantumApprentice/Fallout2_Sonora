@@ -20,10 +20,6 @@ procedure map_enter_p_proc begin
 end
 
 procedure use_p_proc begin
-   if (map_var(MVAR_INF_PWR_KNOW) == 0) then begin
-      set_map_var(MVAR_INF_PWR_KNOW, 1);
-   end
-
    if (local_var(LVAR_Status)!=0) then begin
       if (map_var(MVAR_INF_PWR_ADD)<=0) then begin
       set_CITY_REP(GVAR_TOWN_REP_INFERNO_CULT,REP_KILL_CRITICAL) // ГГ станет врагом Особняка, если возьмет броню без спроса
@@ -44,27 +40,20 @@ end
 
 procedure use_skill_on_p_proc begin
    if (local_var(LVAR_Status)!=0) then begin
-      script_overrides;
-      display_mstr(114);
-      if (map_var(MVAR_INF_PWR_KNOW) == 0) then begin
-      set_map_var(MVAR_INF_PWR_KNOW, 1);
-      end
+   script_overrides;
+   display_mstr(114);
    end
    else if (local_var(LVAR_Flag_Item)>=2) then begin
-      RepairVarCheck(0)
-      RepairSkillRepair
+   RepairVarCheck(0)
+   RepairSkillRepair
    end
    else begin
-      call use_p_proc;
+   call use_p_proc;
    end
 end
 
 procedure use_obj_on_p_proc begin
    stopUseCarGaz
-   if (map_var(MVAR_INF_PWR_KNOW) == 0) then begin
-   set_map_var(MVAR_INF_PWR_KNOW, 1);
-   end
-
    if (objUsedPid == PID_Q_PWR_HEAD) then begin
    script_overrides;
    inc_local_var(LVAR_Flag_Item);
@@ -84,7 +73,6 @@ procedure use_obj_on_p_proc begin
 end
 
 procedure repair_proc begin
-   set_map_var(MVAR_INF_PWR_KNOW, -1);
    set_local_var(LVAR_Flag_Item,100);
    RepairProcRepair(113,350,"FIXSTILL")
 end

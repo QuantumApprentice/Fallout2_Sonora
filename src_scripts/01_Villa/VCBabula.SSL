@@ -149,7 +149,6 @@ procedure damage_p_proc begin
 end
 
 procedure destroy_p_proc begin
-   inc_map_var(MVAR_VILLA_BabaDialog);
    kill_critter_opt
    kill_critter_dude_reply(102,102)
 end

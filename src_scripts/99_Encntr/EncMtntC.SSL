@@ -53,7 +53,6 @@ procedure NodeAnswer107;
 procedure NodeAnswer108;
 procedure NodeAnswer109;
 procedure NodeAnswer200;
-procedure NodeAnswer201;
 
 //---------------------
 
@@ -179,9 +178,6 @@ procedure NodeSndDialog begin
    if (bitDialog(bit_3) != 0) then begin
    if (map_var(MVAR_ENC_SMUTANT_REACTOR)>0) then begin
    GAnswer(250,1,NodeAnswer200)
-   end
-   if (map_var(MVAR_ENC_SMUTANT_DEAD)>=8) then begin
-   GAnswer(259,1,NodeAnswer201)
    end
    end
 
@@ -330,9 +326,6 @@ procedure NodeAnswer109 begin
    if (map_var(MVAR_ENC_SMUTANT_REACTOR)>0) then begin
    GAnswer(250,1,NodeAnswer200)
    end
-   if (map_var(MVAR_ENC_SMUTANT_DEAD)>=8) then begin
-   GAnswer(259,1,NodeAnswer201)
-   end
 
    NAnswer(220,1,NodeAnswer100)
    NAnswer(230,1,NodeAnswer102)
@@ -350,12 +343,4 @@ procedure NodeAnswer200 begin
    rm_timer_event(self_obj);
    Reply(251)
    NAnswer(252,1,Node999)
-end
-
-procedure NodeAnswer201 begin
-   inc_local_var(LVAR_Party_Status);
-   critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PLAYER);
-   rm_timer_event(self_obj);
-   Reply(260)
-   NAnswer(261,1,Node999)
 end

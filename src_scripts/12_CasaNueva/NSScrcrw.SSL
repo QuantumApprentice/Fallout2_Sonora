@@ -33,7 +33,6 @@ end
 
 procedure insectUp begin
       play_sfx("PEBBLE");
-      play_sfx("CHEMICA1");
       display_mstr(110);
       dude_floater_OK;
       item_remove(dude_obj, objUsedPid, 1)

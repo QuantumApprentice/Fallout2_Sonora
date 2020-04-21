@@ -4,7 +4,7 @@
 #define NAME                            SCRIPT_BCRanger
 #define TOWN_REP_VAR                    GVAR_TOWN_REP_RANGERS  // привязка к репутации (-1, если не нужно)
 
-#define NUM_TEAM                        TEAM_RANGERS          // группа, к которой принадлежит персонаж (-1 если нужно оставить Team, заданный в редакторе)
+#define NUM_TEAM                        TEAM_SANBRAHMIN_PEASAN // группа, к которой принадлежит персонаж (-1 если нужно оставить Team, заданный в редакторе)
 #define NUM_AI                          AI_RANGER             // AI персонажа (-1 если нужно оставить AI, заданный в редакторе)
 #define KILL_SLAVA                      (SLAVA_KILL_GOOD*2)   // слава за убийство этого персонажа (SLAVA_KILL_GOOD, SLAVA_KILL_BAD, SLAVA_KILL_NEITRAL, SLAVA_KILL_CHILD)
 #define KILL_TOWN_REP                   REP_KILL_GOOD         // репутация за убийство этого персонажа (-100 для враждебности всего поселения)
@@ -58,15 +58,12 @@ procedure NodeQst201;
 procedure NodeQst202;
 procedure NodeQst203;
 procedure NodeQst300;
-procedure NodeQst300b;
 procedure NodeQst301;
 procedure NodeQst302;
 procedure NodeQst303;
 procedure NodeQst304;
 procedure NodeQst305;
-procedure NodeQst305b;
 procedure NodeQst306;
-procedure NodeQst307;
 procedure NodeChites1;
 procedure NodeChites2;
 procedure NodeChites3;
@@ -95,7 +92,6 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
-       set_obj_visibility(self_obj, 0);
        if (global_var(GVAR_BRAHMIN_STATUS_RANGER)!=0) then begin
        set_obj_visibility(self_obj, 1);
        end
@@ -184,7 +180,7 @@ procedure talk_p_proc begin
    floater(self_obj,107,COLOR_MSG_NORMAL);
    end
    else begin
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(0,102,NodeStartDialog,-1,-1)
    end
 end
 
@@ -364,28 +360,20 @@ procedure NodeSndDialog begin
 
    if (getQuest(GVAR_BRAHMIN_QST_RNGRGOHOME) == qStart) then begin
    if (getQuest(GVAR_BRAHMIN_QST_RANGER) < qEnd) then begin
-      if (global_var(GVAR_BRAHMIN_STATUS_RANGER) == 0) then begin
-      BAnswer(260,3,NodeQst200)
-      end
+   if (global_var(GVAR_BRAHMIN_STATUS_RANGER) == 0) then begin
+   NAnswer(260,3,NodeQst200)
+   end
    end
    end
 
    if (getQuest(GVAR_BRAHMIN_QST_RANGER) == qStart) then begin
    if (getQuest(GVAR_BRAHMIN_ATTAK) == qZero) then begin
       NAnswer(254,1,NodeFstDialog111)
-
-      if (map_var(MVAR_BRAHMIN_FIRST_AID)>=3) then begin
-      GAnswer(350,1,NodeQst307)
-      end
-
-      if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) < 0) then begin
-      NAnswer(353,1,NodeQst305)
-      end
-      else if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) == 1) then begin
+      if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) == 1) then begin
       NAnswer(340,1,NodeQst300)
       end
-      else if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) > 1) then begin
-      //! Чатто стал новым лидером. - Это очень плохо. Первым делом он наладит союз с Фениксом. Поэтому остаётся только одно - его придется убить.
+      if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) < 0) then begin
+      NAnswer(353,1,NodeQst305)
       end
    end
    end
@@ -406,9 +394,6 @@ procedure NodeQst101 begin
    setQuest(GVAR_BRAHMIN_QST_RANGER,qEnd);
    set_global_var(GVAR_BRAHMIN_STATUS_RANGER, 1);
    set_gvar_bit_on(GVAR_RANGERS_RECOMMENDATION, bit_3);
-   if (global_var(GVAR_BRAHMIN_QST_GERONIMO) == 10) then begin
-   set_global_var(GVAR_BRAHMIN_QST_GERONIMO, 20);
-   end
    exp_add(500);
 
    if (getQuest(GVAR_RANGERS_QST_SBRAHMIN) >= qStart) then begin
@@ -430,15 +415,6 @@ end
 procedure NodeQst201 begin
    Reply(263)
    NAnswerSkill(264,1,NodeQst202,SKILL_CONVERSANT,70,268,NodeQst203)
-   NAnswerSkill(272,1,NodeQst202,SKILL_SCOUT,55,273,NodeQst203)
-   if (getQuest(GVAR_RANGERS_DUMB_DESTROY) >= qEnd) then begin
-   NAnswer(274,1,NodeQst202)
-   end
-   /*
-   ? Явно не хватает возможностей для Шпиона и Ученого:
-   - шпион (скрытность, взлом, кража, ловушки): подложить что-то для обмана + взрыв штанов
-   - ученый (доктор, наука, ремонт): убедить уйти на лечение + убедить научным доводом
-   */
    NAnswer(355,1,NodeQst306)
 end
 
@@ -460,11 +436,6 @@ end
 procedure NodeQst300 begin
    Reply(341)
    NAnswer(342,1,NodeQst301)
-end
-
-procedure NodeQst300b begin
-   Reply(341)
-   NAnswer(342,1,NodeQst304)
 end
 
 procedure NodeQst301 begin
@@ -497,31 +468,10 @@ procedure NodeQst305 begin
    NAnswer(342,1,NodeQst301)
 end
 
-procedure NodeQst305b begin
-   Reply(354)
-   NAnswer(342,1,NodeQst304)
-end
-
 procedure NodeQst306 begin
    setQuest(GVAR_BRAHMIN_ATTAK,qStart);
    Reply(356)
    NAnswer(357,1,Node999)
-end
-
-procedure NodeQst307 begin
-   Reply(358)
-
-      if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) < 0) then begin
-      NAnswer(353,1,NodeQst305b)
-      end
-      else if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) == 1) then begin
-      NAnswer(340,1,NodeQst300b)
-      end
-      else if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) > 1) then begin
-      //! Чатто стал новым лидером. - Это очень плохо. Первым делом он наладит союз с Фениксом. Поэтому остаётся только одно - его придется убить.
-      end
-
-   NAnswer(359,1,Node999)
 end
 
 //--- ЧИТЫ

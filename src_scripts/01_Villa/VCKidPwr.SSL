@@ -72,7 +72,7 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
-   set_critter_options(3,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
    if (bitDialog(bit_1) == 0) then begin
       dialogue_system_forcing(12)
    end

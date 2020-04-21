@@ -266,7 +266,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_ARIZONA_RANGER,-20) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_PHENIX_CULT,20) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-90) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(1,102,NodeStartDialog,-1,-1)
    end
 end
 
@@ -447,10 +447,7 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
-   Reply(102)
-   end
-   else if (getReaction >= 50) then begin
+   if (getReaction >= 50) then begin
    Reply(239)
    end
    else if (getReaction >= 20) then begin
@@ -495,7 +492,7 @@ procedure NodeSndDialog begin
    end
    if ((getQuest(GVAR_CGRANDE_QST_ROADSTOP) == qStart) or (getQuest(GVAR_CGRANDE_QST_ROADSTOP) == qStop)) then begin
    if (getQuest(GVAR_RAIDER_OIL_DESTROY) == qEnd) then begin
-   zNAnswer(550,1,NodeQst300)
+   NAnswer(550,1,NodeQst300)
    end
    end
 
@@ -891,7 +888,6 @@ procedure NodeAnswer506 begin
 end
 
 procedure NodeAnswer507 begin
-   mark_on_map(AREA_RAIDERS)
    Reply(536)
    NAnswer(523,3,NodeAnswer501)
    NAnswer(527,3,NodeAnswer503)
@@ -1345,13 +1341,12 @@ end
 
 procedure NodeQstFinish109 begin
    Reply(507)
-   NAnswer(512,1,NodeAnswer500)
    NAnswer(508,1,Node999)
 end
 
 procedure NodeQstFinish110 begin
    Reply(510)
-   NAnswer(512,1,NodeAnswer500)
+   //NAnswer(512,1,NodeAnswer500)
    NAnswer(511,1,Node999)
 end
 

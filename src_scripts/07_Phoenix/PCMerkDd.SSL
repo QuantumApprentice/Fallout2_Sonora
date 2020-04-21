@@ -103,7 +103,13 @@ procedure map_enter_p_proc begin
 end
 
 procedure look_at_p_proc begin
-   lookProcMsg
+   set_global_var(GVAR_RAIDER_STATUS_HAK, 1);
+   set_global_var(GVAR_RAIDER_STATUS_HAK, 1);
+   set_global_var(GVAR_RAIDER_STATUS_HAK, 1);
+   set_global_var(GVAR_RAIDER_STATUS_HAK, 1);
+   set_global_var(GVAR_RAIDER_STATUS_HAK, 1);
+   set_global_var(GVAR_RAIDER_STATUS_HAK, 1);
+   set_global_var(GVAR_RAIDER_STATUS_HAK, 1);
 end
 
 procedure description_p_proc begin

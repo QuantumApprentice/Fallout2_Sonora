@@ -2,7 +2,7 @@
 //---------------------
 
 #define NAME                            SCRIPT_FCMadre
-#define TOWN_REP_VAR                    GVAR_TOWN_REP_VILLA   // привязка к репутации (-1, если не нужно)
+#define TOWN_REP_VAR                    GVAR_TOWN_REP_FLAGSTAFF   // привязка к репутации (-1, если не нужно)
 
 #define NUM_TEAM                        TEAM_FLAGSTAFF_SLAVES  // группа, к которой принадлежит персонаж (-1 если нужно оставить Team, заданный в редакторе)
 #define NUM_AI                          AI_TRIBLE_VILLA       // AI персонажа (-1 если нужно оставить AI, заданный в редакторе)
@@ -182,8 +182,8 @@ end
 
 procedure NodeFstDialog begin
    Reply(dude_name+mstr(200))
-   zBAnswer(201,1,NodeFstDialog001)
-   zNAnswer(202,1,NodeFstDialog002)
+   BAnswer(201,1,NodeFstDialog001)
+   NAnswer(202,1,NodeFstDialog002)
 end
 
 procedure NodeFstDialog001 begin
@@ -325,7 +325,6 @@ procedure NodeFinal2 begin
    setQuest(GVAR_FLAGSTAFF_SLAVES_ZAGON,qEnd);
    setQuest(GVAR_MAIN_QUEST_FLAGSTAFF,qEnd);
    exp_add_msg(1500,NAME,103,104);
-   set_REP(15)
    rm_timer_event(self_obj);
    party_remove(self_obj);
    set_obj_visibility(self_obj, 1);

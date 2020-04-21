@@ -187,10 +187,6 @@ end
 
 procedure destroy_p_proc begin
    set_global_var(GVAR_PUERTO_STATUS_BOSS,-1);
-   setQuest(GVAR_VILLA_ALLIANCE_BOS,qStop);
-   if (getQuest(GVAR_PUERTO_QST_RANGERS) == qStart) then begin
-   setQuest(GVAR_PUERTO_QST_RANGERS,qStop);
-   end
    kill_critter_opt
 end
 
@@ -217,7 +213,8 @@ procedure talk_p_proc begin
    floater(self_obj,104,COLOR_MSG_RED);
    end
    else begin
-   dialog_proc(0,0,NodeStartDialog,HEAD_BOSS_DIXON,BACKGROUND_WASTELND)
+   dialog_proc(0,104,NodeStartDialog,HEAD_BOSS_DIXON,BACKGROUND_WASTELND)
+   //dialog_proc(0,104,NodeStartDialog,-1,-1)
    end
 end
 
@@ -226,8 +223,6 @@ procedure Node998 begin
 end
 
 procedure Node999 begin
-   bitDialogExp(bit_1,0) //? проверить тщательнее
-   off_enemy_dude;
 end
 
 procedure NodeStartDialog begin
@@ -411,7 +406,6 @@ end
 
 procedure NodeFstDialog207 begin
    setQuest(GVAR_PUERTO_QST_RANGERS,qStart);
-   mark_on_map(AREA_RANGERS)
    bitDialogExp(bit_2,100)
    Reply(255)
    NAnswer(256,1,NodeFstDialog208)
@@ -479,13 +473,11 @@ end
 procedure NodeFstDialog304 begin
    if (getQuest(GVAR_FLAGSTAFF_MINES_DESTROY) >= qEnd) then begin
       setBonusReaction(-25)
-      set_REP(-5)
       Reply(270)
       NAnswer(271,1,NodeFstDialog305)
    end
    else if (getQuest(GVAR_FLAGSTAFF_SLAVES_RUN) >= qEnd) then begin
       setBonusReaction(-25)
-      set_REP(-5)
       Reply(270)
       NAnswer(271,1,NodeFstDialog305)
    end
@@ -535,7 +527,6 @@ end
 
 procedure NodeFstDialog312 begin
    setQuest(GVAR_PUERTO_QST_RANGERS,qStart);
-   mark_on_map(AREA_RANGERS)
    bitDialogExp(bit_2,100)
    //!!! По идеи здесь должен быть промежуточный квест в Ногалесе, и уже после стычки там Диксон отправляет на разведку к рейнджерам.
    Reply(291)
@@ -553,7 +544,7 @@ procedure NodeSndDialog begin
 
    if (getQuest(GVAR_PUERTO_QST_RANGERS) >= qEnd) then begin
       if (global_var(GVAR_TITUL_BOS) == 0) then begin
-      NAnswerRep(420,1,NodeTitul,30,420,NodeTitul2)
+      NAnswerRep(420,1,NodeTitul,0,420,NodeTitul2)
       end
    end
 
@@ -580,7 +571,7 @@ procedure NodeRangers begin
    Reply(401)
    NAnswer(405,3,NodeRangers3)
    if (getQuest(GVAR_RANGERS_DUMB_DESTROY) >= qEnd) then begin
-   GAnswer(411,1,NodeRangers5)
+   GAnswer(411,3,NodeRangers5)
    end
    //!!! альтернатива - союз с рейнджерами
    NAnswer(402,1,NodeRangers2)
@@ -617,7 +608,7 @@ procedure NodeRangers7 begin
    set_global_var(GVAR_PUERTO_SKLAD_DOPUSK,1);
    setQuest(GVAR_PUERTO_QST_RANGERS,qEnd);
    setQuest(GVAR_VILLA_ALLIANCE_BOS,qEnd);
-   setQuest(GVAR_VILLA_ALLIANCE_RANGER,qStop);
+   setQuest(GVAR_VILLA_ALLIANCE_RANGER,qZero);
    exp_add(2500);
    setBonusReaction(100)
    set_REP(25)

@@ -371,7 +371,7 @@ procedure NodeSndDialog begin
       if (global_var(GVAR_PHENIX_STATUS_LOH)<0) then begin
       BAnswer(410,1,NodeQst201)
       end
-      else if ((getQuest(GVAR_PHENIX_QST_LOH) >= qEnd) or (getQuest(GVAR_PHENIX_QST_CASINO_DEBT) >= qEnd)) then begin
+      else if (getQuest(GVAR_PHENIX_QST_CASINO_DEBT) >= qEnd) then begin
       GAnswer(415,1,NodeQst203)
       end
       else if (map_var(MVAR_PNX_LOH_HOME) == 1) then begin

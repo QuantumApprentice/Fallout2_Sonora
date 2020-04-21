@@ -38,10 +38,8 @@ procedure NodeStopDialog100;
 procedure NodeStopDialog101;
 procedure NodeStopDialog102;
 procedure NodeStopDialog103;
-procedure NodeStopDialog103b;
 procedure NodeStopDialog104;
 procedure NodeStopDialog105;
-procedure NodeStopDialog105b;
 procedure NodeStopDialog106;
 procedure NodeStopDialog107;
 procedure NodeStopDialog200;
@@ -187,7 +185,7 @@ procedure talk_p_proc begin
    else begin
    setReaction(1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-50) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(1,103,NodeStartDialog,-1,-1)
    end
 end
 
@@ -241,13 +239,15 @@ end
 
 procedure NodeStopDialog101 begin
    Reply(332)
-   BAnswer(333,1,NodeStopDialog103b)
+   BAnswer(333,1,NodeStopDialog102)
    GAnswer(338,1,NodeStopDialog103)
 end
 
 procedure NodeStopDialog102 begin
+   setBonusReaction(-10)
+   set_SLAVA(-3)
    Reply(334)
-   BAnswer(335,1,NodeStopDialog105b)
+   BAnswer(335,1,NodeStopDialog104)
    if (global_var(GVAR_CGRANDE_STATUS_MER) < 0) then begin
    GAnswer(339,1,NodeStopDialog105)
    end
@@ -262,13 +262,9 @@ procedure NodeStopDialog103 begin
    call NodeStopDialog102;
 end
 
-procedure NodeStopDialog103b begin
+procedure NodeStopDialog104 begin
    setBonusReaction(-10)
    set_SLAVA(-3)
-   call NodeStopDialog102;
-end
-
-procedure NodeStopDialog104 begin
    Reply(336)
    if (local_var(LVAR_Game_Stop) > 0) then begin
    NAnswer(337,1,NodeStopDialog106)
@@ -283,12 +279,6 @@ end
 procedure NodeStopDialog105 begin
    setBonusReaction(10)
    set_SLAVA(3)
-   call NodeStopDialog104;
-end
-
-procedure NodeStopDialog105b begin
-   setBonusReaction(-10)
-   set_SLAVA(-3)
    call NodeStopDialog104;
 end
 
@@ -372,11 +362,8 @@ procedure NodeSndDialog begin
       NAnswer(221,1,NodeGame5)
       end
    end
-   else if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
-   Reply(103)
-   end
    else begin
-   Reply(210)
+      Reply(210)
    end
 
    NAnswer(300,1,NodeAnswer100)

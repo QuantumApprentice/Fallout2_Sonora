@@ -15,13 +15,10 @@ procedure spatial_p_proc begin
 
        gfade_out(ONE_GAME_SECOND);
            if (self_elevation == 2) then begin
-           move_to(dude_obj, 22886, 1);
+           move_to(dude_obj, 22486, 1);
            end
            else if ((self_elevation == 1) and (self_tile == 13708)) then begin
            move_to(dude_obj, 14108, 0);
-           end
-           else if ((self_elevation == 1) and (self_tile == 22486)) then begin
-           move_to(dude_obj, 22088, 2);
            end
            else if ((self_elevation == 1) and (self_tile == 22086)) then begin
            move_to(dude_obj, 22088, 2);

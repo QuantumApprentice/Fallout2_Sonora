@@ -39,7 +39,7 @@ procedure NodeDialog2;
 
 //---------------------
 
-#define LVAR_Flag_A                     (6) // надзиратель Кнут погиб ДО того, как FCKidPap появился на карте
+//#define LVAR_Flag_A                     (6) // отвечает за ...
 
 import variable obj_critter_a; // указатель на криттера 1
 
@@ -53,17 +53,13 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
-       if ((getQuest(GVAR_FLAGSTAFF_SLAVES_RUN) >= qEnd) or (getQuest(GVAR_FLAGSTAFF_MINES_DESTROY) >= qEnd)) then begin
-          rm_timer_event(self_obj);
-          set_obj_visibility(self_obj, 1);
-       end
-       else if ((global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN) >= 3) and (getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) >= qStart)) then begin
-          set_obj_visibility(self_obj, 0);
-          add_timer_event(self_obj, 10, 3);
+       if ((global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN) >= 3) and (getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) >= qStart) and (getQuest(GVAR_FLAGSTAFF_MINES_DESTROY) < qEnd)) then begin
+       set_obj_visibility(self_obj, 0);
+       add_timer_event(self_obj, 10, 3);
        end
        else begin
-          rm_timer_event(self_obj);
-          set_obj_visibility(self_obj, 1);
+       rm_timer_event(self_obj);
+       set_obj_visibility(self_obj, 1);
        end
    end
 end
@@ -164,20 +160,9 @@ procedure NodeStartDialog begin
 end
 
 procedure NodeDialog begin
-   if (map_var(MVAR_FLAG_EVIL_WARDEN)<=-10) then begin
-      Reply(248)
-      NAnswer(249,1,NodeDialog2)
-   end
-   else if (map_var(MVAR_FLAG_EVIL_WARDEN)<0) then begin
-      Reply(240)
-      NAnswer(242,1,NodeDialog2)
-      GAnswer(241,1,NodeDialog2)
-   end
-   else begin
-      Reply(245)
-      NAnswer(246,1,NodeDialog2)
-      GAnswer(247,1,NodeDialog2)
-   end
+   Reply(240)
+   NAnswer(241,1,NodeDialog2)
+   NAnswer(242,1,NodeDialog2)
 end
 
 procedure NodeDialog2 begin

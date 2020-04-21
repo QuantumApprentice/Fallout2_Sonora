@@ -116,6 +116,7 @@ procedure use_obj_on_p_proc begin
          display_mstr(112);
       end
       else begin
+         //if (random(0,100) <= (2+dude_strength)) then begin
          destroyUseShovel
          call open_proc;
       end
@@ -143,7 +144,7 @@ procedure open_proc begin
    end
 
    game_time_advance(ONE_GAME_MINUTE*(60-(5*dude_strength)));
-   //radiation_inc(dude_obj, 3);
+   radiation_inc(dude_obj, 10);
    gfade_in(ONE_GAME_SECOND);
 
    //--- Поправки на отдельные локации
@@ -214,7 +215,7 @@ procedure loot_gener_A begin
       item_add(self_obj,PID_WAT_WIPES,1)
       end
       if (randomItem == 2) then begin
-      item_add(self_obj,PID_CLEAR,1)
+      item_add(self_obj,PID_OIL,1)
       end
       if (randomItem == 3) then begin
       item_add(self_obj,PID_TOOL_BOOTS,1)

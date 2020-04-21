@@ -388,9 +388,11 @@ procedure NodeSndDialog begin
       if (local_var(LVAR_Dude_Donats) <= 2000) then begin
       NAnswer(260,1,NodeDonats)
       end
+      /*
       if (gvar_bit(GVAR_BIBL_FLAGS_BIT, bit_2) == 0) then begin
       NAnswer(226,1,NodeAnswer205)
       end
+      */
    end
    if (getQuest(GVAR_FLAGSTAFF_CULT_GOHOME) == qStart) then begin
       if (bitDialog(bit_9) == 0) then begin
@@ -609,12 +611,7 @@ end
 procedure NodeAnswer207 begin
    if (item_amnt(dude_obj,PID_BOOTLE_CAPS) >= 100) then begin
       item_remove(dude_obj, PID_BOOTLE_CAPS, -100)
-      if (is_skill_tagged(SKILL_SCIENCE) == true) then begin
-      skill_up(SKILL_SCIENCE,6);
-      end
-      else begin
       skill_up(SKILL_SCIENCE,5);
-      end
       PLAY_FADE
       game_time_advance(ONE_GAME_HOUR*5);
       Reply(234)
@@ -897,7 +894,7 @@ procedure NodeQuestEnd begin
    NAnswer(344,1,NodeQuestEnd6)
    end
    if ((getQuest(GVAR_PHENIX_CULT_DESTROY) < qEnd) and (global_var(GVAR_PHENIX_CULT_LETTER) == 0))then begin
-   //NAnswer(343,5,NodeQuestEnd5)
+   //NAnswer(343,4,NodeQuestEnd5)
    end
 end
 

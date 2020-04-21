@@ -97,7 +97,6 @@ procedure NodeQst202;
 procedure NodeQst203;
 procedure NodeQst204;
 procedure NodeQst205;
-procedure NodeQst205b;
 procedure NodeQst206;
 procedure NodeQst207;
 procedure NodeQst208;
@@ -254,23 +253,20 @@ procedure NodeSndDialog begin
       end
    end
 
-   if (getQuest(GVAR_NUEVA_QST_PLANT_INSECT) == qEnd) then begin
-      if (global_var(GVAR_NUEVA_USING_INSECTICIDES) != 0) then begin
-      zGAnswer(375,1,NodeQst205)
-      end
-      else begin
-      NAnswer(354,1,NodeQst205b)
-      end
-   end
-   else if (getQuest(GVAR_NUEVA_QST_PLANT_INSECT) == qStart) then begin
+   if (getQuest(GVAR_NUEVA_QST_PLANT_INSECT) == qStart) then begin
       if (global_var(GVAR_NUEVA_STATUS_LABA) != 0) then begin
       BAnswer(380,1,NodeQst300)
       end
-      else if (item_amnt(dude_obj,PID_Q_INSECT_WHITE)>0) then begin
+      else if ((item_amnt(dude_obj,PID_Q_INSECT_WHITE)>0) and (item_amnt(dude_obj,PID_Q_INSECT_DOCS)>0)) then begin
       GAnswer(366,1,NodeQst200)
       end
       else if ((item_amnt(dude_obj,PID_Q_INSECT_A)>0) or (item_amnt(dude_obj,PID_Q_INSECT_B)>0) or (item_amnt(dude_obj,PID_Q_INSECT_C)>0)) then begin
       NAnswer(395,1,NodeQst208)
+      end
+   end
+   if (getQuest(GVAR_NUEVA_QST_PLANT_INSECT) == qEnd) then begin
+      if (global_var(GVAR_NUEVA_USING_INSECTICIDES) != 0) then begin
+      zGAnswer(375,1,NodeQst205)
       end
    end
 
@@ -457,9 +453,6 @@ procedure NodeFAID1 begin
 
    if (getQuest(GVAR_PUERTO_BOS_DESTROY) >= qEnd) then begin
    MedicMany += (MedicMany*2);
-   end
-   if (getQuest(GVAR_NUEVA_QST_APOC_HOME) >= qEnd) then begin
-   MedicMany -= (MedicMany/4);
    end
 
    if (town_rep_is_idolized or (get_SLAVA>=500) or (global_var(GVAR_TITUL_BOS) > 0)) then begin
@@ -738,7 +731,7 @@ procedure NodeQst116 begin
 end
 
 procedure NodeQst200 begin
-   if (item_amnt(dude_obj,PID_Q_INSECT_WHITE)>0) then begin
+   if ((item_amnt(dude_obj,PID_Q_INSECT_WHITE)>0) and (item_amnt(dude_obj,PID_Q_INSECT_DOCS)>0)) then begin
    call NodeQst201;
    end
    else begin
@@ -748,6 +741,7 @@ end
 
 procedure NodeQst201 begin
    item_remove(dude_obj,PID_Q_INSECT_WHITE,1)
+   item_remove(dude_obj,PID_Q_INSECT_DOCS,1)
    Reply(367)
    NAnswer(368,1,NodeQst202)
 end
@@ -781,11 +775,6 @@ procedure NodeQst205 begin
    Reply(376)
    BAnswer(377,1,NodeQst206)
    NAnswer(379,1,NodeQst207)
-end
-
-procedure NodeQst205b begin
-   Reply(355)
-   NAnswer(356,1,Node999)
 end
 
 procedure NodeQst206 begin

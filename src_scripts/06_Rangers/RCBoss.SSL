@@ -270,7 +270,6 @@ procedure destroy_p_proc begin
    //! обнуление квестов также дублировать в RSDorDum
    set_global_var(GVAR_STATUS_RANGERS_GENERAL,-1);
    set_gvar_bit_off(GVAR_RANGERS_RECOMMENDATION, bit_5); // сброс приказа рейнджеру в Флагпуле
-   setQuest(GVAR_VILLA_ALLIANCE_RANGER,qStop);
    if (getQuest(GVAR_RANGERS_QST_SBRAHMIN) == qStart) then begin
    setQuest(GVAR_RANGERS_QST_SBRAHMIN,qStop);
    end
@@ -294,14 +293,18 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-20) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,20) // Поправка к отношению за принадлежность к фракциям
 
-   if ((map_var(MVAR_RNGRS_JclTalk) == 1) and (global_var(GVAR_STATUS_RANGERS_AGATA) > 0)) then begin
+   if (map_var(MVAR_RNGRS_JclTalk) == 1) then begin
    floater(self_obj,104,COLOR_MSG_NEAR_WHITE);
    end
    else if (global_var(GVAR_GAME_END) != 0) then begin
    floater(self_obj,105,COLOR_MSG_GREEN);
    end
+   else if (getQuest(GVAR_RANGERS_QST_PUERTO) >= qEnd) then begin
+   floater(self_obj,105,COLOR_MSG_GREEN);
+   end
    else begin
-   dialog_proc(0,0,NodeStartDialog,HEAD_RANGER_GENERAL,BACKGROUND_WASTELND)
+   dialog_proc(1,102,NodeStartDialog,HEAD_RANGER_GENERAL,BACKGROUND_WASTELND)
+   //dialog_proc(1,102,NodeStartDialog,-1,-1)
    end
 end
 
@@ -314,10 +317,7 @@ procedure Node999 begin
 end
 
 procedure NodeStartDialog begin
-   if (getQuest(GVAR_RANGERS_QST_PUERTO) >= qEnd) then begin
-   call NodeSndDialog;
-   end
-   else if (map_var(MVAR_RNGRS_Councilium) == 1) then begin
+   if (map_var(MVAR_RNGRS_Councilium) == 1) then begin
    call NodeConcilium;
    end
    else if ((global_var(GVAR_TITUL_BOS) > 0) or (global_var(GVAR_TITUL_PHENIX_CULT) > 0)) then begin
@@ -449,10 +449,7 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if (getQuest(GVAR_RANGERS_QST_PUERTO) >= qEnd) then begin
-   Reply(105)
-   end
-   else if (global_var(GVAR_TITUL_ARIZONA_RANGER) > 0) then begin
+   if (global_var(GVAR_TITUL_ARIZONA_RANGER) > 0) then begin
    Reply(215)
    end
    else begin
@@ -485,12 +482,10 @@ procedure NodeSndDialog begin
    end
 
    //--- Голозапись Советника
-   if (getQuest(GVAR_RANGERS_QST_PUERTO) < qEnd) then begin
    if (getQuest(GVAR_PHENIX_QST_OWRS_HOLO) == qStart) then begin
       if (item_amnt(dude_obj,PID_HOLODSK_ULISS) > 0) then begin
       NAnswer(450,1,NodeHolo)
       end
-   end
    end
 
    //--- Шакалы
@@ -1228,9 +1223,6 @@ end
 
 procedure NodeSBrahmin102 begin
    Reply(466)
-   if (getQuest(GVAR_BRAHMIN_QST_RANGER) != qZero) then begin
-   NAnswer(525,1,NodeSBrahmin200)
-   end
    NAnswer(467,1,Node999)
 end
 

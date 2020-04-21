@@ -1,72 +1,72 @@
 #ifndef TEAMS_H
 #define TEAMS_H
 
-//--- Р“Р»Р°РІРЅС‹Р№ РіРµСЂРѕР№ Рё РµРіРѕ РЅР°РїР°СЂРЅРёРєРё
+//--- Главный герой и его напарники
 
-#define TEAM_PLAYER                              (0) // Р“Р“ СЃРѕР±СЃС‚РІРµРЅРЅРѕР№ РїРµСЂСЃРѕРЅРѕР№
+#define TEAM_PLAYER                              (0) // ГГ собственной персоной
 
-//--- Р–РёРІРЅРѕСЃС‚СЊ
+//--- Живность
 
-#define TEAM_ANT                                 (1) // РјСѓСЂР°РІСЊРё
-#define TEAM_MANTIS                              (2) // РјР°РЅС‚РёСЃС‹
-#define TEAM_RATS                                (3) // РєСЂС‹СЃС‹, РєСЂРѕС‚РѕРєСЂС‹СЃС‹, СЃРІРёРЅРѕРєСЂС‹СЃС‹, РєСЂС‹СЃРёРЅС‹Р№ РєРѕСЂРѕР»СЊ
-#define TEAM_DOG                                 (4) // СЃРѕР±Р°РєРё, РІРѕР»РєРё, РєРѕР№РѕС‚С‹
-#define TEAM_SCORPION                            (5) // СЂР°РґСЃРєРѕСЂРїРёРѕРЅС‹
-#define TEAM_BRAHMIN                             (6) // Р±СЂР°РјРёРЅС‹
-#define TEAM_SPORE_PLANT                         (7) // С…РёС‰РЅС‹Рµ СЂР°СЃС‚РµРЅРёСЏ
-#define TEAM_DEATHCLAW                           (8) // РєРѕРіС‚Рё СЃРјРµСЂС‚Рё
-#define TEAM_ROBOTS                              (9) // СЂРѕР±РѕС‚С‹
-#define TEAM_GHOUL_WILD                         (10) // РґРёРєРёР№ РіСѓР»СЊ
+#define TEAM_ANT                                 (1) // муравьи
+#define TEAM_MANTIS                              (2) // мантисы
+#define TEAM_RATS                                (3) // крысы, кротокрысы, свинокрысы, крысиный король
+#define TEAM_DOG                                 (4) // собаки, волки, койоты
+#define TEAM_SCORPION                            (5) // радскорпионы
+#define TEAM_BRAHMIN                             (6) // брамины
+#define TEAM_SPORE_PLANT                         (7) // хищные растения
+#define TEAM_DEATHCLAW                           (8) // когти смерти
+#define TEAM_ROBOTS                              (9) // роботы
+#define TEAM_GHOUL_WILD                         (10) // дикий гуль
 
-//--- РўРёРїРѕРІС‹Рµ РЅРїСЃ
+//--- Типовые нпс
 
-#define TEAM_CARAVAN                            (20) // С‚РёРїРѕРІРѕР№ РєР°СЂР°РІР°РЅ
-#define TEAM_BANDITS                            (21) // С‚РёРїРѕРІС‹Рµ Р±Р°РЅРґРёС‚С‹ Рё РіСЂР°Р±РёС‚РµР»Рё
-#define TEAM_RAIDERS                            (22) // С‚РёРїРѕРІС‹Рµ СЂРµР№РґРµСЂС‹
-#define TEAM_MERKENARY                          (23) // С‚РёРїРѕРІС‹Рµ РѕС…РѕС‚РЅРёРєРё Р·Р° РіРѕР»РѕРІР°РјРё, РЅР°РµРјРЅРёРєРё
-#define TEAM_TRAPPERS                           (75) // С‚РёРїРѕРІС‹Рµ РѕС…РѕС‚РЅРёРєРё
-#define TEAM_SAVAGE                             (31) // С‚РёРїРѕРІС‹Рµ РґРёРєР°СЂРё (РІРєР»СЋС‡Р°СЏ РЁР°РєР°Р»РѕРІ РЅР° РёС… Р»РѕРєР°С†РёРё, РґРёРєР°СЂРµР№ РЅР° РєР°СЂС‚Рµ РјРёСЂР°, СЂС‹Р±Р°РєРѕРІ РЅР° РїРѕР»СѓРѕСЃС‚СЂРѕРІРµ)
+#define TEAM_CARAVAN                            (20) // типовой караван
+#define TEAM_BANDITS                            (21) // типовые бандиты и грабители
+#define TEAM_RAIDERS                            (22) // типовые рейдеры
+#define TEAM_MERKENARY                          (23) // типовые охотники за головами, наемники
+#define TEAM_TRAPPERS                           (75) // типовые охотники
+#define TEAM_SAVAGE                             (31) // типовые дикари (включая Шакалов на их локации, дикарей на карте мира, рыбаков на полуострове)
 
-//--- Р–РёС‚РµР»Рё Р»РѕРєР°С†РёР№
+//--- Жители локаций
 
-#define TEAM_VILLA_PEASAN                       (30) // Р¶РёС‚РµР»СЊ Р’РёР»Р»С‹
-#define TEAM_JACKALS_PEASAN                     (TEAM_SAVAGE) // С‡Р»РµРЅС‹ РїР»РµРјРµРЅРё РЁР°РєР°Р»РѕРІ
-#define TEAM_GARAGE_CITIZEN                     (32) // Р¶РёС‚РµР»СЊ Р“Р°СЂР°Р¶Р°
-#define TEAM_GARAGE_CLAN_A                      (70) // РєР»Р°РЅ 1 РІ Р“Р°СЂР°Р¶Рµ
-#define TEAM_GARAGE_CLAN_B                      (71) // РєР»Р°РЅ 2 РІ Р“Р°СЂР°Р¶Рµ
-#define TEAM_SANBRAHMIN_PEASAN                  (33) // Р¶РёС‚РµР»СЊ РЎР°РЅР‘СЂР°РјРёРЅ
-#define TEAM_FLAGSTAFF_CITIZEN                  (34) // Р¶РёС‚РµР»СЊ Р¤Р»Р°РіРїСѓР»Р°
-#define TEAM_PHOENIX_CITIZEN                    (35) // Р¶РёС‚РµР»СЊ Р¤РµРЅРёРєСЃР°
-#define TEAM_TWOSUN_PEASAN                      (36) // Р¶РёС‚РµР»Рё Рё Р¶РµСЃС‚СЏРЅС‰РёРєРё РўСѓРЎР°РЅР°
-#define TEAM_TWOSUN_SLAVES                      (68) // Р±РµРіР»С‹Рµ СЂР°Р±С‹ РўСѓРЎР°РЅР°
-#define TEAM_CASAGRANDE_PEASAN                  (37) // Р¶РёС‚РµР»СЊ РљР°СЃР°Р“СЂР°РЅРґРµ
-#define TEAM_CASAGRANDE_CITYHALL                (74) // РјСЌСЂРёСЏ РљР°СЃР°Р“СЂР°РЅРґРµ
-#define TEAM_CASANUEVA_PEASAN                   (38) // Р¶РёС‚РµР»СЊ РљР°СЃР°РќСѓСЌРІa
-#define TEAM_MOTEL_MUTANT                       (39) // РјСѓС‚Р°РЅС‚С‹ РњРѕС‚РµР»СЏ
-#define TEAM_VAULT_GHOST                        (40) // РїСЂРёР·СЂР°РєРё СѓР±РµР¶РёС‰Р° 27
-#define TEAM_INFERNO_CULT                       (41) // СЂР°Р·СѓРјРЅС‹Рµ РіСѓР»Рё РРЅС„РµСЂРЅРѕ
-#define TEAM_INFERNO_GHOUL                      (42) // РґРёРєРёРµ РіСѓР»Рё РРЅС„РµСЂРЅРѕ (РЅРµ Р°РєС‚СѓР°Р»СЊРЅРѕ)
+#define TEAM_VILLA_PEASAN                       (30) // житель Виллы
+#define TEAM_JACKALS_PEASAN                     (TEAM_SAVAGE) // члены племени Шакалов
+#define TEAM_GARAGE_CITIZEN                     (32) // житель Гаража
+#define TEAM_GARAGE_CLAN_A                      (70) // клан 1 в Гараже
+#define TEAM_GARAGE_CLAN_B                      (71) // клан 2 в Гараже
+#define TEAM_SANBRAHMIN_PEASAN                  (33) // житель СанБрамин
+#define TEAM_FLAGSTAFF_CITIZEN                  (34) // житель Флагпула
+#define TEAM_PHOENIX_CITIZEN                    (35) // житель Феникса
+#define TEAM_TWOSUN_PEASAN                      (36) // жители и жестянщики ТуСана
+#define TEAM_TWOSUN_SLAVES                      (68) // беглые рабы ТуСана
+#define TEAM_CASAGRANDE_PEASAN                  (37) // житель КасаГранде
+#define TEAM_CASAGRANDE_CITYHALL                (74) // мэрия КасаГранде
+#define TEAM_CASANUEVA_PEASAN                   (38) // житель КасаНуэвa
+#define TEAM_MOTEL_MUTANT                       (39) // мутанты Мотеля
+#define TEAM_VAULT_GHOST                        (40) // призраки убежища 27
+#define TEAM_INFERNO_CULT                       (41) // разумные гули Инферно
+#define TEAM_INFERNO_GHOUL                      (42) // дикие гули Инферно (не актуально)
 
-//--- Р¤СЂР°РєС†РёРё
+//--- Фракции
 
-#define TEAM_FLAGSTAFF_MERC                     (50) // РЅР°РµРјРЅРёРєРё Р¤Р»Р°РіРїСѓР»Р°
-#define TEAM_FLAGSTAFF_SLAVES                   (51) // СЂР°Р±С‹ Р¤Р»Р°РіРїСѓР»Р°
-#define TEAM_RANGERS                            (52) // СЂРµР№РЅРґР¶РµСЂС‹
-#define TEAM_BROTHERS_STEEL                     (53) // С‡Р»РµРЅ Р‘СЂР°С‚СЃС‚РІР° РЎС‚Р°Р»Рё
-#define TEAM_CULT_ATOMIC                        (54) // С‡Р»РµРЅ РєСѓР»СЊС‚Р° РћРіРЅСЏ
-#define TEAM_WAR_ROADS                          (55) // РјР°РіРёСЃС‚СЂР°Р»СЊС‰РёРєРё
-#define TEAM_HERMO_FORT                         (73) // РіР°СЂРЅРёР·РѕРЅ Р­СЂРјРѕСЃРёР»СЊРѕ
+#define TEAM_FLAGSTAFF_MERC                     (50) // наемники Флагпула
+#define TEAM_FLAGSTAFF_SLAVES                   (51) // рабы Флагпула
+#define TEAM_RANGERS                            (52) // рейнджеры
+#define TEAM_BROTHERS_STEEL                     (53) // член Братства Стали
+#define TEAM_CULT_ATOMIC                        (54) // член культа Огня
+#define TEAM_WAR_ROADS                          (55) // магистральщики
+#define TEAM_HERMO_FORT                         (73) // гарнизон Эрмосильо
 
-//--- Р›РѕРєР°Р»СЊРЅС‹Рµ РіСЂСѓРїРїС‹ Р¤РµРЅРёРєСЃР°
+//--- Локальные группы Феникса
 
-#define TEAM_PHOENIX_JUNK                       (60) // РЅРёС‰РµР±СЂРѕРґС‹
-#define TEAM_PHOENIX_PIMP                       (61) // РїСѓС€РµСЂС‹
-#define TEAM_PHOENIX_COLLECTOR                  (62) // РїРѕРІСЃС‚Р°РЅС†С‹
-#define TEAM_PHOENIX_PLANT                      (63) // Р°С‚РѕРјС‰РёРєРё РђР­РЎ
-#define TEAM_PHOENIX_CASINO                     (64) // РєР°Р·РёРЅРѕ
-#define TEAM_PHOENIX_RING                       (65) // Р±РѕР№С†С‹ СЂРёРЅРіР°
-#define TEAM_PHOENIX_EXPERIMENT                 (66) // РїРѕРґРѕРїС‹С‚РЅС‹Рµ РІ СѓР±РµР¶РёС‰Рµ 25
-#define TEAM_PHOENIX_BANDIT                     (67) // СѓР»РёС‡РЅС‹Рµ Р±Р°РЅРґРёС‚С‹
-#define TEAM_PHOENIX_MERC                       (72) // РЅР°РµРјРЅРёРєРё Р¤РµРЅРёРєСЃР° (РіРёР»СЊРґРёСЏ РѕС…РѕС‚РЅРёРєРѕРІ Р·Р° РіРѕР»РѕРІР°РјРё)
+#define TEAM_PHOENIX_JUNK                       (60) // нищеброды
+#define TEAM_PHOENIX_PIMP                       (61) // пушеры
+#define TEAM_PHOENIX_COLLECTOR                  (62) // повстанцы
+#define TEAM_PHOENIX_PLANT                      (63) // атомщики АЭС
+#define TEAM_PHOENIX_CASINO                     (64) // казино
+#define TEAM_PHOENIX_RING                       (65) // бойцы ринга
+#define TEAM_PHOENIX_EXPERIMENT                 (66) // подопытные в убежище 25
+#define TEAM_PHOENIX_BANDIT                     (67) // уличные бандиты
+#define TEAM_PHOENIX_MERC                       (72) // наемники Феникса (гильдия охотников за головами)
 
 #endif

@@ -523,7 +523,7 @@ procedure NodeFstDialog206 begin
 end
 
 procedure NodeFstDialog300 begin
-   zReply(250)
+   Reply(250)
    if (global_var(GVAR_PHENIX_STATUS_CARD_PRISON) != 0) then begin
    NAnswer(252,1,NodeFstDialog302)
    end
@@ -598,7 +598,7 @@ procedure NodeSndDialog begin
    end
 
    if (getQuest(GVAR_PHENIX_QST_LETTERS) == qStart) then begin
-      if (item_amnt(dude_obj,PID_Q_LETTERS) <= 0) then begin
+      if (item_amnt(self_obj,PID_Q_LETTERS) <= 0) then begin
       NAnswer(310,1,NodeAnswer100)
       end
    end
@@ -690,12 +690,7 @@ procedure NodeAnswer206 begin
    box_stop_use := 0;
 
    Reply(286)
-   if (map_var(MVAR_PNX_CARDINALS_ATTAK)<0) then begin
-   GAnswer(288,1,Node999)
-   end
-   else begin
    NAnswer(287,1,Node999)
-   end
 end
 
 procedure NodeAnswer301 begin

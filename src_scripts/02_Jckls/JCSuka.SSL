@@ -64,7 +64,6 @@ procedure NodeQuest200;
 procedure NodeQuest201;
 procedure NodeQuest202;
 procedure NodeQuest203;
-procedure NodeQuest204;
 
 //---------------------
 
@@ -295,14 +294,6 @@ procedure NodeSndDialog begin
    NAnswer(260,1,NodeQuest)
    end
 
-   if (getQuest(GVAR_JACKALS_UNION_CITY) >= qEnd) then begin
-   if (getQuest(GVAR_RANGERS_QST_RNGR_JCKL) == qStart) then begin
-   if (global_var(GVAR_JACKALS_STATUS_RANGER) == 0) then begin
-   NAnswer(274,1,NodeQuest204)
-   end
-   end
-   end
-
    NAnswer(252,1,Node999)
 end
 
@@ -395,12 +386,12 @@ end
 
 procedure NodeQuest201 begin
    Reply(273)
-   if (getQuest(GVAR_RANGERS_QST_RNGR_JCKL) == qStart) then begin
    if (global_var(GVAR_JACKALS_STATUS_RANGER) == 0) then begin
    NAnswer(274,1,NodeQuest202)
    end
-   end
+   else begin
    NAnswer(275,1,NodeQuest203)
+   end
 end
 
 procedure NodeQuest202 begin
@@ -417,10 +408,5 @@ procedure NodeQuest203 begin
    setBonusReaction(35)
 
    Reply(277)
-   NAnswer(278,1,Node999)
-end
-
-procedure NodeQuest204 begin
-   Reply(276)
    NAnswer(278,1,Node999)
 end

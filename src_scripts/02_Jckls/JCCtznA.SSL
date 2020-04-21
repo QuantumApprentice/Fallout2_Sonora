@@ -127,7 +127,7 @@ end
 procedure talk_p_proc begin
    setReaction(0) // Отношение к ГГ(1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    fracReaction(GVAR_TITUL_ARIZONA_RANGER,-50) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(0,1,NodeStartDialog,-1,-1)
+   dialog_proc(1,1,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin

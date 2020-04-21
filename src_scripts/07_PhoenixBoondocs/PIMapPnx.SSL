@@ -16,11 +16,6 @@ procedure use_p_proc begin
       mark_on_map(AREA_SAN_BRAHMIN)
       mark_on_map(AREA_CASA_GRANDE)
    exp_add(100);
-   if (is_skill_tagged(SKILL_SCOUT) == true) then begin
-   skill_up(SKILL_SCOUT,6);
-   end
-   else begin
    skill_up(SKILL_SCOUT,5);
-   end
    scr_return(1);
 end

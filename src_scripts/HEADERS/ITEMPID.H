@@ -3,7 +3,7 @@
 
 /********************************
 
---- РЎРѕРґРµСЂР¶Р°РЅРёРµ:
+--- Содержание:
 
 SONORA Ammo
 SONORA Weapon
@@ -24,15 +24,15 @@ SONORA Active Items
 ***************        SONORA Ammo     ***************************
 ******************************************************************/
 
-#define PID_AMMO_ENERGY_CELL                (1) // РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ РіРµР№РјРїР»РµРµ
+#define PID_AMMO_ENERGY_CELL                (1) // не используется в геймплее
 #define PID_AMMO_MICRO_FUSION_CELL          (2)
-#define PID_AMMO_22_LR                      (3) // РІ РїР°С‡РєРµ 5 РїР°С‚СЂРѕРЅРѕРІ!
+#define PID_AMMO_22_LR                      (3) // в пачке 5 патронов!
 #define PID_AMMO_9_MM                       (4)
 #define PID_AMMO_10_MM                      (5)
 #define PID_AMMO_10_MM_NSP                  (6)
 #define PID_AMMO_44_MAGNUM                  (7)
 #define PID_AMMO_50_AE                      (8)
-#define PID_AMMO_5_MM                       (9) // РІ РїР°С‡РєРµ 5 РїР°С‚СЂРѕРЅРѕРІ!
+#define PID_AMMO_5_MM                       (9) // в пачке 5 патронов!
 #define PID_AMMO_308                        (10)
 #define PID_AMMO_SHOTGUN_SHELLS             (11)
 #define PID_AMMO_SHOTGUN_SHELLS_BULLET      (12)
@@ -46,7 +46,7 @@ SONORA Active Items
 ***************        SONORA Weapon     *************************
 ******************************************************************/
 
-//РњРµС‚Р°С‚РµР»СЊРЅРѕРµ
+//Метательное
 #define PID_W_BROCK                         (18)
 #define PID_W_THROWING_KNIFE                (19)
 #define PID_W_GRENADE_FRAG                  (20)
@@ -55,8 +55,8 @@ SONORA Active Items
 #define PID_W_GRENADE_NUKE                  (23)
 #define PID_W_GRENADE_MOLOTOV               (159)
 
-//Р СѓРєРѕРїР°С€РЅРѕРµ
-#define PID_W_KNUCKLES_SPORE_PLANT          (55) // РЅРµРІРёРґРёРјРѕРµ РѕСЂСѓР¶РёРµ С…РёС‰РЅС‹С… СЂР°СЃС‚РµРЅРёР№
+//Рукопашное
+#define PID_W_KNUCKLES_SPORE_PLANT          (55) // невидимое оружие хищных растений
 #define PID_W_KNUCKLES_BRASS                (126)
 #define PID_W_KNUCKLES_SPIKED               (127)
 #define PID_W_KNUCKLES_THORNS               (128)
@@ -64,7 +64,7 @@ SONORA Active Items
 #define PID_W_KNUCKLES_SHOCKER              (130)
 #define PID_W_POWER_FIST                    (131)
 
-//РҐРѕР»РѕРґРЅРѕРµ
+//Холодное
 #define PID_W_KNIFE                         (132)
 #define PID_W_COMBAT_KNIFE                  (133)
 #define PID_W_MACHETE                       (134)
@@ -83,7 +83,7 @@ SONORA Active Items
 #define PID_W_HAMMER                        (146)
 #define PID_W_SUPER_SLEDGE                  (147)
 
-//РћРіРЅРµСЃС‚СЂРµР»СЊРЅРѕРµ Р»РµРіРєРѕРµ
+//Огнестрельное легкое
 #define PID_W_REVOLVER_OLD                  (148)
 #define PID_W_REVOLVER_POLICE               (149)
 #define PID_W_REVOLVER_COMBAT               (150)
@@ -97,7 +97,7 @@ SONORA Active Items
 #define PID_W_PISTOL_50                     (156)
 #define PID_W_PISTOL_ZIP                    (175)
 
-//РћРіРЅРµСЃС‚СЂРµР»СЊРЅРѕРµ С‚СЏР¶РµР»РѕРµ
+//Огнестрельное тяжелое
 #define PID_W_RIFLE_HUNTING                 (157)
 #define PID_W_RIFLE_HUNTING_UNERTL          (176)
 #define PID_W_RIFLE_COMBAT                  (158)
@@ -113,7 +113,7 @@ SONORA Active Items
 #define PID_W_LAUNCHER_UPD                  (178)
 #define PID_W_RIFLE_CARABINA                (179)
 
-//Р­РЅРµСЂРіРµС‚РёС‡РµСЃРєРѕРµ
+//Энергетическое
 #define PID_W_LASER_ZIPGUN                  (168)
 #define PID_W_LASER_PISTOL                  (169)
 #define PID_W_LASER_RIFLE                   (170)
@@ -147,7 +147,7 @@ SONORA Active Items
 ***************      SONORA Medical and Food     *****************
 ******************************************************************/
 
-//РњРµРґРёРєР°РјРµРЅС‚С‹ Рё РЅР°СЂРєРѕС‚РёРєРё
+//Медикаменты и наркотики
 #define PID_M_STIMPAK                       (40)
 #define PID_M_SUPER_STIMPAK                 (144)
 #define PID_M_RAD_X                         (109)
@@ -158,21 +158,21 @@ SONORA Active Items
 #define PID_M_PSYCHO                        (110)
 #define PID_M_ASH                           (111)
 
-//Р•РґР°
-#define PID_M_IGUANA                        (60) // РёРіСѓР°РЅР°
-#define PID_M_FRUIT                         (61) // РјСѓС‚Р°С„СЂСѓРєС‚
-#define PID_M_MEAT_JERKY                    (62) // РІСЏР»РµРЅРѕРµ РјСЏСЃРѕ
-#define PID_M_NOODLES                       (63) // Р»Р°РїС€Р°
-#define PID_M_TV_DINNER                     (64) // С‚РµР»РµСѓР¶РёРЅ
-#define PID_M_SLUGS                         (65) // Р»РёС‡РёРЅРєРё
-#define PID_M_BRAHMIN_POTROH                (66) // Р±Р»СЋРґРѕ РёР· Р±СЂР°РјРёРЅСЊРёС… РѕС‚СЂСѓР±РµР№
-#define PID_M_SOUP_RAT                      (67) // СЃСѓРї РёР· РєСЂС‹СЃС‹
-#define PID_M_IRP                           (68) // РР Рџ Р‘СЂР°С‚СЃС‚РІР° РЎС‚Р°Р»Рё
-#define PID_M_MEAT_FOUL                     (69) // РїСЂРѕС‚СѓС…С€РµРµ Р±Р»СЋРґРѕ
-#define PID_M_ROACH                         (70) // С‚Р°СЂР°РєР°РЅ
-#define PID_M_FRITOS_BANDITOS               (71) // РјРµРєСЃРёРєР°РЅСЃРєРёРµ С‡РёРїСЃС‹
+//Еда
+#define PID_M_IGUANA                        (60) // игуана
+#define PID_M_FRUIT                         (61) // мутафрукт
+#define PID_M_MEAT_JERKY                    (62) // вяленое мясо
+#define PID_M_NOODLES                       (63) // лапша
+#define PID_M_TV_DINNER                     (64) // телеужин
+#define PID_M_SLUGS                         (65) // личинки
+#define PID_M_BRAHMIN_POTROH                (66) // блюдо из браминьих отрубей
+#define PID_M_SOUP_RAT                      (67) // суп из крысы
+#define PID_M_IRP                           (68) // ИРП Братства Стали
+#define PID_M_MEAT_FOUL                     (69) // протухшее блюдо
+#define PID_M_ROACH                         (70) // таракан
+#define PID_M_FRITOS_BANDITOS               (71) // мексиканские чипсы
 
-//РќР°РїРёС‚РєРё
+//Напитки
 #define PID_M_NUKA_COLA                     (106)
 #define PID_M_NUKA_COLA_RAD                 (107)
 #define PID_M_WATER_FLASK                   (108)
@@ -328,27 +328,27 @@ SONORA Active Items
 ***************        SONORA Conteiners     *********************
 ******************************************************************/
 
-#define PID_CNTR_BARTER_BOX                 (193) // РЈРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ С‚РѕСЂРіРѕРІС‹Р№ СЏС‰РёРє РґР»СЏ С‚РѕСЂРіРѕРІС†РµРІ (СЂР°Р·РјРµС‰Р°РµС‚СЃСЏ Р·Р° РїСЂРµРґРµР»Р°РјРё РєР°СЂС‚С‹)
-#define PID_CNTR_UNIVERSAL_BOX              (17)  // РЈРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ Р±РѕРєСЃ СЃ РѕРіСЂРѕРјРЅРѕР№ РІРјРµСЃС‚РёРјРѕСЃС‚СЊСЋ (РґР»СЏ РѕС‚Р»Р°РґРєРё, РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІРЅРµ РІРёРґРёРјРѕСЃС‚Рё РёРіСЂРѕРєР°)
-#define PID_CNTR_EXPRESSBOX_F               (200) // РџРѕСЃС‹Р»РєР° РІ Р¤Р»Р°РіРїСѓР»
-#define PID_CNTR_EXPRESSBOX_P               (201) // РџРѕСЃС‹Р»РєР° РІ Р¤РµРЅРёРєСЃ
-#define PID_CNTR_EXPRESSBOX_T               (202) // РџРѕСЃС‹Р»РєР° РІ РўСѓРЎР°РЅ
-#define PID_CNTR_SOILJUNK                   (197) // РњСѓСЃРѕСЂРЅР°СЏ РєСѓС‡Р°
-#define PID_CNTR_SOIL                       (203) // РЎРІРµР¶РµРІСЃРєРѕРїР°РЅРЅР°СЏ Р·РµРјР»СЏ
-#define PID_CNTR_VAULT_AA                   (289) // РЈР±РµР¶РёС‰Рµ: С€РєР°С„С‡РёРє СЃРµСЂС‹Р№ Р·Р°РїР°Рґ-РІРѕСЃС‚РѕРє
-#define PID_CNTR_VAULT_AB                   (290) // РЈР±РµР¶РёС‰Рµ: С€РєР°С„С‡РёРє СЃРµСЂС‹Р№ СЃРµРІРµСЂ-СЋРі
-#define PID_CNTR_VAULT_BA                   (291) // РЈР±РµР¶РёС‰Рµ: С€РєР°С„С‡РёРє РЅРѕРІС‹Р№ Р·Р°РїР°Рґ-РІРѕСЃС‚РѕРє
-#define PID_CNTR_VAULT_BB                   (292) // РЈР±РµР¶РёС‰Рµ: С€РєР°С„С‡РёРє РЅРѕРІС‹Р№ СЃРµРІРµСЂ-СЋРі
-#define PID_CNTR_VAULT_CA                   (293) // РЈР±РµР¶РёС‰Рµ: С€РєР°С„С‡РёРє СЂР¶Р°РІС‹Р№ Р·Р°РїР°Рґ-РІРѕСЃС‚РѕРє
-#define PID_CNTR_VAULT_CB                   (294) // РЈР±РµР¶РёС‰Рµ: С€РєР°С„С‡РёРє СЂР¶Р°РІС‹Р№ СЃРµРІРµСЂ-СЋРі
-#define PID_CNTR_TOTEM                      (318) // Р Р°Р·СЂСѓС€РµРЅРЅС‹Р№ С‚РѕС‚РµРј РЁР°РєР°Р»РѕРІ
+#define PID_CNTR_BARTER_BOX                 (193) // Универсальный торговый ящик для торговцев (размещается за пределами карты)
+#define PID_CNTR_UNIVERSAL_BOX              (17)  // Универсальный вспомогательный бокс с огромной вместимостью (для отладки, для использования вне видимости игрока)
+#define PID_CNTR_EXPRESSBOX_F               (200) // Посылка в Флагпул
+#define PID_CNTR_EXPRESSBOX_P               (201) // Посылка в Феникс
+#define PID_CNTR_EXPRESSBOX_T               (202) // Посылка в ТуСан
+#define PID_CNTR_SOILJUNK                   (197) // Мусорная куча
+#define PID_CNTR_SOIL                       (203) // Свежевскопанная земля
+#define PID_CNTR_VAULT_AA                   (289) // Убежище: шкафчик серый запад-восток
+#define PID_CNTR_VAULT_AB                   (290) // Убежище: шкафчик серый север-юг
+#define PID_CNTR_VAULT_BA                   (291) // Убежище: шкафчик новый запад-восток
+#define PID_CNTR_VAULT_BB                   (292) // Убежище: шкафчик новый север-юг
+#define PID_CNTR_VAULT_CA                   (293) // Убежище: шкафчик ржавый запад-восток
+#define PID_CNTR_VAULT_CB                   (294) // Убежище: шкафчик ржавый север-юг
+#define PID_CNTR_TOTEM                      (318) // Разрушенный тотем Шакалов
 
 /*****************************************************************
 ***************        SONORA Tools     **************************
 ******************************************************************/
 
 #define PID_TOOL_CAR_GAZ                    (38)
-#define PID_TOOL_CAR_GAZ_SUPER              (39)  // РќРµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ!
+#define PID_TOOL_CAR_GAZ_SUPER              (39)  // Не использовать!
 #define PID_TOOL_RADIO                      (55)
 #define PID_TOOL_IGUANA_TRACK               (56)
 #define PID_TOOL_LOCKPICKS_MH               (74)
@@ -361,21 +361,21 @@ SONORA Active Items
 #define PID_TOOL_ZIPPER                     (84)
 #define PID_TOOL_PARTS_MECHANICAL           (88)
 #define PID_TOOL_PARTS_ELECTRONIC           (89)
-#define PID_TOOL_DOCTORS_BAG                (50) // РќРµ РїСѓС‚Р°С‚СЊ СЃ Р”РѕРєС‚РѕСЂСЃРєРёРј С‡РµРјРѕРґР°РЅРѕРј РІ F1 Рё F2!
+#define PID_TOOL_DOCTORS_BAG                (50) // Не путать с Докторским чемоданом в F1 и F2!
 #define PID_TOOL_PIPBOY_LINK                (516)
 #define PID_TOOL_WATER_FLASK_VB             (105)
 
 #define PID_TOOL_FLARE                      (79)
-#define PID_TOOL_DYNAMITE                   (51)  // РќРµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ!
+#define PID_TOOL_DYNAMITE                   (51)  // Не использовать!
 #define PID_TOOL_GEIGER_COUNTER             (52)
 #define PID_TOOL_STEALTH_BOY                (54)
 #define PID_TOOL_MOTION_SENSOR              (59)
 #define PID_TOOL_PLASTIC_EXPLOSIVES         (85)
 
-#define PID_TOOL_FIRST_AID_KIT_A            (47)  // РќРµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ!
-#define PID_TOOL_FIRST_AID_KIT_B            (408) // РќРµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ!
-#define PID_TOOL_DOCTORS_BAG_A              (91)  // РќРµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ!
-#define PID_TOOL_DOCTORS_BAG_B              (409) // РќРµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ!
+#define PID_TOOL_FIRST_AID_KIT_A            (47)  // Не использовать!
+#define PID_TOOL_FIRST_AID_KIT_B            (408) // Не использовать!
+#define PID_TOOL_DOCTORS_BAG_A              (91)  // Не использовать!
+#define PID_TOOL_DOCTORS_BAG_B              (409) // Не использовать!
 
 #define stopUseCarGaz                       if (objUsedPid == PID_TOOL_CAR_GAZ) then begin \
                                                script_overrides;                \
@@ -387,20 +387,12 @@ SONORA Active Items
                                                end                              \
                                             end                                 \
 
-/*
 #define destroyUseShovel                    inc_global_var(GVAR_SHOVEL_STATUS);  \
-                                            if (global_var(GVAR_SHOVEL_STATUS)>=(dude_strength+4)) then begin \
+                                            if (global_var(GVAR_SHOVEL_STATUS)>=dude_strength) then begin \
                                             item_remove(dude_obj, objUsedPid, 1) \
                                             g_display_mstr(492);                 \
                                             set_global_var(GVAR_SHOVEL_STATUS,0); \
                                             end                                  \
-*/
-
-#define destroyUseShovel                    if (random(0,100) <= (10-dude_strength)) then begin \
-                                            item_remove(dude_obj, objUsedPid, 1) \
-                                            g_display_mstr(492);                 \
-                                            end                                  \
-
 
 /*****************************************************************
 ***************       Active Items                  **************
@@ -415,10 +407,10 @@ SONORA Active Items
 
 /*
 
-РќРµ Р°РєС‚СѓР°Р»СЊРЅРѕ.
-Р­С‚РѕС‚ РјР°РєСЂРѕСЃ РёСЃРїРѕР»СЊР·РѕРІР°Р»СЃСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РІ РєР°Р¶РґРѕРј set_start_home.
-РќРѕ Р±Р°РіРё, РєРѕС‚РѕСЂС‹Рµ РѕРЅ РёСЃРїСЂР°РІР»СЏРµС‚, СЃР»РёС€РєРѕРј СЂРµРґРєРёРµ.
-Р›РёС€РЅРµРµ РЅР°РіСЂРѕРјР¶РґРµРЅРёРµ СЃРєСЂРёРїС‚РѕРІС‹С… С„СѓРЅРєС†РёР№ - СЌС‚Рѕ С‚РѕР¶Рµ РЅРµ РµСЃС‚СЊ С…РѕСЂРѕС€Рѕ.
+Не актуально.
+Этот макрос использовался по умолчанию в каждом set_start_home.
+Но баги, которые он исправляет, слишком редкие.
+Лишнее нагромждение скриптовых функций - это тоже не есть хорошо.
 
 #define deleteActiveItem                    if (item_amnt(self_obj,PID_ACTIVE_FLARE) >0) then begin \
                                             item_remove(self_obj, PID_ACTIVE_FLARE, item_amnt(self_obj,PID_ACTIVE_FLARE)) \
@@ -433,7 +425,7 @@ SONORA Active Items
 */
 
 /*****************************************************************
-***************       РћРїРµСЂР°С†РёРё СЃ РїСЂРµРґРјРµС‚Р°РјРё         **************
+***************       Операции с предметами         **************
 ******************************************************************/
 
 variable removed_amnt;

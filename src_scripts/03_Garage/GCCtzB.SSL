@@ -241,8 +241,8 @@ procedure NodeAnswer107 begin
    set_SLAVA(-5)
    setBonusReaction(-75)
    item_add(dude_obj,PID_BOOTLE_CAPS,100)
-   Reply(246)
-   NAnswer(247,1,Node999)
+   Reply(245)
+   NAnswer(246,1,Node999)
 end
 
 //--- РАССПРОСЫ ПРО ГАРАЖ И КРЫШКИ

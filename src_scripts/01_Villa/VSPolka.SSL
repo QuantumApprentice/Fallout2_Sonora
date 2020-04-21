@@ -6,7 +6,6 @@ procedure map_enter_p_proc;
 procedure use_p_proc;
 procedure use_skill_on_p_proc;
 procedure use_obj_on_p_proc;
-procedure damage_p_proc;
 procedure open_proc;
 
 
@@ -39,16 +38,13 @@ procedure use_skill_on_p_proc begin
       call open_proc;
    end
    if (action_being_used == SKILL_SCIENCE) then begin
-      call open_proc;
+      script_overrides;
+      display_mstr(111);
    end
 end
 
 procedure use_obj_on_p_proc begin
    stopUseCarGaz
-end
-
-procedure damage_p_proc begin
-   call open_proc;
 end
 
 procedure open_proc begin

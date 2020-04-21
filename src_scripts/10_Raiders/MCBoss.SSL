@@ -273,7 +273,7 @@ procedure NodeFstDialog102 begin
 end
 
 procedure NodeFstDialog103 begin
-   zReply(207)
+   Reply(207)
    BAnswer(208,1,Node998)
 end
 
@@ -576,11 +576,9 @@ end
 procedure NodeQst102 begin
    setQuest(GVAR_RAIDER_QST_PRISON,qEnd);
    setQuest(GVAR_RAIDER_QST_CONTRACT,qStart);
-   mark_on_map(AREA_TWO_SUN)
    set_REP(5)
    setReaction(35)
    exp_add(350);
-
    Reply(359)
    NAnswer(360,1,NodeQst103)
 end

@@ -2,7 +2,7 @@
 #define REPPOINT_H
 
 /*****************************************************************
-**************    ÑËÀÂÀ ÏÅÐÑÎÍÀÆÀ Â ÏÓÑÒÎØÀÕ   *******************
+**************    Ð¡Ð›ÐÐ’Ð ÐŸÐ•Ð Ð¡ÐžÐÐÐ–Ð Ð’ ÐŸÐ£Ð¡Ð¢ÐžÐ¨ÐÐ¥   *******************
 ******************************************************************/
 
 #define get_SLAVA                               (global_var(GVAR_REPUTATION_PLAYER))   \
@@ -38,10 +38,10 @@
 #define SLAVA_KILL_DWCLW                        SLAVA_KILL_BAD*2
 
 /*****************************************************************
-****************     Ðåïóòàöèÿ â ïîñåëåíèÿõ     ******************
+****************     Ð ÐµÐ¿ÑƒÑ‚Ð°Ñ†Ð¸Ñ Ð² Ð¿Ð¾ÑÐµÐ»ÐµÐ½Ð¸ÑÑ…     ******************
 ******************************************************************/
 
-//ðåïóòàöèÿ â ãîðîäàõ
+//Ñ€ÐµÐ¿ÑƒÑ‚Ð°Ñ†Ð¸Ñ Ð² Ð³Ð¾Ñ€Ð¾Ð´Ð°Ñ…
 #define town_rep_is_idolized                    (get_REP >= 30)
 #define town_rep_is_liked                       (get_REP >= 15)
 #define town_rep_is_accepted                    (get_REP >= 1)
@@ -73,7 +73,7 @@
 #define REP_KILL_CHILD                          REP_KILL_GOOD*10
 #define REP_KILL_CRITICAL                       -100
 
-//ðåïóòàöèÿ è ñëàâà ïðè óáèéñòâå íïñ
+//Ñ€ÐµÐ¿ÑƒÑ‚Ð°Ñ†Ð¸Ñ Ð¸ ÑÐ»Ð°Ð²Ð° Ð¿Ñ€Ð¸ ÑƒÐ±Ð¸Ð¹ÑÑ‚Ð²Ðµ Ð½Ð¿Ñ
 #define kill_critter_reput                      if (source_obj == dude_obj) then begin       \
                                                    if (KILL_TOWN_REP!=0) then begin          \
                                                    set_REP(KILL_TOWN_REP)                    \
@@ -109,7 +109,7 @@
                                                    end                                          \
                                                 end                                             \
 
-//óáèéñòâåííûå ñòàòóñû
+//ÑƒÐ±Ð¸Ð¹ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ðµ ÑÑ‚Ð°Ñ‚ÑƒÑÑ‹
 #define has_rep_childkiller                     (global_var(GVAR_REPUTATION_CHILDKILLER) >1)
 
 #define has_rep_killer                          (global_var(GVAR_REPUTATION_KILLER) >0)
@@ -120,7 +120,7 @@
 
 #define has_rep_pelgrim                         (global_var(GVAR_REPUTATION_PELGRIM) >0)
 
-//ïðèíàäëåæíîñòü êðèòòåðà ê ôðàêöèè (çàäàåòñÿ â KILL_FRAC_REP)
+//Ð¿Ñ€Ð¸Ð½Ð°Ð´Ð»ÐµÐ¶Ð½Ð¾ÑÑ‚ÑŒ ÐºÑ€Ð¸Ñ‚Ñ‚ÐµÑ€Ð° Ðº Ñ„Ñ€Ð°ÐºÑ†Ð¸Ð¸ (Ð·Ð°Ð´Ð°ÐµÑ‚ÑÑ Ð² KILL_FRAC_REP)
 #define FRAC_NON                                -1
 #define FRAC_BOS                                GVAR_TITUL_BOS
 #define FRAC_RANGER                             GVAR_TITUL_ARIZONA_RANGER
@@ -141,7 +141,7 @@
                                                 dont_rep_PnxCult                             \
                                                 end                                          \
 
-//óäàëåíèå ôðàêöèîííûõ çâàíèé
+//ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ„Ñ€Ð°ÐºÑ†Ð¸Ð¾Ð½Ð½Ñ‹Ñ… Ð·Ð²Ð°Ð½Ð¸Ð¹
 #define dont_rep_BoS                            if ((global_var(GVAR_TITUL_BOS) >0) or (global_var(GVAR_TITUL_BOS_SCRIBE) >0) or (global_var(GVAR_TITUL_BOS_CAVALER) >0) or (global_var(GVAR_TITUL_BOS_PALADIN) >0) or (global_var(GVAR_TITUL_BOS_SCOUT) >0)) then begin \
                                                    set_global_var(GVAR_TITUL_BOS_TRAITOR,1); \
                                                    set_global_var(GVAR_TITUL_BOS,0);         \

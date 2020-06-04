@@ -2,7 +2,7 @@
 #define ANIMCOMD_H
 
 //------------------------------------------------------
-//---------------------- Анимационные опции
+//---------------------- РђРЅРёРјР°С†РёРѕРЅРЅС‹Рµ РѕРїС†РёРё
 //------------------------------------------------------
 #define ANIMATE_WALK                (0)
 #define ANIMATE_RUN                 (1)
@@ -24,9 +24,9 @@
 #define animate_set_frame(FRAME)        anim(self_obj, ANIMATE_SET_FRAME, FRAME)
 
 //------------------------------------------------------
-//---------------------- Коды анимаций
+//---------------------- РљРѕРґС‹ Р°РЅРёРјР°С†РёР№
 //------------------------------------------------------
-//--- базовые 0-19
+//--- Р±Р°Р·РѕРІС‹Рµ 0-19
 #define ANIM_stand                    (0)
 #define ANIM_walk                     (1)
 #define ANIM_jump_begin               (2)
@@ -43,11 +43,11 @@
 #define ANIM_dodge_anim              (13)
 #define ANIM_hit_from_front          (14)
 #define ANIM_hit_from_back           (15)
-#define ANIM_throw_punch             (16) // удар рукой
+#define ANIM_throw_punch             (16) // СѓРґР°СЂ СЂСѓРєРѕР№
 #define ANIM_kick_leg                (17)
 #define ANIM_throw_anim              (18)
 #define ANIM_running                 (19)
-//--- падение и смерть   20-35
+//--- РїР°РґРµРЅРёРµ Рё СЃРјРµСЂС‚СЊ   20-35
 #define ANIM_fall_back               (20)
 #define ANIM_fall_front              (21)
 #define ANIM_bad_landing             (22)
@@ -61,24 +61,24 @@
 #define ANIM_electrified_to_nothing  (30)
 #define ANIM_exploded_to_nothing     (31)
 #define ANIM_melted_to_nothing       (32)
-#define ANIM_fire_dance              (33) // огненный танец
+#define ANIM_fire_dance              (33) // РѕРіРЅРµРЅРЅС‹Р№ С‚Р°РЅРµС†
 #define ANIM_fall_back_blood         (34)
 #define ANIM_fall_front_blood        (35)
-//--- поднимается  36-37
+//--- РїРѕРґРЅРёРјР°РµС‚СЃСЏ  36-37
 #define ANIM_prone_to_standing       (36)
 #define ANIM_back_to_standing        (37)
-//--- использование оружия 38-47
+//--- РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РѕСЂСѓР¶РёСЏ 38-47
 #define ANIM_take_out                (38)
 #define ANIM_put_away                (39)
-#define ANIM_parry_anim              (40) // парирует удар
-#define ANIM_thrust_anim             (41) // удар копьем
-#define ANIM_swing_anim              (42) // удар ножом свингом
+#define ANIM_parry_anim              (40) // РїР°СЂРёСЂСѓРµС‚ СѓРґР°СЂ
+#define ANIM_thrust_anim             (41) // СѓРґР°СЂ РєРѕРїСЊРµРј
+#define ANIM_swing_anim              (42) // СѓРґР°СЂ РЅРѕР¶РѕРј СЃРІРёРЅРіРѕРј
 #define ANIM_point                   (43)
 #define ANIM_unpoint                 (44)
-#define ANIM_fire_single             (45) // одиночный выстрел
-#define ANIM_fire_burst              (46) // очередь
+#define ANIM_fire_single             (45) // РѕРґРёРЅРѕС‡РЅС‹Р№ РІС‹СЃС‚СЂРµР»
+#define ANIM_fire_burst              (46) // РѕС‡РµСЂРµРґСЊ
 #define ANIM_fire_continuous         (47)
-//--- однокадровые анимации  48-63
+//--- РѕРґРЅРѕРєР°РґСЂРѕРІС‹Рµ Р°РЅРёРјР°С†РёРё  48-63
 #define ANIM_fall_back_sf            (48)
 #define ANIM_fall_front_sf           (49)
 #define ANIM_bad_landing_sf          (50)
@@ -99,7 +99,7 @@
 #define ANIM_max_anim                (65)
 
 //------------------------------------------------------
-//---------------------- Команды для анимации
+//---------------------- РљРѕРјР°РЅРґС‹ РґР»СЏ Р°РЅРёРјР°С†РёРё
 //------------------------------------------------------
 #define RB_UNRESERVED                 1    // unreserved animation sequence, may fail if no available slots
 #define RB_RESERVED                   2    // reserved animation sequence, should never fail

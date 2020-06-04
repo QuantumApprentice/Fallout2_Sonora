@@ -23,16 +23,16 @@
 #define METARULE_IS_LOADGAME      22
 #define is_loading_game metarule(METARULE_IS_LOADGAME, 0)
 
-// Тип действий в боевом режиме
-#define COMBAT_SUBTYPE_WEAPON_USED    (1) // было использовано оружие (в скриптах F2 не используется)
-#define COMBAT_SUBTYPE_HIT_SUCCEEDED  (2) // успешное попадание
-#define COMBAT_SUBTYPE_SEQUENCING     (3) // проверяется боевая последовательность (в скриптах F2 не используется)
-#define COMBAT_SUBTYPE_TURN           (4) // начало хода
-#define COMBAT_SUBTYPE_NONCOM_TURN    (5) // в F2 используется только у любимцев Мельхиора
+// РўРёРї РґРµР№СЃС‚РІРёР№ РІ Р±РѕРµРІРѕРј СЂРµР¶РёРјРµ
+#define COMBAT_SUBTYPE_WEAPON_USED    (1) // Р±С‹Р»Рѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРѕ РѕСЂСѓР¶РёРµ (РІ СЃРєСЂРёРїС‚Р°С… F2 РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ)
+#define COMBAT_SUBTYPE_HIT_SUCCEEDED  (2) // СѓСЃРїРµС€РЅРѕРµ РїРѕРїР°РґР°РЅРёРµ
+#define COMBAT_SUBTYPE_SEQUENCING     (3) // РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ Р±РѕРµРІР°СЏ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ (РІ СЃРєСЂРёРїС‚Р°С… F2 РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ)
+#define COMBAT_SUBTYPE_TURN           (4) // РЅР°С‡Р°Р»Рѕ С…РѕРґР°
+#define COMBAT_SUBTYPE_NONCOM_TURN    (5) // РІ F2 РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ Сѓ Р»СЋР±РёРјС†РµРІ РњРµР»СЊС…РёРѕСЂР°
 
 // ----------------------------------------------------------------------- //
 
-// Видеоролики (описание см в файле cut_naming.txt в папке cut)
+// Р’РёРґРµРѕСЂРѕР»РёРєРё (РѕРїРёСЃР°РЅРёРµ СЃРј РІ С„Р°Р№Р»Рµ cut_naming.txt РІ РїР°РїРєРµ cut)
 #define MOVIE_LOGO_STUDIO           0 // iplogo.mve
 #define MOVIE_INTRO                 1 // intro.mve
 #define MOVIE_ELDER                 2 // elder.mve
@@ -54,10 +54,10 @@
 // ----------------------------------------------------------------------- //
 
 /*
-Примечание: некоторые цвета скрыты слэшем для того, чтобы не перегружали выпадающий список в программе SSE. К тому же эти цвета просто не нужны.
+РџСЂРёРјРµС‡Р°РЅРёРµ: РЅРµРєРѕС‚РѕСЂС‹Рµ С†РІРµС‚Р° СЃРєСЂС‹С‚С‹ СЃР»СЌС€РµРј РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РЅРµ РїРµСЂРµРіСЂСѓР¶Р°Р»Рё РІС‹РїР°РґР°СЋС‰РёР№ СЃРїРёСЃРѕРє РІ РїСЂРѕРіСЂР°РјРјРµ SSE. Рљ С‚РѕРјСѓ Р¶Рµ СЌС‚Рё С†РІРµС‚Р° РїСЂРѕСЃС‚Рѕ РЅРµ РЅСѓР¶РЅС‹.
 */
 
-//#define COLOR_MSG_WARNING         (-2) // подпись крупным шрифтом
+//#define COLOR_MSG_WARNING         (-2) // РїРѕРґРїРёСЃСЊ РєСЂСѓРїРЅС‹Рј С€СЂРёС„С‚РѕРј
 //#define COLOR_MSG_SEQUENTIAL      (-1)
 #define COLOR_MSG_NORMAL           (0)
 //#define COLOR_MSG_BLACK            (1)
@@ -111,51 +111,51 @@
                                          display_mstr(msg);           \
                                          end                          \
 
-// Опции диалога
+// РћРїС†РёРё РґРёР°Р»РѕРіР°
 //#define start_dialogue(X,Y)        start_gdialog(-1,X,Y,-1,-1)
 
 #define good_fidget                (1)
 #define neutral_fidget             (4)
 #define bad_fidget                 (7)
 
-// Объемные головы
-#define HEAD_VILLA_BABL            (1)  // бабуля Адонсия
-#define HEAD_RANGER_GENERAL        (2)  // верховный командир рейнджеров
-#define HEAD_PHENIX_CULTBOSS       (3)  // Властелин Феника
-#define HEAD_TWO_SUN_BOSS          (4)  // лидер жестянщиков ТуСана
-#define HEAD_BOSS_DIXON            (5)  // генерал Диксон, Братство Стали
-#define HEAD_BOSS_POST             (6)  // часовой на корабле Братства Стали
-#define HEAD_BOSS_COMMANDER_A      (7)  // полевой командир Братства Стали (фоном стена дома)
-#define HEAD_BOSS_COMMANDER_B      (8)  // полевой командир Братства Стали (фоном дневная пустошь)
-#define HEAD_BOSS_COMMANDER_C      (9)  // полевой командир Братства Стали (фоном ночная пустошь)
-#define HEAD_BOSS_COMMANDER_D     (10)  // полевой командир Братства Стали (фоном пещера)
-#define HEAD_INFERNO_GATE         (11)  // супермутант-охранник в Инферно
-#define HEAD_JACALS_BOSS          (12)  // Бешенная Сука
-#define HEAD_GARAGE_BOSS          (13)  // мистер Коган начальник картеля старателей в Гараже (карта гаража)
-#define HEAD_HERMO_POST_DAY       (14)  // постовой Эрмосильо днем
-#define HEAD_HERMO_POST_NIGHT     (15)  // постовой Эрмосильо ночью
-#define HEAD_GARAGE_BOSS_B        (16)  // мистер Коган начальник картеля старателей в Гараже (карта сделки с караванов)
-#define HEAD_FLAGSTAFF_BOSS       (17)  // начальник гарнизона в Флагпуле
-#define HEAD_GARAGE_LUCAS         (18)  // Лукас на Заводе в Гараже
-#define HEAD_ENCOUNTER_PAUL       (19)  // заключенный на платформе супермутантов
+// РћР±СЉРµРјРЅС‹Рµ РіРѕР»РѕРІС‹
+#define HEAD_VILLA_BABL            (1)  // Р±Р°Р±СѓР»СЏ РђРґРѕРЅСЃРёСЏ
+#define HEAD_RANGER_GENERAL        (2)  // РІРµСЂС…РѕРІРЅС‹Р№ РєРѕРјР°РЅРґРёСЂ СЂРµР№РЅРґР¶РµСЂРѕРІ
+#define HEAD_PHENIX_CULTBOSS       (3)  // Р’Р»Р°СЃС‚РµР»РёРЅ Р¤РµРЅРёРєР°
+#define HEAD_TWO_SUN_BOSS          (4)  // Р»РёРґРµСЂ Р¶РµСЃС‚СЏРЅС‰РёРєРѕРІ РўСѓРЎР°РЅР°
+#define HEAD_BOSS_DIXON            (5)  // РіРµРЅРµСЂР°Р» Р”РёРєСЃРѕРЅ, Р‘СЂР°С‚СЃС‚РІРѕ РЎС‚Р°Р»Рё
+#define HEAD_BOSS_POST             (6)  // С‡Р°СЃРѕРІРѕР№ РЅР° РєРѕСЂР°Р±Р»Рµ Р‘СЂР°С‚СЃС‚РІР° РЎС‚Р°Р»Рё
+#define HEAD_BOSS_COMMANDER_A      (7)  // РїРѕР»РµРІРѕР№ РєРѕРјР°РЅРґРёСЂ Р‘СЂР°С‚СЃС‚РІР° РЎС‚Р°Р»Рё (С„РѕРЅРѕРј СЃС‚РµРЅР° РґРѕРјР°)
+#define HEAD_BOSS_COMMANDER_B      (8)  // РїРѕР»РµРІРѕР№ РєРѕРјР°РЅРґРёСЂ Р‘СЂР°С‚СЃС‚РІР° РЎС‚Р°Р»Рё (С„РѕРЅРѕРј РґРЅРµРІРЅР°СЏ РїСѓСЃС‚РѕС€СЊ)
+#define HEAD_BOSS_COMMANDER_C      (9)  // РїРѕР»РµРІРѕР№ РєРѕРјР°РЅРґРёСЂ Р‘СЂР°С‚СЃС‚РІР° РЎС‚Р°Р»Рё (С„РѕРЅРѕРј РЅРѕС‡РЅР°СЏ РїСѓСЃС‚РѕС€СЊ)
+#define HEAD_BOSS_COMMANDER_D     (10)  // РїРѕР»РµРІРѕР№ РєРѕРјР°РЅРґРёСЂ Р‘СЂР°С‚СЃС‚РІР° РЎС‚Р°Р»Рё (С„РѕРЅРѕРј РїРµС‰РµСЂР°)
+#define HEAD_INFERNO_GATE         (11)  // СЃСѓРїРµСЂРјСѓС‚Р°РЅС‚-РѕС…СЂР°РЅРЅРёРє РІ РРЅС„РµСЂРЅРѕ
+#define HEAD_JACALS_BOSS          (12)  // Р‘РµС€РµРЅРЅР°СЏ РЎСѓРєР°
+#define HEAD_GARAGE_BOSS          (13)  // РјРёСЃС‚РµСЂ РљРѕРіР°РЅ РЅР°С‡Р°Р»СЊРЅРёРє РєР°СЂС‚РµР»СЏ СЃС‚Р°СЂР°С‚РµР»РµР№ РІ Р“Р°СЂР°Р¶Рµ (РєР°СЂС‚Р° РіР°СЂР°Р¶Р°)
+#define HEAD_HERMO_POST_DAY       (14)  // РїРѕСЃС‚РѕРІРѕР№ Р­СЂРјРѕСЃРёР»СЊРѕ РґРЅРµРј
+#define HEAD_HERMO_POST_NIGHT     (15)  // РїРѕСЃС‚РѕРІРѕР№ Р­СЂРјРѕСЃРёР»СЊРѕ РЅРѕС‡СЊСЋ
+#define HEAD_GARAGE_BOSS_B        (16)  // РјРёСЃС‚РµСЂ РљРѕРіР°РЅ РЅР°С‡Р°Р»СЊРЅРёРє РєР°СЂС‚РµР»СЏ СЃС‚Р°СЂР°С‚РµР»РµР№ РІ Р“Р°СЂР°Р¶Рµ (РєР°СЂС‚Р° СЃРґРµР»РєРё СЃ РєР°СЂР°РІР°РЅРѕРІ)
+#define HEAD_FLAGSTAFF_BOSS       (17)  // РЅР°С‡Р°Р»СЊРЅРёРє РіР°СЂРЅРёР·РѕРЅР° РІ Р¤Р»Р°РіРїСѓР»Рµ
+#define HEAD_GARAGE_LUCAS         (18)  // Р›СѓРєР°СЃ РЅР° Р—Р°РІРѕРґРµ РІ Р“Р°СЂР°Р¶Рµ
+#define HEAD_ENCOUNTER_PAUL       (19)  // Р·Р°РєР»СЋС‡РµРЅРЅС‹Р№ РЅР° РїР»Р°С‚С„РѕСЂРјРµ СЃСѓРїРµСЂРјСѓС‚Р°РЅС‚РѕРІ
 
-// Фон объемной головы
+// Р¤РѕРЅ РѕР±СЉРµРјРЅРѕР№ РіРѕР»РѕРІС‹
 #define BACKGROUND_WASTELND        (1)    // WASTELND.FRM
 
-// Реакция объемной головы
+// Р РµР°РєС†РёСЏ РѕР±СЉРµРјРЅРѕР№ РіРѕР»РѕРІС‹
 #define HEAD_REACTION_GOOD         (49)
 #define HEAD_REACTION_NEUTRAL      (50)
 #define HEAD_REACTION_BAD          (51)
 
 // ----------------------------------------------------------------------- //
 
-#define STAT_st                    (0) // Сила
-#define STAT_pe                    (1) // Восприятие
-#define STAT_en                    (2) // Выносливость
-#define STAT_ch                    (3) // Харизма
-#define STAT_iq                    (4) // Интеллект
-#define STAT_ag                    (5) // Ловкость
-#define STAT_lu                    (6) // Удача
+#define STAT_st                    (0) // РЎРёР»Р°
+#define STAT_pe                    (1) // Р’РѕСЃРїСЂРёСЏС‚РёРµ
+#define STAT_en                    (2) // Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ
+#define STAT_ch                    (3) // РҐР°СЂРёР·РјР°
+#define STAT_iq                    (4) // РРЅС‚РµР»Р»РµРєС‚
+#define STAT_ag                    (5) // Р›РѕРІРєРѕСЃС‚СЊ
+#define STAT_lu                    (6) // РЈРґР°С‡Р°
 
 #define dude_strength              (get_critter_stat(dude_obj,STAT_st))
 #define dude_perception            (get_critter_stat(dude_obj,STAT_pe))
@@ -226,7 +226,7 @@
 #define self_cur_hits              get_critter_stat(self_obj,STAT_current_hp)
 #define self_max_hits              get_critter_stat(self_obj,STAT_max_hp)
 
-// Состояние криттера
+// РЎРѕСЃС‚РѕСЏРЅРёРµ РєСЂРёС‚С‚РµСЂР°
 #define CRITTER_IS_NORMAL          (0)
 #define CRITTER_IS_DEAD            (1)
 #define CRITTER_IS_PRONE           (2)
@@ -235,7 +235,7 @@
 #define is_critter_dead(who)       (critter_state(who) bwand CRITTER_IS_DEAD)
 #define is_critter_prone(who)      (critter_state(who) bwand CRITTER_IS_PRONE)
 
-// Слоты инвентаря
+// РЎР»РѕС‚С‹ РёРЅРІРµРЅС‚Р°СЂСЏ
 #define INVEN_TYPE_INV_COUNT       (-2)
 #define INVEN_TYPE_WORN            (0)
 #define INVEN_TYPE_RIGHT_HAND      (1)
@@ -262,24 +262,24 @@
 
 // ----------------------------------------------------------------------- //
 
-#define SKILL_SMALL_GUNS                    (0)  // легкое
-#define SKILL_BIG_GUNS                      (1)  // тяжелое
-#define SKILL_ENERGY_WEAPONS                (2)  // энерго
-#define SKILL_UNARMED_COMBAT                (3)  // без оружия
-#define SKILL_MELEE                         (4)  // холодное
-#define SKILL_THROWING                      (5)  // метание
-#define SKILL_FIRST_AID                     (6)  // 1я помощь
-#define SKILL_DOCTOR                        (7)  // доктор
-#define SKILL_SNEAK                         (8)  // скрытность
-#define SKILL_LOCKPICK                      (9)  // взлом
-#define SKILL_STEAL                         (10) // кража
-#define SKILL_TRAPS                         (11) // ловушки
-#define SKILL_SCIENCE                       (12) // наука
-#define SKILL_REPAIR                        (13) // ремонт
-#define SKILL_CONVERSANT                    (14) // красноречие
-#define SKILL_BARTER                        (15) // торговля
-#define SKILL_GAMBLING                      (16) // игры
-#define SKILL_SCOUT                         (17) // выживание
+#define SKILL_SMALL_GUNS                    (0)  // Р»РµРіРєРѕРµ
+#define SKILL_BIG_GUNS                      (1)  // С‚СЏР¶РµР»РѕРµ
+#define SKILL_ENERGY_WEAPONS                (2)  // СЌРЅРµСЂРіРѕ
+#define SKILL_UNARMED_COMBAT                (3)  // Р±РµР· РѕСЂСѓР¶РёСЏ
+#define SKILL_MELEE                         (4)  // С…РѕР»РѕРґРЅРѕРµ
+#define SKILL_THROWING                      (5)  // РјРµС‚Р°РЅРёРµ
+#define SKILL_FIRST_AID                     (6)  // 1СЏ РїРѕРјРѕС‰СЊ
+#define SKILL_DOCTOR                        (7)  // РґРѕРєС‚РѕСЂ
+#define SKILL_SNEAK                         (8)  // СЃРєСЂС‹С‚РЅРѕСЃС‚СЊ
+#define SKILL_LOCKPICK                      (9)  // РІР·Р»РѕРј
+#define SKILL_STEAL                         (10) // РєСЂР°Р¶Р°
+#define SKILL_TRAPS                         (11) // Р»РѕРІСѓС€РєРё
+#define SKILL_SCIENCE                       (12) // РЅР°СѓРєР°
+#define SKILL_REPAIR                        (13) // СЂРµРјРѕРЅС‚
+#define SKILL_CONVERSANT                    (14) // РєСЂР°СЃРЅРѕСЂРµС‡РёРµ
+#define SKILL_BARTER                        (15) // С‚РѕСЂРіРѕРІР»СЏ
+#define SKILL_GAMBLING                      (16) // РёРіСЂС‹
+#define SKILL_SCOUT                         (17) // РІС‹Р¶РёРІР°РЅРёРµ
 
 #define skill_up(skill,x)                   display_msg(g_mstr(130)+g_mstr(110+skill)+g_mstr(131)+x+g_mstr(132)); \
                                             critter_mod_skill(dude_obj, skill, x) \
@@ -290,12 +290,12 @@
 
 // ----------------------------------------------------------------------- //
 
-// Трейт или перк:
+// РўСЂРµР№С‚ РёР»Рё РїРµСЂРє:
 #define TRAIT_PERK                           (0)
 #define TRAIT_OBJECT                         (1)
 #define TRAIT_TRAIT                          (2)
 
-// Перки
+// РџРµСЂРєРё
 #define PERK_bonus_awareness                 (0)
 #define PERK_bonus_hth_attacks               (1)
 #define PERK_bonus_hth_damage                (2)
@@ -340,7 +340,7 @@
 #define PERK_game_dont_finish               (41)
 #define PERK_flower_child                   (42)
 #define PERK_pathfinder                     (43)
-#define PERK_ghouling_start                 (44) // В Fallout 2 это PERK_animal_friend
+#define PERK_ghouling_start                 (44) // Р’ Fallout 2 СЌС‚Рѕ PERK_animal_friend
 #define PERK_scout                          (45)
 #define PERK_mysterious_stranger            (46)
 #define PERK_ranger                         (47)
@@ -349,13 +349,13 @@
 #define PERK_swift_learner                  (50)
 #define PERK_tag                            (51)
 #define PERK_mutate                         (52)
-//!!! перки 53-74 системные и недоступны игроку
+//!!! РїРµСЂРєРё 53-74 СЃРёСЃС‚РµРјРЅС‹Рµ Рё РЅРµРґРѕСЃС‚СѓРїРЅС‹ РёРіСЂРѕРєСѓ
 #define PERK_RESERV_73                      (73)
 #define PERK_dermal_armor                   (74)
 #define PERK_dermal_enhancement             (75)
 #define PERK_phoenix_armor                  (76)
-#define PERK_ghouling_charisma              (77) // В Fallout 2 это PERK_phoenix_enhancement_perk
-#define PERK_ghouling_fiziology             (78) // В Fallout 2 это PERK_adrenaline_rush_perk
+#define PERK_ghouling_charisma              (77) // Р’ Fallout 2 СЌС‚Рѕ PERK_phoenix_enhancement_perk
+#define PERK_ghouling_fiziology             (78) // Р’ Fallout 2 СЌС‚Рѕ PERK_adrenaline_rush_perk
 #define PERK_adrenaline_rush                (79)
 #define PERK_wasteland_school               (80)
 #define PERK_hint_look                      (81)
@@ -399,24 +399,24 @@
 
 // ----------------------------------------------------------------------- //
 
-#define TRAIT_fast_metabolism              (0) // Ускор. метаболизм
-#define TRAIT_bruiser                      (1) // Хулиган
-#define TRAIT_small_frame                  (2) // Миниатюрный
-#define TRAIT_one_hander                   (3) // Однорукий
-#define TRAIT_finesse                      (4) // Точность
-#define TRAIT_kamikaze                     (5) // Камикадзе
-#define TRAIT_heavy_handed                 (6) // Тяжелая рука
-#define TRAIT_fast_shot                    (7) // Стрельба навскидку
-#define TRAIT_espanol                      (8) // Испанский язык
-#define TRAIT_jinxed                       (9) // Порченый
-#define TRAIT_good_natured                (10) // Добрая душа
-#define TRAIT_drug_addict                 (11) // Чувств. к химии
-#define TRAIT_drug_resistant              (12) // Сопрот. химии
-#define TRAIT_Villa_tradition             (13) // Традиции Виллы
-#define TRAIT_skilled                     (14) // Тренированный
-#define TRAIT_gifted                      (15) // Одаренный
+#define TRAIT_fast_metabolism              (0) // РЈСЃРєРѕСЂ. РјРµС‚Р°Р±РѕР»РёР·Рј
+#define TRAIT_bruiser                      (1) // РҐСѓР»РёРіР°РЅ
+#define TRAIT_small_frame                  (2) // РњРёРЅРёР°С‚СЋСЂРЅС‹Р№
+#define TRAIT_one_hander                   (3) // РћРґРЅРѕСЂСѓРєРёР№
+#define TRAIT_finesse                      (4) // РўРѕС‡РЅРѕСЃС‚СЊ
+#define TRAIT_kamikaze                     (5) // РљР°РјРёРєР°РґР·Рµ
+#define TRAIT_heavy_handed                 (6) // РўСЏР¶РµР»Р°СЏ СЂСѓРєР°
+#define TRAIT_fast_shot                    (7) // РЎС‚СЂРµР»СЊР±Р° РЅР°РІСЃРєРёРґРєСѓ
+#define TRAIT_espanol                      (8) // РСЃРїР°РЅСЃРєРёР№ СЏР·С‹Рє
+#define TRAIT_jinxed                       (9) // РџРѕСЂС‡РµРЅС‹Р№
+#define TRAIT_good_natured                (10) // Р”РѕР±СЂР°СЏ РґСѓС€Р°
+#define TRAIT_drug_addict                 (11) // Р§СѓРІСЃС‚РІ. Рє С…РёРјРёРё
+#define TRAIT_drug_resistant              (12) // РЎРѕРїСЂРѕС‚. С…РёРјРёРё
+#define TRAIT_Villa_tradition             (13) // РўСЂР°РґРёС†РёРё Р’РёР»Р»С‹
+#define TRAIT_skilled                     (14) // РўСЂРµРЅРёСЂРѕРІР°РЅРЅС‹Р№
+#define TRAIT_gifted                      (15) // РћРґР°СЂРµРЅРЅС‹Р№
 
-// Свойства объектов
+// РЎРІРѕР№СЃС‚РІР° РѕР±СЉРµРєС‚РѕРІ
 #define OBJECT_AI_PACKET                   (5)
 #define OBJECT_TEAM_NUM                    (6)
 #define OBJECT_CUR_ROT                    (10)
@@ -447,9 +447,9 @@
 
 // ----------------------------------------------------------------------- //
 
-/* Данные прототипов */
+/* Р”Р°РЅРЅС‹Рµ РїСЂРѕС‚РѕС‚РёРїРѕРІ */
 
-//--- Инвентарь
+//--- РРЅРІРµРЅС‚Р°СЂСЊ
 #define item_type_armor        (0)
 #define item_type_container    (1)
 #define item_type_drug         (2)
@@ -458,7 +458,7 @@
 #define item_type_misc_item    (5)
 #define item_type_key_item     (6)
 
-//--- общее
+//--- РѕР±С‰РµРµ
 #define it_pid                 (0)
 #define it_name                (1)
 #define it_description         (2)
@@ -477,7 +477,7 @@
 #define it_inv_fid            (15)
 #define it_weapon_range      (555)
 
-//--- криттер
+//--- РєСЂРёС‚С‚РµСЂ
 #define cr_pid                 (0)
 #define cr_name                (1)
 #define cr_description         (2)
@@ -491,12 +491,12 @@
 #define cr_head_fid           (10)
 #define cr_body_type          (11)
 
-//--- тип тела криттера
+//--- С‚РёРї С‚РµР»Р° РєСЂРёС‚С‚РµСЂР°
 #define CR_BODY_BIPED           0
 #define CR_BODY_QUADRUPED       1
 #define CR_BODY_ROBOTIC         2
 
-//--- окружение
+//--- РѕРєСЂСѓР¶РµРЅРёРµ
 #define sc_pid                 (0)
 #define sc_name                (1)
 #define sc_description         (2)
@@ -510,7 +510,7 @@
 #define sc_data               (10)
 #define sc_material           (11)
 
-//--- стена
+//--- СЃС‚РµРЅР°
 #define wa_pid                 (0)
 #define wa_name                (1)
 #define wa_description         (2)
@@ -622,12 +622,12 @@
 
 // ----------------------------------------------------------------------- //
 
-/* Метаданные */
+/* РњРµС‚Р°РґР°РЅРЅС‹Рµ */
 
-//Сигнал для завершения игры
+//РЎРёРіРЅР°Р» РґР»СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ РёРіСЂС‹
 #define signal_end_game               metarule(13, 0)
 
-//Вызов лифта:
+//Р’С‹Р·РѕРІ Р»РёС„С‚Р°:
 #define elevator(X)                   metarule(15, X)
 
 #define ELEV_BOS1                (0)  // Brotherhood of Steel main elevator
@@ -644,46 +644,46 @@
 #define ELEV_SIERRA2             (11) // Sierra Elev 2 (3-4)
 #define ELEV_SIERRAS             (12) // Sierra Service Elev (1-2-3-4)
 
-//Число партийцев в партии
+//Р§РёСЃР»Рѕ РїР°СЂС‚РёР№С†РµРІ РІ РїР°СЂС‚РёРё
 #define party_member_count(X)    metarule(16, X)
 #define DONT_LIST_HIDDEN_MEMBERS (0)
 #define LIST_HIDDEN_MEMBERS      (1)
 
-//Находится ли криттер под действием наркотиков
+//РќР°С…РѕРґРёС‚СЃСЏ Р»Рё РєСЂРёС‚С‚РµСЂ РїРѕРґ РґРµР№СЃС‚РІРёРµРј РЅР°СЂРєРѕС‚РёРєРѕРІ
 #define drug_influence(WHO)      metarule(18, WHO)
 
-//Выбран ли навык как основной
+//Р’С‹Р±СЂР°РЅ Р»Рё РЅР°РІС‹Рє РєР°Рє РѕСЃРЅРѕРІРЅРѕР№
 #define is_skill_tagged(SKILL)   metarule(40, SKILL)
 
-//Команда криттеру бросить вещи под ноги
+//РљРѕРјР°РЅРґР° РєСЂРёС‚С‚РµСЂСѓ Р±СЂРѕСЃРёС‚СЊ РІРµС‰Рё РїРѕРґ РЅРѕРіРё
 #define obj_drop_everything(WHO) metarule(42, WHO)
 
-//Команда криттеру убрать вещи из рук
+//РљРѕРјР°РЅРґР° РєСЂРёС‚С‚РµСЂСѓ СѓР±СЂР°С‚СЊ РІРµС‰Рё РёР· СЂСѓРє
 #define inven_unwield(WHO)       metarule(43, WHO)
 
-//Проверка фильтра мата
+//РџСЂРѕРІРµСЂРєР° С„РёР»СЊС‚СЂР° РјР°С‚Р°
 #define language_filter_is_on    metarule(47, 0)
 
-//Проверка уровня насилия
+//РџСЂРѕРІРµСЂРєР° СѓСЂРѕРІРЅСЏ РЅР°СЃРёР»РёСЏ
 #define violence_filter_setting  metarule(48, 0)
 #define VLNCLVL_NONE    0
 #define VLNCLVL_MIN     1
 #define VLNCLVL_NORMAL  2
 #define VLNCLVL_MAX     3
 
-//Возврат типа повреждений, нанесенных указанным оружием
+//Р’РѕР·РІСЂР°С‚ С‚РёРїР° РїРѕРІСЂРµР¶РґРµРЅРёР№, РЅР°РЅРµСЃРµРЅРЅС‹С… СѓРєР°Р·Р°РЅРЅС‹Рј РѕСЂСѓР¶РёРµРј
 #define weapon_dmg_type(WEAP)    metarule(49, WEAP)
 
-//Проверка возможности торговать с криттером
+//РџСЂРѕРІРµСЂРєР° РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё С‚РѕСЂРіРѕРІР°С‚СЊ СЃ РєСЂРёС‚С‚РµСЂРѕРј
 #define critter_can_barter(WHO) metarule(50, WHO)
 
-//Возвращает тип криттера по видам убитых
+//Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РёРї РєСЂРёС‚С‚РµСЂР° РїРѕ РІРёРґР°Рј СѓР±РёС‚С‹С…
 #define critter_kill_type(WHO)  metarule(51, WHO)
 
-//Очистка событий подвешанных на таймер
+//РћС‡РёСЃС‚РєР° СЃРѕР±С‹С‚РёР№ РїРѕРґРІРµС€Р°РЅРЅС‹С… РЅР° С‚Р°Р№РјРµСЂ
 #define rm_fixed_timer_event(WHO,FIXED_VAL) metarule3(100,WHO,FIXED_VAL,0)
 
-//Число убитых игроком криттеров
+//Р§РёСЃР»Рѕ СѓР±РёС‚С‹С… РёРіСЂРѕРєРѕРј РєСЂРёС‚С‚РµСЂРѕРІ
 #define player_kill_count(TYPE)    metarule3(103,TYPE,0,0)
 // Off/On states for mark_map_entrance_state
 #define OFFSTATE  0
@@ -696,13 +696,13 @@
 #define KNOWNTILETYPE         1
 #define VISITEDTILETYPE       2
 
-//Указатель на следующего криттера на заданном гексе
+//РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РµРіРѕ РєСЂРёС‚С‚РµСЂР° РЅР° Р·Р°РґР°РЅРЅРѕРј РіРµРєСЃРµ
 #define tile_get_next_critter(tile, elevation, lastCritter)   metarule3(106, tile, elevation, lastCritter)
 
-//Изменить базовый FID
+//РР·РјРµРЅРёС‚СЊ Р±Р°Р·РѕРІС‹Р№ FID
 #define art_change_fid_num(WHO, NUM)         metarule3(107,WHO,NUM,0)
 
-//Центрировать экран
+//Р¦РµРЅС‚СЂРёСЂРѕРІР°С‚СЊ СЌРєСЂР°РЅ
 #define tile_set_center(tileNum)             metarule3(108,tileNum,0,0)
 
 //?
@@ -712,48 +712,48 @@
 #define map_get_load_area                    metarule3(111,0,0,0)
 
 //-------------------------
-//--- Метаданные по машине:
+//--- РњРµС‚Р°РґР°РЅРЅС‹Рµ РїРѕ РјР°С€РёРЅРµ:
 
-//Возвращение номера города с текущим местоположением автомобиля
+//Р’РѕР·РІСЂР°С‰РµРЅРёРµ РЅРѕРјРµСЂР° РіРѕСЂРѕРґР° СЃ С‚РµРєСѓС‰РёРј РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµРј Р°РІС‚РѕРјРѕР±РёР»СЏ
 #define car_current_town                     metarule(30, 0)
 
-//Посадить команду ГГ в машину и выйти на карту мира
+//РџРѕСЃР°РґРёС‚СЊ РєРѕРјР°РЅРґСѓ Р“Р“ РІ РјР°С€РёРЅСѓ Рё РІС‹Р№С‚Рё РЅР° РєР°СЂС‚Сѓ РјРёСЂР°
 #define car_give_to_party                    metarule(31, 0)
 
-//Заправить машину топливом
+//Р—Р°РїСЂР°РІРёС‚СЊ РјР°С€РёРЅСѓ С‚РѕРїР»РёРІРѕРј
 #define car_give_gas(AMOUNT)                 metarule(32, AMOUNT)
 
-//Изменить максимальный объем груза для машины
+//РР·РјРµРЅРёС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РѕР±СЉРµРј РіСЂСѓР·Р° РґР»СЏ РјР°С€РёРЅС‹
 #define set_car_carry_amount(VALUE)          metarule(52, VALUE)
 
-//Показывает максимальный объем груза для машины
+//РџРѕРєР°Р·С‹РІР°РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РѕР±СЉРµРј РіСЂСѓР·Р° РґР»СЏ РјР°С€РёРЅС‹
 #define car_carry_amount                     metarule(53, 0)
 
-//Машина без топлива (0 - машина заряжена >0, 1 - машина без топлива)
+//РњР°С€РёРЅР° Р±РµР· С‚РѕРїР»РёРІР° (0 - РјР°С€РёРЅР° Р·Р°СЂСЏР¶РµРЅР° >0, 1 - РјР°С€РёРЅР° Р±РµР· С‚РѕРїР»РёРІР°)
 #define car_out_of_fuel                      metarule3(110,0,0,0)
 
 //-------------------------
-//--- Метаданные по карте мира:
+//--- РњРµС‚Р°РґР°РЅРЅС‹Рµ РїРѕ РєР°СЂС‚Рµ РјРёСЂР°:
 
-//Статус локации
+//РЎС‚Р°С‚СѓСЃ Р»РѕРєР°С†РёРё
 #define town_known(X)                        metarule(17, X)
 
-//Статус карты
+//РЎС‚Р°С‚СѓСЃ РєР°СЂС‚С‹
 #define map_is_known(X)                      metarule(19, X)
 
-//Помечает тайл карты мира как посещенный
+//РџРѕРјРµС‡Р°РµС‚ С‚Р°Р№Р» РєР°СЂС‚С‹ РјРёСЂР° РєР°Рє РїРѕСЃРµС‰РµРЅРЅС‹Р№
 #define mark_world_subtile_visited(XPOS,YPOS,RADIUS) metarule3(101,XPOS,YPOS,RADIUS)
 
-//Состояние тайла карты мира
+//РЎРѕСЃС‚РѕСЏРЅРёРµ С‚Р°Р№Р»Р° РєР°СЂС‚С‹ РјРёСЂР°
 #define wm_get_subtile_state(XPOS,YPOS)      metarule3(105,XPOS,YPOS,0)
 
-//Текущая координата по х на карте мира
+//РўРµРєСѓС‰Р°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° РїРѕ С… РЅР° РєР°СЂС‚Рµ РјРёСЂР°
 #define worldmap_xpos                        metarule(44, 0)
 
-//Текущая координата по y на карте мира
+//РўРµРєСѓС‰Р°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° РїРѕ y РЅР° РєР°СЂС‚Рµ РјРёСЂР°
 #define worldmap_ypos                        metarule(45, 0)
 
-//Текущий город
+//РўРµРєСѓС‰РёР№ РіРѕСЂРѕРґ
 #define cur_town                             metarule(46, 0)
 
 //-------------------------
@@ -766,7 +766,7 @@
 
 // ----------------------------------------------------------------------- //
 
-/* Системные настройки */
+/* РЎРёСЃС‚РµРјРЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё */
 
 // gsound_character_types
 #define snd_human                  (0)
@@ -821,7 +821,7 @@
 
 // ----------------------------------------------------------------------- //
 
-/* Затухание экрана */
+/* Р—Р°С‚СѓС…Р°РЅРёРµ СЌРєСЂР°РЅР° */
 #define ONE_GAME_SECOND             (10)
 #define ONE_GAME_MINUTE             (60*ONE_GAME_SECOND)
 #define ONE_GAME_HOUR               (60*ONE_GAME_MINUTE)
@@ -832,7 +832,7 @@
 #define PLAY_FADE                   gfade_out(ONE_GAME_SECOND); \
                                     gfade_in(ONE_GAME_SECOND);  \
 
-/* Результаты бросков случайных чисел для функции do_check */
+/* Р РµР·СѓР»СЊС‚Р°С‚С‹ Р±СЂРѕСЃРєРѕРІ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР» РґР»СЏ С„СѓРЅРєС†РёРё do_check */
 #define ROLL_CRITICAL_FAILURE       0
 #define ROLL_FAILURE                1
 #define ROLL_SUCCESS                2
@@ -840,7 +840,7 @@
 
 // ----------------------------------------------------------------------- //
 
-/* Битовые маски */
+/* Р‘РёС‚РѕРІС‹Рµ РјР°СЃРєРё */
 #define bit_1                       (1)
 #define bit_2                       (2)
 #define bit_3                       (4)

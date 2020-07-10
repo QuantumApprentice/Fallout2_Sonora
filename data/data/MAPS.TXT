@@ -546,7 +546,7 @@ can_rest_here=No,No,No
 [Map 060]
 lookup_name=InfernoRoad
 map_name=InfRoad
-music=f1_infrn
+music=fs_infrn
 ambient_sfx=blank:100
 saved=Yes
 dead_bodies_age=No
@@ -554,7 +554,7 @@ dead_bodies_age=No
 [Map 061]
 lookup_name=InfernoCity
 map_name=InfCity
-music=f1_infrn
+music=fs_infrn
 ambient_sfx=blank:100
 saved=Yes
 dead_bodies_age=No
@@ -563,7 +563,7 @@ can_rest_here=No,No,No
 [Map 062]
 lookup_name=InfernoShop
 map_name=InfShop
-music=f1_infrn
+music=fs_infrn
 ambient_sfx=blank:100
 saved=Yes
 dead_bodies_age=No
@@ -572,7 +572,7 @@ can_rest_here=No,No,No
 [Map 063]
 lookup_name=InfernoPolic
 map_name=InfPolic
-music=f1_infrn
+music=fs_infrn
 ambient_sfx=blank:100
 saved=Yes
 dead_bodies_age=No
@@ -628,7 +628,7 @@ can_rest_here=No,No,No
 [Map 069]
 lookup_name=PuertoDestroy
 map_name=PSDstr
-music=f1_infrn
+music=fs_infrn
 ambient_sfx=blank:100
 saved=Yes
 can_rest_here=No,No,No
@@ -861,7 +861,7 @@ saved=Yes
 [Map 095]
 lookup_name=InfernoChurch
 map_name=InfChrch
-music=f1_infrn
+music=fs_infrn
 ambient_sfx=blank:100
 saved=Yes
 dead_bodies_age=No
@@ -998,7 +998,7 @@ can_rest_here=No,No,No
 [Map 111]
 lookup_name=InfernoMonument
 map_name=InfMnmt
-music=f1_infrn
+music=fs_infrn
 ambient_sfx=blank:100
 saved=Yes
 dead_bodies_age=No
@@ -1072,14 +1072,17 @@ ambient_sfx=blank:100
 saved=Yes
 can_rest_here=No,No,No
 
-;---------------- !!!
+;---------------- Сан-Брамин - Оазис
 
 [Map 119]
-lookup_name=mapreserv119
-map_name=desert1
-music=f1_dsrt
+lookup_name=SanBrahminOasis
+map_name=SBOasis
+music=f1_brhmn
 ambient_sfx=blank:100
 saved=Yes
+can_rest_here=No,No,No
+
+;---------------- !!!
 
 [Map 120]
 lookup_name=mapreserv120

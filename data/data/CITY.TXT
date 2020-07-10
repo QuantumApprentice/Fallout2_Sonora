@@ -63,9 +63,9 @@ townmap_art_idx=158
 townmap_label_art_idx=370
 entrance_0=On,310,310,GarageSign,-1,-1,0
 entrance_1=Off,170,310,GarageHome,-1,-1,0
-entrance_2=Off,150,150,GarageDsrt,-1,-1,0
-entrance_3=Off,300,150,GarageHist,-1,-1,0
-entrance_4=Off,-1,-1,GarageBram,-1,-1,0
+entrance_2=Off,170,150,GarageDsrt,-1,-1,0
+entrance_3=Off,320,150,GarageHist,-1,-1,0
+entrance_4=Off,370,240,GarageBram,-1,-1,0
 entrance_5=Off,260,410,RangersWater,-1,-1,0
 entrance_6=Off,100,250,GarageTrailer,-1,-1,0
 
@@ -78,8 +78,9 @@ townmap_art_idx=159
 townmap_label_art_idx=371
 entrance_0=On,230,300,SanBrahminSign,-1,-1,0
 entrance_1=Off,230,210,SanBrahminCity,-1,-1,0
-entrance_2=Off,330,150,SanBrahminTabl,-1,-1,0
-entrance_3=Off,170,90,SanBrahminCave,-1,-1,0
+entrance_2=Off,330,160,SanBrahminTabl,-1,-1,0
+entrance_3=Off,230,80,SanBrahminCave,-1,-1,0
+entrance_4=Off,80,90,SanBrahminOasis,-1,-1,0
 
 [Area 04]                ; Ту-Сан
 area_name=TwoSun
@@ -306,7 +307,7 @@ world_pos=985,580
 start_state=Off
 size=Medium
 townmap_art_idx=446
-townmap_label_art_idx=-1
+townmap_label_art_idx=376
 entrance_0=On,190,310,Vault27a,-1,-1,0
 entrance_1=Off,-1,-1,Vault27b,-1,-1,0
 
@@ -537,7 +538,7 @@ entrance_0=On,-1,-1,Special Rail Encounter,-1,-1,0
 area_name=City44
 world_pos=100,100
 start_state=Off
-lock_state=Off
+lock_state=On
 size=Small
 townmap_art_idx=-1
 townmap_label_art_idx=-1

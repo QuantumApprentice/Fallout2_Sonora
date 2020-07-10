@@ -48,18 +48,18 @@ procedure trigerRocks begin
    display_mstr(101);
    end
    else begin
-   critter_dmg(dude_obj, random(2,10), DMG_normal_dam);
+   critter_dmg(dude_obj, random(1,10), DMG_normal_dam);
    display_mstr(100);
    end
 end
 
 procedure trigerRad begin
-   radiation_inc(dude_obj, random(5,35));
+   radiation_inc(dude_obj, random(1,10));
    display_mstr(110);
 end
 
 procedure trigerWind begin
-   critter_dmg(dude_obj, random(2,10), DMG_normal_dam);
+   critter_dmg(dude_obj, random(1,10), DMG_normal_dam);
    display_mstr(120);
 end
 
@@ -75,7 +75,7 @@ procedure trigerWater begin
    display_mstr(131);
    end
    else begin
-   critter_dmg(dude_obj, random(2,10), DMG_normal_dam);
+   critter_dmg(dude_obj, random(1,10), DMG_normal_dam);
    display_mstr(130);
    end
 end

@@ -19,7 +19,7 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
       if (map_first_run) then begin
-         if ((cur_map_index == MAP_INFERNO_CITY) or (cur_map_index == MAP_INFERNO_SHOP) or (cur_map_index == MAP_INFERNO_POLICE) or (cur_map_index == MAP_RANGERS_QUARTZ) or (cur_map_index == MAP_PHOENIX_DSTROY)) then begin
+         if ((cur_map_index == MAP_INFERNO_CITY) or (cur_map_index == MAP_INFERNO_SHOP) or (cur_map_index == MAP_INFERNO_POLICE) or (cur_map_index == MAP_RANGERS_QUARTZ)) then begin
          item_add(self_obj,PID_M_NUKA_COLA_RAD,random(1,2+dude_luck))
          end
          else begin

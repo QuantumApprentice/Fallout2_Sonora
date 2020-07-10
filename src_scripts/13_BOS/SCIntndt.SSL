@@ -75,6 +75,7 @@ procedure NodeBarter401;
 procedure NodeBarter402;
 procedure NodeBarter403;
 procedure NodeBarter404;
+procedure NodeBarter405;
 procedure NodeArmorPower100;
 procedure NodeArmorPower101;
 procedure NodeArmorPower102;
@@ -265,7 +266,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_BOS_TRAITOR,-90) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,-20) // Поправка к отношению за принадлежность к фракциям
 
-   dialog_proc_barter(0,104,NodeStartDialog,-1,-1)
+   dialog_proc_barter(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -352,6 +353,10 @@ procedure NodeSndDialog begin
    end
 
    //--- Жетоны БС
+   if ((item_amnt(dude_obj,PID_BOS_ARMYTAG_A)>0) or (item_amnt(dude_obj,PID_BOS_ARMYTAG_B)>0)) then begin
+   NAnswer(275,1,NodeBarter405)
+   end
+
    if (item_amnt(dude_obj,PID_BOS_ARMY_TAG) > 0) then begin
    NAnswer(280,1,NodeBarter400)
    end
@@ -450,7 +455,12 @@ end
 procedure NodeBarter106 begin
    game_time_advance(ONE_GAME_HOUR*5);
    PLAY_FADE
+   if (is_skill_tagged(SKILL_BIG_GUNS) == true) then begin
+   skill_up(SKILL_BIG_GUNS,6);
+   end
+   else begin
    skill_up(SKILL_BIG_GUNS,5);
+   end
    call Node999;
 end
 
@@ -659,15 +669,40 @@ procedure NodeBarter404 begin
    NAnswer(289,1,Node999)
 end
 
+procedure NodeBarter405 begin
+   if ((getQuest(GVAR_INF_QST_PALADIN_B) == qZero) or (getQuest(GVAR_INF_QST_PALADIN_B) == qStart)) then begin
+      Reply(273)
+      NAnswer(274,1,NodeSndDialog)
+   end
+   else begin
+      if (item_amnt(dude_obj,PID_BOS_ARMYTAG_A)>0) then begin
+      item_add(dude_obj,PID_BOS_ARMY_TAG,1)
+      item_remove(dude_obj,PID_BOS_ARMYTAG_A,1)
+      end
+      if (item_amnt(dude_obj,PID_BOS_ARMYTAG_B)>0) then begin
+      item_add(dude_obj,PID_BOS_ARMY_TAG,1)
+      item_remove(dude_obj,PID_BOS_ARMYTAG_B,1)
+      end
+      call NodeBarter400;
+   end
+end
+
 //--- СИЛОВАЯ БРОНЯ
 
 procedure NodeArmorPower100 begin
-   Reply(321)
-   NAnswer(331,1,NodeArmorPower101)
-   if (item_amnt(dude_obj,PID_ARMOR_POWER_A) > 0) then begin
-   GAnswer(323,1,NodeArmorPower102)
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+      Reply(335)
+      NAnswer(336,1,NodeSndDialog)
+      NAnswer(337,1,Node999)
    end
-   NAnswer(322,1,Node999)
+   else begin
+      Reply(321)
+      NAnswer(331,1,NodeArmorPower101)
+      if (item_amnt(dude_obj,PID_ARMOR_POWER_A) > 0) then begin
+      GAnswer(323,1,NodeArmorPower102)
+      end
+      NAnswer(322,1,Node999)
+   end
 end
 
 procedure NodeArmorPower101 begin

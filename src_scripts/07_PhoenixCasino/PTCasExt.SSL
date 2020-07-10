@@ -36,7 +36,7 @@ procedure spatial_p_proc begin
       end
       else if (map_var(MVAR_PNX_CASINO_PSWD) > 0) then begin
       end
-      else if ((combat_is_initialized == false) and (using_skill(dude_obj,SKILL_SNEAK) == true) and dude_skill(SKILL_SNEAK,75)) then begin
+      else if ((combat_is_initialized == false) and dude_is_sneaking and dude_skill(SKILL_SNEAK,75)) then begin
       end
       else begin
       rm_timer_event(self_obj);

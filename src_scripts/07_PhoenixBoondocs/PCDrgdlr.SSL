@@ -11,7 +11,7 @@
 #define KILL_TOWN_REP                   REP_KILL_BAD          // репутация за убийство этого персонажа (-100 для враждебности всего поселения)
 #define KILL_FRAC_REP                   FRAC_NON              // принадлежность определенной фракции (-1, если не нужно)
 
-#define FLAG_STEAL                      120 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
+#define FLAG_STEAL                      100 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
 #define FLAG_ALCOHOL                    0  // Примет ли алкоголь от ГГ: 0 - принимает, 1 - не принимает
 #define FLAG_FOOD                       1  // Примет ли пищу от ГГ: 0 - принимает, 1 - не принимает
 
@@ -70,6 +70,8 @@ procedure NodeAnswer400;
 procedure NodeAnswer401;
 procedure NodeAnswer402;
 procedure NodeBarterOk;
+procedure NodeBarterOk2;
+procedure NodeBarterOk3;
 procedure NodeBarterNon;
 procedure NodeNark100;
 procedure NodeNark101;
@@ -101,9 +103,9 @@ procedure setBarterA begin
         check_restock_item(PID_WAT_WIPES, 3, 6, 100)
         check_restock_item(PID_HYPO, 3, 6, 100)
         check_restock_item(PID_M_STIMPAK, 4, 6, 100)
-        check_restock_item(PID_TOOL_DOCTORS_BAG, 1, 1, 100)
+        check_restock_item(PID_TOOL_DOCTORS_BAG, 1, 2, 100)
         check_restock_item(PID_M_ANTIDOTE, 2, 5, 100)
-        check_restock_item(PID_M_RADAWAY, 1, 3, 100)
+        check_restock_item(PID_M_RADAWAY, 2, 3, 100)
         check_restock_item(PID_M_RAD_X, 1, 2, 100)
 
         //- крышки
@@ -173,6 +175,9 @@ procedure destroy_p_proc begin
    set_global_var(GVAR_PHENIX_STATUS_DRUGDILLER,-2);
    end
    set_map_var(MVAR_PNX_LARRY_STOP,0);
+   if (get_BarterDopusk == 0) then begin
+   call setBarterB;
+   end
    kill_critter_opt
    kill_critter_box
 end
@@ -185,7 +190,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,35) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_PHENIX_STATUS_CARDINAL,50) // Поправка к отношению за принадлежность к фракциям
 
-   dialog_proc_barter(104,0,NodeStartDialog,-1,-1)
+   dialog_proc_barter(0,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -359,6 +364,16 @@ procedure NodeSndDialog begin
       end
    end
    NAnswer(256,1,NodeBarter)
+
+   if (get_BarterDopusk == 0) then begin
+      if (global_var(GVAR_PHENIX_STATUS_CARDINAL) > 0) then begin
+      NAnswer(255,1,NodeBarterOk)
+      end
+      if (global_var(GVAR_PHENIX_PUSHER_MERFY) == 1) then begin
+      NAnswer(284,1,NodeBarterOk2)
+      end
+   end
+
    NAnswer(random(216,219),1,Node999)
 end
 
@@ -517,9 +532,25 @@ end
 
 procedure NodeBarterOk begin
    call setBarterB;
+   goBarterMod;
    Reply(260)
    NAnswer(261,1,Node999)
    NAnswer(262,1,Node999)
+end
+
+procedure NodeBarterOk2 begin
+   Reply(285)
+   NAnswer(286,1,NodeBarterOk3)
+end
+
+procedure NodeBarterOk3 begin
+   set_global_var(GVAR_PHENIX_PUSHER_MERFY,10);
+   //call setBarterB;
+   item_add(self_obj,PID_SCORPION_TAIL,5)
+   item_add(self_obj,PID_M_PSYCHO,3)
+   goBarterMod;
+   Reply(287)
+   NAnswer(288,1,Node999)
 end
 
 procedure NodeBarterNon begin

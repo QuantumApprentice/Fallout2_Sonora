@@ -270,6 +270,7 @@ procedure destroy_p_proc begin
    //! обнуление квестов также дублировать в RSDorDum
    set_global_var(GVAR_STATUS_RANGERS_GENERAL,-1);
    set_gvar_bit_off(GVAR_RANGERS_RECOMMENDATION, bit_5); // сброс приказа рейнджеру в Флагпуле
+   setQuest(GVAR_VILLA_ALLIANCE_RANGER,qStop);
    if (getQuest(GVAR_RANGERS_QST_SBRAHMIN) == qStart) then begin
    setQuest(GVAR_RANGERS_QST_SBRAHMIN,qStop);
    end
@@ -293,18 +294,14 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-20) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,20) // Поправка к отношению за принадлежность к фракциям
 
-   if (map_var(MVAR_RNGRS_JclTalk) == 1) then begin
+   if ((map_var(MVAR_RNGRS_JclTalk) == 1) and (global_var(GVAR_STATUS_RANGERS_AGATA) > 0)) then begin
    floater(self_obj,104,COLOR_MSG_NEAR_WHITE);
    end
    else if (global_var(GVAR_GAME_END) != 0) then begin
    floater(self_obj,105,COLOR_MSG_GREEN);
    end
-   else if (getQuest(GVAR_RANGERS_QST_PUERTO) >= qEnd) then begin
-   floater(self_obj,105,COLOR_MSG_GREEN);
-   end
    else begin
-   dialog_proc(1,102,NodeStartDialog,HEAD_RANGER_GENERAL,BACKGROUND_WASTELND)
-   //dialog_proc(1,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,HEAD_RANGER_GENERAL,BACKGROUND_WASTELND)
    end
 end
 
@@ -317,7 +314,10 @@ procedure Node999 begin
 end
 
 procedure NodeStartDialog begin
-   if (map_var(MVAR_RNGRS_Councilium) == 1) then begin
+   if (getQuest(GVAR_RANGERS_QST_PUERTO) >= qEnd) then begin
+   call NodeSndDialog;
+   end
+   else if (map_var(MVAR_RNGRS_Councilium) == 1) then begin
    call NodeConcilium;
    end
    else if ((global_var(GVAR_TITUL_BOS) > 0) or (global_var(GVAR_TITUL_PHENIX_CULT) > 0)) then begin
@@ -449,7 +449,10 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if (global_var(GVAR_TITUL_ARIZONA_RANGER) > 0) then begin
+   if (getQuest(GVAR_RANGERS_QST_PUERTO) >= qEnd) then begin
+   Reply(105)
+   end
+   else if (global_var(GVAR_TITUL_ARIZONA_RANGER) > 0) then begin
    Reply(215)
    end
    else begin
@@ -482,10 +485,12 @@ procedure NodeSndDialog begin
    end
 
    //--- Голозапись Советника
+   if (getQuest(GVAR_RANGERS_QST_PUERTO) < qEnd) then begin
    if (getQuest(GVAR_PHENIX_QST_OWRS_HOLO) == qStart) then begin
       if (item_amnt(dude_obj,PID_HOLODSK_ULISS) > 0) then begin
       NAnswer(450,1,NodeHolo)
       end
+   end
    end
 
    //--- Шакалы
@@ -692,6 +697,9 @@ procedure NodeDudeRangerStat begin
    if (bitDialog(bit_23) == 0) then begin
       if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
       zNAnswer(365,1,NodeDudeRanger7)
+      end
+      else if (getQuest(GVAR_PHENIX_PARTY_QST_B) >= qEnd) then begin
+      NAnswer(368,1,NodeDudeRanger7)
       end
    end
    if (bitDialog(bit_24) == 0) then begin
@@ -938,6 +946,9 @@ procedure NodeJkcls5 begin
 end
 
 procedure NodeJkcls600 begin
+   if (global_var(GVAR_JACKALS_STATUS_RANGER) == 0) then begin
+   set_global_var(GVAR_JACKALS_STATUS_RANGER,-10);
+   end
    Reply(326)
    zNAnswer(327,1,Node999)
 end
@@ -997,7 +1008,7 @@ end
 procedure NodeJkcls701 begin
    Reply(333)
    NAnswer(334,4,NodeJkcls702)
-   NAnswer(312,1,NodeJkcls600)
+   NAnswer(338,1,NodeJkcls600)
 end
 
 procedure NodeJkcls702 begin
@@ -1192,7 +1203,7 @@ procedure NodeHolo2 begin
    end
    else begin
    Reply(455)
-   NAnswer(456,1,NodeHolo3)
+   zNAnswer(456,1,NodeHolo3)
    NAnswer(457,1,NodeHolo3)
    end
 end
@@ -1223,6 +1234,9 @@ end
 
 procedure NodeSBrahmin102 begin
    Reply(466)
+   if (getQuest(GVAR_BRAHMIN_QST_RANGER) != qZero) then begin
+   NAnswer(525,1,NodeSBrahmin200)
+   end
    NAnswer(467,1,Node999)
 end
 
@@ -1344,10 +1358,15 @@ end
 procedure NodePhoenix200 begin
    Reply(501)
    if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
-   GAnswer(511,3,NodePhoenix203)
+      GAnswer(511,3,NodePhoenix203)
    end
    else if (global_var(GVAR_PHENIX_STATUS_CULT_AARON) < 0) then begin
-   GAnswer(518,3,NodePhoenix205)
+      if (getQuest(GVAR_PHENIX_PARTY_QST_B) >= qEnd) then begin
+      GAnswer(526,3,NodePhoenix205)
+      end
+      else begin
+      GAnswer(518,3,NodePhoenix205)
+      end
    end
    NAnswer(503,3,NodePhoenix201)
    NAnswer(506,3,NodePhoenix202)
@@ -1507,7 +1526,7 @@ procedure NodeConcilium202 begin
 end
 
 procedure NodeConcilium203 begin
-   Reply(629)
+   zReply(629)
    NAnswer(630,1,NodeConcilium204)
    BAnswer(633,1,NodeConcilium205)
 end
@@ -1555,8 +1574,8 @@ end
 
 procedure NodeConcilium209 begin
    call NodeDudeRanger18;
-   Reply(645)
-   NAnswer(646,1,Node999)
+   zReply(645)
+   zNAnswer(646,1,Node999)
 end
 
 procedure NodeConcilium210 begin

@@ -80,7 +80,8 @@ procedure map_enter_p_proc begin
 
        set_start_home
 
-       if ((map_var(MVAR_NUEVA_MER_DIALOG) == 0) or (getQuest(GVAR_NUEVA_QST_PLANT_DEAD) == qZero)) then begin
+       set_obj_visibility(self_obj, 0);
+       if ((map_var(MVAR_NUEVA_MER_DIALOG) == 0) or (getQuest(GVAR_NUEVA_QST_PLANT_DEAD) >= qEnd) or (getQuest(GVAR_NUEVA_QST_PLANT_DEAD) <= qStop)) then begin
        set_obj_visibility(self_obj, 1);
        end
 
@@ -112,7 +113,7 @@ procedure timed_event_p_proc begin
        timer_move_to_home
        end
        else if (map_var(MVAR_NUEVA_MER_DIALOG) >= 2) then begin
-       timer_move_random_home(3)
+       timer_move_random_home(1)
        end
        else begin
        timer_move_to_home
@@ -197,7 +198,7 @@ end
 //--- ПЕРВЫЙ ДИАЛОГ
 
 procedure NodeFstDialog101 begin
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog102)
 end
 
@@ -217,7 +218,7 @@ end
 procedure NodeFstDialog104 begin
    bitDialogExp(bit_1,0)
    inc_map_var(MVAR_NUEVA_MER_DIALOG);
-   set_local_var(LVAR_Home_Tile,26716);
+   set_local_var(LVAR_Home_Tile,26916);
    move_to(self_obj,HomeTile,0);
    call Node999;
 end
@@ -236,8 +237,8 @@ end
 procedure NodeFstDialog200 begin
    inc_map_var(MVAR_NUEVA_MER_DIALOG);
    setQuest(GVAR_NUEVA_QST_PLANT_DEAD,qStart);
-   set_local_var(LVAR_Home_Tile,23906);
-   Reply(210)
+   set_local_var(LVAR_Home_Tile,27507);
+   zReply(210)
    NAnswer(211,1,NodeFstDialog201)
 end
 
@@ -327,7 +328,7 @@ end
 
 procedure NodeAnswer102 begin
    inc_map_var(MVAR_NUEVA_MER_ROSAKNOW);
-   Reply(246)
+   zReply(246)
    NAnswer(247,1,Node999)
 end
 
@@ -366,7 +367,7 @@ procedure NodeAnswer205 begin
    setBonusReaction(50)
    set_SLAVA(10)
    set_REP(3)
-   Reply(260)
+   zReply(260)
    NAnswer(261,1,Node999)
    NAnswer(262,1,Node999)
 end

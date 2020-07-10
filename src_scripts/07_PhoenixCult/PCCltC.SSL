@@ -35,12 +35,16 @@ procedure Node999;
 procedure NodeStartDialog;
 procedure NodeFstDialog;
 procedure NodeSndDialog;
-procedure NodeSndDialog2;
-procedure NodeSndDialog3;
-procedure NodeSndDialog4;
-procedure NodeSndDialog5;
-procedure NodeSndDialog6;
 procedure NodeSndDialog999;
+procedure NodeAnswer102;
+procedure NodeAnswer103;
+procedure NodeAnswer104;
+procedure NodeAnswer105;
+procedure NodeAnswer106;
+procedure NodeAnswer107;
+procedure NodeAnswer108;
+procedure NodeAnswer109;
+procedure NodeAnswer110;
 
 //---------------------
 
@@ -115,7 +119,7 @@ end
 procedure talk_p_proc begin
    setReaction(0) // Отношение к ГГ(1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    fracReaction(GVAR_TITUL_PHENIX_CULT,70) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(1,1,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -150,52 +154,86 @@ procedure NodeSndDialog begin
    else begin
    Reply(200)
    end
-   NAnswer(210,1,NodeSndDialog2)
-   NAnswer(212,1,NodeSndDialog3)
-   NAnswer(216,1,NodeSndDialog5)
-   NAnswer(218,1,NodeSndDialog6)
-   NAnswer(202,1,NodeSndDialog999)
-end
+   NAnswer(210,1,NodeAnswer102)
+   NAnswer(212,1,NodeAnswer103)
+   NAnswer(216,1,NodeAnswer105)
+   NAnswer(218,1,NodeAnswer106)
 
-procedure NodeSndDialog2 begin
-   Reply(211)
-   NAnswer(212,1,NodeSndDialog3)
-   NAnswer(216,1,NodeSndDialog5)
-   NAnswer(218,1,NodeSndDialog6)
-   NAnswer(202,1,NodeSndDialog999)
-end
+   if (getQuest(GVAR_PHENIX_QST_CARDINALS) == qEnd) then begin
+   if (getQuest(GVAR_PHENIX_QST_CARDINAL_SPY) == qStart) then begin
+      NAnswer(220,1,NodeAnswer107)
+   end
+   end
 
-procedure NodeSndDialog3 begin
-   Reply(213)
-   NAnswer(214,1,NodeSndDialog4)
-end
-
-procedure NodeSndDialog4 begin
-   Reply(215)
-   NAnswer(210,1,NodeSndDialog2)
-   NAnswer(212,1,NodeSndDialog3)
-   NAnswer(216,1,NodeSndDialog5)
-   NAnswer(218,1,NodeSndDialog6)
-   NAnswer(202,1,NodeSndDialog999)
-end
-
-procedure NodeSndDialog5 begin
-   Reply(217)
-   NAnswer(210,1,NodeSndDialog2)
-   NAnswer(212,1,NodeSndDialog3)
-   NAnswer(218,1,NodeSndDialog6)
-   NAnswer(202,1,NodeSndDialog999)
-end
-
-procedure NodeSndDialog6 begin
-   Reply(219)
-   NAnswer(210,1,NodeSndDialog2)
-   NAnswer(212,1,NodeSndDialog3)
-   NAnswer(216,1,NodeSndDialog5)
    NAnswer(202,1,NodeSndDialog999)
 end
 
 procedure NodeSndDialog999 begin
    Reply(203)
    NAnswer(204,1,Node999)
+end
+
+procedure NodeAnswer102 begin
+   Reply(211)
+   NAnswer(212,1,NodeAnswer103)
+   NAnswer(216,1,NodeAnswer105)
+   NAnswer(218,1,NodeAnswer106)
+   NAnswer(202,1,NodeSndDialog999)
+end
+
+procedure NodeAnswer103 begin
+   Reply(213)
+   NAnswer(214,1,NodeAnswer104)
+end
+
+procedure NodeAnswer104 begin
+   Reply(215)
+   NAnswer(210,1,NodeAnswer102)
+   NAnswer(212,1,NodeAnswer103)
+   NAnswer(216,1,NodeAnswer105)
+   NAnswer(218,1,NodeAnswer106)
+   NAnswer(202,1,NodeSndDialog999)
+end
+
+procedure NodeAnswer105 begin
+   Reply(217)
+   NAnswer(210,1,NodeAnswer102)
+   NAnswer(212,1,NodeAnswer103)
+   NAnswer(218,1,NodeAnswer106)
+   NAnswer(202,1,NodeSndDialog999)
+end
+
+procedure NodeAnswer106 begin
+   Reply(219)
+   NAnswer(210,1,NodeAnswer102)
+   NAnswer(212,1,NodeAnswer103)
+   NAnswer(216,1,NodeAnswer105)
+   NAnswer(202,1,NodeSndDialog999)
+end
+
+procedure NodeAnswer107 begin
+   Reply(221)
+   NAnswer(222,1,NodeAnswer108)
+end
+
+procedure NodeAnswer108 begin
+   Reply(223)
+   if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
+   NAnswer(225,1,NodeAnswer110)
+   end
+   else begin
+   NAnswerSkill(225,3,NodeAnswer110,SKILL_CONVERSANT,75,225,NodeAnswer109)
+   end
+   NAnswer(224,1,NodeSndDialog999)
+end
+
+procedure NodeAnswer109 begin
+   Reply(226)
+   NAnswer(227,1,Node999)
+end
+
+procedure NodeAnswer110 begin
+   setQuest(GVAR_PHENIX_QST_CARDINAL_SPY,qEnd);
+   Reply(228)
+   NAnswer(229,1,Node999)
 end

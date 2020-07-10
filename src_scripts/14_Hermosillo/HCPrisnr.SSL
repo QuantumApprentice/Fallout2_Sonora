@@ -2,7 +2,7 @@
 //---------------------
 
 #define NAME                            SCRIPT_HCPrisnr
-#define TOWN_REP_VAR                    GVAR_TOWN_REP_HERMOSILLO  // привязка к репутации (-1, если не нужно)
+#define TOWN_REP_VAR                    GVAR_TOWN_REP_PUERTO  // привязка к репутации (-1, если не нужно)
 
 #define NUM_TEAM                        TEAM_BANDITS          // группа, к которой принадлежит персонаж (-1 если нужно оставить Team, заданный в редакторе)
 #define NUM_AI                          AI_BANDIT             // AI персонажа (-1 если нужно оставить AI, заданный в редакторе)
@@ -55,6 +55,7 @@ procedure NodeAnswer104;
 procedure NodeAnswer105;
 procedure NodeAnswer106;
 procedure NodeAnswer107;
+procedure NodeAnswer108;
 procedure NodeAnswer200;
 procedure NodeStopDialog;
 procedure NodeStopDialog100;
@@ -93,7 +94,9 @@ procedure map_enter_p_proc begin
        if (local_var(LVAR_Puerto_Visit) == 2) then begin
        set_local_var(LVAR_Puerto_Visit,3);
        end
+       //set_local_var(LVAR_Home_Tile, 0);
        set_start_home
+       set_obj_visibility(self_obj, 0);
        if (global_var(GVAR_HERMO_STATUS_PARTY) > 0) then begin
        rm_timer_event(self_obj);
        end
@@ -102,7 +105,14 @@ procedure map_enter_p_proc begin
 end
 
 procedure look_at_p_proc begin
-   lookProcMsg
+   //lookProcMsg
+   script_overrides;
+   if (getQuest(GVAR_HERMO_QST_PARTY) == qZero) then begin
+   display_mstr(100);
+   end
+   else begin
+   display_mstr(102);
+   end
 end
 
 procedure description_p_proc begin
@@ -121,7 +131,7 @@ procedure timed_event_p_proc begin
    if (fixed_param == 3) then begin
        if (local_var(LVAR_Puerto_Visit) == 0) then begin
           if ((getQuest(GVAR_HERMO_QST_PARTY) == qZero) or (getQuest(GVAR_HERMO_QST_PARTY) == qStart)) then begin
-          if ((cur_map_index == MAP_PUERTO_DESTROY) or (cur_map_index == MAP_PUERTO_DOCS) or (cur_map_index == MAP_PUERTO_BASA)) then begin
+          if ((cur_map_index == MAP_PUERTO_DESTROY) or (cur_map_index == MAP_PUERTO_DOCS)) then begin
           set_local_var(LVAR_Puerto_Visit,1);
           terminate_combat;
           dialogue_system_enter;
@@ -177,6 +187,11 @@ end
 
 procedure talk_p_proc begin
    setReaction(-1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
+
+   if (local_var(LVAR_Puerto_Visit) == 2) then begin
+   set_local_var(LVAR_Puerto_Visit,3);
+   end
+
    if (local_var(LVAR_Puerto_Visit) == 2) then begin
    floater(self_obj,358,COLOR_MSG_NORMAL);
    end
@@ -190,6 +205,12 @@ procedure Node998 begin
 end
 
 procedure Node999 begin
+   /*
+   if (local_var(LVAR_Puerto_Visit) == 2) then begin
+   set_obj_visibility(self_obj, 1);
+   display_mstr(367);
+   end
+   */
 end
 
 procedure NodeStartDialog begin
@@ -220,13 +241,15 @@ end
 //--- ПАРТИЯ
 
 procedure NodePartyAdd begin
-   if (party_member_count(0) > 1) then begin
+   //if (party_member_count(0) > 1) then begin
+   if party_limit then begin
    Reply(236)
    NAnswer(237,1,Node999)
    NAnswer(238,1,Node999)
    end
    else begin
    set_global_var(GVAR_HERMO_STATUS_PARTY,1);
+   set_local_var(LVAR_Home_Tile, 0);
    bitDialogExp(bit_1,0)
    rm_timer_event(self_obj);
    critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PLAYER);
@@ -246,6 +269,7 @@ procedure NodePartyNon2 begin
    set_global_var(GVAR_HERMO_STATUS_PARTY,0);
    rm_timer_event(self_obj);
    party_remove(self_obj);
+   set_local_var(LVAR_Home_Tile, self_tile);
    critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,NUM_TEAM);
 end
 
@@ -300,14 +324,17 @@ end
 
 procedure NodeSndDialog begin
    Reply(220)
+   /*
+   После изгнания из БС - более развернутый и честный рассказ о том, кто он такой и почему ввязался в опасные шпионские игры.
+   */
 
    if (getQuest(GVAR_HERMO_QST_PARTY) == qZero) then begin
-      NAnswer(300,1,NodeAnswer100)
       if ((cur_map_index != MAP_HERMO_CASA) and (cur_map_index != MAP_HERMO_FUERTE)) then begin
       GAnswer(319,1,NodeAnswer102b)
       end
+      NAnswer(300,1,NodeAnswer100)
    end
-   if (getQuest(GVAR_HERMO_QST_PARTY) == qStart) then begin
+   else if (getQuest(GVAR_HERMO_QST_PARTY) == qStart) then begin
       NAnswer(320,1,NodeAnswer107)
    end
 
@@ -357,7 +384,11 @@ end
 
 procedure NodeAnswer103 begin
    setQuest(GVAR_HERMO_QST_PARTY,qStart);
+   mark_on_map(AREA_PUERTO_STEEL)
    Reply(309)
+   if (getQuest(GVAR_PUERTO_BOS_DESTROY) >= qEnd) then begin
+   NAnswer(324,1,NodeAnswer108)
+   end
    NAnswer(310,1,NodeAnswer104)
    NAnswer(313,1,NodeAnswer105)
    NAnswer(316,1,NodeAnswer106)
@@ -382,8 +413,17 @@ end
 
 procedure NodeAnswer107 begin
    Reply(321)
+   if (getQuest(GVAR_PUERTO_BOS_DESTROY) >= qEnd) then begin
+   NAnswer(324,1,NodeAnswer108)
+   end
    NAnswer(322,1,Node999)
    NAnswer(323,1,Node999)
+end
+
+procedure NodeAnswer108 begin
+   Reply(325)
+   NAnswer(326,1,Node999)
+   NAnswer(327,1,Node999)
 end
 
 procedure NodeAnswer200 begin
@@ -430,7 +470,7 @@ procedure NodeAnswer200 begin
    Reply(262)
    end
 
-   else if (worldmap_ypos < 550) then begin
+   else if ((worldmap_ypos < 550) and (getQuest(GVAR_HERMO_QST_PARTY) >= qStart) and (getQuest(GVAR_HERMO_QST_PARTY) < qEnd)) then begin
    Reply(260)
    end
    else begin
@@ -491,7 +531,7 @@ end
 
 procedure NodeStopDialog106 begin
    call NodePartyNon2;
-   call Node998;
+   call Node999;
 end
 
 procedure NodeStopDialog200 begin
@@ -508,13 +548,29 @@ procedure NodeStopDialog201 begin
 end
 
 procedure NodeStopDialog202 begin
+   if ((map_var(MVAR_PUERTO_PATRLBOSS_DEAD)<0) or town_rep_is_vilified) then begin
+   set_local_var(LVAR_Puerto_Visit,4);
+   setQuest(GVAR_HERMO_QST_PARTY,qStop);
+   exp_add(350);
+   Reply(359)
+   NAnswer(339,1,NodeStopDialog104)
+   NAnswer(342,1,NodeStopDialog105)
+   end
+   else begin
    Reply(356)
    NAnswer(357,1,NodePartyNon)
+   end
 end
 
 procedure NodeStopDialog203 begin
    Reply(360)
+   if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) >= qEnd) then begin
    NAnswer(361,1,NodeStopDialog204)
+   end
+   if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) <= qStop) then begin
+   NAnswer(366,1,NodeStopDialog204)
+   end
+   NAnswer(365,1,Node999)
 end
 
 procedure NodeStopDialog204 begin

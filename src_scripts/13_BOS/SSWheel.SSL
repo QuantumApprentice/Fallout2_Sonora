@@ -36,11 +36,16 @@ procedure activ_proc begin
    if (local_var(LVAR_Flags)<100) then begin
    set_local_var(LVAR_Flags,100);
    end
-   if (local_var(LVAR_Flags)<105) then begin
-   floater(dude_obj,local_var(LVAR_Flags),COLOR_MSG_GREEN);
-   inc_local_var(LVAR_Flags);
-   end
-   else begin
+
+   if (local_var(LVAR_Flags)>=105) then begin
    floater(dude_obj,105,COLOR_MSG_NORMAL);
    end
+   else begin
+   floater(dude_obj,local_var(LVAR_Flags),COLOR_MSG_GREEN);
+   end
+
+   if (local_var(LVAR_Flags) == 105) then begin
+   exp_add(75);
+   end
+   inc_local_var(LVAR_Flags);
 end

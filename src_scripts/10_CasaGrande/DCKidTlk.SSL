@@ -12,7 +12,7 @@
 
 #define FLAG_STEAL                      35 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
 #define FLAG_ALCOHOL                    1  // Примет ли алкоголь от ГГ: 0 - принимает, 1 - не принимает
-#define FLAG_FOOD                       1  // Примет ли пищу от ГГ: 0 - принимает, 1 - не принимает
+#define FLAG_FOOD                       0  // Примет ли пищу от ГГ: 0 - принимает, 1 - не принимает
 
 //---------------------
 
@@ -435,14 +435,14 @@ procedure NodeMap100 begin
    Reply(301)
    BAnswer(305,1,NodeMap102)
    NAnswer(302,1,NodeMap101)
-   BAnswer(314,1,Node999)
+   NAnswer(314,1,Node999)
 end
 
 procedure NodeMap101 begin
    Reply(303)
    GAnswer(304,1,NodeMap200)
    BAnswer(305,1,NodeMap102)
-   BAnswer(314,1,Node999)
+   NAnswer(314,1,Node999)
 end
 
 procedure NodeMap102 begin
@@ -450,14 +450,14 @@ procedure NodeMap102 begin
    Reply(306)
    BAnswer(307,1,NodeMap103)
    GAnswer(309,1,NodeMap200)
-   BAnswer(314,1,Node999)
+   NAnswer(314,1,Node999)
 end
 
 procedure NodeMap103 begin
    setBonusReaction(-20)
    Reply(308)
    GAnswer(309,1,NodeMap200)
-   BAnswer(314,1,Node999)
+   NAnswer(314,1,Node999)
 end
 
 procedure NodeMap200 begin

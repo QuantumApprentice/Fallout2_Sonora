@@ -195,7 +195,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_BOS_TRAITOR,20) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-20) // Поправка к отношению за принадлежность к фракциям
 
-   dialog_proc_barter(1,102,NodeStartDialog,-1,-1)
+   dialog_proc_barter(1,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -635,6 +635,11 @@ end
 procedure NodeRelict10 begin
    game_time_advance(ONE_GAME_HOUR*5);
    PLAY_FADE
+   if (is_skill_tagged(SKILL_SMALL_GUNS) == true) then begin
+   skill_up(SKILL_SMALL_GUNS,6);
+   end
+   else begin
    skill_up(SKILL_SMALL_GUNS,5);
+   end
    call Node999;
 end

@@ -82,7 +82,7 @@ procedure use_obj_on_p_proc begin
 end
 
 procedure combat_p_proc begin
-   effectAttak(0,3,1,1,2) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
+   effectAttak(0,0,1,1,1) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
    effectRegeratHP
    if (fixed_param == COMBAT_SUBTYPE_TURN) then begin
        if ((local_var(LVAR_Reply_Attak) == 0) and (obj_is_visible_flag(self_obj) == true)) then begin

@@ -1,5 +1,5 @@
 #include "..\headers\define.h"
-//--------------------- Рядовой сектант
+//--------------------- Рядовой монах
 
 #define NAME                            SCRIPT_PCCltA
 #define TOWN_REP_VAR                    GVAR_TOWN_REP_PHOENIX_CULT // привязка к репутации (-1, если не нужно)
@@ -18,6 +18,7 @@
 
 procedure start;
 procedure map_enter_p_proc;
+procedure map_update_p_proc;
 procedure look_at_p_proc;
 procedure description_p_proc;
 procedure timed_event_p_proc;
@@ -32,7 +33,7 @@ procedure talk_p_proc;
 
 //---------------------
 
-//#define LVAR_Flag_A                     (6) // отвечает за ...
+#define LVAR_Flag_AttakNon                     (6) // индексирует союзников Матиаса
 
 import variable box_stop_use;
 
@@ -46,6 +47,21 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+       if (item_amnt(self_obj,PID_TEST) > 0) then begin
+           set_local_var(LVAR_Flag_AttakNon,1);
+           item_remove(self_obj,PID_TEST,999)
+       end
+       if (self_elevation == 1) then begin
+           set_local_var(LVAR_Flag_AttakNon,1);
+       end
+   end
+end
+
+procedure map_update_p_proc begin
+   if (global_var(GVAR_PHENIX_MATIAS_NONATTAK) > 0) then begin
+   if (local_var(LVAR_Flag_AttakNon) > 0) then begin
+   critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PHOENIX_COLLECTOR);
+   end
    end
 end
 
@@ -84,7 +100,13 @@ procedure critter_p_proc begin
    else begin
    set_using_stop // привязка хозяина и объекта (удалить, если не нужно)
    end
+
+   if ((global_var(GVAR_PHENIX_PARTY_ATTAKTOAARON) > 0) and (local_var(LVAR_Flag_AttakNon) == 0)) then begin
+   set_critter_options(2,0)
+   end
+   else begin
    set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   end
 end
 
 procedure use_skill_on_p_proc begin
@@ -109,14 +131,19 @@ procedure damage_p_proc begin
 end
 
 procedure destroy_p_proc begin
+   if ((global_var(GVAR_PHENIX_MATIAS_NONATTAK) > 0) and (local_var(LVAR_Flag_AttakNon) == 0)) then begin
+   kill_critter_opt_norep
+   end
+   else begin
    kill_critter_opt
+   end
 end
 
 procedure talk_p_proc begin
    variable replyNumber;
 
    if (cur_map_index == MAP_PHOENIX_CHURCH) then begin
-      if (dude_elevation == 2) then begin
+      if ((dude_elevation == 2) and (global_var(GVAR_PHENIX_STATUS_CULT_AARON) >= 0)) then begin
          if (getQuest(GVAR_PHENIX_CULT_OWR_DOPUSK) == qStart) then begin
          replyNumber := random(102,103);
          end

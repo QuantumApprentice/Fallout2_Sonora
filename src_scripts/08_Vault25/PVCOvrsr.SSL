@@ -130,7 +130,12 @@ procedure critter_p_proc begin
    if ((map_var(MVAR_PnxVlt_Alarm) > 0) and (map_var(MVAR_PnxVlt_OwrTrap) == 0)) then begin
    set_map_var(MVAR_PnxVlt_OwrTrap,1);
    end
+   if (getQuest(GVAR_PHENIX_PARTY_ATTAKTOAARON) >= qStart) then begin
+   set_critter_options(2,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   end
+   else begin
    set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   end
    if self_enemy_dude then begin
    BarklyAttakDude
    end
@@ -160,7 +165,7 @@ procedure combat_p_proc begin
    if (item_amnt(self_obj, PID_AMMO_5_MM) < 20) then begin
    item_add(self_obj,PID_AMMO_5_MM,20) // в пачке 5 патронов
    end
-   effectAttak(0,0,1,1,1) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
+   effectAttak(0,0,0,1,1) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
 end
 
 procedure damage_p_proc begin
@@ -169,7 +174,7 @@ procedure damage_p_proc begin
    set_map_var(MVAR_PnxVlt_Dopusk,0);
    end
    if (source_obj == dude_obj) then begin
-   BarklyAttakDude
+   //BarklyAttakDude
    end
    set_damage_dude
 end
@@ -181,7 +186,14 @@ procedure destroy_p_proc begin
    if (getQuest(GVAR_PHENIX_QST_CULT_D) == qStart) then begin
    setQuest(GVAR_PHENIX_QST_CULT_D,qStop);
    end
+
+   if (global_var(GVAR_PHENIX_MATIAS_NONATTAK) > 0) then begin
+   kill_critter_opt_norep
+   end
+   else begin
    kill_critter_opt
+   end
+
    floater(self_obj,103,COLOR_MSG_RED);
 end
 
@@ -240,14 +252,14 @@ procedure NodeBosDialog begin
    bitDialogExp(bit_2,0)
    set_local_var(LVAR_KNOW_DudeIsBos,1);
    if ((global_var(GVAR_TOWN_REP_PHOENIX) <0) or (global_var(GVAR_TOWN_REP_PHOENIX_CULT) <0) or (get_SLAVA <= -50)) then begin //Феникс плохо или слава плохо
-      Reply(240)
+      zReply(240)
    end
    else begin
       if (map_var(MVAR_PnxVlt_Alarm) == 0) then begin
-      Reply(241)
+      zReply(241)
       end
       else begin
-      Reply(257)
+      zReply(257)
       end
    end
    NAnswer(242,1,NodeBosDialog2)
@@ -256,7 +268,7 @@ end
 procedure NodeBosDialog1 begin
    bitDialogExp(bit_2,0)
    set_local_var(LVAR_KNOW_DudeIsBos,1);
-   Reply(259)
+   zReply(259)
    NAnswer(242,1,NodeBosDialog2)
 end
 
@@ -394,7 +406,7 @@ procedure NodeFstDialog207 begin
 end
 
 procedure NodeFstDialog208 begin
-   Reply(228)
+   zReply(228)
    GAnswer(229,1,NodeFstDialog209)
    BAnswer(230,1,NodeFstDialog207)
 end
@@ -471,7 +483,7 @@ procedure NodeFstDialog306 begin
 end
 
 procedure NodeFstDialog307 begin
-   Reply(426)
+   zReply(426)
    NAnswer(427,1,Node998)
 end
 
@@ -569,7 +581,7 @@ procedure NodeSndDialog begin
    if (getQuest(GVAR_PHENIX_QST_OWRS_HOLO) == qZero) then begin
       if (getQuest(GVAR_PHENIX_CULT_ARON_DOPUSK) >= qStart) then begin
          if (getQuest(GVAR_PHENIX_CULT_OWR_DOPUSK) >= qStart) then begin
-         NAnswer(415,1,NodeFstDialog300b)
+         zNAnswer(415,1,NodeFstDialog300b)
          end
       end
    end
@@ -707,7 +719,7 @@ procedure NodeAnswer100 begin
 end
 
 procedure NodeAnswer101 begin
-   Reply(325)
+   Reply(327)
    NAnswer(328,1,NodeAnswer102)
    NAnswer(323,1,NodeAnswer)
 end

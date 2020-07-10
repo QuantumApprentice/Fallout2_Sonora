@@ -15,6 +15,7 @@
 #define FLAG_FOOD                       1  // Примет ли пищу от ГГ: 0 - принимает, 1 - не принимает
 
 #define TILE_BILLIARD                   18066 // номер тайла на 2 этаже, куда персонаж перемещается для игры с ГГ
+#define COAST_HOTEL                     50 // Цена за номер в мотеле
 
 //---------------------
 
@@ -40,6 +41,9 @@ procedure NodeFstDialog2;
 procedure NodeSndDialog;
 procedure NodeAnswer100;
 procedure NodeAnswer101;
+procedure NodeAnswer200;
+procedure NodeAnswer201;
+procedure NodeAnswer202;
 procedure NodeAnswer300;
 procedure NodeAnswer301;
 procedure NodeAnswer302;
@@ -143,7 +147,7 @@ procedure talk_p_proc begin
    end
    else begin
    setReaction(0) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   dialog_proc(1,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -182,7 +186,10 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if ((random(0,5) == 1) and (getReaction > 0)) then begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else if ((random(0,5) == 1) and (getReaction > 0)) then begin
    zReply(214)
    end
    else if (game_time_hour < 0600) then begin
@@ -203,6 +210,12 @@ procedure NodeSndDialog begin
    if (map_var(MVAR_PNX_CASINO_LUX) > 0) then begin
    zNAnswer(250,3,NodeAnswer300)
    end
+   else begin
+   if (bitDialog(bit_2) != 0) then begin
+   NAnswer(226,1,NodeAnswer200)
+   end
+   end
+
    if (local_var(LVAR_Skill_Up) == 0) then begin
       if dude_skill(SKILL_GAMBLING,75) then begin
       end
@@ -217,6 +230,7 @@ end
 //--- РАССПРОСЫ
 
 procedure NodeAnswer100 begin
+   bitDialogExp(bit_2,0)
    Reply(221)
    NAnswer(224,3,NodeAnswer101)
    NAnswer(218,1,NodeSndDialog)
@@ -226,6 +240,45 @@ procedure NodeAnswer101 begin
    zReply(223)
    NAnswer(225,3,NodeAnswer100)
    NAnswer(218,1,NodeSndDialog)
+end
+
+procedure NodeAnswer200 begin
+   Reply(mstr(227)+COAST_HOTEL+mstr(228))
+   if (item_amnt(dude_obj,PID_BOOTLE_CAPS) >= COAST_HOTEL) then begin
+   NAnswer(231,1,NodeAnswer201)
+   zNAnswer(229,1,NodeSndDialog)
+   end
+   else begin
+   NAnswer(230,1,NodeSndDialog)
+   zNAnswer(229,1,NodeSndDialog)
+   end
+end
+
+procedure NodeAnswer201 begin
+   if (item_amnt(dude_obj,PID_BOOTLE_CAPS) >= COAST_HOTEL) then begin
+   call NodeAnswer202;
+   end
+   else begin
+   call NodeAnswer200;
+   end
+end
+
+procedure NodeAnswer202 begin
+   item_remove(dude_obj,PID_BOOTLE_CAPS,COAST_HOTEL)
+   critter_heal(dude_obj,dude_max_hits/4);
+      if (get_poison(dude_obj) > 0) then begin
+      poison(dude_obj,-(get_poison(dude_obj)));
+      end
+
+   gfade_out(ONE_GAME_SECOND);
+      inven_unwield(dude_obj);
+      anim(dude_obj, ANIMATE_ROTATION, 5);
+      move_to(dude_obj, 16474, 2);
+      game_time_advance(ONE_GAME_HOUR*8);
+   gfade_in(ONE_GAME_SECOND);
+
+   display_mstr(232);
+   call Node999;
 end
 
 //--- ЛЮКС
@@ -387,7 +440,12 @@ procedure NodeSkillUp203 begin
    PLAY_FADE
    game_time_advance(ONE_GAME_HOUR*2);
    play_sfx("SHUFFLE");
+   if (is_skill_tagged(SKILL_GAMBLING) == true) then begin
+   skill_up(SKILL_GAMBLING,6);
+   end
+   else begin
    skill_up(SKILL_GAMBLING,5);
+   end
    Reply(325)
    NAnswer(326,1,NodeSkillUp204)
 end

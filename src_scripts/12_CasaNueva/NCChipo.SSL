@@ -42,6 +42,7 @@ procedure NodeAnswer101;
 procedure NodeAnswer102;
 procedure NodeAnswer103;
 procedure NodeAnswer104;
+procedure NodeAnswer105;
 
 //---------------------
 
@@ -128,7 +129,7 @@ procedure talk_p_proc begin
    end
    else begin
    setReaction(1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   dialog_proc(102,103,NodeStartDialog,-1,-1)
+   dialog_proc(102,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -180,6 +181,9 @@ procedure NodeSndDialog begin
    else if (global_var(GVAR_NUEVA_STATUS_PINKI) == 1) then begin
    Reply(213)
    end
+   else if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(103)
+   end
    else if town_rep_is_liked then begin
    Reply(212)
    end
@@ -196,6 +200,11 @@ procedure NodeSndDialog begin
    else if (getQuest(GVAR_NUEVA_QST_PINKI) < qEnd) then begin
    if (global_var(GVAR_NUEVA_STATUS_PINKI) == 1) then begin
    GAnswer(239,3,NodeAnswer104)
+   end
+   end
+   if (getQuest(GVAR_NUEVA_QST_PINKI) >= qEnd) then begin
+   if (global_var(GVAR_NUEVA_STATUS_PINKI) == 1) then begin
+   NAnswer(243,3,NodeAnswer105)
    end
    end
 
@@ -224,6 +233,9 @@ end
 procedure NodeAnswer103 begin
    setQuest(GVAR_NUEVA_QST_PINKI,qStart);
    Reply(235)
+   if (global_var(GVAR_NUEVA_STATUS_PINKI) == 1) then begin
+   GAnswer(239,3,NodeAnswer104)
+   end
    BAnswer(236,1,Node999)
    NAnswer(237,1,Node999)
    GAnswer(238,1,Node999)
@@ -236,4 +248,9 @@ procedure NodeAnswer104 begin
    exp_add(250);
    Reply(240)
    zNAnswer(241,1,Node999)
+end
+
+procedure NodeAnswer105 begin
+   Reply(244)
+   NAnswer(245,1,Node999)
 end

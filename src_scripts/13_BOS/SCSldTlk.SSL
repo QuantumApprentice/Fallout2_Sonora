@@ -249,8 +249,10 @@ procedure NodeSndDialog begin
    NAnswer(230,3,NodeAnswer101)
    NAnswer(234,3,NodeAnswer100)
    //! боевой рассказ на 100 опыта
+   if (getQuest(GVAR_PUERTO_QST_BELL) < qEnd) then begin
    if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_32) != 0) then begin
    NAnswer(340,1,NodeAnswer300)
+   end
    end
    if (local_var(LVAR_Game_Point)<10) then begin
    NAnswerSkill(250,3,NodeGame,SKILL_GAMBLING,50,250,NodeGame2)

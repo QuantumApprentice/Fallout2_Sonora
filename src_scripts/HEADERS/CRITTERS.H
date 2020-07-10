@@ -330,14 +330,28 @@ variable damage_amnt;
                                                radiation_inc(dude_obj, random(rad,rad*2)); \
                                                end                              \
                                             end                                 \
-                                            if (random(1,300) <= travmA*(1+combat_difficulty)) then begin \
-                                               dam_to_dude_LEG                  \
+                                            if (armor_pid_dude_var == PID_ARMOR_POWER_A) then begin \
                                             end                                 \
-                                            if (random(1,300) <= travmB*(1+combat_difficulty)) then begin \
-                                               dam_to_dude_ARM                  \
+                                            else if (armor_pid_dude_var == PID_ARMOR_POWER_B) then begin \
                                             end                                 \
-                                            if (random(1,300) <= travmC*(1+combat_difficulty)) then begin \
-                                               dam_to_dude_BLIND                \
+                                            else if (combat_difficulty == 0) then begin \
+                                            end                                 \
+                                            else begin                          \
+                                               if (travmA>0) then begin         \
+                                                   if (random(0,300) <= travmA) then begin \
+                                                   dam_to_dude_LEG              \
+                                                   end                          \
+                                               end                              \
+                                               if (travmB>0) then begin         \
+                                                   if (random(0,300) <= travmB) then begin \
+                                                   dam_to_dude_ARM              \
+                                                   end                          \
+                                               end                              \
+                                               if (travmC>0) then begin         \
+                                                   if (random(0,300) <= travmC) then begin \
+                                                   dam_to_dude_BLIND            \
+                                                   end                          \
+                                               end                              \
                                             end                                 \
                                         end                                     \
                                     end                                         \
@@ -569,17 +583,21 @@ variable damage_amnt;
                                             reg_anim_clear(self_obj);           \
                                             move_to(self_obj, tile_num_in_direction(dude_tile,random(0,5),1), dude_elevation); \
                                         end                                     \
-                                        else if (anim_busy(self_obj) == false) then begin \
-                                            if (tile_distance(self_tile, dude_tile) > 5) then begin \
-                                            reg_anim_begin();                   \
-                                            animate_run_to_tile_force(tile_num_in_direction(dude_tile,random(0,5),2)); \
-                                            reg_anim_end();                     \
-                                            end                                 \
-                                            else if (tile_distance(self_tile, dude_tile) > 3) then begin \
-                                            reg_anim_begin();                   \
-                                            animate_move_to_tile_force(tile_num_in_direction(dude_tile,random(0,5),2)); \
-                                            reg_anim_end();                     \
-                                            end                                 \
+                                        else begin                              \
+                                            partyRunToDudeAnim                  \
+                                        end                                     \
+                                    end                                         \
+
+#define partyRunToDudeAnim          if (anim_busy(self_obj) == false) then begin \
+                                        if (tile_distance(self_tile, dude_tile) > 5) then begin \
+                                        reg_anim_begin();                       \
+                                        animate_run_to_tile_force(tile_num_in_direction(dude_tile,random(0,5),2)); \
+                                        reg_anim_end();                         \
+                                        end                                      \
+                                        else if (tile_distance(self_tile, dude_tile) > 3) then begin \
+                                        reg_anim_begin();                       \
+                                        animate_move_to_tile_force(tile_num_in_direction(dude_tile,random(0,5),2)); \
+                                        reg_anim_end();                         \
                                         end                                     \
                                     end                                         \
 
@@ -893,7 +911,25 @@ itemTypeUseDude фиксирует успех применения предме�
                                                end                                          \
                                                else begin                                   \
                                                   if DudePerkHas(PERK_vaquero) then begin   \
+                                                  if (self_TEAM != TEAM_PLAYER) then begin  \
+                                                     if (random(0,100+self_max_hits) <= (20+(20*has_trait(TRAIT_PERK, dude_obj, PERK_vaquero)))) then begin \
+                                                     critter_stop_attacking(self_obj);      \
+                                                     critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PLAYER); \
+                                                     off_enemy_dude;                        \
+                                                     set_local_var(LVAR_Flags,0);           \
+                                                     g_display_mstr(408);                   \
+                                                     g_floater(self_obj,322,COLOR_MSG_GREEN); \
+                                                     end                                    \
+                                                  end                                       \
+                                                  end                                       \
+                                               end                                          \
+                                            end                                             \
+
+/*
+Старая версия:
+                                                  if DudePerkHas(PERK_vaquero) then begin   \
                                                      inc_local_var_amt(LVAR_Vakero_Status,20*has_trait(TRAIT_PERK, dude_obj, PERK_vaquero)); \
+                                                     if (random(0,100+self_max_hits) <= (20*has_trait(TRAIT_PERK, dude_obj, PERK_vaquero))) then begin        \
                                                      if (local_var(LVAR_Vakero_Status) >= self_max_hits) then begin        \
                                                      critter_stop_attacking(self_obj);      \
                                                      critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PLAYER); \
@@ -902,8 +938,7 @@ itemTypeUseDude фиксирует успех применения предме�
                                                      g_display_mstr(408);                   \
                                                      end                                    \
                                                   end                                       \
-                                               end                                          \
-                                            end                                             \
+*/
 
 #define UsedToCrit_MeatFoul                 if (objUsedPid == PID_M_MEAT_FOUL) then begin   \
                                                if (source_obj != dude_obj) then begin       \
@@ -1048,7 +1083,7 @@ itemTypeUseDude фиксирует успех применения предме�
                                                else if (item_amnt(dude_obj,objUsedPid) < 1) then begin \
                                                   g_display_mstr(485);                      \
                                                end                                          \
-                                               else begin                                   \
+                                               else if ((critter_state(self_obj) bwand DAM_CRIP_ARM_LEFT) or (critter_state(self_obj) bwand DAM_CRIP_ARM_RIGHT) or (critter_state(self_obj) bwand DAM_CRIP_LEG_LEFT) or (critter_state(self_obj) bwand DAM_CRIP_LEG_RIGHT) or (critter_state(self_obj) bwand DAM_BLIND)) then begin \
                                                   critter_uninjure_full(self_obj);          \
                                                   if (self_obj == dude_obj) then begin      \
                                                   g_display_mstr(483);                      \
@@ -1058,6 +1093,9 @@ itemTypeUseDude фиксирует успех применения предме�
                                                   end                                       \
                                                   itemTypeUseDude := 1;                     \
                                                   item_remove(dude_obj, objUsedPid, 1)      \
+                                               end                                          \
+                                               else begin                                   \
+                                                  g_display_mstr(493);                      \
                                                end                                          \
                                             end                                             \
 
@@ -1081,6 +1119,9 @@ itemTypeUseDude фиксирует успех применения предме�
 // -----------------------------------------------------------------------
 
 #define kill_critter_opt            kill_critter_reput                              \
+                                    destroy_critter_inventar                        \
+
+#define kill_critter_opt_norep      kill_critter_reput_norep                        \
                                     destroy_critter_inventar                        \
 
 #define kill_critter_box            if (selfBarterBoxObj>0) then begin              \
@@ -1312,9 +1353,9 @@ itemTypeUseDude фиксирует успех применения предме�
 #define partyPidSelf                party_member_obj(self_PID)
 
 #define partyPidSnc                 party_member_obj(16777314) // ученый в убежище 27
-#define partyPidUdj                 party_member_obj(16777261) // юный техник из Гараж-Сити
+#define partyPidUdj                 party_member_obj(16777341) // юный техник из Гараж-Сити (ранее 16777261)
 #define partyPidHrm                 party_member_obj(16777340) // узник в Эрмосильо
-#define partyPidApc                 party_member_obj(16777302) // Последователь Апокалипсиса в Инферно
+#define partyPidApc                 party_member_obj(16777342) // Последователь Апокалипсиса в Инферно (ранее 16777302)
 #define partyPidBos                 party_member_obj(16777330) // паладин Баркли в Инферно
 
 #define partyRemoveAll              if (partyPidUdj!=0) then begin \
@@ -1333,6 +1374,11 @@ itemTypeUseDude фиксирует успех применения предме�
                                     party_remove(partyPidBos);     \
                                     end                            \
 
+//#define party_size                  (party_member_count(0) - global_var(GVAR_CAR_GOT_PLAYER))
+#define party_size                  (party_member_count(0) - 1)
+
+#define party_limit                 ((party_size >= (dude_charisma/2)) and (party_size>0))
+
 // -----------------------------------------------------------------------
 // talk_p_proc
 // -----------------------------------------------------------------------
@@ -1343,9 +1389,11 @@ itemTypeUseDude фиксирует успех применения предме�
 
 #define setBarterMod                gdialog_set_barter_mod(local_var(LVAR_Barter_Mod)) \
 
+//поднимает цены:
 #define incBarterMod(x)             inc_local_var_amt(LVAR_Barter_Mod,x);           \
                                     setBarterMod                                    \
 
+//снижает цены:
 #define decBarterMod(x)             dec_local_var_amt(LVAR_Barter_Mod,x);           \
                                     setBarterMod                                    \
 
@@ -1405,7 +1453,7 @@ itemTypeUseDude фиксирует успех применения предме�
                                         inc_global_var_amt(GVAR_PERSONAL_REACTION,10);                                     \
                                     end                                                                                    \
                                     if DudeTraitHas(TRAIT_espanol) then begin                                              \
-                                        dec_global_var_amt(GVAR_PERSONAL_REACTION,5);                                     \
+                                        dec_global_var_amt(GVAR_PERSONAL_REACTION,5);                                      \
                                     end                                                                                    \
                                     if (global_var(GVAR_PERSONAL_REACTION)>100) then begin                                 \
                                     set_global_var(GVAR_PERSONAL_REACTION,100);                                            \

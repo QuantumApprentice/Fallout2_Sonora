@@ -230,6 +230,6 @@ procedure loot_gener_super begin
    item_gener_to_self(14,PID_HYPO,1)
    item_gener_to_self(15,PID_W_GRENADE_FRAG,1)
    item_gener_to_self(16,PID_M_WATER_FLASK,1)
-   item_gener_to_self(17,PID_OIL,1)
+   item_gener_to_self(17,PID_CLEAR,1)
    item_gener_to_self(18,PID_TABACO,1)
 end

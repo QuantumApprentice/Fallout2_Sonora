@@ -183,7 +183,7 @@ procedure talk_p_proc begin
    else begin
    setReaction(0) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    fracReaction(GVAR_TITUL_ARIZONA_RANGER,20) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(0,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -313,7 +313,12 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else begin
    Reply(250)
+   end
 
    if (getQuest(GVAR_CGRANDE_QST_BATHHOUSE) == qZero) then begin
       if (map_is_known(MAP_CASA_GRANDE_GRAVE) == true) then begin
@@ -366,7 +371,13 @@ procedure NodeSndDialog3 begin
 end
 
 procedure NodeSndDialog4 begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else begin
    Reply(random(350,355))
+   end
+
    NAnswer(400,1,NodeSwim)
    if ((local_var(LVAR_Barter_Timer) < game_time) and (local_var(LVAR_Barter_Timer) > 0)) then begin
    NAnswer(410,1,NodeSndDialog5)

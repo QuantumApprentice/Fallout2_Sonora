@@ -56,6 +56,7 @@ procedure zipper_proc begin
    if (map_var(MVAR_FLAG_WINON_TOTEMS)<=0) then begin
       if (global_var(GVAR_FLAGSTAFF_STATUS_SAVAGE) <= 0) then begin
       floater(dude_obj, 112, COLOR_MSG_RED);
+      set_global_var(GVAR_FLAGSTAFF_WINONA_PARTY, -1);
       set_global_var(GVAR_FLAGSTAFF_STATUS_SAVAGE,-100);
       end
       else begin

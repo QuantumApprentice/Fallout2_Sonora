@@ -75,6 +75,7 @@ procedure critter_p_proc begin
    set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
    if (local_var(LVAR_InvisTime) == 0) then begin
       if (tile_distance_objs(self_obj,dude_obj) < 6) then begin
+      gfade_out(ONE_GAME_SECOND);
       set_obj_visibility(self_obj, 0);
       reg_anim_clear(dude_obj);
       display_mstr(102);
@@ -85,6 +86,7 @@ procedure critter_p_proc begin
                     critterObj := 0;
       add_timer_event(self_obj,5,2);
       inc_local_var(LVAR_InvisTime);
+      gfade_in(ONE_GAME_SECOND);
       end
    end
 end

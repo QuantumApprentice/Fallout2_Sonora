@@ -170,6 +170,9 @@ end
 procedure destroy_p_proc begin
    set_global_var(GVAR_PHENIX_STATUS_BNDCSBOSS,-1);
    setQuest(GVAR_PHENIX_QST_REKET,qStop);
+   if (getQuest(GVAR_PHENIX_QST_BNDCS_PIP) <= qStart) then begin
+   setQuest(GVAR_PHENIX_QST_BNDCS_PIP,qStop);
+   end
    if (getQuest(GVAR_PHENIX_QST_BNDCS_A) == qStart) then begin
    setQuest(GVAR_PHENIX_QST_BNDCS_A,qStop);
    end
@@ -371,7 +374,7 @@ procedure NodeSndDialog begin
       if (global_var(GVAR_PHENIX_STATUS_LOH)<0) then begin
       BAnswer(410,1,NodeQst201)
       end
-      else if (getQuest(GVAR_PHENIX_QST_CASINO_DEBT) >= qEnd) then begin
+      else if ((getQuest(GVAR_PHENIX_QST_LOH) >= qEnd) or (getQuest(GVAR_PHENIX_QST_CASINO_DEBT) >= qEnd)) then begin
       GAnswer(415,1,NodeQst203)
       end
       else if (map_var(MVAR_PNX_LOH_HOME) == 1) then begin
@@ -539,6 +542,7 @@ end
 //--- КВЕСТЫ
 
 procedure NodeQst100 begin
+   setQuest(GVAR_PHENIX_QST_BNDCS_PIP,qStart);
    setQuest(GVAR_PHENIX_QST_BNDCS_A,qStart);
    setQuest(GVAR_PHENIX_QST_BNDCS_B,qStart);
    Reply(384)
@@ -643,6 +647,7 @@ procedure NodeQst209 begin
 end
 
 procedure NodeQst210 begin
+   setQuest(GVAR_PHENIX_QST_BNDCS_PIP,qEnd);
    setQuest(GVAR_PHENIX_QST_BNDCS_C,qEnd);
    setBonusReaction(50)
    exp_add(250);

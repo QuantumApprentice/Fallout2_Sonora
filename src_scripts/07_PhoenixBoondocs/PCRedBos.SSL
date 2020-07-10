@@ -86,6 +86,8 @@ procedure NodeAnswer203;
 procedure NodeAnswer204;
 procedure NodeAnswer205;
 procedure NodeAnswer206;
+procedure NodeAnswer206b;
+procedure NodeAnswer207;
 procedure NodeAnswer301;
 procedure NodeAnswer302;
 procedure NodeAnswer303;
@@ -523,7 +525,7 @@ procedure NodeFstDialog206 begin
 end
 
 procedure NodeFstDialog300 begin
-   Reply(250)
+   zReply(250)
    if (global_var(GVAR_PHENIX_STATUS_CARD_PRISON) != 0) then begin
    NAnswer(252,1,NodeFstDialog302)
    end
@@ -550,6 +552,12 @@ end
 procedure NodeFstDialog304 begin
    bitDialogExp(bit_3,0)
    Reply(257)
+   if (global_var(GVAR_PHENIX_STATUS_CARD_PRISON) < 0) then begin
+   NAnswer(266,1,NodeFstDialog307)
+   end
+   else if (global_var(GVAR_PHENIX_STATUS_CARD_PRISON) > 1) then begin
+   NAnswer(267,1,NodeFstDialog307)
+   end
    NAnswer(258,1,Node999)
    BAnswer(259,1,Node999)
 end
@@ -598,7 +606,7 @@ procedure NodeSndDialog begin
    end
 
    if (getQuest(GVAR_PHENIX_QST_LETTERS) == qStart) then begin
-      if (item_amnt(self_obj,PID_Q_LETTERS) <= 0) then begin
+      if (item_amnt(dude_obj,PID_Q_LETTERS) <= 0) then begin
       NAnswer(310,1,NodeAnswer100)
       end
    end
@@ -610,6 +618,14 @@ procedure NodeSndDialog begin
          end
          else begin
          NAnswer(270,1,NodeAnswer202)
+         end
+      end
+      if (getQuest(GVAR_PHENIX_QST_CARDINAL_SPY) == qStart) then begin
+         if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
+         NAnswer(289,1,NodeAnswer201)
+         end
+         else begin
+         NAnswer(297,1,NodeAnswer207)
          end
       end
       if (getQuest(GVAR_PHENIX_QST_CARDINAL_SPY) == qEnd) then begin
@@ -652,7 +668,8 @@ procedure NodeAnswer201 begin
    setQuest(GVAR_PHENIX_QST_CARDINALS,qEnd+1);
    setBonusReaction(50)
    box_stop_use := 0;
-   Reply(273)
+   exp_add(250);
+   zReply(273)
    NAnswer(274,1,Node999)
 end
 
@@ -669,6 +686,7 @@ end
 procedure NodeAnswer204 begin
    setQuest(GVAR_PHENIX_QST_CARDINAL_SPY,qStart);
    Reply(279)
+   NAnswer(295,1,NodeAnswer207)
    NAnswer(280,1,Node999)
    BAnswer(281,1,Node999)
 end
@@ -690,7 +708,23 @@ procedure NodeAnswer206 begin
    box_stop_use := 0;
 
    Reply(286)
-   NAnswer(287,1,Node999)
+   if (map_var(MVAR_PNX_CARDINALS_ATTAK)<0) then begin
+   GAnswer(288,1,Node999)
+   end
+   else begin
+   NAnswer(287,1,NodeAnswer206b)
+   end
+end
+
+procedure NodeAnswer206b begin
+   PLAY_FADE
+   call Node999;
+end
+
+procedure NodeAnswer207 begin
+   Reply(296)
+   NAnswer(280,1,Node999)
+   BAnswer(281,1,Node999)
 end
 
 procedure NodeAnswer301 begin

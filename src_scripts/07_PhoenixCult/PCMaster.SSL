@@ -127,6 +127,7 @@ procedure NodeFollower100;
 procedure NodeFollower102;
 procedure NodeFollower103;
 procedure NodeFollower200;
+procedure NodeFollower200b;
 procedure NodeFollower201;
 procedure NodeFollower202;
 
@@ -160,6 +161,7 @@ procedure NodeVilla400;
 
 #define LVAR_Dude_Knowing                  (6) // знакомство с ГГ: 0 - ГГ проходимец, 1 - знает что ГГ ищет людей Виллы, 2 - знает, что ГГ связан с БС или Советником, 3 - свой человек в соборе
 #define LVAR_Villa_Knowing                 (7) // состоялся ли диалог про Виллу: 0 - диалоге не состоялся, 1 - диалог состоялся
+#define LVAR_SBrahmin_Qst                  (8) // ГГ навязался на службу через екомендацию Крука из СБрамин: 0 - нет, 1 - да
 
 import variable box_stop_use;
 
@@ -250,7 +252,13 @@ procedure destroy_p_proc begin
    if (source_obj == dude_obj) then begin
    set_CITY_REP(GVAR_TOWN_REP_PHOENIX,15)
    end
+
+   if (global_var(GVAR_PHENIX_MATIAS_NONATTAK) > 0) then begin
+   kill_critter_opt_norep
+   end
+   else begin
    kill_critter_opt
+   end
 end
 
 procedure talk_p_proc begin
@@ -745,7 +753,7 @@ end
 
 procedure NodeQst200 begin
    Reply(601)
-   if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_18) != 0) then begin
+   if (global_var(GVAR_PHENIX_STATUS_MARCOS) < 0) then begin
    NAnswer(603,1,NodeQst201)
    end
    else if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_13) != 0) then begin
@@ -758,7 +766,7 @@ procedure NodeQst201 begin
    PLAY_FADE
    setQuest(GVAR_PHENIX_QST_CULT_B,qEnd);
    setQuest(GVAR_PHENIX_QST_CULT_C,qStart);
-   set_gvar_bit_on(GVAR_DIALOGS_FLAGS_BIT, bit_18);
+   set_global_var(GVAR_PHENIX_STATUS_MARCOS, -1);
    setQuest(GVAR_PHENIX_PARTY_QST_A,qStop);
    setQuest(GVAR_PHENIX_PARTY_QST_B,qStop);
    setBonusReaction(35)
@@ -774,8 +782,14 @@ procedure NodeQst202 begin
 end
 
 procedure NodeQst203 begin
+   if ((local_var(LVAR_SBrahmin_Qst)>0) and (getQuest(GVAR_PHENIX_QST_CULT_C) == qStart)) then begin
+   zReply(616)
+   NAnswer(617,1,NodeQst300)
+   end
+   else begin
    Reply(609)
    NAnswer(610,1,NodeQst204)
+   end
 end
 
 procedure NodeQst204 begin
@@ -805,6 +819,7 @@ procedure NodeQst300 begin
    (впрочем это может быть избыточным и спойлерным)
    */
 
+   /*
    if (bitDialog(bit_9) != 0) then begin
    if (global_var(GVAR_BRAHMIN_STATUS_HEAD_GERONIMO)<0) then begin
    if (global_var(GVAR_BRAHMIN_STATUS_RANGER)!=0) then begin
@@ -812,6 +827,13 @@ procedure NodeQst300 begin
    GAnswer(660,1,NodeQst310)
    end
    end
+   end
+   end
+   */
+
+   if (bitDialog(bit_9) != 0) then begin
+   if (global_var(GVAR_BRAHMIN_STATUS_HEAD_GERONIMO)<0) then begin
+   GAnswer(660,1,NodeQst310)
    end
    end
 
@@ -1120,7 +1142,7 @@ procedure NodeFollower begin
    GAnswer(521,1,NodeFollower200)
    end
    if ((global_var(GVAR_BRAHMIN_STATUS_COMMANDER)>=0) and (getQuest(GVAR_BRAHMIN_QST_COMMANDER) >= qEnd)) then begin
-   GAnswer(523,1,NodeFollower200)
+   GAnswer(523,1,NodeFollower200b)
    end
 
    NAnswer(502,1,NodeFollower100)
@@ -1168,8 +1190,13 @@ procedure NodeFollower200 begin
    NAnswer(531,1,NodeFollower201)
    end
    else begin
-   NAnswer(534,1,Node999)
+   NAnswer(536,1,Node999)
    end
+end
+
+procedure NodeFollower200b begin
+   set_local_var(LVAR_SBrahmin_Qst, 1);
+   call NodeFollower200;
 end
 
 procedure NodeFollower201 begin

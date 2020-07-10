@@ -184,7 +184,14 @@ end
 
 procedure NodeSndDialog begin
    Reply(210)
+
+   if (bitDialog(bit_4) == 0) then begin
    NAnswer(220,1,NodeAnswer100)
+   end
+   else begin
+   NAnswer(229,1,NodeAnswer100)
+   end
+
    if (getQuest(GVAR_RANGERS_QST_REPAIR_DUM) == qStart) then begin
       NAnswer(260,1,NodeQuestA200)
    end
@@ -212,7 +219,14 @@ end
 //--- РАССПРОСЫ
 
 procedure NodeAnswer100 begin
+   if (bitDialog(bit_4) != 0) then begin
+   Reply(228)
+   end
+   else begin
+   bitDialogExp(bit_4,0)
    Reply(221)
+   end
+
    if (getQuest(GVAR_RANGERS_QST_REPAIR_DUM) == qZero) then begin
    NAnswer(250,1,NodeQuestA100)
    end

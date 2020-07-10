@@ -11,7 +11,7 @@
 #define KILL_TOWN_REP                   REP_KILL_GOOD         // репутация за убийство этого персонажа (-100 для враждебности всего поселения)
 #define KILL_FRAC_REP                   FRAC_NON              // принадлежность определенной фракции (-1, если не нужно)
 
-#define FLAG_STEAL                      120 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
+#define FLAG_STEAL                      100 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
 #define FLAG_ALCOHOL                    1  // Примет ли алкоголь от ГГ: 0 - принимает, 1 - не принимает
 #define FLAG_FOOD                       1  // Примет ли пищу от ГГ: 0 - принимает, 1 - не принимает
 
@@ -102,7 +102,7 @@ end
 procedure setBarterA begin
         check_restock_item(PID_TOOL_GEIGER_COUNTER, 1, 1, 100)
         check_restock_item(PID_CLEAR, 2, 4, 100)
-        check_restock_item(PID_TOOL_SHOVEL, 1, 3, 100)
+        check_restock_item(PID_TOOL_SHOVEL, 2, 4, 100)
         check_restock_item(PID_TOOL_ZIPPER, 1, 2, 100)
         check_restock_item(PID_TABACO, 1, 4, 100)
         check_restock_item(PID_W_CROWBAR, 1, 1, 100)
@@ -179,7 +179,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-10) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,-20) // Поправка к отношению за принадлежность к фракциям
 
-   dialog_proc_barter(1,0,NodeStartDialog,-1,-1)
+   dialog_proc_barter(0,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -210,7 +210,7 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog2)
 end
 

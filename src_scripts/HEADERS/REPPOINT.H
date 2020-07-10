@@ -85,6 +85,10 @@
                                                    kill_critter_dont_rep                     \
                                                 end                                          \
 
+#define kill_critter_reput_norep                if (source_obj == dude_obj) then begin       \
+                                                   kill_critter_titul                        \
+                                                end                                          \
+
 #define kill_critter_titul                      if type_kill(KILL_TYPE_children) then begin     \
                                                    inc_global_var(GVAR_REPUTATION_CHILDKILLER); \
                                                 end                                             \

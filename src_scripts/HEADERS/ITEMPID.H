@@ -239,6 +239,9 @@ SONORA Active Items
 #define PID_MOTO_BAG                        (456)
 
 #define PID_BOS_ARMY_TAG                    (44)
+#define PID_BOS_ARMYTAG_A                   (113)
+#define PID_BOS_ARMYTAG_B                   (114)
+#define PID_Q_BRAHMIN_BARTER                (362)
 #define PID_Q_RADIO_HERMOSILLO              (364)
 #define PID_Q_PORTMONE                      (365)
 #define PID_Q_CASE_CURIER                   (366)
@@ -387,12 +390,20 @@ SONORA Active Items
                                                end                              \
                                             end                                 \
 
+/*
 #define destroyUseShovel                    inc_global_var(GVAR_SHOVEL_STATUS);  \
-                                            if (global_var(GVAR_SHOVEL_STATUS)>=dude_strength) then begin \
+                                            if (global_var(GVAR_SHOVEL_STATUS)>=(dude_strength+4)) then begin \
                                             item_remove(dude_obj, objUsedPid, 1) \
                                             g_display_mstr(492);                 \
                                             set_global_var(GVAR_SHOVEL_STATUS,0); \
                                             end                                  \
+*/
+
+#define destroyUseShovel                    if (random(0,100) <= (10-dude_strength)) then begin \
+                                            item_remove(dude_obj, objUsedPid, 1) \
+                                            g_display_mstr(492);                 \
+                                            end                                  \
+
 
 /*****************************************************************
 ***************       Active Items                  **************

@@ -56,6 +56,7 @@
 #define SCRIPT_ZSMeat           (301)
 #define SCRIPT_ZSDorCls         (404)
 #define SCRIPT_ZSHole           (610)
+#define SCRIPT_ZSRprJnk         (751)
 
 #define SCRIPT_ZSTblWrk         (31)
 #define SCRIPT_ZSChemTb         (47)
@@ -128,7 +129,9 @@
 #define SCRIPT_EncCafA         (441) // мужчина в Придорожном Кафе
 #define SCRIPT_EncCafB         (442) // женщина в Придорожном Кафе
 #define SCRIPT_EncLamnt        (618) // фермер Ламонт на встрече с перекати-поле
-#define SCRIPT_EncBaron        (692) // самоназванный владыка Аризоны
+#define SCRIPT_EncBaron        (692) // Барон, самоназванный владыка Аризоны
+#define SCRIPT_EncBarnB        (754) // соратники Барона Аризоны
+#define SCRIPT_EncBarnC        (755) // враги Барона Аризоны
 #define SCRIPT_EncSnow         (693) // обледенелые фигуры
 #define SCRIPT_EncComix        (694) // журнал комиксов Панчо Вилья
 #define SCRIPT_EncPadre        (700) // падре на встрече "Дух святого Иосифа"
@@ -190,6 +193,8 @@
 #define SCRIPT_VSKerama        (589)
 #define SCRIPT_VSBnsBlc        (687)
 #define SCRIPT_VCRobot         (688)
+#define SCRIPT_VCMineA         (737)
+#define SCRIPT_VCMineB         (738)
 
 //------------------------------------------------------
 //---------------------- Шакалы
@@ -333,6 +338,7 @@
 //--- Лагерь в горах
 #define SCRIPT_FCSavage        (718)
 #define SCRIPT_FCTraper        (719)
+#define SCRIPT_FCTrpPrt        (742)
 #define SCRIPT_FSTotems        (720)
 
 //------------------------------------------------------
@@ -369,6 +375,8 @@
 #define SCRIPT_BCWarA          (690)
 #define SCRIPT_BCWarB          (691)
 #define SCRIPT_BSStrBns        (729)
+#define SCRIPT_BCHunter        (752)
+#define SCRIPT_BCCrvnQt        (756)
 
 //------------------------------------------------------
 //---------------------- Рейнджеры
@@ -554,6 +562,8 @@
 #define SCRIPT_PCCtzBld        (457)
 #define SCRIPT_PCCltBld        (571)
 #define SCRIPT_PCGhost         (579)
+#define SCRIPT_PCCltPtA        (740)
+#define SCRIPT_PCCltPtB        (741)
 
 //--- Подземка
 #define SCRIPT_PCAnlGhl        (432)
@@ -565,6 +575,7 @@
 #define SCRIPT_PCPrtznD        (453)
 #define SCRIPT_PCPrtznE        (454)
 #define SCRIPT_PSPrtznF        (456)
+#define SCRIPT_PCScvAtm        (736)
 
 //--- Атомная станция
 #define SCRIPT_PCAtmBos        (524)
@@ -792,6 +803,7 @@
 #define SCRIPT_NCShfRob        (701)
 #define SCRIPT_NSWanted        (704)
 #define SCRIPT_NCAlco          (706)
+#define SCRIPT_NCCarlos        (739)
 
 //------------------------------------------------------
 //---------------------- Инферно
@@ -814,6 +826,7 @@
 #define SCRIPT_ISMusic          (549)
 #define SCRIPT_ISFair           (550)
 #define SCRIPT_ISTotem          (551)
+#define SCRIPT_ISEd             (753)
 
 //------------------------------------------------------
 //---------------------- Пуэрто-Стайл
@@ -837,6 +850,7 @@
 #define SCRIPT_SCInstr         (568)
 #define SCRIPT_SCPatrul        (570)
 #define SCRIPT_SCLumpy         (672)
+#define SCRIPT_SCPaul          (743) // Пауль (EncMtntC) из мобильной платформы перебравшийся в Пуэрто
 
 #define SCRIPT_SSWheel         (561)
 #define SCRIPT_SSCmpBos        (562)
@@ -853,6 +867,18 @@
 #define SCRIPT_SCCmpCmd        (584)
 #define SCRIPT_SCCmpBnd        (585)
 #define SCRIPT_SCCmpCrv        (586)
+
+//------------------------------------------------------
+//---------------------- Сан-Фелипе
+//------------------------------------------------------
+
+#define SCRIPT_ACBoss          (744)
+#define SCRIPT_ACCtzn          (745)
+#define SCRIPT_ACCtzRun        (746)
+#define SCRIPT_ACCtzCav        (747)
+#define SCRIPT_ASFaro          (748)
+#define SCRIPT_ASLampar        (749)
+#define SCRIPT_ATCave          (750)
 
 //------------------------------------------------------
 //---------------------- Эрмосильо

@@ -58,7 +58,12 @@ procedure timed_event_p_proc begin
    // Таймер за номером 1 рарезервирован под перемещение персонажа по локации
    // Таймер за номером 2 рарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
+       if (cur_map_index == MAP_SAN_BRAHMIN_OASIS) then begin
+       timer_move_random_home(3)
+       end
+       else begin
        timer_move_random_home(7)
+       end
    end
    if (fixed_param == 2) then begin
        //timer_float_reply(120,121)
@@ -93,6 +98,9 @@ procedure damage_p_proc begin
 end
 
 procedure destroy_p_proc begin
+   if (cur_map_index == MAP_SAN_BRAHMIN_OASIS) then begin
+   inc_global_var(GVAR_BRAHMIN_STATUS_OASIS_SCORP);
+   end
    kill_critter_opt
    if (self_PID == PID_SCORPION_LEGEND) then begin
    set_global_var(GVAR_STATUS_SCORPION_LEGEND,-1);

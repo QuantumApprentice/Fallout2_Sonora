@@ -44,7 +44,12 @@ procedure timed_event_p_proc begin
    // Таймер за номером 1 рарезервирован под перемещение персонажа по локации
    // Таймер за номером 2 рарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
+       if (cur_map_index == MAP_SAN_FELIPE_COAST) then begin
+       timer_move_random_home(5)
+       end
+       else begin
        timer_move_random
+       end
    end
    if (fixed_param == 2) then begin
        //timer_float_reply(120,121)
@@ -69,7 +74,7 @@ procedure use_obj_on_p_proc begin
 end
 
 procedure combat_p_proc begin
-   effectAttak(7,0,2,2,2) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
+   effectAttak(3,0,0,0,1) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
    effectIntimidationPerk
 end
 
@@ -78,5 +83,11 @@ procedure damage_p_proc begin
 end
 
 procedure destroy_p_proc begin
+   if (cur_map_index == MAP_SAN_FELIPE_CAVE) then begin
+      inc_global_var(GVAR_SANFELIPE_STATUS_MONSTRCAVE);
+   end
+   if (cur_map_index == MAP_SAN_FELIPE_COAST) then begin
+      inc_global_var(GVAR_SANFELIPE_STATUS_MONSTRCOAST);
+   end
    kill_critter_opt
 end

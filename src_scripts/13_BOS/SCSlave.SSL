@@ -65,6 +65,9 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+       /*
+       предполагал размещать моп только при Чутье Мусорщика
+       */
    end
 end
 
@@ -149,7 +152,7 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog2)
 end
 
@@ -207,7 +210,7 @@ procedure NodeAnswer begin
 end
 
 procedure NodeAnswer100 begin
-   Reply(221)
+   zReply(221)
    NAnswer(223,1,NodeAnswer101)
    NAnswer(222,1,NodeAnswer)
 end
@@ -256,7 +259,7 @@ end
 
 procedure NodeAnswer300 begin
    Reply(251)
-   //!!! (Красноречие + Отношение + ГГ не является членом БС) Выведать тайник на корабле, где рабы хранят свои находки. Без этого разговора тайник не найти.
+   //!!! (Красноречие + Отношение + ГГ не является членом БС + перк Чутье Мусорщика) Выведать тайник на корабле, где рабы хранят свои находки. Без этого разговора тайник не найти.
    NAnswer(253,1,NodeAnswer301)
    NAnswer(256,1,NodeAnswer302)
    NAnswer(252,1,NodeAnswer)

@@ -156,8 +156,8 @@ procedure detected_proc begin
    variable detected_var;
 
    //--- Просчет вероятности
-   detected_var := dude_perception;
-   detected_var += (has_skill(dude_obj, SKILL_TRAPS)/5);
+   detected_var := (dude_perception*5);
+   detected_var += (has_skill(dude_obj, SKILL_TRAPS)/2);
    if (global_var(GVAR_LIGHT_MAP_GLOBAL) <= 20) then begin
    detected_var -= 20;
    end

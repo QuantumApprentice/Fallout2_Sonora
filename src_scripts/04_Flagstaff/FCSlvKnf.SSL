@@ -57,17 +57,17 @@ procedure map_enter_p_proc begin
 
    if (is_loading_game == false) then begin
        set_start_home
-       if ((global_var(GVAR_FLAGSTAFF_RADIO_MARK) != 0) or (getQuest(GVAR_FLAGSTAFF_SLAVES_RUN) >= qEnd)) then begin
-       rm_timer_event(self_obj);
-       set_obj_visibility(self_obj, 1);
+       if ((gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_9) != 0) or (global_var(GVAR_FLAGSTAFF_RADIO_MARK) != 0) or (getQuest(GVAR_FLAGSTAFF_SLAVES_RUN) >= qEnd)) then begin
+          rm_timer_event(self_obj);
+          set_obj_visibility(self_obj, 1);
        end
        else if (getQuest(GVAR_FLAGSTAFF_MERPSWDR) >= qEnd) then begin
-       rm_timer_event(self_obj);
-       set_obj_visibility(self_obj, 1);
-       generObj := create_object_sid(316, self_tile, 0, SCRIPT_FSDead);
+          rm_timer_event(self_obj);
+          set_obj_visibility(self_obj, 1);
+          generObj := create_object_sid(316, self_tile, 0, SCRIPT_FSDead);
                    move_obj_inven_to_obj(self_obj, generObj);
                    generObj := 0;
-       destroy_object(self_obj);
+          destroy_object(self_obj);
        end
    end
 end

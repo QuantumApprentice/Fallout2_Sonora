@@ -45,6 +45,7 @@ procedure NodeAnswer100;
 procedure NodeAnswer101;
 procedure NodeAnswer102;
 procedure NodeAnswer103;
+procedure NodeAnswer103b;
 procedure NodeAnswer104;
 procedure NodeAnswer200;
 procedure NodeAnswer201;
@@ -171,7 +172,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_BOS_TRAITOR,-90) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,-20) // Поправка к отношению за принадлежность к фракциям
 
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,HEAD_BOSS_MAURA,BACKGROUND_WASTELND)
    end
 end
 
@@ -299,6 +300,13 @@ procedure NodeAnswer103 begin
    set_REP(-1)
    setBonusReaction(-10)
    Reply(228)
+   NAnswer(235,3,NodeAnswer103b)
+   BAnswer(230,1,NodeAnswer)
+   NAnswer(229,1,NodeAnswer)
+end
+
+procedure NodeAnswer103b begin
+   Reply(236)
    BAnswer(230,1,NodeAnswer)
    NAnswer(229,1,NodeAnswer)
 end
@@ -339,7 +347,7 @@ procedure NodeAnswer203 begin
    GAnswer(267,5,NodeAnswer210)
    end
 
-   NAnswer(259,5,NodeAnswer204)
+   //NAnswer(259,5,NodeAnswer204)
    NAnswer(261,5,NodeAnswer205)
 
    NAnswer(253,1,NodeAnswer201)
@@ -358,7 +366,6 @@ procedure NodeAnswer205 begin
    if (bitDialog(bit_3) == 0) then begin
    NAnswer(263,5,NodeAnswer206)
    end
-   NAnswer(259,5,NodeAnswer204)
    NAnswer(264,1,NodeAnswer)
 end
 
@@ -481,7 +488,7 @@ end
 
 procedure NodeAnswer505 begin
    Reply(327)
-   NAnswer(329,3,NodeAnswer506)
+   zNAnswer(329,3,NodeAnswer506)
    NAnswer(328,1,Node999)
 end
 

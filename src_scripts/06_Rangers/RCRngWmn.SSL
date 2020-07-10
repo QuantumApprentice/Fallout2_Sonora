@@ -49,29 +49,28 @@ procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
 
-       if (map_var(MVAR_RNGRS_Councilium) == 1) then begin
-           set_obj_visibility(self_obj, 1);
-       end
-       else if ((global_var(GVAR_JACKALS_RANGER_CONTRAKT) == 1) and (getQuest(GVAR_JACKALS_UNION_CITY) == qEnd)) then begin
-           if (map_var(MVAR_RNGRS_JclTalk) < 2) then begin
-           set_obj_visibility(self_obj, 0);
-           set_map_var(MVAR_RNGRS_JclTalk,1);
-           set_map_var(MVAR_RNGRS_JclTalkMsg,110);
-           add_timer_event(self_obj, 50, 3);
-           end
-           if (map_var(MVAR_RNGRS_JclTalk) == 2) then begin
-           set_obj_visibility(self_obj, 0);
-           end
-           if (map_var(MVAR_RNGRS_JclTalk) > 2) then begin
-           set_obj_visibility(self_obj, 1);
-           end
-       end
-       else begin
-           set_obj_visibility(self_obj, 1);
+       if (global_var(GVAR_STATUS_RANGERS_AGATA) > 0) then begin
+       set_global_var(GVAR_STATUS_RANGERS_AGATA,0);
        end
 
-       if (global_var(GVAR_STATUS_RANGERS_AGATA) != 0) then begin
+       if (map_var(MVAR_RNGRS_Councilium) != 1) then begin
+       if ((global_var(GVAR_JACKALS_RANGER_CONTRAKT) == 1) and (getQuest(GVAR_JACKALS_UNION_CITY) == qEnd)) then begin
+           if (map_var(MVAR_RNGRS_JclTalk) <= 2) then begin
+           set_global_var(GVAR_STATUS_RANGERS_AGATA, 1);
+           end
+           if (map_var(MVAR_RNGRS_JclTalk) == 0) then begin
+           set_map_var(MVAR_RNGRS_JclTalk,1);
+           end
+           if (map_var(MVAR_RNGRS_JclTalk) == 1) then begin
+           set_map_var(MVAR_RNGRS_JclTalkMsg,110);
+           add_timer_event(self_obj, 40, 3);
+           end
+       end
+       end
+
        set_obj_visibility(self_obj, 1);
+       if (global_var(GVAR_STATUS_RANGERS_AGATA) > 0) then begin
+       set_obj_visibility(self_obj, 0);
        end
    end
 end
@@ -94,18 +93,25 @@ procedure timed_event_p_proc begin
        //timer_float_reply(110,119)
    end
    if (fixed_param == 3) then begin
-       if ((self_elevation == dude_elevation) and (tile_is_visible(self_tile) == TRUE)) then begin
-       floater(self_obj,map_var(MVAR_RNGRS_JclTalkMsg),COLOR_MSG_RED);
-       inc_map_var(MVAR_RNGRS_JclTalkMsg);
+       if (self_elevation == dude_elevation) then begin
+           if ((tile_is_visible(self_tile) == TRUE) or (tile_distance_objs(self_obj,dude_obj)<10)) then begin
+           floater(self_obj,map_var(MVAR_RNGRS_JclTalkMsg),COLOR_MSG_RED);
+           inc_map_var(MVAR_RNGRS_JclTalkMsg);
+           end
        end
 
        if (map_var(MVAR_RNGRS_JclTalkMsg) > 120) then begin
-       set_local_var(LVAR_Home_Tile,18307);
-       set_local_var(LVAR_Home_Rotat,2);
-       set_map_var(MVAR_RNGRS_JclTalk,2);
+           set_local_var(LVAR_Home_Tile,18307);
+           set_local_var(LVAR_Home_Rotat,2);
+           set_map_var(MVAR_RNGRS_JclTalk,2);
        end
        else begin
-       add_timer_event(self_obj, 50, 3);
+           if ((self_elevation == dude_elevation) and (tile_is_visible(self_tile) == TRUE)) then begin
+           add_timer_event(self_obj, 40, 3);
+           end
+           else begin
+           add_timer_event(self_obj, 10, 3);
+           end
        end
    end
 end
@@ -150,6 +156,9 @@ procedure talk_p_proc begin
       floater(self_obj,103,COLOR_MSG_RED);
       end
    end
+   else if (map_var(MVAR_RNGRS_JclTalk) > 2) then begin
+      display_mstr(104);
+   end
    else begin
       display_mstr(102);
    end
@@ -159,6 +168,8 @@ procedure Node998 begin
 end
 
 procedure Node999 begin
+   set_global_var(GVAR_STATUS_RANGERS_AGATA, 0);
+   set_map_var(MVAR_RNGRS_JclTalk, 10);
 end
 
 procedure NodeStartDialog begin

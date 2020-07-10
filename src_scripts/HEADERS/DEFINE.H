@@ -119,25 +119,29 @@
 #define bad_fidget                 (7)
 
 // Объемные головы
-#define HEAD_VILLA_BABL            (1)  // бабуля Адонсия
-#define HEAD_RANGER_GENERAL        (2)  // верховный командир рейнджеров
-#define HEAD_PHENIX_CULTBOSS       (3)  // Властелин Феника
-#define HEAD_TWO_SUN_BOSS          (4)  // лидер жестянщиков ТуСана
-#define HEAD_BOSS_DIXON            (5)  // генерал Диксон, Братство Стали
-#define HEAD_BOSS_POST             (6)  // часовой на корабле Братства Стали
-#define HEAD_BOSS_COMMANDER_A      (7)  // полевой командир Братства Стали (фоном стена дома)
-#define HEAD_BOSS_COMMANDER_B      (8)  // полевой командир Братства Стали (фоном дневная пустошь)
-#define HEAD_BOSS_COMMANDER_C      (9)  // полевой командир Братства Стали (фоном ночная пустошь)
-#define HEAD_BOSS_COMMANDER_D     (10)  // полевой командир Братства Стали (фоном пещера)
-#define HEAD_INFERNO_GATE         (11)  // супермутант-охранник в Инферно
-#define HEAD_JACALS_BOSS          (12)  // Бешенная Сука
-#define HEAD_GARAGE_BOSS          (13)  // мистер Коган начальник картеля старателей в Гараже (карта гаража)
-#define HEAD_HERMO_POST_DAY       (14)  // постовой Эрмосильо днем
-#define HEAD_HERMO_POST_NIGHT     (15)  // постовой Эрмосильо ночью
-#define HEAD_GARAGE_BOSS_B        (16)  // мистер Коган начальник картеля старателей в Гараже (карта сделки с караванов)
-#define HEAD_FLAGSTAFF_BOSS       (17)  // начальник гарнизона в Флагпуле
-#define HEAD_GARAGE_LUCAS         (18)  // Лукас на Заводе в Гараже
+#define HEAD_VILLA_BABL            (1)  // Вилла: бабуля Адонсия
+#define HEAD_RANGER_GENERAL        (2)  // Рейнджеры: верховный командир рейнджеров
+#define HEAD_PHENIX_CULTBOSS       (3)  // Феникс: Властелин Феника
+#define HEAD_TWO_SUN_BOSS          (4)  // ТуСан: лидер жестянщиков
+#define HEAD_BOSS_DIXON            (5)  // Пуэрто: генерал Диксон, Братство Стали
+#define HEAD_BOSS_POST             (6)  // Пуэрто: часовой на корабле Братства Стали
+#define HEAD_BOSS_COMMANDER_A      (7)  // Пуэрто: полевой командир Братства Стали (фоном стена дома)
+#define HEAD_BOSS_COMMANDER_B      (8)  // Пуэрто: полевой командир Братства Стали (фоном дневная пустошь)
+#define HEAD_BOSS_COMMANDER_C      (9)  // Пуэрто: полевой командир Братства Стали (фоном ночная пустошь)
+#define HEAD_BOSS_COMMANDER_D     (10)  // Пуэрто: полевой командир Братства Стали (фоном пещера)
+#define HEAD_INFERNO_GATE         (11)  // Инферно: супермутант-охранник в церкви
+#define HEAD_JACALS_BOSS          (12)  // Шакалы: Бешенная Сука
+#define HEAD_GARAGE_BOSS          (13)  // ГаражСити: мистер Коган начальник картеля старателей в Гараже (карта гаража)
+#define HEAD_HERMO_POST_DAY       (14)  // Эрмосильо: постовой днем
+#define HEAD_HERMO_POST_NIGHT     (15)  // Эрмосильо: постовой ночью
+#define HEAD_GARAGE_BOSS_B        (16)  // ГаражСити: мистер Коган начальник картеля старателей в Гараже (карта сделки с караванов)
+#define HEAD_FLAGSTAFF_BOSS       (17)  // Флагпул: начальник гарнизона
+#define HEAD_GARAGE_LUCAS         (18)  // ГаражСити: Лукас на Заводе
 #define HEAD_ENCOUNTER_PAUL       (19)  // заключенный на платформе супермутантов
+#define HEAD_VILLA_BANDITS        (20)  // Вилла: бандит в подвале
+#define HEAD_SANBRAHMIN_HEAD      (21)  // СанБрамин: верховный вождь
+#define HEAD_RAIDERS_BOSS         (22)  // Рейдеры: главарь банды
+#define HEAD_BOSS_MAURA           (23)  // Пуэрто: Маура
 
 // Фон объемной головы
 #define BACKGROUND_WASTELND        (1)    // WASTELND.FRM

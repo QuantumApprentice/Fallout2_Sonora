@@ -37,6 +37,14 @@ procedure talk_p_proc;
 procedure Node998;
 procedure Node999;
 procedure NodeStartDialog;
+procedure NodeStopDialog100;
+procedure NodeStopDialog101;
+procedure NodeStopDialog102;
+procedure NodeStopDialog103;
+procedure NodeStopDialog104;
+procedure NodeStopDialog105;
+procedure NodeStopDialog106;
+procedure NodeStopDialog107;
 procedure NodeFstDialog;
 procedure NodeFstDialog100;
 procedure NodeFstDialog101;
@@ -61,6 +69,7 @@ procedure NodeAnswer;
 procedure NodeAnswer2;
 procedure NodeAnswer100;
 procedure NodeAnswer200;
+procedure NodeAnswer201;
 procedure NodeAnswer300;
 procedure NodeAnswer301;
 procedure NodeAnswer302;
@@ -78,6 +87,8 @@ procedure NodeQst108;
 procedure NodeQst109;
 procedure NodeQst110;
 procedure NodeQst200;
+procedure NodeQst200a;
+procedure NodeQst200b;
 procedure NodeQst201;
 procedure NodeQst202;
 procedure NodeQst203;
@@ -85,12 +96,15 @@ procedure NodeQst204;
 procedure NodeQst205;
 procedure NodeQst206;
 procedure NodeQst207;
+procedure NodeQst207a;
+procedure NodeQst207b;
 procedure NodeQst208;
 procedure NodeQst209;
 procedure NodeQst210;
 procedure NodeQst211;
 procedure NodeQst212;
 procedure NodeQst213;
+procedure NodeQst214;
 procedure NodePartyAdd;
 procedure NodePartyNon;
 procedure NodeParty100;
@@ -107,6 +121,7 @@ procedure NodeParty109;
 //---------------------
 
 #define LVAR_Flag_Run                     (6) // персонаж бегает ГГ (1) или стоит на месте (0)
+#define LVAR_ARMSTAGS                     (7) // сколько у персонажа чужих жетонов
 
 //---------------------
 
@@ -119,8 +134,12 @@ procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
        add_timer_event(self_obj,10,3);
-       if (getQuest(GVAR_INF_QST_PALADIN_A) < qEnd) then begin
+       if ((getQuest(GVAR_INF_QST_PALADIN_A) == qZero) or (getQuest(GVAR_INF_QST_PALADIN_A) == qStart)) then begin
        set_injure_start(0,0,1,0,0) // травмировать (отметить нужное цифрой 1): a - левая рука, b - правая рука, c - левая нога, d - правая нога, e - слепота
+       end
+
+       if ((cur_map_index == MAP_PUERTO_DESTROY) or (cur_map_index == MAP_PUERTO_SIGN) or (cur_map_index == MAP_PUERTO_DOCS) or (cur_map_index == MAP_PUERTO_BASA)) then begin
+       set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_11);
        end
    end
 end
@@ -171,9 +190,11 @@ procedure timed_event_p_proc begin
    if (fixed_param == 3) then begin
       if (combat_is_initialized == false) then begin
       if (cur_map_index == MAP_PUERTO_DESTROY) then begin
+      set_local_var(LVAR_ARMSTAGS,0);
       floater(self_obj,110,COLOR_MSG_RED);
       end
-      else if (cur_map_index == MAP_PUERTO_DOCS) then begin
+      else if ((cur_map_index == MAP_PUERTO_DOCS) and (self_elevation == 0)) then begin
+      set_local_var(LVAR_ARMSTAGS,0);
       floater(self_obj,111,COLOR_MSG_GREEN);
       end
       else if (cur_map_index == MAP_PHOENIX_ANAL) then begin
@@ -261,13 +282,21 @@ procedure destroy_p_proc begin
    if (getQuest(GVAR_INF_QST_PALADIN_B) < qEnd) then begin
    setQuest(GVAR_INF_QST_PALADIN_B,qStop);
    end
+   if (local_var(LVAR_ARMSTAGS)>0) then begin
+   item_add(self_obj,PID_BOS_ARMY_TAG,local_var(LVAR_ARMSTAGS))
+   end
    kill_critter_BoS_item
    kill_critter_opt
 end
 
 procedure talk_p_proc begin
+   if ((cur_map_index == MAP_INFERNO_CHURCH) and (elevation(partyPidBos) == 2)) then begin
+   floater(self_obj, 106, COLOR_MSG_RED);
+   end
+   else begin
    setReaction(1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    dialog_proc(0,0,NodeStartDialog,-1,-1)
+   end
 end
 
 procedure Node998 begin
@@ -275,6 +304,7 @@ procedure Node998 begin
 end
 
 procedure Node999 begin
+   off_enemy_dude;
 end
 
 procedure NodeStartDialog begin
@@ -282,12 +312,64 @@ procedure NodeStartDialog begin
    bitDialogExp(bit_1,0) // опция для удобства теста в маппере
    end
 
-   if (bitDialog(bit_1) == 0) then begin
+   if ((cur_map_index == MAP_PUERTO_DESTROY) and (gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_12) == 0)) then begin
+   call NodeStopDialog100;
+   end
+   else if (bitDialog(bit_1) == 0) then begin
    call NodeFstDialog;
    end
    else begin
    call NodeSndDialog;
    end
+end
+
+//--- СТОП-ДИАЛОГ
+
+procedure NodeStopDialog100 begin
+   Reply(481)
+   NAnswer(482,1,NodeStopDialog101)
+end
+
+procedure NodeStopDialog101 begin
+   Reply(483)
+   NAnswer(484,1,NodeStopDialog102)
+   NAnswer(491,1,NodeStopDialog105)
+   zBAnswer(493,1,NodeStopDialog106)
+end
+
+procedure NodeStopDialog102 begin
+   Reply(485)
+   NAnswer(486,1,NodeStopDialog103)
+end
+
+procedure NodeStopDialog103 begin
+   Reply(487)
+   NAnswer(488,1,NodeStopDialog104)
+end
+
+procedure NodeStopDialog104 begin
+   set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_12);
+   Reply(489)
+   NAnswer(490,1,Node999)
+end
+
+procedure NodeStopDialog105 begin
+   Reply(492)
+   NAnswer(486,1,NodeStopDialog103)
+end
+
+procedure NodeStopDialog106 begin
+   Reply(494)
+   BAnswer(495,1,NodeStopDialog107)
+   BAnswer(496,1,NodeStopDialog107)
+   zBAnswer(497,1,NodeStopDialog107)
+end
+
+procedure NodeStopDialog107 begin
+   set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_12);
+   set_lvar_bit_on(LVAR_Self_Flags, bit_12);
+   Reply(498)
+   NAnswer(499,1,NodePartyNon)
 end
 
 //--- ПЕРВЫЙ ДИАЛОГ
@@ -350,8 +432,6 @@ end
 
 procedure NodeFstDialog107 begin
    setBonusReaction(-50)
-   item_add(self_obj,PID_BOS_ARMY_TAG,1)
-   item_remove(dude_obj,PID_BOS_ARMY_TAG,1)
    Reply(228)
    NAnswerSkill(233,3,NodeFstDialog109,SKILL_CONVERSANT,50,230,NodeFstDialog108)
    BAnswer(229,1,Node998)
@@ -420,39 +500,57 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
+   if (gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_10) == 0) then begin
    Reply(300)
+   end
+   else begin
+   Reply(302)
+   end
 
-   //--- Задания и расспросы
+   //--- Задания
 
    if (getQuest(GVAR_INF_QST_PALADIN_A) < qEnd) then begin
-      if (getQuest(GVAR_INF_QST_PALADIN_B) < qEnd) then begin
-         NAnswer(310,1,NodeQst)
-         if (item_amnt(dude_obj,PID_BOS_ARMY_TAG)>=2) then begin
-         NAnswer(350,1,NodeQst200)
-         end
-         /*
-         if ((global_var(GVAR_INF_STATUS_APOC) != 0) or (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_31) != 0)) then begin
-         NAnswer(369,1,NodeQst200b)
-         end
-         */
-      end
 
       if (getQuest(GVAR_INF_QST_PALADIN_B) == qEnd) then begin
          if (item_amnt(dude_obj,PID_ARMOR_POWER_A)>0) then begin
-         GAnswer(379,1,NodeQst210)
+         zGAnswer(379,1,NodeQst210)
          end
-         if (item_amnt(dude_obj,PID_ARMOR_POWER_B)>0) then begin
-         GAnswer(379,1,NodeQst210)
+         else if (item_amnt(dude_obj,PID_ARMOR_POWER_B)>0) then begin
+         zGAnswer(379,1,NodeQst210)
+         end
+         else if (getQuest(GVAR_PUERTO_POWER_ARMOR) > qZero) then begin
+         zNAnswer(389,1,NodeQst214)
+         end
+      end
+      else if (getQuest(GVAR_INF_QST_PALADIN_B) < qEnd) then begin
+         NAnswer(310,1,NodeQst)
+
+         if (gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_10) == 0) then begin
+            if (item_amnt(dude_obj,PID_BOS_ARMY_TAG)>=2) then begin
+            //NAnswer(350,1,NodeQst200)
+            end
+
+            if ((item_amnt(dude_obj,PID_BOS_ARMYTAG_A)>0) and (item_amnt(dude_obj,PID_BOS_ARMYTAG_B)>0)) then begin
+            NAnswer(350,1,NodeQst200)
+            end
+            else if (item_amnt(dude_obj,PID_BOS_ARMYTAG_A)>0) then begin
+            NAnswer(347,1,Node999)
+            end
+            else if (item_amnt(dude_obj,PID_BOS_ARMYTAG_B)>0) then begin
+            NAnswer(348,1,Node999)
+            end
+         end
+         else begin
+            call NodeQst200b;
          end
       end
 
-      if (get_Medic_Quest == 0) then begin
-         NAnswer(313,1,NodeQst100)
-      end
    end
 
+   //--- Расспросы
+
    if (getQuest(GVAR_INF_QST_PALADIN_B) < qEnd) then begin
-   NAnswer(303,1,NodeAnswer2)
+   NAnswer(263,1,NodeAnswer2)
    end
    else begin
    NAnswer(303,1,NodeAnswer)
@@ -470,37 +568,55 @@ procedure NodeSndDialog begin
 
    if (self_TEAM == TEAM_PLAYER) then begin
 
-   if weapon_invn_self then begin
-   NAnswer(411,1,NodeParty102)
-   end
-   if (inven_armor(self_obj) > 0) then begin
-   NAnswer(417,1,NodeParty104)
-   end
+      if weapon_invn_self then begin
+      NAnswer(411,1,NodeParty102)
+      end
+      if (inven_armor(self_obj) > 0) then begin
+      NAnswer(417,1,NodeParty104)
+      end
 
-   if (local_var(LVAR_Flag_Run) == 0) then begin
-   NAnswer(423,1,NodeParty105)
+      /*
+      if (local_var(LVAR_Flag_Run) == 0) then begin
+      NAnswer(423,1,NodeParty105)
+      end
+      else begin
+      NAnswer(420,1,NodeParty106)
+      end
+      */
+
+      NAnswer(426,1,NodeParty107)
    end
    else begin
-   NAnswer(420,1,NodeParty106)
+
+      if (getQuest(GVAR_INF_QST_PALADIN_A) >= qEnd) then begin
+      NAnswer(430,1,NodeParty101)
+      end
+      else begin
+      NAnswer(400,1,NodeParty100)
+      end
+
    end
 
-   NAnswer(426,1,NodeParty107)
-
-   end
-   else if (getQuest(GVAR_INF_QST_PALADIN_A) >= qEnd) then begin
-   NAnswer(430,1,NodeParty101)
-   end
-   else begin
-   NAnswer(400,1,NodeParty100)
-   end
-
+   if (gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_10) == 0) then begin
    NAnswer(301,1,Node999)
+   end
+   else begin
+   NAnswer(309,1,Node999)
+   end
 end
 
 //--- РАСПРОСЫ
 
 procedure NodeAnswer begin
    Reply(304)
+
+   if (cur_map_index == MAP_PUERTO_BASA) then begin
+   NAnswer(466,1,NodeAnswer201)
+   end
+   if (cur_map_index == MAP_PUERTO_DOCS) then begin
+   NAnswer(466,1,NodeAnswer201)
+   end
+
    NAnswer(470,1,NodeAnswer300)
    NAnswer(450,1,NodeAnswer200)
    NAnswer(305,1,NodeSndDialog)
@@ -519,10 +635,17 @@ end
 
 procedure NodeAnswer200 begin
    if (cur_map_index == MAP_PUERTO_DESTROY) then begin
-   Reply(454)
+      set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_11);
+      Reply(454)
    end
    else if ((cur_map_index == MAP_PUERTO_SIGN) or (cur_map_index == MAP_PUERTO_DOCS) or (cur_map_index == MAP_PUERTO_BASA)) then begin
-   Reply(453)
+      set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_11);
+      if (global_var(GVAR_TITUL_BOS)>0) then begin
+      Reply(463)
+      end
+      else begin
+      Reply(453)
+      end
    end
    else if ((cur_map_index == MAP_INFERNO_ROAD) or (cur_map_index == MAP_INFERNO_CITY) or (cur_map_index == MAP_INFERNO_SHOP) or (cur_map_index == MAP_INFERNO_POLICE) or (cur_map_index == MAP_INFERNO_CHURCH) or (cur_map_index == MAP_INFERNO_MONUMENT)) then begin
    Reply(455)
@@ -558,11 +681,25 @@ procedure NodeAnswer200 begin
    NAnswer(452,1,NodeSndDialog)
 end
 
+procedure NodeAnswer201 begin
+   set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_11);
+   Reply(467)
+   NAnswer(468,1,NodeSndDialog)
+end
+
 procedure NodeAnswer300 begin
+   if (gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_12) != 0) then begin
+   Reply(480)
+   end
+   else if (global_var(GVAR_TITUL_BOS)>0) then begin
+   zReply(464)
+   end
+   else begin
    Reply(471)
    NAnswer(473,1,NodeAnswer301)
    NAnswer(475,1,NodeAnswer302)
    NAnswer(478,1,NodeAnswer303)
+   end
    NAnswer(472,1,NodeSndDialog)
 end
 
@@ -593,11 +730,30 @@ end
 //--- КВЕСТ НА ПРОПАВШИХ
 
 procedure NodeQst begin
-   Reply(311)
+   if (gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_10) == 0) then begin
+      if (get_Medic_Quest == 0) then begin
+      Reply(311)
+      end
+      else begin
+      Reply(344)
+      end
+   end
+   else begin
+      if (get_Medic_Quest == 0) then begin
+      Reply(346)
+      end
+      else begin
+      Reply(345)
+      end
+      call NodeQst200b;
+   end
 
    NAnswer(320,1,NodeQst102)
    NAnswer(330,1,NodeQst107)
    NAnswer(333,1,NodeQst108)
+   if (get_Medic_Quest == 0) then begin
+   NAnswer(343,1,NodeQst100)
+   end
    NAnswer(312,1,Node999)
 end
 
@@ -615,54 +771,17 @@ end
 
 procedure NodeQst102 begin
    Reply(321)
-
-   /*
-   if  разведчик не найден
    NAnswer(322,1,NodeQst103)
-   end
-   else if  рыцарь не найден
-   NAnswer(322,1,NodeQst104)
-   end
-   else if  диана не найдена
-   NAnswer(322,1,NodeQst105)
-   end
-   */
-
-   NAnswer(322,1,NodeQst103)
-   NAnswer(328,1,NodeQst106)
-   NAnswer(317,1,NodeQst)
-   NAnswer(323,1,Node999)
 end
 
 procedure NodeQst103 begin
    Reply(324)
-
-   /*
-   if  рыцарь не найден
    NAnswer(327,1,NodeQst104)
-   end
-   else if  диана не найдена
-   NAnswer(327,1,NodeQst105)
-   end
-   */
-
-   NAnswer(327,1,NodeQst104)
-   NAnswer(328,1,NodeQst106)
-   NAnswer(317,1,NodeQst)
-   NAnswer(323,1,Node999)
 end
 
 procedure NodeQst104 begin
    Reply(325)
-   /*
-   if  диана не найдена
    NAnswer(341,1,NodeQst105)
-   end
-   */
-   NAnswer(341,1,NodeQst105)
-   NAnswer(328,1,NodeQst106)
-   NAnswer(317,1,NodeQst)
-   NAnswer(323,1,Node999)
 end
 
 procedure NodeQst105 begin
@@ -691,34 +810,59 @@ end
 procedure NodeQst109 begin
    Reply(336)
    NAnswer(337,1,NodeQst110)
+   NAnswer(317,1,NodeQst)
 end
 
 procedure NodeQst110 begin
    Reply(338)
    NAnswer(339,1,NodeSndDialog)
    BAnswer(340,1,NodeSndDialog)
+   NAnswer(317,1,NodeQst)
 end
 
 procedure NodeQst200 begin
+   if ((item_amnt(dude_obj,PID_BOS_ARMYTAG_A)>0) and (item_amnt(dude_obj,PID_BOS_ARMYTAG_B)>0)) then begin
+   call NodeQst200a;
+   end
+   else begin
+   call NodeSndDialog;
+   end
+end
+
+procedure NodeQst200a begin
+   set_local_var(LVAR_ARMSTAGS,2);
+   item_remove(dude_obj,PID_BOS_ARMYTAG_A,1)
+   item_remove(dude_obj,PID_BOS_ARMYTAG_B,1)
    Reply(351)
-   if (global_var(GVAR_INF_STATUS_APOC) == 0) then begin
-   if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_31) != 0) then begin
-   NAnswer(355,1,NodeQst202)
-   end
-   end
-   if (global_var(GVAR_INF_STATUS_APOC) < 0) then begin
-   BAnswer(360,1,NodeQst204)
-   end
-   else if (global_var(GVAR_INF_STATUS_APOC) == 1) then begin
-   GAnswer(363,1,NodeQst205)
-   end
-   else if (global_var(GVAR_INF_STATUS_APOC) >= 2) then begin
-   NAnswer(366,1,NodeQst206)
-   end
+   call NodeQst200b;
    NAnswer(352,1,NodeQst201)
 end
 
+procedure NodeQst200b begin
+   if (global_var(GVAR_INF_STATUS_APOC) < 0) then begin
+      BAnswer(360,1,NodeQst204)
+   end
+   else if (global_var(GVAR_INF_STATUS_APOC) == 0) then begin
+      if (getQuest(GVAR_NUEVA_QST_APOC_HOME) >= qEnd) then begin
+      GAnswer(366,1,NodeQst206)
+      end
+      else if (getQuest(GVAR_NUEVA_QST_APOC_HOME) == qStart) then begin
+      GAnswer(363,1,NodeQst205)
+      end
+      else if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_31) != 0) then begin
+      NAnswer(355,1,NodeQst202)
+      end
+   end
+   else if ((global_var(GVAR_INF_STATUS_APOC) == 1) or (partyPidApc!=0)) then begin
+      GAnswer(363,1,NodeQst205)
+   end
+   else if (global_var(GVAR_INF_STATUS_APOC) >= 2) then begin
+      GAnswer(366,1,NodeQst206)
+   end
+end
+
 procedure NodeQst201 begin
+   set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_10);
    Reply(353)
    NAnswer(354,1,Node999)
 end
@@ -730,7 +874,7 @@ end
 
 procedure NodeQst203 begin
    Reply(358)
-   //Слушай, здесь мне не обойтись без твоей помощи. Как твоя нога, ты можешь везти бой?
+   //Слушай, здесь мне не обойтись без твоей помощи. Как твоя нога, ты можешь вести бой?
    NAnswer(359,1,Node999)
 end
 
@@ -753,10 +897,43 @@ procedure NodeQst206 begin
 end
 
 procedure NodeQst207 begin
+   setQuest(GVAR_INF_QST_PALADIN_A,qEnd);
+   setQuest(GVAR_INF_QST_PALADIN_B,qEnd);
+   exp_add(1500);
+   setBonusReaction(85)
+   set_SLAVA(25)
+   set_REP(5)
+
+   Reply(394)
+   GAnswer(395,1,NodeQst207a)
+   NAnswer(396,1,NodeQst207b)
+end
+
+procedure NodeQst207a begin
+   setBonusReaction(5)
+   call NodeQst207b;
+end
+
+procedure NodeQst207b begin
+   if (global_var(GVAR_INF_STATUS_PALADIN)>0) then begin
+   Reply(392)
+   NAnswer(393,1,Node999)
+   end
+   else begin
+   Reply(397)
+   NAnswer(399,1,NodeParty101)
+   NAnswer(398,1,Node999)
+   end
+end
+
+/*
+procedure NodeQst207 begin
    setQuest(GVAR_INF_QST_PALADIN_B,qEnd);
    exp_add(1000);
-   setBonusReaction(25)
-   Reply(373)
+   setBonusReaction(50)
+   set_SLAVA(25)
+
+   Reply(394)
    if (armor_pid_dude_var == PID_ARMOR_POWER_A) then begin
    NAnswer(374,1,NodeQst211)
    end
@@ -767,6 +944,7 @@ procedure NodeQst207 begin
    NAnswer(374,1,NodeQst208)
    end
 end
+*/
 
 procedure NodeQst208 begin
    Reply(375)
@@ -776,10 +954,13 @@ end
 procedure NodeQst209 begin
    Reply(377)
    if (item_amnt(dude_obj,PID_ARMOR_POWER_A)>0) then begin
-   GAnswer(379,1,NodeQst210)
+   zGAnswer(379,1,NodeQst210)
    end
-   if (item_amnt(dude_obj,PID_ARMOR_POWER_B)>0) then begin
-   GAnswer(379,1,NodeQst210)
+   else if (item_amnt(dude_obj,PID_ARMOR_POWER_B)>0) then begin
+   zGAnswer(379,1,NodeQst210)
+   end
+   else if (getQuest(GVAR_PUERTO_POWER_ARMOR) > qZero) then begin
+   zNAnswer(389,1,NodeQst214)
    end
    NAnswer(378,1,Node999)
 end
@@ -804,11 +985,26 @@ end
 
 procedure NodeQst213 begin
    setQuest(GVAR_INF_QST_PALADIN_A,qEnd);
-   exp_add(500);
+   exp_add(750);
    set_SLAVA(25)
    setBonusReaction(35)
    Reply(387)
    NAnswer(388,1,Node999)
+end
+
+procedure NodeQst214 begin
+   setQuest(GVAR_INF_QST_PALADIN_A,qEnd);
+   exp_add(750);
+   set_SLAVA(25)
+   setBonusReaction(35)
+   if (global_var(GVAR_INF_STATUS_PALADIN)>0) then begin
+   Reply(392)
+   NAnswer(393,1,Node999)
+   end
+   else begin
+   Reply(390)
+   NAnswer(388,1,Node999)
+   end
 end
 
 //--- ПАРТИЯ
@@ -830,10 +1026,17 @@ procedure NodePartyNon begin
    critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_CULT_ATOMIC);
    end
    set_local_var(LVAR_Flag_Run,0);
+   set_local_var(LVAR_Flags,0);
    set_global_var(GVAR_INF_STATUS_PALADIN,0);
    set_local_var(LVAR_Home_Tile,self_tile);
    set_local_var(LVAR_Home_Rotat,self_cur_rot);
+
+   if (lvar_bit(LVAR_Self_Flags, bit_12) == 0) then begin
    call Node999;
+   end
+   else begin
+   call Node998;
+   end
 end
 
 procedure NodeParty100 begin
@@ -851,21 +1054,32 @@ procedure NodeParty100 begin
 end
 
 procedure NodeParty101 begin
-   if (get_Medic_Quest == 0) then begin
-   Reply(401)
-   NAnswer(402,1,NodeSndDialog)
-   NAnswer(403,1,Node999)
+   if ((get_Medic_Quest == 0) and (getQuest(GVAR_INF_QST_PALADIN_A) < qEnd)) then begin
+      Reply(401)
+      NAnswer(402,1,NodeSndDialog)
+      NAnswer(403,1,Node999)
    end
-   else if (party_member_count(0) > 1) then begin
-   Reply(405)
-   NAnswer(406,1,NodeSndDialog)
-   NAnswer(407,1,Node999)
+   else if (party_limit and (global_var(GVAR_TITUL_BOS) <= 0)) then begin
+   //else if (party_member_count(0) > 1) then begin
+      Reply(405)
+      NAnswer(406,1,NodeSndDialog)
+      NAnswer(407,1,Node999)
    end
    else begin
-   Reply(408)
-   //! может, сделать ли проверку Отношения или Красноречия?
-   NAnswer(409,1,NodePartyAdd)
-   NAnswer(410,1,Node999)
+      if (gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_12) != 0) then begin
+      Reply(465)
+      NAnswer(439,1,NodePartyAdd)
+      end
+      else if ((gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_11) != 0) or (global_var(GVAR_TITUL_BOS) > 0)) then begin
+      Reply(438)
+      NAnswer(439,1,NodePartyAdd)
+      end
+      else begin
+      Reply(408)
+      //! сделать ли проверку Отношения или Красноречия?
+      NAnswer(409,1,NodePartyAdd)
+      NAnswer(410,1,Node999)
+      end
    end
 end
 
@@ -900,7 +1114,7 @@ procedure NodeParty106 begin
 end
 
 procedure NodeParty107 begin
-   Reply(427)
+   zReply(427)
    NAnswer(428,1,NodePartyNon)
    GAnswer(429,1,NodeSndDialog)
 end

@@ -152,6 +152,9 @@ procedure talk_p_proc begin
    else if (getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) >= qEnd) then begin
    floater(self_obj,random(120,125),COLOR_MSG_NORMAL);
    end
+   else if (global_var(GVAR_STATUS_FLAGSTAFF_TUWARDEN) < 0) then begin
+   floater(self_obj,103,COLOR_MSG_NORMAL);
+   end
    else begin
    floater(self_obj,random(120,122),COLOR_MSG_NORMAL);
    end

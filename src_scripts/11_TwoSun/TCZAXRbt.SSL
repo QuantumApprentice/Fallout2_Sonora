@@ -67,11 +67,10 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
-   set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   set_critter_options(0,1) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
    if (bitDialog(bit_1) == 0) then begin
       if (dude_elevation == 0) then begin
-      //Flee_From_Dude_NoSee
-      partyRunToDude
+      //partyRunToDude
       end
       dialogue_system_forcing(7)
    end
@@ -88,7 +87,7 @@ procedure pickup_p_proc begin
 end
 
 procedure push_p_proc begin
-   push_options(dude_tile,3,-1) //Толкать (точка отсчета, макс расстояние, фраза нпс при толкании), удалить если не надо
+   push_options(self_tile,3,-1) //Толкать (точка отсчета, макс расстояние, фраза нпс при толкании), удалить если не надо
 end
 
 procedure use_obj_on_p_proc begin

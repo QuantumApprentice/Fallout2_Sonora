@@ -129,6 +129,7 @@
 #define MAP_SAN_BRAHMIN_CITY        (33)
 #define MAP_SAN_BRAHMIN_GARD        (34)
 #define MAP_SAN_BRAHMIN_CAVE        (114)
+#define MAP_SAN_BRAHMIN_OASIS       (119)
 #define MAP_TWO_SUN_CITY            (35)
 #define MAP_TWO_SUN_WORKSHOP        (36)
 #define MAP_TWO_SUN_DSTR            (37)
@@ -194,7 +195,6 @@
 #define MAP_RANGERS_MOHAVE          (94)
 
 //--- Резерв
-#define MAP_reserv_119              (119)
 #define MAP_reserv_120              (120)
 #define MAP_reserv_121              (121)
 #define MAP_reserv_122              (122)

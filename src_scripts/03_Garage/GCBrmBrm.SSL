@@ -20,12 +20,21 @@ procedure start;
 procedure map_enter_p_proc;
 procedure timed_event_p_proc;
 procedure critter_p_proc;
+procedure push_p_proc;
 procedure use_obj_on_p_proc;
 procedure use_skill_on_p_proc;
 procedure pickup_p_proc;
 procedure combat_p_proc;
 procedure damage_p_proc;
 procedure destroy_p_proc;
+procedure talk_p_proc;
+
+procedure Node998;
+procedure Node999;
+procedure NodeStartDialog;
+procedure NodeFstDialog;
+procedure NodeFstDialog2;
+procedure NodeFstDialog3;
 
 //---------------------
 
@@ -41,10 +50,8 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
-       if ((getQuest(GVAR_GARAGE_QST_BRAHMINATTAK) == qStart) and (global_var(GVAR_GARAGE_STATUS_BRAHMIN) == 0)) then begin
        set_obj_visibility(self_obj,0);
-       end
-       else begin
+       if (getQuest(GVAR_GARAGE_QST_BRAHMINATTAK) != qStart) then begin
        set_obj_visibility(self_obj,1);
        rm_timer_event(self_obj);
        end
@@ -63,7 +70,9 @@ procedure timed_event_p_proc begin
    // Таймер за номером 1 зарезервирован под перемещение персонажа по локации
    // Таймер за номером 2 зарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
+       if (global_var(GVAR_GARAGE_STATUS_BRAHMIN) <= 0) then begin
        timer_move_random_home(6)
+       end
    end
    if (fixed_param == 2) then begin
        //timer_float_reply(120,121)
@@ -72,6 +81,25 @@ end
 
 procedure critter_p_proc begin
    set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   if (global_var(GVAR_GARAGE_STATUS_BRAHMIN) > 0) then begin
+      partyRunToDude
+      if (tile_distance_objs(self_obj,dude_obj)>10) then begin
+      display_mstr(104);
+      floater(self_obj, 105, COLOR_MSG_NORMAL);
+      set_global_var(GVAR_GARAGE_STATUS_BRAHMIN, 0);
+      end
+      set_map_var(MVAR_GARAGE_BRAM_HEX, self_tile);
+   end
+end
+
+procedure push_p_proc begin
+   if (global_var(GVAR_GARAGE_STATUS_BRAHMIN)<=0) then begin
+      //script_overrides;
+      push_options(HomeTile,5,102) //Толкать (точка отсчета, макс расстояние, фраза нпс при толкании), удалить если не надо
+   end
+   else begin
+      push_options(self_tile,5,102) //Толкать (точка отсчета, макс расстояние, фраза нпс при толкании), удалить если не надо
+   end
 end
 
 procedure use_skill_on_p_proc begin
@@ -88,7 +116,7 @@ procedure use_obj_on_p_proc begin
 end
 
 procedure combat_p_proc begin
-   effectAttak(0,0,2,2,1) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
+   effectAttak(0,0,2,2,0) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
    effectIntimidationPerk
 end
 
@@ -97,8 +125,53 @@ procedure damage_p_proc begin
 end
 
 procedure destroy_p_proc begin
-   if (global_var(GVAR_GARAGE_STATUS_BRAHMIN) == 0) then begin
-   set_global_var(GVAR_GARAGE_STATUS_BRAHMIN,1);
+   set_global_var(GVAR_GARAGE_STATUS_BRAHMIN,-1);
+   if (global_var(GVAR_GARAGE_STATUS_PASTUH) == 0) then begin
+   set_global_var(GVAR_GARAGE_STATUS_PASTUH,-1);
    end
    kill_critter_opt
+end
+
+procedure talk_p_proc begin
+   if (global_var(GVAR_GARAGE_STATUS_BRAHMIN) == 0) then begin
+      dialog_proc(0,0,NodeStartDialog,-1,-1)
+   end
+   else if (global_var(GVAR_GARAGE_STATUS_BRAHMIN) < 0) then begin
+      floater(self_obj,102,COLOR_MSG_RED);
+   end
+   else begin
+      floater(self_obj,103,COLOR_MSG_NORMAL);
+   end
+end
+
+procedure Node998 begin
+end
+
+procedure Node999 begin
+end
+
+procedure NodeStartDialog begin
+   call NodeFstDialog;
+end
+
+procedure NodeFstDialog begin
+   Reply(200)
+   NAnswer(202,1,NodeFstDialog2)
+   NAnswer(201,1,Node999)
+end
+
+procedure NodeFstDialog2 begin
+   Reply(203)
+   NAnswer(205,1,NodeFstDialog3)
+   NAnswer(204,1,Node999)
+end
+
+procedure NodeFstDialog3 begin
+   set_global_var(GVAR_GARAGE_STATUS_BRAHMIN,1);
+   if (global_var(GVAR_GARAGE_STATUS_PASTUH) == 0) then begin
+   set_global_var(GVAR_GARAGE_STATUS_PASTUH,-1);
+   end
+   rm_timer_event(self_obj);
+   //!!! смена team?
+   call Node999;
 end

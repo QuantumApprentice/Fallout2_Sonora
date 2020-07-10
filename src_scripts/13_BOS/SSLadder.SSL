@@ -34,9 +34,9 @@ procedure use_p_proc begin
    else if (global_var(GVAR_PUERTO_DOPUSK)<=0) then begin
       display_mstr(112);
    end
-   else if (party_member_count(0) > 1) then begin
+   /*else if (party_member_count(0) > 1) then begin
       display_mstr(113);
-   end
+   end*/
    else begin
       usingStop := 0;
    end

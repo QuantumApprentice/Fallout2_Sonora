@@ -115,7 +115,10 @@ procedure talk_p_proc begin
       floater(self_obj,random(210,218),COLOR_MSG_NORMAL);
    end
    else begin
-      if (cur_map_index == MAP_PUERTO_BASA) then begin
+      if ((cur_map_index == MAP_PUERTO_DOCS) and (self_elevation == 0)) then begin
+      floater(self_obj,random(230,236),COLOR_MSG_NORMAL);
+      end
+      else if (cur_map_index == MAP_PUERTO_BASA) then begin
       floater(self_obj,random(220,229),COLOR_MSG_RED);
       end
       else begin

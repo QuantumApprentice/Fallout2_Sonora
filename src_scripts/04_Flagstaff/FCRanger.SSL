@@ -381,6 +381,15 @@ procedure NodeSndDialog begin
       NAnswer(370,1,NodeAnswer200)
       end
       NAnswer(400,1,NodeAnswer300)
+
+      if (bitDialog(bit_13) != 0) then begin
+         if (global_var(GVAR_STATUS_FLAGSTAFF_FABER) == -1) then begin
+         NAnswer(480,1,NodeAnswer410)
+         end
+         else begin
+         NAnswer(450,1,NodeAnswer400)
+         end
+      end
    end
 
    //- ловушки
@@ -547,6 +556,7 @@ procedure NodeAnswer300 begin
    else begin
    NAnswer(450,1,NodeAnswer400)
    end
+
    NAnswer(403,1,NodeSndDialog)
 end
 
@@ -612,6 +622,7 @@ end
 //--- УХОД ИЗ ФЛАГПУЛА
 
 procedure NodeAnswer400 begin
+   bitDialogExp(bit_13,0)
    Reply(451)
    NAnswer(454,1,NodeAnswer401)
    if (getQuest(GVAR_RANGERS_DUMB_DESTROY) >= qEnd) then begin

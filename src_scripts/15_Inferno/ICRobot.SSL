@@ -82,6 +82,15 @@ procedure use_obj_on_p_proc begin
    UsedItemToCrit_Proc
 end
 
+procedure push_p_proc begin
+   if (self_TEAM == TEAM_PLAYER) then begin
+   push_options(self_obj,5,0)
+   end
+   else begin
+   script_overrides;
+   end
+end
+
 procedure combat_p_proc begin
    effectAttak(0,0,2,3,1) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
 end

@@ -180,10 +180,10 @@ procedure talk_p_proc begin
    floater(self_obj,103,COLOR_MSG_NORMAL);
    end
    else if (cur_map_index == MAP_TWO_SUN_CITY) then begin
-   dialog_proc(1,0,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
    else if (cur_map_index == MAP_CASA_NUEVA_CITY) then begin
-   dialog_proc(1,0,NodeDialogMap100,-1,-1)
+   dialog_proc(0,0,NodeDialogMap100,-1,-1)
    end
    else begin
    floater(self_obj,102,COLOR_MSG_NORMAL);
@@ -339,7 +339,7 @@ procedure NodeAnswer302 begin
 end
 
 procedure NodePuerto begin
-   if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
+   if (getQuest(GVAR_PUERTO_BOS_DESTROY) >= qEnd) then begin
    Reply(306)
    NAnswer(307,1,NodeSndDialog)
    end

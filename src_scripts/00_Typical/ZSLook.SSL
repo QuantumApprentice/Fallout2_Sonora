@@ -181,7 +181,12 @@ procedure science_proc begin
       mark_on_map(AREA_SAN_BRAHMIN)
       mark_on_map(AREA_PHOENIX)
       if (local_var(LVAR_Status) == 0) then begin
-      skill_up(SKILL_SCOUT,5);
+         if (is_skill_tagged(SKILL_SCOUT) == true) then begin
+         skill_up(SKILL_SCOUT,6);
+         end
+         else begin
+         skill_up(SKILL_SCOUT,5);
+         end
       end
    end
    else if (scienceIndx == 3) then begin
@@ -221,7 +226,12 @@ procedure science_proc begin
       mark_on_map(AREA_CASA_NUEVA)
       //mark_on_map(AREA_HERMOSILLO)
       if (local_var(LVAR_Status) == 0) then begin
-      skill_up(SKILL_SCOUT,5);
+         if (is_skill_tagged(SKILL_SCOUT) == true) then begin
+         skill_up(SKILL_SCOUT,6);
+         end
+         else begin
+         skill_up(SKILL_SCOUT,5);
+         end
       end
    end
 

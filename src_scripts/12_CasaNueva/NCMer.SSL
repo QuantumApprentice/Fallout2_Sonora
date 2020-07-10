@@ -203,7 +203,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_BOS,50) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,-35) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,20) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(102,103,NodeStartDialog,-1,-1)
+   dialog_proc(102,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -363,7 +363,10 @@ end
 //--- ВТОРОЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if town_rep_is_liked then begin
+   if town_rep_is_idolized then begin
+   Reply(253)
+   end
+   else if town_rep_is_liked then begin
    Reply(252)
    end
    else begin

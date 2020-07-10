@@ -34,7 +34,10 @@
 
 #define CompUsedLockpic                         if (objUsedPid == PID_TOOL_LOCKPICKS_EL) then begin \
                                                    script_overrides;            \
-                                                   if (local_var(LVAR_SkillBonus) != 0) then begin \
+                                                   if (local_var(LVAR_Status) != 0) then begin \
+                                                   g_display_mstr(552);         \
+                                                   end                          \
+                                                   else if (local_var(LVAR_SkillBonus) >= 100) then begin \
                                                    g_display_mstr(558);         \
                                                    end                          \
                                                    else if (combat_is_initialized == true) then begin \

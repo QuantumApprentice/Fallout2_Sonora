@@ -121,7 +121,10 @@ procedure destroy_p_proc begin
 end
 
 procedure talk_p_proc begin
-   if ((getQuest(GVAR_FLAGSTAFF_POST_VOR) == qStart) and (map_var(MVAR_FLAG_Vor) == 1) and (tile_distance(HomeTile,TILE_HOME_VOR)<=10)) then begin
+   if (bitDialog(bit_2) != 0) then begin
+      floater(self_obj,104,COLOR_MSG_NORMAL);
+   end
+   else if ((getQuest(GVAR_FLAGSTAFF_POST_VOR) == qStart) and (map_var(MVAR_FLAG_Vor) == 1) and (tile_distance(HomeTile,TILE_HOME_VOR)<=10)) then begin
       dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
    else if (game_time_hour < 0600) then begin
@@ -187,11 +190,19 @@ procedure NodeDialogVor6 begin
 end
 
 procedure NodeDialogVor7 begin
+   bitDialogExp(bit_2,0)
+   /*
    variable containerObj;
    if ((map_var(MVAR_FLAG_Vor) == 0) or (map_var(MVAR_FLAG_Vor) == 1)) then begin
    containerObj := create_object_sid(PID_CNTR_SOILJUNK, 24145, 0, SCRIPT_ZSSoil);
    item_add(containerObj,PID_Q_PORTMONE,1)
    containerObj := 0;
+   set_map_var(MVAR_FLAG_Vor,2);
+   end
+   */
+
+   if ((map_var(MVAR_FLAG_Vor) == 0) or (map_var(MVAR_FLAG_Vor) == 1)) then begin
+   create_object_sid(PID_Q_PORTMONE, 24145, 0, -1);
    set_map_var(MVAR_FLAG_Vor,2);
    end
 end

@@ -16,7 +16,12 @@ procedure use_p_proc begin
     game_time_advance(ONE_GAME_HOUR);
    gfade_in(ONE_GAME_SECOND);
    skillNum := random(SKILL_SMALL_GUNS, SKILL_SCOUT);
+   if (is_skill_tagged(skillNum) == true) then begin
+   skill_up(skillNum,6);
+   end
+   else begin
    skill_up(skillNum,5);
+   end
    display_mstr(100);
    scr_return(1);
 end

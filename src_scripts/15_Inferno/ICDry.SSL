@@ -231,7 +231,12 @@ procedure NodeFstDialog14 begin
 end
 
 procedure NodeFstDialog15 begin
+   if ((armor_pid_dude == PID_ARMOR_VAULT) or (armor_pid_dude_var <= 0)) then begin
    Reply(207)
+   end
+   else begin
+   Reply(222)
+   end
    GAnswer(208,1,NodeFstDialog16)
    BAnswer(209,1,NodeFstDialog17)
 end

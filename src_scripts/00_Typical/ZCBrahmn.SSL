@@ -39,7 +39,7 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
-       if ((cur_map_index == MAP_SAN_BRAHMIN_GARD) or (cur_map_index == MAP_SAN_BRAHMIN_CITY)) then begin
+       if ((cur_map_index == MAP_SAN_BRAHMIN_GARD) or (cur_map_index == MAP_SAN_BRAHMIN_CITY) or (cur_map_index == MAP_SAN_BRAHMIN_OASIS)) then begin
        critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_SANBRAHMIN_PEASAN);
        end
    end
@@ -52,7 +52,7 @@ procedure timed_event_p_proc begin
        if (cur_map_index == MAP_HERMO_RANCHO) then begin
        timer_move_random_home(3)
        end
-       else if ((cur_map_index == MAP_SAN_BRAHMIN_GARD) or (cur_map_index == MAP_SAN_BRAHMIN_CITY)) then begin
+       else if ((cur_map_index == MAP_SAN_BRAHMIN_GARD) or (cur_map_index == MAP_SAN_BRAHMIN_CITY) or (cur_map_index == MAP_SAN_BRAHMIN_OASIS)) then begin
        timer_move_random_home(3)
        end
        else begin

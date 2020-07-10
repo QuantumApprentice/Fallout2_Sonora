@@ -29,6 +29,7 @@ procedure combat_p_proc;
 procedure damage_p_proc;
 procedure destroy_p_proc;
 procedure talk_p_proc;
+procedure floatReply_proc;
 
 //---------------------
 
@@ -121,11 +122,20 @@ procedure talk_p_proc begin
       floater(self_obj,random(151,158),COLOR_MSG_NORMAL);
       end
       else begin
-      floater(self_obj,random(110,115),COLOR_MSG_NORMAL);
+      call floatReply_proc;
       end
    end
-   else if (getQuest(GVAR_BRAHMIN_QST_COMMANDER) >= qEnd) then begin
+   else begin
+      call floatReply_proc;
+   end
+end
+
+procedure floatReply_proc begin
+   if (getQuest(GVAR_BRAHMIN_QST_COMMANDER) >= qEnd) then begin
       floater(self_obj,random(160,165),COLOR_MSG_NORMAL);
+   end
+   else if (getQuest(GVAR_BRAHMIN_QST_COMMANDER) <= qStop) then begin
+      floater(self_obj,random(170,175),COLOR_MSG_NORMAL);
    end
    else begin
       floater(self_obj,random(110,115),COLOR_MSG_NORMAL);

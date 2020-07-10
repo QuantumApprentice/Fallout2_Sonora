@@ -18,6 +18,7 @@
 
 procedure start;
 procedure map_enter_p_proc;
+procedure map_update_p_proc;
 procedure look_at_p_proc;
 procedure description_p_proc;
 procedure timed_event_p_proc;
@@ -41,6 +42,9 @@ procedure NodeAnswer102;
 procedure NodeAnswer103;
 procedure NodeAnswer200;
 procedure NodeAnswer201;
+procedure NodeAnswer202;
+procedure NodeAnswer203;
+procedure NodeAnswer204;
 procedure NodeAnswer300;
 procedure NodeAnswer301;
 procedure NodeAnswer302;
@@ -52,6 +56,7 @@ procedure NodeAnswer307;
 procedure NodeAnswer308;
 procedure NodeAnswer309;
 procedure NodeAnswer310;
+procedure NodeAnswer311;
 procedure NodeQst100;
 procedure NodeQst101;
 procedure NodeQst102;
@@ -70,6 +75,7 @@ procedure NodeQst206;
 procedure NodeQst207;
 procedure NodeQst208;
 procedure NodeQst209;
+procedure NodeQst210;
 
 //---------------------
 
@@ -95,6 +101,13 @@ procedure map_enter_p_proc begin
        set_obj_visibility(self_obj, 1);
        end
    end
+end
+
+procedure map_update_p_proc begin
+       if (global_var(GVAR_PHENIX_QST_CULT_A_BIT) >= 20) then begin
+       rm_timer_event(self_obj);
+       set_obj_visibility(self_obj, 1);
+       end
 end
 
 procedure look_at_p_proc begin
@@ -145,21 +158,46 @@ procedure damage_p_proc begin
 end
 
 procedure destroy_p_proc begin
+   set_global_var(GVAR_PHENIX_MATIAS_NONATTAK, -1);
    kill_critter_opt
 end
 
 procedure talk_p_proc begin
    setReaction(0) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
+   fracReaction(GVAR_TITUL_PHENIX_CULT,50) // Поправка к отношению за принадлежность к фракциям
+
    if (global_var(GVAR_PHENIX_CULT_DESTROY_TIMER) != 0) then begin
-   floater(self_obj,104,COLOR_MSG_NORMAL);
-   display_mstr(103);
+      floater(self_obj,104,COLOR_MSG_NORMAL);
+      display_mstr(103);
    end
-   else if (map_var(MVAR_PNX_CULT_SPY_SHRIFT) > 1) then begin
-   floater(self_obj,102,COLOR_MSG_NORMAL);
+   else if (global_var(GVAR_PHENIX_MATIAS_NONATTAK) > 0) then begin
+      if (getQuest(GVAR_PHENIX_PARTY_QST_B) >= qEnd) then begin
+         floater(self_obj,105,COLOR_MSG_GREEN);
+      end
+      else if (getQuest(GVAR_PHENIX_PARTY_QST_B) <= qStop) then begin
+         if ((global_var(GVAR_PHENIX_STATUS_CULT_AARON) >= 0) and (global_var(GVAR_PHENIX_STATUS_CULT_OVRSR) >= 0)) then begin
+         floater(self_obj,106,COLOR_MSG_RED);
+         end
+         else if (global_var(GVAR_PHENIX_STATUS_CULT_AARON) >= 0) then begin
+         floater(self_obj,107,COLOR_MSG_RED);
+         end
+         else if (global_var(GVAR_PHENIX_STATUS_CULT_OVRSR) >= 0) then begin
+         floater(self_obj,108,COLOR_MSG_RED);
+         end
+         else begin
+         floater(self_obj,105,COLOR_MSG_GREEN);
+         end
+      end
+      else begin
+         floater(self_obj,104,COLOR_MSG_NORMAL);
+         display_mstr(103);
+      end
+   end
+   else if ((map_var(MVAR_PNX_CULT_SPY_SHRIFT) >= 2) and (getQuest(GVAR_PHENIX_PARTY_QST_B) < qStart)) then begin
+      floater(self_obj,102,COLOR_MSG_NORMAL); // надо ли???
    end
    else begin
-   fracReaction(GVAR_TITUL_PHENIX_CULT,50) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc(1,1,NodeStartDialog,-1,-1)
+      dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -172,7 +210,10 @@ procedure Node999 begin
 end
 
 procedure NodeStartDialog begin
-   if (map_var(MVAR_PNX_CULT_SPY_SHRIFT) == 1) then begin
+   if (map_var(MVAR_PNX_CULT_SPY_SHRIFT) >= 2) then begin
+   call NodeQst210;
+   end
+   else if (map_var(MVAR_PNX_CULT_SPY_SHRIFT) == 1) then begin
    call NodeQst200;
    end
    else if (bitDialog(bit_1) == 0) then begin
@@ -205,15 +246,18 @@ procedure NodeSndDialog begin
    else if (bitDialog(bit_4) == 0) then begin
    NAnswer(218,4,NodeAnswer102)
    end
-
-   if (bitDialog(bit_4) != 0) then begin
+   else begin
    NAnswer(222,4,NodeAnswer200)
    end
 
    if (getQuest(GVAR_PHENIX_PARTY_QST_B) == qStart) then begin
+   if (global_var(GVAR_PHENIX_MATIAS_NONATTAK) == 0) then begin
       if (bitDialog(bit_5) == 0) then begin
-      NAnswer(250,1,NodeAnswer300)
+      if (map_var(MVAR_PNX_CULT_SPY_SHRIFT) == 0) then begin
+      zNAnswer(250,1,NodeAnswer300)
       end
+      end
+   end
    end
 
    NAnswer(211,1,Node999)
@@ -221,14 +265,101 @@ end
 
 //--- РАССПРОСЫ
 
+procedure NodeAnswer100 begin
+   bitDialogExp(bit_2,0)
+   Reply(213)
+   NAnswer(214,1,Node999)
+end
+
+procedure NodeAnswer101 begin
+   bitDialogExp(bit_3,0)
+   Reply(216)
+   NAnswer(217,1,Node999)
+end
+
+procedure NodeAnswer102 begin
+   bitDialogExp(bit_4,50)
+   Reply(219)
+   NAnswer(220,1,NodeAnswer103)
+end
+
+procedure NodeAnswer103 begin
+   Reply(221)
+   NAnswer(222,3,NodeAnswer200)
+   BAnswer(223,1,Node999)
+end
+
+procedure NodeAnswer200 begin
+   Reply(230)
+
+   NAnswer(233,4,NodeAnswer201)
+
+   if (getQuest(GVAR_PHENIX_QST_CARDINALS) == qEnd) then begin
+   if (getQuest(GVAR_PHENIX_QST_CARDINAL_SPY) == qStart) then begin
+      if (getQuest(GVAR_PHENIX_PARTY_QST_B) >= qEnd) then begin
+      NAnswer(357,1,NodeAnswer204)
+      end
+      else if (global_var(GVAR_PHENIX_MATIAS_NONATTAK) > 0) then begin
+      NAnswer(357,1,NodeAnswer204)
+      end
+      else begin
+      NAnswerReaction(357,1,NodeAnswer204,50,357,NodeAnswer202)
+      end
+   end
+   end
+
+   if (global_var(GVAR_PHENIX_QST_CULT_A_BIT) == 10) then begin
+      if (map_var(MVAR_PNX_CULT_SPY_SHRIFT) == 0) then begin
+      NAnswer(300,1,NodeQst100)
+      end
+   end
+
+   if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
+      GAnswer(232,1,Node999)
+   end
+
+   NAnswer(231,1,Node999)
+end
+
+procedure NodeAnswer201 begin
+   if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
+   Reply(234)
+   GAnswer(232,1,Node999)
+   end
+   else begin
+   Reply(235)
+   end
+   NAnswer(231,1,Node999)
+end
+
+
+procedure NodeAnswer202 begin
+   Reply(358)
+   NAnswer(359,1,NodeAnswer203)
+end
+
+procedure NodeAnswer203 begin
+   Reply(360)
+   NAnswer(361,1,Node999)
+end
+
+procedure NodeAnswer204 begin
+   setQuest(GVAR_PHENIX_QST_CARDINAL_SPY,qEnd);
+   Reply(362)
+   NAnswer(361,1,Node999)
+end
+
+//--- РАССПРОСЫ
+
 procedure NodeAnswer300 begin
    Reply(251)
-   NAnswer(252,1,NodeAnswer301)
+   BAnswer(252,1,NodeAnswer301)
    NAnswer(255,1,NodeAnswer302)
 end
 
 procedure NodeAnswer301 begin
    Reply(253)
+   NAnswer(255,1,NodeAnswer302)
    NAnswer(254,1,Node999)
 end
 
@@ -242,6 +373,72 @@ procedure NodeAnswer303 begin
    Reply(259)
    NAnswer(260,1,NodeAnswer304)
 end
+
+procedure NodeAnswer304 begin
+   Reply(275)
+   //NAnswer(276,1,NodeAnswer310)
+   NAnswer(277,1,NodeAnswer305)
+end
+
+procedure NodeAnswer305 begin
+   Reply(278)
+   NAnswer(264,1,NodeAnswer306)
+   NAnswer(266,1,NodeAnswer307)
+   NAnswer(268,1,NodeAnswer308)
+end
+
+procedure NodeAnswer306 begin
+   Reply(265)
+   NAnswer(266,1,NodeAnswer307)
+   NAnswer(268,1,NodeAnswer308)
+   NAnswer(280,1,NodeAnswer309)
+   NAnswer(279,1,NodeAnswer311)
+end
+
+procedure NodeAnswer307 begin
+   Reply(267)
+   NAnswer(264,1,NodeAnswer306)
+   NAnswer(268,1,NodeAnswer308)
+   NAnswer(280,1,NodeAnswer309)
+   NAnswer(279,1,NodeAnswer311)
+end
+
+procedure NodeAnswer308 begin
+   Reply(269)
+   NAnswer(264,1,NodeAnswer306)
+   NAnswer(266,1,NodeAnswer307)
+   NAnswer(280,1,NodeAnswer309)
+   NAnswer(279,1,NodeAnswer311)
+end
+
+procedure NodeAnswer309 begin
+   Reply(271)
+   NAnswer(264,1,NodeAnswer306)
+   NAnswer(266,1,NodeAnswer307)
+   NAnswer(272,1,NodeAnswer310)
+end
+
+procedure NodeAnswer310 begin
+   bitDialogExp(bit_5,100)
+   set_global_var(GVAR_PHENIX_MATIAS_NONATTAK, 1);
+   set_map_var(MVAR_PNX_CULT_SPY_SHRIFT,10);
+   item_add(dude_obj,PID_ARMOR_PURPLE_ROBE_A,1)
+   item_add(dude_obj,PID_KEY_PHENIX_CULT,1)
+   critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PHOENIX_COLLECTOR);
+   setBonusReaction(75)
+   Reply(273)
+   NAnswer(274,1,Node999)
+end
+
+procedure NodeAnswer311 begin
+   Reply(281)
+   NAnswer(282,1,NodeAnswer310)
+end
+
+
+/*
+
+Версия до фикса N6:
 
 procedure NodeAnswer304 begin
    Reply(261)
@@ -285,66 +482,14 @@ end
 
 procedure NodeAnswer310 begin
    bitDialogExp(bit_5,100)
-   set_map_var(MVAR_PNX_CULT_SPY_SHRIFT,2);
+   set_map_var(MVAR_PNX_CULT_SPY_SHRIFT,10);
    item_add(dude_obj,PID_ARMOR_PURPLE_ROBE_A,1)
    item_add(dude_obj,PID_KEY_PHENIX_CULT,1)
    Reply(273)
    NAnswer(274,1,Node999)
 end
 
-//--- РАССПРОСЫ
-
-procedure NodeAnswer100 begin
-   bitDialogExp(bit_2,0)
-   Reply(213)
-   NAnswer(214,1,Node999)
-end
-
-procedure NodeAnswer101 begin
-   bitDialogExp(bit_3,0)
-   Reply(216)
-   NAnswer(217,1,Node999)
-end
-
-procedure NodeAnswer102 begin
-   bitDialogExp(bit_4,50)
-   Reply(219)
-   NAnswer(220,1,NodeAnswer103)
-end
-
-procedure NodeAnswer103 begin
-   Reply(221)
-   NAnswer(222,3,NodeAnswer200)
-   BAnswer(223,1,Node999)
-end
-
-procedure NodeAnswer200 begin
-   Reply(230)
-   NAnswer(233,4,NodeAnswer201)
-   if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
-   GAnswer(232,1,Node999)
-   end
-   if (global_var(GVAR_PHENIX_QST_CULT_A_BIT) == 10) then begin
-   if (map_var(MVAR_PNX_CULT_SPY_SHRIFT) == 0) then begin
-   NAnswer(300,1,NodeQst100)
-   end
-   end
-   NAnswer(231,1,Node999)
-end
-
-procedure NodeAnswer201 begin
-   if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
-   Reply(234)
-   end
-   else begin
-   Reply(235)
-   end
-   NAnswer(231,1,Node999)
-   if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
-   GAnswer(232,1,Node999)
-   end
-end
-
+*/
 //--- ШПИОНАЖ В СОБОРЕ
 
 procedure NodeQst100 begin
@@ -412,6 +557,7 @@ end
 procedure NodeQst200 begin
    set_map_var(MVAR_PNX_CULT_SPY_SHRIFT,2);
    critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PHOENIX_COLLECTOR);
+   setBonusReaction(5)
    Reply(330)
    NAnswer(331,1,NodeQst201)
 end
@@ -459,13 +605,29 @@ end
 procedure NodeQst208 begin
    move_to(self_obj,HomeTile,0);
    move_to(dude_obj,tile_num_in_direction(HomeTile,2,1),0);
+   setBonusReaction(-50)
    Reply(349)
    NAnswer(350,1,Node998)
 end
 
 procedure NodeQst209 begin
    set_gvar_bit_on(GVAR_DIALOGS_FLAGS_BIT, bit_19);
+   setBonusReaction(5)
    Reply(352)
-   BAnswer(354,1,NodeQst208)
+   zBAnswer(354,1,NodeQst208)
    NAnswer(353,1,Node999)
+end
+
+procedure NodeQst210 begin
+   Reply(355)
+
+   if (getQuest(GVAR_PHENIX_PARTY_QST_B) == qStart) then begin
+   if (global_var(GVAR_PHENIX_MATIAS_NONATTAK) == 0) then begin
+      if (bitDialog(bit_5) == 0) then begin
+      zNAnswer(250,1,NodeAnswer303)
+      end
+   end
+   end
+
+   NAnswer(356,1,Node999)
 end

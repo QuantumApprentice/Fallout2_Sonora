@@ -65,7 +65,7 @@ procedure timed_event_p_proc begin
        if (global_var(GVAR_LIGHT_MAP_BONUS) > 0) then begin
        timer_float_reply(130,134)
        end
-       else if (using_skill(dude_obj,SKILL_SNEAK) == true) then begin
+       else if dude_is_sneaking then begin
        timer_float_reply(135,139)
        end
        else begin
@@ -107,7 +107,7 @@ procedure talk_p_proc begin
    if (global_var(GVAR_LIGHT_MAP_BONUS) >0) then begin
    floater(self_obj,random(130,134),COLOR_MSG_NORMAL);
    end
-   else if (using_skill(dude_obj,SKILL_SNEAK) == true) then begin
+   else if dude_is_sneaking then begin
    floater(self_obj,random(135,139),COLOR_MSG_NORMAL);
    end
    else if dude_is_female then begin

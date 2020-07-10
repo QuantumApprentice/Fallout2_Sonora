@@ -32,7 +32,7 @@ procedure spatial_p_proc begin
    if (gooObj == dude_obj) then begin
        set_local_var(LVAR_DUDE_TILE,dude_tile);
        rm_timer_event(self_obj);
-       add_timer_event(self_obj, 10, 1);
+       add_timer_event(self_obj, 30, 1);
    end
 
    call goo_proc;
@@ -101,9 +101,6 @@ procedure goo_proc begin
          if (dudeStep != 0) then begin
             gooDamageAmnt := 0;
          end
-         else begin
-            radiation_inc(dude_obj, 1);
-         end
 
          if DudePerkHas(PERK_light_step) then begin
             dudeStep += 1;
@@ -119,8 +116,13 @@ procedure goo_proc begin
       //--- Нанесение урона:
 
       if (gooDamageAmnt >0) then begin
+         /*
+         if (gooObj == dude_obj) then begin
+         radiation_inc(dude_obj, 1);
+         end
+         */
          if (get_critter_stat(gooObj,STAT_current_hp) >0) then begin
-             critter_dmg(gooObj, gooDamageAmnt, DMG_plasma);
+         critter_dmg(gooObj, gooDamageAmnt, DMG_plasma);
          end
       end
 
@@ -132,7 +134,7 @@ procedure timed_event_p_proc begin
       if (dude_tile == local_var(LVAR_DUDE_TILE)) then begin
           gooObj := dude_obj;
           call goo_proc;
-          add_timer_event(self_obj, 10, 1);
+          add_timer_event(self_obj, 30, 1);
       end
    end
 end

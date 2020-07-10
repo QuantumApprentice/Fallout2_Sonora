@@ -230,7 +230,7 @@ procedure talk_p_proc begin
    floater(self_obj,103,COLOR_MSG_RED);
    end
    else begin
-   dialog_proc(1,102,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -492,7 +492,10 @@ end
 //--- ОСНОВНОЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if (getReaction>0) then begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(102)
+   end
+   else if (getReaction>0) then begin
    Reply(300)
    end
    else begin
@@ -536,7 +539,12 @@ procedure NodeSndDialog begin
 
    //--- кардинал в тюрьме:
    if (global_var(GVAR_PHENIX_STATUS_CARD_PRISON) == 1) then begin
+      if (bitDialog(bit_15) == 0) then begin
       NAnswer(330,1,NodeCardinal100)
+      end
+      else begin
+      NAnswer(330,1,NodeCardinal101)
+      end
    end
 
    //--- магистральщик Чак:
@@ -1068,13 +1076,16 @@ end
 //--- КАРДИНАЛ В ТЮРЬМЕ
 
 procedure NodeCardinal100 begin
+   bitDialogExp(bit_15,0)
    Reply(331)
    NAnswer(332,1,NodeCardinal101)
 end
 
 procedure NodeCardinal101 begin
    Reply(333)
+   if (bitDialog(bit_16) == 0) then begin
    NAnswer(335,1,NodeCardinal102)
+   end
    NAnswer(339,1,NodeCardinal104)
    NAnswer(334,1,Node999)
 end
@@ -1089,6 +1100,7 @@ procedure NodeCardinal102 begin
 end
 
 procedure NodeCardinal103 begin
+   bitDialogExp(bit_16,0)
    item_remove(dude_obj,PID_BOOTLE_CAPS,10)
    item_add(self_obj,PID_BOOTLE_CAPS,10)
    call NodeCardinal109;

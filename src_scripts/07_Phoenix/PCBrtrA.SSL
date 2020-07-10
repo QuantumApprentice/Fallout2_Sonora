@@ -11,7 +11,7 @@
 #define KILL_TOWN_REP                   REP_KILL_GOOD         // репутация за убийство этого персонажа (-100 для враждебности всего поселения)
 #define KILL_FRAC_REP                   FRAC_NON              // принадлежность определенной фракции (-1, если не нужно)
 
-#define FLAG_STEAL                      160 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
+#define FLAG_STEAL                      120 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
 #define FLAG_ALCOHOL                    1  // Примет ли алкоголь от ГГ: 0 - принимает, 1 - не принимает
 #define FLAG_FOOD                       1  // Примет ли пищу от ГГ: 0 - принимает, 1 - не принимает
 
@@ -121,6 +121,7 @@ procedure map_enter_p_proc begin
 end
 
 procedure setBarterA begin
+        check_restock_item(PID_TOOL_PLASTIC_EXPLOSIVES, 1, 2, 100)
         check_restock_item(PID_TOOL_FLARE, 2, 5, 100)
         check_restock_item(PID_W_GRENADE_FRAG, 3, 6, 100)
         check_restock_item(PID_W_KNUCKLES_BRASS, 1, 5, 100)
@@ -153,7 +154,6 @@ procedure setBarterA begin
 end
 
 procedure setBarterB begin
-        check_restock_item(PID_TOOL_PLASTIC_EXPLOSIVES, 1, 2, 100)
         check_restock_item(PID_W_KNUCKLES_PNEUMATIC, 1, 1, 100)
         check_restock_item(PID_W_GRENADE_PLASMA, 1, 3, 100)
            check_restock_item(PID_AMMO_SHOTGUN_SHELLS_BULLET, 6, 12, 100)
@@ -536,17 +536,22 @@ end
 
 procedure NodeSkillUp101 begin
    if (item_amnt(dude_obj,PID_BOOTLE_CAPS) >= 500) then begin
-   item_remove(dude_obj,PID_BOOTLE_CAPS,500)
-   item_add(self_obj,PID_BOOTLE_CAPS,500)
-   inc_local_var(LVAR_SkillUp_A);
-   PLAY_FADE
-   game_time_advance(ONE_GAME_HOUR*2);
-   skill_up(SKILL_SMALL_GUNS,5);
-   call Node999;
+      item_remove(dude_obj,PID_BOOTLE_CAPS,500)
+      item_add(self_obj,PID_BOOTLE_CAPS,500)
+      inc_local_var(LVAR_SkillUp_A);
+      PLAY_FADE
+      game_time_advance(ONE_GAME_HOUR*2);
+      if (is_skill_tagged(SKILL_SMALL_GUNS) == true) then begin
+      skill_up(SKILL_SMALL_GUNS,6);
+      end
+      else begin
+      skill_up(SKILL_SMALL_GUNS,5);
+      end
+      call Node999;
    end
    else begin
-   Reply(308)
-   NAnswer(309,1,NodeStartDialog)
+      Reply(308)
+      NAnswer(309,1,NodeStartDialog)
    end
 end
 

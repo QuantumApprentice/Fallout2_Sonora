@@ -90,7 +90,7 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
-   set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
    if (getQuest(GVAR_VILLA_QST_CHRIS) == qStart) then begin
       if (global_var(GVAR_VILLA_STATUS_CHRIS) == 2) then begin
          if (bitDialog(bit_1) == 0) then begin

@@ -39,6 +39,8 @@ procedure NodeFstDialog2;
 procedure NodeFstDialog3;
 procedure NodeFstDialog4;
 procedure NodeFstDialog5;
+procedure NodeFstDialog6;
+procedure NodeFstDialog7;
 procedure NodeSndDialog;
 procedure NodeAnswer1;
 procedure NodeAnswer2;
@@ -189,13 +191,21 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(214)
+   NAnswer(218,1,NodeFstDialog7)
+   BAnswer(215,1,NodeFstDialog6)
+   end
+   else begin
    Reply(200)
    NAnswer(201,1,NodeFstDialog3)
    BAnswer(202,1,NodeFstDialog2)
+   end
 end
 
 procedure NodeFstDialog2 begin
    Reply(203)
+   NAnswer(213,1,NodeFstDialog3)
    BAnswer(204,1,Node998)
 end
 
@@ -223,6 +233,17 @@ procedure NodeFstDialog5 begin
    Reply(209)
    BAnswer(210,1,Node998)
    end
+end
+
+procedure NodeFstDialog6 begin
+   Reply(216)
+   BAnswer(217,1,Node998)
+end
+
+procedure NodeFstDialog7 begin
+   Reply(219)
+   NAnswer(206,1,NodeFstDialog4)
+   BAnswer(237,1,NodeFstDialog6)
 end
 
 //--- ПОВТОРНЫЙ ДИАЛОГ

@@ -61,7 +61,6 @@ procedure use_obj_on_p_proc begin
          display_mstr(111);
       end
       else begin
-         //if (random(0,100) <= (2+dude_strength)) then begin
          destroyUseShovel
          call open_proc;
       end
@@ -81,9 +80,6 @@ procedure open_proc begin
       end
 
       game_time_advance((ONE_GAME_MINUTE*25) - (2*dude_strength));
-      if ((cur_map_index != MAP_VILLA_HOME) and (cur_map_index != MAP_VILLA_PLAZA) and (cur_map_index != MAP_VILLA_GARD)) then begin
-      radiation_inc(dude_obj, 5);
-      end
 
       if ((cur_map_index == MAP_RANGERS_ROAD) and (self_PID == 195)) then begin
          if (map_var(MVAR_RNGRS_DogGrv) < 2) then begin

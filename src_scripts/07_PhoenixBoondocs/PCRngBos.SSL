@@ -163,6 +163,7 @@ procedure timed_event_p_proc begin
    end
    else if (fixed_param == 4) then begin
       game_ui_enable;
+      partyRemoveAll
       set_map_var(MVAR_PNX_RING_START,1);
       if (global_var(GVAR_PHENIX_ARENA_BODY) == 0) then begin
       floater(local_var(LVAR_Enemey_Obj),103,COLOR_MSG_RED);

@@ -11,7 +11,7 @@
 #define KILL_TOWN_REP                   REP_KILL_GOOD         // репутация за убийство этого персонажа (REP_KILL_GOOD, REP_KILL_BAD, REP_KILL_NEITRAL, REP_KILL_CRITICAL для враждебности всего поселения, REP_KILL_CHILD)
 #define KILL_FRAC_REP                   FRAC_NON              // принадлежность определенной фракции (-1, если не нужно)
 
-#define FLAG_STEAL                      120 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
+#define FLAG_STEAL                      100 // Нижний порог навыка для кражи (для торговцев 200, для животных 300)
 #define FLAG_ALCOHOL                    0  // Примет ли алкоголь от ГГ: 0 - принимает, 1 - не принимает
 #define FLAG_FOOD                       1  // Примет ли пищу от ГГ: 0 - принимает, 1 - не принимает
 
@@ -53,6 +53,7 @@ procedure NodeAnswer105;
 procedure NodeAnswer106;
 procedure NodeAnswer107;
 procedure NodeAnswer108;
+procedure NodeAnswer108b;
 procedure NodeAnswer109;
 procedure NodeAnswer110;
 procedure NodeAnswer200;
@@ -106,11 +107,12 @@ procedure map_enter_p_proc begin
 end
 
 procedure setBarterA begin
+        check_restock_item(PID_TOOL_PLASTIC_EXPLOSIVES, 1, 1, 100)
         check_restock_item(PID_TOOL_BOOTS, 1, 2, 100)
         check_restock_item(PID_SANDALS, 2, 4, 100)
         check_restock_item(PID_ARMOR_JACKET_A, 1, 1, 100)
         check_restock_item(PID_TOOL_PARTS_MECHANICAL, 4, 6, 100)
-        check_restock_item(PID_OIL, 1, 2, 100)
+        check_restock_item(PID_TOOL_PARTS_ELECTRONIC, 2, 3, 100)
         //check_restock_item(PID_TOOL_IGUANA_TRACK, 1, 3, 100)
         check_restock_item(PID_TOOL_ROPE, 1, 1, 100)
         check_restock_item(PID_TOOL_SHOVEL, 1, 2, 100)
@@ -134,7 +136,7 @@ procedure setBarterA begin
         check_restock_item(PID_AMMO_10_MM, 15, 30, 100)
 
         if (gvar_bit(GVAR_CAR_FLAGS_BIT, bit_5) != 0) then begin
-        check_restock_item(PID_TOOL_CAR_GAZ, 1, 1, 100) // ЯБ для байка появляются только его приобретения, иначе это может переполнить предметом игру и к тому же нарушит подготовку восприятия игрока к находке байка
+        check_restock_item(PID_TOOL_CAR_GAZ, 2, 2, 100) // ЯБ для байка появляются только его приобретения, иначе это может переполнить предметом игру и к тому же нарушит подготовку восприятия игрока к находке байка
         end
 
         //- крышки
@@ -143,7 +145,7 @@ end
 
 procedure setBarterB begin
         check_restock_item(PID_TOOL_ZIPPER, 1, 1, 100)
-        check_restock_item(PID_TOOL_PARTS_ELECTRONIC, 1, 1, 100)
+        check_restock_item(PID_TOOL_PARTS_ELECTRONIC, 3, 4, 100)
         check_restock_item(PID_AMMO_MICRO_FUSION_CELL, 5, 10, 100)
         check_restock_item(PID_W_KNUCKLES_SPIKED, 1, 1, 100)
         check_restock_item(PID_W_SHOTGUN_DUBLET, 1, 1, 100)
@@ -212,15 +214,17 @@ procedure destroy_p_proc begin
    end
    kill_critter_opt
    kill_critter_box
+   /*
    if (local_var(LVAR_ItemRadio) == 0) then begin
    item_add(self_obj,PID_Q_RADIO_LUMP,1)
    end
+   */
 end
 
 procedure talk_p_proc begin
    setReaction(1) // Отношение к ГГ(1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    fracReaction(GVAR_TITUL_ARIZONA_RANGER,-10) // Поправка к отношению за принадлежность к фракциям
-   dialog_proc_barter(1,104,NodeStartDialog,-1,-1)
+   dialog_proc_barter(0,0,NodeStartDialog,-1,-1)
 end
 
 procedure Node998 begin
@@ -249,7 +253,7 @@ procedure NodeFstDialog begin
 end
 
 procedure NodeFstDialog2 begin
-   Reply(202)
+   zReply(202)
    NAnswer(203,1,NodeFstDialog3)
 end
 
@@ -260,7 +264,7 @@ procedure NodeFstDialog3 begin
 end
 
 procedure NodeFstDialog4 begin
-   Reply(206)
+   zReply(206)
    NAnswer(212,1,NodeAnswer100)
    NAnswer(209,1,Node999)
 end
@@ -276,7 +280,13 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+   Reply(104)
+   end
+   else begin
    Reply(210)
+   end
+
    NAnswer(212,1,NodeAnswer100)
    NAnswer(250,1,NodeAnswer200)
    NAnswer(300,1,NodeRepair)
@@ -285,11 +295,13 @@ procedure NodeSndDialog begin
       NAnswer(240,1,NodeAnswer108)
       end
    end
+   /*
    if (local_var(LVAR_ItemRadio) == 0) then begin
       if ((getQuest(GVAR_RANGERS_QST_REPAIR_RADIO) == qStart) and (global_var(GVAR_RANGER_RADIO_MARK) == 0)) then begin
       NAnswer(267,1,NodeAnswer109)
       end
    end
+   */
    if (getQuest(GVAR_GARAGE_QST_FAKECAPS) == qStart) then begin
       NAnswer(288,1,NodeAnswer209)
    end
@@ -304,7 +316,7 @@ end
 //--- РАССПРОСЫ
 
 procedure NodeAnswer100 begin
-   Reply(220)
+   zReply(220)
    NAnswer(221,1,NodeAnswer101)
    NAnswer(223,1,NodeAnswer102)
    NAnswer(232,1,NodeAnswer105)
@@ -318,7 +330,7 @@ procedure NodeAnswer101 begin
 end
 
 procedure NodeAnswer102 begin
-   Reply(224)
+   zReply(224)
    if (global_var(GVAR_GARAGE_STATUS_BOSS) == 0) then begin
    NAnswer(225,4,NodeAnswer103)
    end
@@ -367,9 +379,14 @@ procedure NodeAnswer107 begin
 end
 
 procedure NodeAnswer108 begin
+   zReply(241)
+   NAnswer(242,1,NodeAnswer108b)
+end
+
+procedure NodeAnswer108b begin
    bitDialogExp(bit_7,20)
-   Reply(241)
-   NAnswer(242,1,NodeSndDialog)
+   Reply(243)
+   NAnswer(244,1,NodeSndDialog)
 end
 
 procedure NodeAnswer109 begin
@@ -446,7 +463,7 @@ end
 procedure NodeAnswer205 begin
    bitDialogExp(bit_4,20)
    item_add(self_obj,PID_TOOL_GEIGER_COUNTER,1)
-   Reply(265)
+   zReply(265)
    NAnswer(266,1,NodeAnswer200)
 end
 
@@ -533,7 +550,9 @@ procedure NodeRepair begin
    if (local_var(LVAR_UPGRD_car_stop) >= 3) then begin
    end
    else if (bitDialog(bit_8) == 0) then begin
+      if (global_var(GVAR_CAR_GOT_PLAYER) != 0) then begin
       NAnswer(302,1,NodeRepair110)
+      end
    end
    else begin
       if (global_var(GVAR_CAR_MAP_INDEX) == cur_map_index) then begin

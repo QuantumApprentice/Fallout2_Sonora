@@ -30,7 +30,7 @@ procedure use_p_proc begin
    else if (tile_contains_obj_pid(10700,self_elevation,33555556) == false) then begin
    display_mstr(103);
    end
-   else if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_18) != 0) then begin
+   else if (global_var(GVAR_PHENIX_STATUS_MARCOS) < 0) then begin
    display_mstr(106);
    end
    else if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_16) != 0) then begin

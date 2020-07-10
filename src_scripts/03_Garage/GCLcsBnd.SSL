@@ -44,6 +44,10 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+       if (getQuest(GVAR_GARAGE_QST_BOSS_TRADE) >= 3) then begin
+       rm_timer_event(self_obj);
+       set_obj_visibility(self_obj, 1);
+       end
    end
 end
 
@@ -99,5 +103,13 @@ procedure destroy_p_proc begin
 end
 
 procedure talk_p_proc begin
-   floater(self_obj,110,COLOR_MSG_NORMAL);
+   if (getQuest(GVAR_GARAGE_QST_LUCS_TRADE) >= 3) then begin
+   floater(self_obj,random(130,134),COLOR_MSG_NORMAL);
+   end
+   else if (getQuest(GVAR_GARAGE_QST_LUCS_COMP) >= qStart) then begin
+   floater(self_obj,random(120,125),COLOR_MSG_NORMAL);
+   end
+   else begin
+   floater(self_obj,random(110,112),COLOR_MSG_NORMAL);
+   end
 end

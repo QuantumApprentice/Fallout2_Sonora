@@ -343,7 +343,13 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   if town_rep_is_antipaty then begin
+   if ((armor_pid_dude_var == PID_ARMOR_POWER_A) and (random(0,100)<=25)) then begin
+      Reply(278)
+   end
+   else if ((armor_pid_dude_var == PID_ARMOR_POWER_B) and (random(0,100)<=25)) then begin
+      Reply(278)
+   end
+   else if town_rep_is_antipaty then begin
       Reply(random(244,249))
    end
    else begin

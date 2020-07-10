@@ -38,11 +38,14 @@ end
 procedure use_skill_on_p_proc begin
    if (action_being_used == SKILL_SCIENCE) then begin
       script_overrides;
-      if (local_var(LVAR_Flag_HIM) == HimLimit) then begin
+      if (local_var(LVAR_Flag_HIM) > HimLimit) then begin
+      display_mstr(107);
+      end
+      else if (local_var(LVAR_Flag_HIM) == HimLimit) then begin
       call sience_proc;
       end
       else begin
-      dude_floater_NON;
+      floater(source_obj, 108, COLOR_MSG_NORMAL);
       display_mstr(104);
       end
    end
@@ -54,13 +57,21 @@ procedure use_obj_on_p_proc begin
       script_overrides;
       display_mstr(103);
       inc_local_var(LVAR_Flag_HIM);
-      item_remove(dude_obj, objUsedPid, 1)
+      item_remove(source_obj, objUsedPid, 1)
    end
 end
 
 procedure sience_proc begin
-   item_add(dude_obj,PID_Q_INSECT_WHITE,1)
-   dude_floater_OK;
+   if (item_amnt(source_obj,PID_Q_INSECT_DOCS)<=0) then begin
+   display_mstr(106);
+   floater(source_obj, 109, COLOR_MSG_NORMAL);
+   end
+   else begin
+   item_add(source_obj,PID_Q_INSECT_WHITE,1)
+   item_remove(source_obj,PID_Q_INSECT_DOCS,1)
+   play_sfx("CHEMICA1");
+   floater(source_obj,110,COLOR_MSG_NORMAL);
    display_mstr(105);
    set_local_var(LVAR_Flag_HIM,999);
+   end
 end

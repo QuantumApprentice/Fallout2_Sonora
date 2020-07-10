@@ -86,9 +86,9 @@ procedure critter_p_proc begin
        end
 
        if DudePerkHas(PERK_ranger) then begin
-       set_local_var(LVAR_TIMER, (ONE_GAME_SECOND*10) + game_time);
+       set_local_var(LVAR_TIMER, (ONE_GAME_SECOND*20) + game_time);
        end else begin
-       set_local_var(LVAR_TIMER, (ONE_GAME_SECOND*5) + game_time);
+       set_local_var(LVAR_TIMER, (ONE_GAME_SECOND*10) + game_time);
        end
    end
 end

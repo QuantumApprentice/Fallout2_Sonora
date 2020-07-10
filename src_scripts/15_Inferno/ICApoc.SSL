@@ -74,6 +74,7 @@ procedure NodeAnswer301;
 procedure NodeAnswer302;
 procedure NodeAnswer303;
 procedure NodeAnswer304;
+procedure NodeAnswer305;
 procedure NodeAnswer400;
 procedure NodeAnswer401;
 procedure NodeAnswer402;
@@ -397,10 +398,13 @@ procedure NodeSndDialog begin
       end
    end
 
-   if (item_amnt(dude_obj,PID_Q_DIANA_PACKET) > 0) then begin
    if (getQuest(GVAR_INF_QST_APOSTOL_B) == qStart) then begin
-   NAnswer(430,1,NodeQst100)
-   end
+      if (item_amnt(dude_obj,PID_Q_DIANA_PACKET) > 0) then begin
+      NAnswer(430,1,NodeQst100)
+      end
+      else begin
+      NAnswer(424,1,NodeAnswer415)
+      end
    end
 
    NAnswer(450,1,NodeAnswer500)
@@ -452,7 +456,7 @@ procedure NodeAnswer101 begin
    bitDialogExp(bit_2,0)
    mark_on_map(AREA_CASA_NUEVA)
    Reply(274)
-   NAnswer(275,1,Node999)
+   NAnswer(275,1,NodeSndDialog)
 end
 
 procedure NodeAnswer102 begin
@@ -614,13 +618,19 @@ procedure NodeAnswer208 begin
 end
 
 procedure NodeAnswer300 begin
+   if (cur_map_index == MAP_INFERNO_CHURCH) then begin
+   if (map_var(MVAR_INF_PWR_KNOW) == 0) then begin
+   set_map_var(MVAR_INF_PWR_KNOW, 1);
+   end
+   end
    Reply(361)
    NAnswer(362,1,NodeAnswer301)
 end
 
 procedure NodeAnswer301 begin
    Reply(363)
-   NAnswer(364,1,NodeAnswer302)
+   NAnswer(364,1,NodeAnswer303)
+   //NAnswer(364,1,NodeAnswer302)
    NAnswer(371,1,NodeAnswerEnd)
 end
 
@@ -636,7 +646,15 @@ end
 
 procedure NodeAnswer304 begin
    Reply(369)
+   if (item_amnt(dude_obj,PID_Q_PWR_HEAD)>0) then begin
+   zNAnswer(372,1,NodeAnswer305)
+   end
    NAnswer(370,1,NodeAnswerEnd)
+end
+
+procedure NodeAnswer305 begin
+   Reply(373)
+   NAnswer(374,1,NodeAnswerEnd)
 end
 
 procedure NodeAnswer400 begin
@@ -774,31 +792,30 @@ end
 procedure NodeAnswer416 begin
    setQuest(GVAR_INF_QST_APOSTOL_B,qStart);
    Reply(421)
+   if (item_amnt(dude_obj,PID_Q_DIANA_PACKET) > 0) then begin
+   NAnswer(438,1,NodeQst100)
+   end
    NAnswer(422,1,Node999)
    BAnswer(423,1,Node999)
 end
 
 procedure NodeAnswer500 begin
-   Reply(451)
+   zReply(451)
 
-   if (getQuest(GVAR_INF_QST_APOSTOL_A) >= qEnd) then begin
+   if (global_var(GVAR_INF_STATUS_APOSTOL) < 0) then begin
+   NAnswer(453,1,NodeAnswer502)
+   end
+   else if (getQuest(GVAR_INF_QST_APOSTOL_A) >= qEnd) then begin
    GAnswer(461,1,NodeAnswer504)
    end
-   if (global_var(GVAR_INF_STATUS_APOSTOL) < 0) then begin
-   BAnswer(453,1,NodeAnswer502)
-   end
+   else begin
    BAnswer(457,1,NodeAnswer503)
+   end
+
    NAnswer(452,1,Node999)
 end
 
 procedure NodeAnswer501 begin
-   if (global_var(GVAR_INF_STATUS_APOSTOL) > 0) then begin
-   end
-   else if (getQuest(GVAR_INF_QST_APOSTOL_A) >= qEnd) then begin
-   end
-   else begin
-   set_CITY_REP(GVAR_TOWN_REP_INFERNO_CULT,REP_KILL_CRITICAL)
-   end
    call NodeParty;
 end
 
@@ -857,7 +874,7 @@ procedure NodePartyDialog begin
 
    NAnswer(550,3,NodeParty200)
 
-   if (dude_cur_hits<(dude_max_hits-(dude_max_hits/5))) then begin
+   if (dude_cur_hits<(dude_max_hits-(dude_max_hits/2))) then begin
    NAnswer(530,2,NodeParty104)
    end
    else if dude_is_crippled then begin
@@ -879,11 +896,11 @@ procedure NodePartyDialog begin
    end
 
    if (local_var(LVAR_Flag_Run) == 0) then begin
-   NAnswer(514,1,NodeParty100)
+   //NAnswer(514,1,NodeParty100)
    NAnswer(519,1,Node999)
    end
    else begin
-   NAnswer(517,1,NodeParty101)
+   //NAnswer(517,1,NodeParty101)
    NAnswer(501,1,Node999)
    end
 end
@@ -944,26 +961,38 @@ procedure NodeParty105 begin
 end
 
 procedure NodeParty begin
-   if (party_member_count(0) > 1) then begin
-   Reply(542)
-   NAnswer(543,1,Node999)
-   NAnswer(544,1,Node999)
+   //if (party_member_count(0) > 1) then begin
+   if party_limit then begin
+      Reply(542)
+      NAnswer(543,1,Node999)
+      NAnswer(544,1,Node999)
    end
    else begin
+      set_local_var(LVAR_Flag_Run,1);
+      set_global_var(GVAR_INF_STATUS_APOC,1);
+      critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PLAYER);
+      rm_timer_event(self_obj);
+      party_add(self_obj);
 
-   set_local_var(LVAR_Flag_Run,1);
-   set_global_var(GVAR_INF_STATUS_APOC,1);
-   critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PLAYER);
-   rm_timer_event(self_obj);
-   party_add(self_obj);
-   Reply(500)
-   if (getQuest(GVAR_NUEVA_QST_APOC_HOME) == qZero) then begin
-   NAnswer(502,1,NodeParty2)
-   end
-   else begin
-   NAnswer(501,1,Node999)
-   end
+      if (cur_map_index == MAP_INFERNO_CHURCH) then begin
+         if (self_elevation == 0) then begin
+         end
+         else if (global_var(GVAR_INF_STATUS_APOSTOL) > 0) then begin
+         end
+         else if (getQuest(GVAR_INF_QST_APOSTOL_A) >= qEnd) then begin
+         end
+         else begin
+         set_CITY_REP(GVAR_TOWN_REP_INFERNO_CULT,REP_KILL_CRITICAL)
+         end
+      end
 
+      Reply(500)
+      if (getQuest(GVAR_NUEVA_QST_APOC_HOME) == qZero) then begin
+      NAnswer(502,1,NodeParty2)
+      end
+      else begin
+      NAnswer(501,1,Node999)
+      end
    end
 end
 
@@ -978,6 +1007,7 @@ procedure NodePartyNon2 begin
 
    critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,NUM_TEAM);
    set_local_var(LVAR_Flag_Run,0);
+   set_local_var(LVAR_Flags,0);
    set_global_var(GVAR_INF_STATUS_APOC,0);
    if (getQuest(GVAR_NUEVA_QST_APOC_HOME) == qEnd) then begin
    set_global_var(GVAR_INF_STATUS_APOC,2);

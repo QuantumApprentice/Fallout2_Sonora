@@ -35,6 +35,7 @@ procedure NodeStartDialog;
 procedure NodeTitul;
 procedure NodeTitul2;
 procedure NodeTitul3;
+procedure NodeTitul4;
 procedure NodeFstDialog;
 procedure NodeFstDialog101;
 procedure NodeFstDialog102;
@@ -77,6 +78,11 @@ procedure NodeAnswr202;
 procedure NodeAnswr203;
 procedure NodeAnswr204;
 procedure NodeAnswr205;
+procedure NodeAnswr206;
+procedure NodeAnswr207;
+procedure NodeAnswr208;
+procedure NodeAnswr209;
+procedure NodeAnswr210;
 procedure NodeQst100;
 procedure NodeQst101;
 procedure NodeQst102;
@@ -89,6 +95,7 @@ procedure NodeQst200;
 procedure NodeQst201;
 procedure NodeQst202;
 procedure NodeQst203;
+procedure NodeQst204;
 
 
 //---------------------
@@ -176,6 +183,7 @@ procedure critter_p_proc begin
    end
    set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 
+/*
    if (combat_is_initialized == false) then begin
    if (partyPidBos != 0) then begin
       if (elevation(partyPidBos) == self_elevation) then begin
@@ -191,7 +199,7 @@ procedure critter_p_proc begin
       end
    end
    end
-
+*/
    if ((map_var(MVAR_INF_DOPUSK) == 0) and (bitDialog(bit_1) == 0)) then begin
    dialogue_system_forcing(10)
    end
@@ -268,20 +276,29 @@ end
 
 procedure NodeTitul2 begin
    set_global_var(GVAR_TITUL_REBIRTH,1);
+   if (dude_cur_hits<dude_max_hits) then begin
+   critter_heal(dude_obj,dude_max_hits-dude_cur_hits);
+   end
+   critter_uninjure(dude_obj, (DAM_BLIND bwor DAM_CRIP_LEG_LEFT bwor DAM_CRIP_LEG_RIGHT bwor DAM_CRIP_ARM_LEFT bwor DAM_CRIP_ARM_RIGHT));
+   if (get_poison(dude_obj)>0) then begin
+   poison(dude_obj,-(get_poison(dude_obj)));
+   end
+   radiation_dec(dude_obj,get_critter_stat(dude_obj,STAT_current_rad));
    //critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_start,1); -- !!! начало гулификации, завершение через месяц, прописать в скрипте ГГ
    critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_fiziology,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
-   radiation_dec(dude_obj,get_critter_stat(dude_obj,STAT_current_rad));
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
+   call NodeTitul4;
    call NodeQst203;
+   box_stop_use := 0;
+
    zReply(362)
    NAnswer(363,1,NodeTitul3)
 end
@@ -291,6 +308,13 @@ procedure NodeTitul3 begin
    NAnswer(365,1,Node999)
 end
 
+procedure NodeTitul4 begin
+   //critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
+   if (dude_charisma>2) then begin
+   critter_add_trait(dude_obj,TRAIT_PERK,PERK_ghouling_charisma,1);
+   end
+end
+
 //--- ПЕРВЫЙ ДИАЛОГ
 
 procedure NodeFstDialog begin
@@ -298,7 +322,7 @@ procedure NodeFstDialog begin
    Reply(200)
    NAnswer(mstr(201)+dude_name+mstr(202),1,NodeFstDialog102)
    BAnswer(203,1,NodeFstDialog101)
-   BAnswer(243,-3,NodeFstDialog201)
+   BAnswer(242,-3,NodeFstDialog201)
 end
 
 procedure NodeFstDialog101 begin
@@ -463,35 +487,41 @@ procedure NodeSndDialog begin
    end
 
    if (global_var(GVAR_TITUL_REBIRTH) <= 0) then begin
+      NAnswer(260,3,NodeAnswr100)
 
-   NAnswer(260,3,NodeAnswr100)
-   if (global_var(GVAR_INF_STATUS_APOC)>=0) then begin
-   NAnswer(290,3,NodeAnswr200)
-   end
-   if ((town_known(AREA_PUERTO_STEEL) >= MARK_STATE_VISITED) or (getQuest(GVAR_PUERTO_QST_INFERNO) != qZero)) then begin
-   NAnswer(300,3,NodeAnswr202)
-   end
+      if (getQuest(GVAR_INF_QST_APOSTOL_A) >= qEnd) then begin
+      NAnswer(297,3,NodeAnswr200)
+      end
+      else if (global_var(GVAR_INF_STATUS_APOC)>=0) then begin
+      NAnswer(290,3,NodeAnswr200)
+      end
 
-   /*
-   Позволь расспросить тебя об окружающих руинах.
-      предыстория Инферно (не дублировать Диану)
-      потрошители - "Так вы используете потрошителей для своих целей? - Они воспринимают меня как своего рода дьявола. И поэтому стараются принести мне жертву в знак признания."
-         Наша миссия требует жертв.
-   */
+      if ((town_known(AREA_PUERTO_STEEL) >= MARK_STATE_VISITED) or (getQuest(GVAR_PUERTO_QST_INFERNO) != qZero)) then begin
+      NAnswer(300,3,NodeAnswr202)
+      end
 
+      /*
+      Позволь расспросить тебя об окружающих руинах.
+         предыстория Инферно (не дублировать Диану)
+         потрошители - "Так вы используете потрошителей для своих целей? - Они воспринимают меня как своего рода дьявола. И поэтому стараются принести мне жертву в знак признания."
+            Наша миссия требует жертв.
+      */
    end
 
    if (getQuest(GVAR_INF_QST_APOSTOL_B) == qEnd) then begin
-   NAnswer(310,1,NodeQst100)
+      NAnswer(310,1,NodeQst100)
    end
    if (getQuest(GVAR_INF_QST_APOSTOL_B) == (qEnd+1)) then begin
-   if (global_var(GVAR_INF_TOTEM_MUTAGEN)>=5) then begin
-   NAnswer(350,1,NodeQst200)
-   end
+      if (global_var(GVAR_INF_TOTEM_MUTAGEN)>=5) then begin
+      zNAnswer(350,1,NodeQst200)
+      end
+      else begin
+      NAnswer(366,1,NodeQst204)
+      end
    end
 
    if (item_amnt(self_obj,PID_Q_PWR_PROC) > 0) then begin
-   if (getQuest(GVAR_INF_QST_APOSTOL_A) >= qEnd) then begin
+   if (map_var(MVAR_INF_PWR_KNOW) > 0) then begin
    NAnswer(255,1,NodeAnswr204)
    end
    end
@@ -595,7 +625,12 @@ end
 
 procedure NodeAnswr200 begin
    Reply(291)
+   if (getQuest(GVAR_INF_QST_APOSTOL_A) >= qEnd) then begin
+   NAnswer(296,1,NodeSndDialog)
+   end
+   else begin
    NAnswer(292,1,NodeAnswr201)
+   end
 end
 
 procedure NodeAnswr201 begin
@@ -614,7 +649,10 @@ procedure NodeAnswr203 begin
 end
 
 procedure NodeAnswr204 begin
-   if (item_amnt(self_obj,PID_Q_PWR_PROC) > 0) then begin
+   if (getQuest(GVAR_INF_QST_APOSTOL_A) < qEnd) then begin
+   call NodeAnswr206;
+   end
+   else if (item_amnt(self_obj,PID_Q_PWR_PROC) > 0) then begin
    call NodeAnswr205;
    end
    else begin
@@ -624,10 +662,40 @@ end
 
 procedure NodeAnswr205 begin
    item_add(dude_obj,PID_Q_PWR_PROC,1)
-   item_remove(self_obj,PID_Q_PWR_PROC,999)
+   item_remove(self_obj,PID_Q_PWR_PROC,1)
    Reply(256)
    NAnswer(257,1,Node999)
    NAnswer(258,1,NodeSndDialog)
+end
+
+procedure NodeAnswr206 begin
+   Reply(287)
+   //Я не выживу снаружи без этой брони. - Но ведь раньше тебе это удавалось?
+   NAnswer(288,1,NodeSndDialog)
+end
+
+procedure NodeAnswr207 begin
+   Reply(287)
+   NAnswerSkill(373,4,NodeAnswr209,SKILL_CONVERSANT,90,370,NodeAnswr208)
+   NAnswerSkill(378,4,NodeAnswr209,SKILL_SCIENCE,80,376,NodeAnswr210)
+   NAnswer(288,1,NodeSndDialog)
+end
+
+procedure NodeAnswr208 begin
+   Reply(371)
+   NAnswer(372,1,NodeSndDialog)
+end
+
+procedure NodeAnswr209 begin
+   item_add(dude_obj,PID_Q_PWR_PROC,1)
+   item_remove(self_obj,PID_Q_PWR_PROC,1)
+   Reply(374)
+   NAnswer(375,1,Node999)
+end
+
+procedure NodeAnswr210 begin
+   Reply(377)
+   NAnswer(372,1,NodeSndDialog)
 end
 
 //--- КВЕСТЫ
@@ -743,4 +811,10 @@ procedure NodeQst203 begin
    set_SLAVA(35)
    set_map_var(MVAR_INF_PWR_ADD,1);
    box_stop_use := 0;
+end
+
+procedure NodeQst204 begin
+   Reply(367)
+   NAnswer(368,1,Node999)
+   NAnswer(369,1,Node999)
 end

@@ -84,11 +84,6 @@ procedure map_enter_p_proc begin
        if (cur_map_index == MAP_RANGERS_BASA) then begin
        set_BarterBoxProc(ONE_GAME_WEEK)
        end
-       if (cur_map_index == MAP_RANGERS_ROAD) then begin
-           if (global_var(GVAR_JACKALS_STATUS_RANGER) < 3) then begin
-           check_restock_item(PID_M_NUKA_COLA_RAD, 15, 20, 100)
-           end
-       end
        Flick_Visible
    end
 end
@@ -171,11 +166,11 @@ procedure talk_p_proc begin
       floater(self_obj,102,COLOR_MSG_NORMAL);
       end
       else begin
-      dialog_proc(1,0,NodeStartDialog2,-1,-1)
+      dialog_proc(0,0,NodeStartDialog2,-1,-1)
       end
    end
    else if (cur_map_index == MAP_RANGERS_BASA) then begin
-      dialog_proc_barter(1,0,NodeStartDialog,-1,-1)
+      dialog_proc_barter(0,0,NodeStartDialog,-1,-1)
    end
 end
 

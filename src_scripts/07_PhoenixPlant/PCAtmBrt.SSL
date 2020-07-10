@@ -73,7 +73,7 @@ end
 
 procedure setBarterB begin
         check_restock_item(PID_AMMO_MICRO_FUSION_CELL, 20, 40, 100)
-        check_restock_item(PID_TOOL_CAR_GAZ, 1, 1, 100)
+        check_restock_item(PID_TOOL_CAR_GAZ, 2, 3, 100)
         check_restock_item(PID_W_LASER_PISTOL, 1, 1, 100)
    set_BarterDopusk;
 end

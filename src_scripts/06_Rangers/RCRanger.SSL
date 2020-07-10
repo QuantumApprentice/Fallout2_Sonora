@@ -159,7 +159,10 @@ procedure replyfloat_proc begin
 
        // Реплики про ГГ
        if (replyFloat == 131) then begin
-           if town_rep_is_liked then begin
+           if (global_var(GVAR_TITUL_ARIZONA_RANGER) > 0) then begin
+           replyFloat += random(0,1);
+           end
+           else if town_rep_is_liked then begin
            replyFloat += random(0,1);
            end
            else if town_rep_is_antipaty then begin

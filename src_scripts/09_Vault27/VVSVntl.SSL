@@ -2,6 +2,7 @@
 #define NAME                            SCRIPT_VVSVntl
 
 procedure start;
+procedure map_update_p_proc;
 procedure use_p_proc;
 procedure use_skill_on_p_proc;
 procedure use_obj_on_p_proc;
@@ -9,6 +10,12 @@ procedure use_obj_on_p_proc;
 
 
 procedure start begin
+end
+
+procedure map_update_p_proc begin
+   if (getQuest(GVAR_VAULT27_POISON) < qEnd) then begin
+   floater(self_obj,random(120,122),COLOR_MSG_GREY);
+   end
 end
 
 procedure use_p_proc begin

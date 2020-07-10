@@ -79,7 +79,7 @@ end
 
 procedure critter_p_proc begin
    set_using_stop
-   if ((armor_pid_dude_var == PID_ARMOR_ROAD) or (global_var(GVAR_TITUL_WARRIOR_ROAD) > 0) or ((global_var(GVAR_RAIDER_STATUS_PRISON) == 1) and (map_var(MVAR_CGRANDE_PRISON_FREE) <= 0))) then begin
+   if ((global_var(GVAR_RAIDER_STATUS_PRISON) == 1) and (map_var(MVAR_CGRANDE_PRISON_FREE) <= 0)) then begin
    set_critter_options(2,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
    end
    else begin
@@ -115,12 +115,17 @@ end
 
 procedure talk_p_proc begin
    if (global_var(GVAR_CGRANDE_STATUS_MER) < 0) then begin
-   floater(self_obj,random(130,134),COLOR_MSG_RED);
+      floater(self_obj,random(130,134),COLOR_MSG_RED);
    end
-   else if town_rep_is_antipaty then begin
-   floater(self_obj,random(110,116),COLOR_MSG_RED);
+   else if ((armor_pid_dude_var == PID_ARMOR_ROAD) or (global_var(GVAR_TITUL_WARRIOR_ROAD) > 0)) then begin
+      floater(self_obj,random(140,143),COLOR_MSG_RED);
    end
    else begin
-   floater(self_obj,random(120,124),COLOR_MSG_NORMAL);
+      if town_rep_is_antipaty then begin
+      floater(self_obj,random(110,116),COLOR_MSG_RED);
+      end
+      else begin
+      floater(self_obj,random(120,124),COLOR_MSG_NORMAL);
+      end
    end
 end

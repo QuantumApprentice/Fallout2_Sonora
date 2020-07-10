@@ -46,6 +46,7 @@
 #define TEAM_VAULT_GHOST                        (40) // призраки убежища 27
 #define TEAM_INFERNO_CULT                       (41) // разумные гули Инферно
 #define TEAM_INFERNO_GHOUL                      (42) // дикие гули Инферно (не актуально)
+#define TEAM_SANFELIPE_CTZN                     (76) // жители Сан-Фелипе
 
 //--- Фракции
 

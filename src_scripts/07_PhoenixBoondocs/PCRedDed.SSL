@@ -110,7 +110,7 @@ end
 procedure use_skill_on_p_proc begin
    skillUseSteal
    skillUseFAid
-   skillUseDoctor(50)
+   skillUseDoctor(35)
 end
 
 procedure uninjure_proc begin

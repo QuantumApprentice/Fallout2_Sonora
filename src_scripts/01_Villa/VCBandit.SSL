@@ -169,7 +169,7 @@ end
 procedure talk_p_proc begin
    setReaction(-1) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    if (bitDialog(bit_1) == 0) then begin
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,HEAD_VILLA_BANDITS,BACKGROUND_WASTELND)
    end
    else begin
    floater(self_obj,random(120,122),COLOR_MSG_NORMAL);
@@ -200,7 +200,7 @@ end
 
 procedure NodeFstDialog2 begin
    Reply(203)
-   NAnswerSkill(209,1,NodeFstDialog3,SKILL_CONVERSANT,25,208,NodeDialogCombat)
+   GAnswerSkill(209,1,NodeFstDialog3,SKILL_CONVERSANT,25,208,NodeDialogCombat)
    NAnswerSkill(211,1,NodeFstDialog3,SKILL_DOCTOR,25,210,NodeDialogCombat)
    NAnswerSkill(213,1,NodeFstDialog3,SKILL_TRAPS,25,212,NodeDialogCombat)
    if dude_is_female then begin
@@ -248,7 +248,7 @@ procedure NodeDialogEnd begin
    bitDialogExp(bit_10,0)
 
    Reply(223)
-   NAnswer(224,1,Node999)
+   GAnswer(224,1,Node999)
    BAnswer(225,1,Node999)
 end
 

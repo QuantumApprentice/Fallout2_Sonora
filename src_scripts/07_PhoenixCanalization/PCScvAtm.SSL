@@ -213,7 +213,7 @@ procedure NodeAnswer101 begin
    GAnswer(208,1,NodeAnswerQst)
    end
    if (item_amnt(dude_obj,PID_BOOTLE_CAPS)>=10) then begin
-   NAnswer(208,1,NodeAnswer102)
+   NAnswer(209,1,NodeAnswer102)
    end
    else begin
    NAnswer(212,1,NodeSndDialog)

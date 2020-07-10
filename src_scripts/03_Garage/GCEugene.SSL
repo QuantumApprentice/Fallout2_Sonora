@@ -380,7 +380,8 @@ procedure NodeSndDialog203 begin
 end
 
 procedure NodeSndDialog204 begin
-   if (party_member_count(0) > 1) then begin
+   //if (party_member_count(0) > 1) then begin
+   if party_limit then begin
    display_mstr(239);
    Reply(237)
    NAnswer(238,1,Node999)

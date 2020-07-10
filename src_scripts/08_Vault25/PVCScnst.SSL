@@ -146,7 +146,12 @@ procedure damage_p_proc begin
 end
 
 procedure destroy_p_proc begin
+   if (global_var(GVAR_PHENIX_MATIAS_NONATTAK) > 0) then begin
+   kill_critter_opt_norep
+   end
+   else begin
    kill_critter_opt
+   end
 end
 
 procedure talk_p_proc begin

@@ -45,6 +45,7 @@ procedure NodeDialog200;
 procedure NodeDialog201;
 procedure NodeDialog202;
 procedure NodeDialog203;
+procedure NodeDialog204;
 
 //---------------------
 
@@ -65,6 +66,11 @@ procedure map_enter_p_proc begin
        if (global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN) >= 3) then begin
        rm_timer_event(self_obj);
        set_obj_visibility(self_obj, 1);
+       end
+       if ((getQuest(GVAR_FLAGSTAFF_SLAVES_RUN) >= qEnd) or (getQuest(GVAR_FLAGSTAFF_MINES_DESTROY) >= qEnd)) then begin
+          if (getQuest(GVAR_FLAGSTAFF_EVIL_WARDEN) == qStart) then begin
+          setQuest(GVAR_FLAGSTAFF_EVIL_WARDEN, qStop);
+          end
        end
    end
 end
@@ -131,7 +137,7 @@ procedure talk_p_proc begin
       floater(self_obj,random(102,104),COLOR_MSG_NORMAL);
    end
    else begin
-      dialog_proc(1,0,NodeStartDialog,-1,-1)
+      dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -220,11 +226,27 @@ end
 
 procedure NodeDialog202 begin
    set_global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN, 3);
+   if (global_var(GVAR_STATUS_FLAGSTAFF_TUWARDEN)<0) then begin
+   call NodeDialog204;
+   end
+   else begin
    Reply(231)
    NAnswer(232,1,NodeDialog203)
+   end
 end
 
 procedure NodeDialog203 begin
    Reply(233)
    NAnswer(234,1,Node999)
+end
+
+procedure NodeDialog204 begin
+   //! синхроинизировать с FCMinPap
+   set_global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN, 4);
+   setQuest(GVAR_FLAGSTAFF_EVIL_WARDEN, qEnd);
+   set_REP(3)
+   exp_add(350);
+
+   Reply(231)
+   NAnswer(235,1,Node999)
 end

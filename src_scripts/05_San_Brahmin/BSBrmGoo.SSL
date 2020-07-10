@@ -26,11 +26,11 @@ procedure use_obj_on_p_proc begin
       script_overrides;
 
       if (combat_is_initialized == true) then begin
-      g_display_mstr(328);
+         g_display_mstr(328);
       end
       else begin
-      destroyUseShovel
-      call shovel_proc;
+         destroyUseShovel
+         call shovel_proc;
       end
    end
 end
@@ -46,11 +46,15 @@ procedure shovel_proc begin
       game_time_advance(ONE_GAME_HOUR);
       if DudePerkHas(PERK_ghouling_fiziology) then begin
       end
+      else if (global_var(GVAR_GAZ_MASK_ACTIVE) > 0) then begin
+      end
+      else if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
+      end
       else if DudePerkHas(PERK_ranger) then begin
-      poison(dude_obj, 5);
+      poison(dude_obj, 2);
       end
       else begin
-      poison(dude_obj, 10);
+      poison(dude_obj, 4);
       end
       set_obj_visibility(self_obj, 1);
    gfade_in(ONE_GAME_SECOND);

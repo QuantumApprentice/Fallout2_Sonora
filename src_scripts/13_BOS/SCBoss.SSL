@@ -187,6 +187,13 @@ end
 
 procedure destroy_p_proc begin
    set_global_var(GVAR_PUERTO_STATUS_BOSS,-1);
+   setQuest(GVAR_VILLA_ALLIANCE_BOS,qStop);
+   if (getQuest(GVAR_PUERTO_QST_RANGERS) == qStart) then begin
+   setQuest(GVAR_PUERTO_QST_RANGERS,qStop);
+   end
+   if (getQuest(GVAR_PUERTO_QST_SANFELIPE_PIP) == qStart) then begin
+   setQuest(GVAR_PUERTO_QST_SANFELIPE_PIP,qStop);
+   end
    kill_critter_opt
 end
 
@@ -213,8 +220,7 @@ procedure talk_p_proc begin
    floater(self_obj,104,COLOR_MSG_RED);
    end
    else begin
-   dialog_proc(0,104,NodeStartDialog,HEAD_BOSS_DIXON,BACKGROUND_WASTELND)
-   //dialog_proc(0,104,NodeStartDialog,-1,-1)
+   dialog_proc(0,0,NodeStartDialog,HEAD_BOSS_DIXON,BACKGROUND_WASTELND)
    end
 end
 
@@ -223,6 +229,8 @@ procedure Node998 begin
 end
 
 procedure Node999 begin
+   bitDialogExp(bit_1,0) //? проверить тщательнее
+   off_enemy_dude;
 end
 
 procedure NodeStartDialog begin
@@ -294,7 +302,7 @@ procedure NodeFstDialog begin
    - Из-за вашей тяги к источникам энергии в колонии Флагпула используют рабскую силу. И мою деревню поработили из-за этого.
    */
 
-   if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
+   if ((getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) or (getQuest(GVAR_PHENIX_PARTY_QST_B) >= qEnd)) then begin
       call NodeFstDialog300;
    end
    else if (global_var(GVAR_TWOSUN_STATUS_ZAX) > 0) then begin
@@ -313,11 +321,11 @@ procedure NodeFstDialog2 begin
    //Первая Реакция: Очень хорошо, кусок говна. Первую проверку ты прошел. Но меня интересует статус твоей жалкой задницы в этом мире.
    Reply(210)
 
-   if (global_var(GVAR_TWOSUN_STATUS_BOSS) > 0) then begin
-   GAnswer(223,1,NodeFstDialog100)
-   end
    if (getQuest(GVAR_RANGERS_QST_PUERTO) == qStart) then begin
    GAnswer(225,1,NodeFstDialog101)
+   end
+   if (global_var(GVAR_TWOSUN_STATUS_BOSS) > 0) then begin
+   GAnswer(223,1,NodeFstDialog100)
    end
    if ((getQuest(GVAR_PHENIX_QST_OWRS_HOLO) == qStart) and (item_amnt(dude_obj,PID_HOLODSK_ULISS) > 0)) then begin
    GAnswer(213,1,NodeFstDialog102)
@@ -331,11 +339,12 @@ end
 
 procedure NodeFstDialog100 begin
    setBonusReaction(20)
-   Reply(224)
+   zReply(224)
    NAnswer(218,1,NodeFstDialog104)
 end
 
 procedure NodeFstDialog101 begin
+   setBonusReaction(5)
    Reply(226)
    NAnswer(227,1,NodeFstDialog104)
 end
@@ -359,7 +368,7 @@ procedure NodeFstDialog104 begin
 end
 
 procedure NodeFstDialog105 begin
-   Reply(221)
+   zReply(221)
    NAnswer(222,1,NodeFstDialog200)
 end
 
@@ -406,6 +415,9 @@ end
 
 procedure NodeFstDialog207 begin
    setQuest(GVAR_PUERTO_QST_RANGERS,qStart);
+   set_global_var(GVAR_PUERTO_DOPUSK, 1);
+   mark_on_map(AREA_RANGERS)
+   bitDialogExp(bit_1,0)
    bitDialogExp(bit_2,100)
    Reply(255)
    NAnswer(256,1,NodeFstDialog208)
@@ -434,8 +446,8 @@ procedure NodeFstDialog301 begin
 end
 
 procedure NodeFstDialog302 begin
-   if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
-      setBonusReaction(-35)
+   if ((getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) or (getQuest(GVAR_PHENIX_PARTY_QST_B) >= qEnd)) then begin
+      setBonusReaction(-50)
       Reply(266)
       NAnswer(267,1,NodeFstDialog303)
    end
@@ -473,11 +485,13 @@ end
 procedure NodeFstDialog304 begin
    if (getQuest(GVAR_FLAGSTAFF_MINES_DESTROY) >= qEnd) then begin
       setBonusReaction(-25)
+      set_REP(-5)
       Reply(270)
       NAnswer(271,1,NodeFstDialog305)
    end
    else if (getQuest(GVAR_FLAGSTAFF_SLAVES_RUN) >= qEnd) then begin
       setBonusReaction(-25)
+      set_REP(-5)
       Reply(270)
       NAnswer(271,1,NodeFstDialog305)
    end
@@ -527,6 +541,7 @@ end
 
 procedure NodeFstDialog312 begin
    setQuest(GVAR_PUERTO_QST_RANGERS,qStart);
+   mark_on_map(AREA_RANGERS)
    bitDialogExp(bit_2,100)
    //!!! По идеи здесь должен быть промежуточный квест в Ногалесе, и уже после стычки там Диксон отправляет на разведку к рейнджерам.
    Reply(291)
@@ -538,14 +553,17 @@ end
 procedure NodeSndDialog begin
    Reply(300)
 
+   //--- Расспросы
+   NAnswerReaction(354,4,NodeAnswer100,50,350,NodeAnswer101)
+
+   /*
+   Почти вся жизнь в этом регионе теплится вокруг Феникса, а прочие поселения - лишь редкие исключения. И сложилось так во многом благодаря местным ресурсам.
+      Жители Феникса собирают последние крохи довоенных ресурсов из некогда огромного мегаполиса. Так не может продолжаться. Когда-нибудь руины исчерпают весь свой запас.
+   */
+
+   //--- Сюжет и квесты
    if (getQuest(GVAR_PUERTO_QST_RANGERS) == qStart) then begin
       NAnswer(400,1,NodeRangers)
-   end
-
-   if (getQuest(GVAR_PUERTO_QST_RANGERS) >= qEnd) then begin
-      if (global_var(GVAR_TITUL_BOS) == 0) then begin
-      NAnswerRep(420,1,NodeTitul,0,420,NodeTitul2)
-      end
    end
 
    if (getQuest(GVAR_PHENIX_QST_OWRS_HOLO) == qStart) then begin
@@ -554,13 +572,10 @@ procedure NodeSndDialog begin
       end
    end
 
-   //--- Расспросы
-   NAnswerReaction(354,4,NodeAnswer100,50,350,NodeAnswer101)
-
-   /*
-   Почти вся жизнь в этом регионе теплится вокруг Феникса, а прочие поселения - лишь редкие исключения. И сложилось так во многом благодаря местным ресурсам.
-      Население Феникса собирает последние крохи довоенных ресурсов из некогда огромного мегаполиса. Так не может продолжаться. Когда-нибудь руины исчерпают весь свой запас.
-   */
+   //--- Титул
+   if (global_var(GVAR_TITUL_BOS) == 0) then begin
+      NAnswer(420,1,NodeTitul)
+   end
 
    NAnswer(301,1,Node999)
 end
@@ -571,7 +586,7 @@ procedure NodeRangers begin
    Reply(401)
    NAnswer(405,3,NodeRangers3)
    if (getQuest(GVAR_RANGERS_DUMB_DESTROY) >= qEnd) then begin
-   GAnswer(411,3,NodeRangers5)
+   GAnswer(411,1,NodeRangers5)
    end
    //!!! альтернатива - союз с рейнджерами
    NAnswer(402,1,NodeRangers2)
@@ -608,7 +623,7 @@ procedure NodeRangers7 begin
    set_global_var(GVAR_PUERTO_SKLAD_DOPUSK,1);
    setQuest(GVAR_PUERTO_QST_RANGERS,qEnd);
    setQuest(GVAR_VILLA_ALLIANCE_BOS,qEnd);
-   setQuest(GVAR_VILLA_ALLIANCE_RANGER,qZero);
+   setQuest(GVAR_VILLA_ALLIANCE_RANGER,qStop);
    exp_add(2500);
    setBonusReaction(100)
    set_REP(25)
@@ -619,13 +634,57 @@ end
 //--- ТИТУЛ
 
 procedure NodeTitul begin
-   Reply(421)
-   NAnswer(mstr(422)+dude_name+mstr(423),1,NodeTitul3)
+   variable titulParam;
+   titulParam := 0;
+
+   titulParam := global_var(GVAR_TOWN_REP_PUERTO);
+
+   if (getReaction<=-50) then begin
+   titulParam -= 25;
+   end
+   else if (getReaction<0) then begin
+   titulParam -= 10;
+   end
+   else if (getReaction>=50) then begin
+   titulParam += 10;
+   end
+
+   if (getQuest(GVAR_PUERTO_QST_RANGERS) >= qEnd) then begin
+   titulParam += 100;
+   end
+   if (getQuest(GVAR_PUERTO_QST_BANDITS_PIP) >= qEnd) then begin
+   titulParam += 25;
+   end
+   if (getQuest(GVAR_PUERTO_QST_INFERNO) >= qEnd) then begin
+   titulParam += 25;
+   end
+   if (getQuest(GVAR_PUERTO_QST_HERMOSILLO) >= qEnd) then begin
+   titulParam += 25;
+   end
+   if (getQuest(GVAR_PUERTO_QST_SANFELIPE_PIP) >= qEnd) then begin
+   titulParam += 25;
+   end
+
+
+   if (titulParam >= 100) then begin
+      Reply(437)
+      NAnswer(438,1,NodeTitul2)
+   end
+   else begin
+      if (getQuest(GVAR_PUERTO_QST_RANGERS) >= qEnd) then begin
+      Reply(432)
+      end
+      else begin
+      Reply(434)
+      end
+      GAnswer(435,1,Node999)
+      NAnswer(436,1,Node999)
+   end
 end
 
 procedure NodeTitul2 begin
-   Reply(432)
-   NAnswer(433,1,Node999)
+   Reply(421)
+   NAnswer(mstr(422)+dude_name+mstr(423),1,NodeTitul3)
 end
 
 procedure NodeTitul3 begin

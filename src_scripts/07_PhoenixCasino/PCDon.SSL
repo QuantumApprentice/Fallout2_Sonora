@@ -38,6 +38,7 @@ procedure NodeFstDialog4;
 procedure NodeFstDialog5;
 procedure NodeFstDialog6;
 procedure NodeFstDialog7;
+procedure NodeFstDialog8;
 procedure NodeSndDialog;
 procedure NodeAnswer100;
 procedure NodeAnswer101;
@@ -178,7 +179,7 @@ end
 
 procedure NodeFstDialog4 begin
    Reply(211)
-   //NAnswer(213,1,NodeFstDialog7) !!!
+   NAnswer(213,1,NodeFstDialog7)
    NAnswer(212,1,Node999)
 end
 
@@ -189,11 +190,20 @@ end
 
 procedure NodeFstDialog6 begin
    Reply(217)
-   //NAnswer(218,1,NodeFstDialog7) !!!
+   NAnswer(218,1,NodeFstDialog7)
    NAnswer(219,1,Node999)
 end
 
 procedure NodeFstDialog7 begin
+   Reply(223)
+   NAnswer(224,1,Node999)
+   /*
+   !!! Заменить на это, когда квесты будут разработаны:
+   call NodeFstDialog8;
+   */
+end
+
+procedure NodeFstDialog8 begin
    //!!! переменная для выдачи квестов консильери
    bitDialogExp(bit_1,0)
    if (map_var(MVAR_PNX_CASINO_PSWD) <= 0) then begin

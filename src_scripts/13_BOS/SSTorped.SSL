@@ -39,11 +39,11 @@ procedure use_skill_on_p_proc begin
    end
    else if (action_being_used == SKILL_TRAPS) then begin
       script_overrides;
-      if (has_skill(dude_obj, SKILL_TRAPS) >= 120) then begin
+      if (has_skill(dude_obj, SKILL_TRAPS) >= 100) then begin
       call activ_proc;
       end
       else begin
-      skill_display_mstr(122,SKILL_TRAPS,120)
+      skill_display_mstr(122,SKILL_TRAPS,100)
       end
    end
 end

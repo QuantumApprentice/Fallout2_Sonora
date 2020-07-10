@@ -224,7 +224,7 @@ procedure NodeSndDialog begin
    end
 
    if (getQuest(GVAR_GARAGE_QST_APPARAT) == qStart) then begin
-   NAnswer(250,3,NodeQst200)
+   NAnswer(250,1,NodeQst200)
    end
    NAnswer(240,3,NodeAnswer100)
    NAnswer(233,1,Node999)

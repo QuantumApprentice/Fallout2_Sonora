@@ -128,7 +128,7 @@ procedure talk_p_proc begin
    end
    else begin
    setReaction(0) // Отношение к ГГ(1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   dialog_proc_barter(1,0,NodeStartDialog,-1,-1)
+   dialog_proc_barter(0,0,NodeStartDialog,-1,-1)
    end
 end
 

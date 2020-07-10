@@ -85,6 +85,7 @@ procedure NodeJackals1;
 procedure NodeJackals2;
 procedure NodeJackals3;
 procedure NodeJackals4;
+procedure NodeJackals5;
 procedure NodeGarage1;
 procedure NodeGarage2;
 procedure NodeGarage3;
@@ -620,7 +621,7 @@ procedure NodeMainQst begin
    end
 
    if (getQuest(GVAR_RANGERS_QST_RNGR_JCKL) == qStart) then begin
-      if (global_var(GVAR_JACKALS_STATUS_RANGER) < 0) then begin
+      if ((global_var(GVAR_JACKALS_STATUS_RANGER) < 0) and (global_var(GVAR_JACKALS_STATUS_RANGER) != -10)) then begin
       NAnswer(241,1,NodeJackals1)
       end
       if (global_var(GVAR_JACKALS_STATUS_RANGER) > 0) then begin
@@ -720,8 +721,14 @@ end
 //--- СПАСТИ РЕЙНДЖЕРА У ШАКАЛОВ
 
 procedure NodeJackals0 begin
+   if (global_var(GVAR_JACKALS_STATUS_RANGER) == -10) then begin
+   Reply(234)
+   NAnswer(235,1,NodeJackals5)
+   end
+   else begin
    Reply(237)
    NAnswer(238,1,NodeMainQst)
+   end
 end
 
 procedure NodeJackals1 begin
@@ -768,6 +775,13 @@ procedure NodeJackals4 begin
    Reply(240)
    NAnswer(248,1,NodeJackals3)
    NAnswer(211,1,Node999)
+end
+
+procedure NodeJackals5 begin
+   setQuest(GVAR_RANGERS_QST_RNGR_JCKL,qEnd);
+   bitDialogExp(bit_5,0)
+   Reply(233)
+   NAnswer(243,1,Node999)
 end
 
 //--- БЕЖЕНЦЫ В ГАРАЖ-СИТИ

@@ -3,6 +3,7 @@
 #define NAME                    SCRIPT_ZTMap
 
 procedure start;
+procedure timed_event_p_proc;
 procedure map_enter_p_proc;
 procedure map_update_p_proc;
 procedure map_destroy_movie;
@@ -64,6 +65,12 @@ export variable obj_critter_b; // указатель на криттера 2
 procedure start begin
 end
 
+procedure timed_event_p_proc begin
+   if (fixed_param == 1) then begin
+       signal_end_game;
+   end
+end
+
 procedure map_enter_p_proc begin
    variable mapIndexMsg;
 
@@ -84,9 +91,17 @@ procedure map_enter_p_proc begin
           //--- Дополнительные операции для отдельных локаций
           call map_first_proc; // Эта процедура должна быть внутри map_first_run!
       end
+      if (cur_map_index == MAP_PUERTO_BASA) then begin
+          if (global_var(GVAR_PUERTO_DOPUSK) == 0) then begin
+          floater(dude_obj, 511, COLOR_MSG_GREY);
+          display_mstr(510);
+          end
+      end
 
       if (global_var(GVAR_STATUS_SCORPION_LEGEND) == 1) then begin
+          if ((cur_map_index == MAP_RND_DESERT_1) or (cur_map_index == MAP_RND_DESERT_2) or (cur_map_index == MAP_RND_DESERT_3) or (cur_map_index == MAP_RND_DESERT_4) or (cur_map_index == MAP_RND_DESERT_9)) then begin
           create_object_sid(PID_SCORPION_LEGEND,tile_num_in_direction(dude_tile,0,20),0,SCRIPT_ZCScorp);
+          end
           set_global_var(GVAR_STATUS_SCORPION_LEGEND,0);
       end
 
@@ -151,6 +166,7 @@ procedure map_destroy_movie_pnx begin
            setQuest(GVAR_PHENIX_QST_OWRS_HOLO,qStop);
            setQuest(GVAR_PHENIX_QST_BIBLIO,qStop);
            setQuest(GVAR_PHENIX_QST_BIBLBOOK,qStop);
+           setQuest(GVAR_PHENIX_PARTY_QST_B,qStop);
            if (getQuest(GVAR_PHENIX_PARTY_QST_A) == qStart) then begin
            setQuest(GVAR_PHENIX_PARTY_QST_A,qStop);
            end
@@ -240,9 +256,15 @@ procedure map_destroy_movie_puerto begin
            if (getQuest(GVAR_NUEVA_QST_BOOKS_PUERTO) == qStart) then begin
            setQuest(GVAR_NUEVA_QST_BOOKS_PUERTO,qStop);
            end
+           if (getQuest(GVAR_PUERTO_QST_RANGERS) == qStart) then begin
+           setQuest(GVAR_PUERTO_QST_RANGERS,qStop);
+           end
+           if (getQuest(GVAR_PUERTO_QST_SANFELIPE_PIP) == qStart) then begin
+           setQuest(GVAR_PUERTO_QST_SANFELIPE_PIP,qStop);
+           end
 
            //- Перемещение ГГ:
-           mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
+           //mark_area_known(MARK_TYPE_TOWN, AREA_BOS_CAMPS, MARK_STATE_INVISIBLE);
            mark_area_known(MARK_TYPE_TOWN, AREA_PUERTO_STEEL, MARK_STATE_INVISIBLE);
            mark_area_known(MARK_TYPE_TOWN, AREA_PUERTO_DESTROY, MARK_STATE_VISITED);
 
@@ -339,9 +361,6 @@ procedure map_exit_p_proc begin
 
    //--- Принудительная посадка ГГ в транспорт по выходу с карты (для случайных встреч)
         exit_in_car(MAP_IN_GAME_MOVIE)
-   else exit_in_car(MAP_BOS_CAMP_A)
-   else exit_in_car(MAP_BOS_CAMP_B)
-   else exit_in_car(MAP_BOS_CAMP_C)
    else exit_in_car(MAP_RND_DESERT_1)
    else exit_in_car(MAP_RND_DESERT_2)
    else exit_in_car(MAP_RND_DESERT_3)
@@ -374,6 +393,15 @@ procedure map_exit_p_proc begin
    else exit_in_car(MAP_SPECIAL_BIBL)
    else exit_in_car(MAP_SPECIAL_CAFE)
    else exit_in_car(MAP_SPECIAL_BOMBER)
+   else exit_in_car(MAP_SPECIAL_PETRO)
+   else exit_in_car(MAP_SPECIAL_CRY)
+   else exit_in_car(MAP_SPECIAL_DRIVE_IN)
+   else exit_in_car(MAP_SPECIAL_PADRE)
+   else exit_in_car(MAP_SPECIAL_BARON)
+   else exit_in_car(MAP_SPECIAL_SNOW)
+   else exit_in_car(MAP_SPECIAL_VAULT)
+   else exit_in_car(MAP_SPECIAL_ARMY)
+   else exit_in_car(MAP_SPECIAL_RAIL)
 end
 
 //-----------------------------------------------------------------------------
@@ -499,6 +527,8 @@ procedure map_light_proc begin
    else setMapLight(MAP_CASA_NUEVA_GIDROPONIC,L_STREET,L_STREET,L_STREET)
    else setMapLight(MAP_PUERTO_DOCS,L_STREET,L_STREET,L_STREET)
    else setMapLight(MAP_PUERTO_SIGN,L_STREET,L_STREET,L_STREET)
+   else setMapLight(MAP_SAN_FELIPE_COAST,L_STREET,L_STREET,L_STREET)
+   else setMapLight(MAP_SAN_FELIPE_CAVE,L_STREET,L_CAVE,L_CAVE)
    else setMapLight(MAP_SPECIAL_VAULT,L_STREET,L_VAULT,L_STREET)
    else setMapLight(MAP_SPECIAL_ARMY,L_STREET,L_ROOM,L_ROOM)
 
@@ -563,8 +593,8 @@ procedure map_rad_timer_proc begin
       0 очков = нет облучения
    */
 
-        set_glbl_rad(radSml,radSml,radSml,MAP_FLAGSTAFF_CAVE)
-   else set_glbl_rad(radSml,radNon,radNrm,MAP_RANGERS_QUARTZ)
+        //set_glbl_rad(radSml,radSml,radSml,MAP_FLAGSTAFF_CAVE)
+        set_glbl_rad(radSml,radNon,radNrm,MAP_RANGERS_QUARTZ)
    else set_glbl_rad(radNon,radBig,radNon,MAP_PHOENIX_PLAZA)
    else set_glbl_rad(radBig,radNon,radNon,MAP_INFERNO_CITY)
    else set_glbl_rad(radBig,radNon,radNon,MAP_INFERNO_SHOP)
@@ -572,13 +602,15 @@ procedure map_rad_timer_proc begin
    else set_glbl_rad(radBig,radNon,radNon,MAP_INFERNO_CHURCH)
    else set_glbl_rad(radBig,radNon,radNon,MAP_INFERNO_MONUMENT)
    else set_glbl_rad(radBig,radNon,radNon,MAP_PUERTO_DESTROY)
-   else set_glbl_rad(radBig,radNon,radNon,MAP_RND_DESERT_9)
-   else set_glbl_rad(radBig,radNon,radNon,MAP_RND_CITY_9)
-   else set_glbl_rad(radNon,radSml,radSml,MAP_TWO_SUN_GRAVE)
+   else set_glbl_rad(radSml,radNon,radNon,MAP_RND_DESERT_9)
+   else set_glbl_rad(radSml,radNon,radNon,MAP_RND_CITY_9)
    if (gvar_bit(GVAR_TWOSUN_QST_BAND_STATUS, bit_5) != 0) then begin
         set_glbl_rad(radNon,radBig,radNon,MAP_TWO_SUN_DSTR)
    end
 
+   if DudePerkHas(PERK_ghouling_fiziology) then begin
+   set_global_var(GVAR_RADIOACTIV_GLOBAL,0);
+   end
    if (global_var(GVAR_RADIOACTIV_STOP)>0) then begin
    set_global_var(GVAR_RADIOACTIV_GLOBAL,0);
    end
@@ -602,9 +634,20 @@ procedure map_area_exit_proc begin
    */
 
         set_exitmap(MAP_RND_CITY_2,AREA_RND_CITY)
+   else set_exitmap(MAP_RND_MOUNTAIN_1,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_2,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_3,AREA_RND_MOUNTAIN)
    else set_exitmap(MAP_RND_MOUNTAIN_4,AREA_RND_MOUNTAIN)
    else set_exitmap(MAP_RND_MOUNTAIN_5,AREA_RND_MOUNTAIN)
    else set_exitmap(MAP_RND_MOUNTAIN_6,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_7,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_8,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_RND_MOUNTAIN_9,AREA_RND_MOUNTAIN)
+   else set_exitmap(MAP_SPECIAL_ARMY,AREA_SPECIAL_ARMY)
+   else set_exitmap(MAP_SPECIAL_CAFE,AREA_SPECIAL_CAFE)
+   else set_exitmap(MAP_SPECIAL_GOLD,AREA_SPECIAL_GOLD)
+   else set_exitmap(MAP_SPECIAL_RAIL,AREA_SPECIAL_RAIL)
+   else set_exitmap(MAP_SPECIAL_VAULT,AREA_SPECIAL_VAULT)
 end
 
 //-----------------------------------------------------------------------------
@@ -669,11 +712,13 @@ procedure end_game begin
        gfade_in(0);
        endgame_slideshow;
        gfade_out(0);
+
        if DudePerkHas(PERK_game_dont_finish) then begin
        exp_add(10000);
        end
        else begin
-       signal_end_game;
+       add_timer_event(self_obj, 1, 1);
+       //signal_end_game;
        end
    end
    end
@@ -773,7 +818,7 @@ procedure end_game_cities begin
 
    //--- Вилла (общая концовка):
 
-   if ((global_var(GVAR_TOWN_REP_VILLA) <= -30) or (global_var(GVAR_VILLA_STATUS_OLD)<0)) then begin
+   if ((global_var(GVAR_TOWN_REP_VILLA) < -40) or (global_var(GVAR_VILLA_STATUS_OLD)<0)) then begin
       set_global_var(GVAR_ENDGAME_VILLA,1); // END_VA1
 	end
 	else if (getQuest(GVAR_VILLA_ALLIANCE_RANGER)>=qEnd) then begin
@@ -844,7 +889,7 @@ procedure end_game_cities begin
 	if (getQuest(GVAR_PUERTO_BOS_DESTROY)>=qEnd) then begin
       set_global_var(GVAR_ENDGAME_PUERTO,1); // END_PRT1
    end
-	else if ((getQuest(GVAR_PHENIX_CULT_DESTROY)>=qEnd) or (global_var(GVAR_TWOSUN_STATUS_ZAX)>0)) then begin
+	else if ((getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) or (global_var(GVAR_TWOSUN_STATUS_ZAX)>0)) then begin
       set_global_var(GVAR_ENDGAME_PUERTO,2); // END_PRT2
    end
    else begin
@@ -853,9 +898,15 @@ procedure end_game_cities begin
 
    //--- Феникс (собор):
 
-	if (getQuest(GVAR_PHENIX_CULT_DESTROY)>=qEnd) then begin
+	   //!!! поправка на смерть Аарона
+
+	if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
       set_global_var(GVAR_ENDGAME_PNHXCULT,1); // END_PX01
    end
+   else if (getQuest(GVAR_PHENIX_PARTY_QST_B)>=qEnd) then begin
+      set_global_var(GVAR_ENDGAME_PNHXCULT,3); // END_PX03
+      //!!! дополнительный слайд для Феникса - как изменился город и церковь с Маркосом
+	end
    else if ((getQuest(GVAR_PUERTO_BOS_DESTROY)>=qEnd) or (global_var(GVAR_TWOSUN_STATUS_ZAX)>0)) then begin
 	   if (getQuest(GVAR_PHENIX_QST_CULT_C)>=qEnd) then begin
       set_global_var(GVAR_ENDGAME_PNHXCULT,2); // END_PX02
@@ -873,16 +924,16 @@ procedure end_game_cities begin
    if (global_var(GVAR_TWOSUN_STATUS_ZAX)>0) then begin
       set_global_var(GVAR_ENDGAME_TWOSUN,1); // END_TS1
    end
-   else if (global_var(GVAR_TWOSUN_STATUS_ZAX)<0) then begin
-      set_global_var(GVAR_ENDGAME_TWOSUN,2); // END_TS2
-   end
    else if (global_var(GVAR_TWOSUN_STATUS_CTZN)<5) then begin
       set_global_var(GVAR_ENDGAME_TWOSUN,3); // END_TS3
+   end
+   else if (global_var(GVAR_TWOSUN_STATUS_ZAX)<0) then begin
+      set_global_var(GVAR_ENDGAME_TWOSUN,2); // END_TS2
    end
    else if (global_var(GVAR_TWOSUN_STATUS_BOSS)<0) then begin
       set_global_var(GVAR_ENDGAME_TWOSUN,4); // END_TS4
    end
-   else if ((getQuest(GVAR_PHENIX_CULT_DESTROY)>=qEnd) and (getQuest(GVAR_PUERTO_BOS_DESTROY)>=qEnd)) then begin
+   else if ((getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) and (getQuest(GVAR_PUERTO_BOS_DESTROY)>=qEnd)) then begin
       set_global_var(GVAR_ENDGAME_TWOSUN,5); // END_TS5
    end
    else begin
@@ -894,7 +945,7 @@ procedure end_game_cities begin
    if (getQuest(GVAR_FLAGSTAFF_MINES_DESTROY) >= qEnd) then begin
       set_global_var(GVAR_ENDGAME_FLAGSTAFF,1); // END_FL1
 	end
-	else if ((getQuest(GVAR_PHENIX_CULT_DESTROY)>=qEnd) or (global_var(GVAR_TWOSUN_STATUS_ZAX)>0)) then begin
+	else if ((getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) or (global_var(GVAR_TWOSUN_STATUS_ZAX)>0)) then begin
       set_global_var(GVAR_ENDGAME_FLAGSTAFF,2); // END_FL2
 	end
 	else if (global_var(GVAR_FLAGSTAFF_MERCS_LIFE)<=2) then begin
@@ -915,17 +966,33 @@ procedure end_game_cities begin
    if (town_known(AREA_GARAGE) <= MARK_STATE_KNOWN) then begin
       set_global_var(GVAR_ENDGAME_GARAGECITY,0);
    end
-   else if (getQuest(GVAR_GARAGE_STANOK_DESTROY) == qStart) then begin
-      set_global_var(GVAR_ENDGAME_GARAGECITY,3); // END_GR3
+   else if (getQuest(GVAR_GARAGE_STANOK_DESTROY) >= qEnd) then begin
+      set_global_var(GVAR_ENDGAME_GARAGECITY,3); // END_GR3 - прииск исчерпан
    end
-	else if ((getQuest(GVAR_GARAGE_QST_BOSS_TRADE) >= 3) and (global_var(GVAR_GARAGE_STATUS_BOSS)<0)) then begin
-      set_global_var(GVAR_ENDGAME_GARAGECITY,1); // END_GR1
+	else if ((getQuest(GVAR_GARAGE_QST_LUCS_TRADE) >= 3) and (global_var(GVAR_GARAGE_STATUS_LUCAS)>=0)) then begin
+	   if (getQuest(GVAR_RANGERS_DUMB_DESTROY)<qEnd) then begin
+      set_global_var(GVAR_ENDGAME_GARAGECITY,2); // END_GR2 - союз с рейнджерами
+      end
+      else if (global_var(GVAR_ENDGAME_FLAGSTAFF)>3) then begin
+      set_global_var(GVAR_ENDGAME_GARAGECITY,1); // END_GR1 - союз с Флагпулом
+      end
+      else begin
+      set_global_var(GVAR_ENDGAME_GARAGECITY,4); // END_GR4 - прииск исчерпан
+      end
 	end
-	else if ((getQuest(GVAR_GARAGE_QST_LUCS_TRADE) >= 3) and (global_var(GVAR_GARAGE_STATUS_LUCAS)<0)) then begin
-      set_global_var(GVAR_ENDGAME_GARAGECITY,2); // END_GR2
+	else if ((getQuest(GVAR_GARAGE_QST_BOSS_TRADE) >= 3) and (global_var(GVAR_GARAGE_STATUS_BOSS)>=0)) then begin
+      if (global_var(GVAR_ENDGAME_FLAGSTAFF)>3) then begin
+      set_global_var(GVAR_ENDGAME_GARAGECITY,1); // END_GR1 - союз с Флагпулом
+      end
+	   else if (getQuest(GVAR_RANGERS_DUMB_DESTROY)<qEnd) then begin
+      set_global_var(GVAR_ENDGAME_GARAGECITY,2); // END_GR2 - союз с рейнджерами
+      end
+      else begin
+      set_global_var(GVAR_ENDGAME_GARAGECITY,5); // END_GR5 - прииск исчерпан
+      end
 	end
 	else begin
-      set_global_var(GVAR_ENDGAME_GARAGECITY,3); // END_GR3
+      set_global_var(GVAR_ENDGAME_GARAGECITY,3); // END_GR3 - прииск исчерпан
    end
 
    //--- Шакалы:
@@ -946,13 +1013,16 @@ procedure end_game_cities begin
    //--- Сан-Брамин:
 
    if ((getQuest(GVAR_BRAHMIN_QST_COMMANDER)>=qEnd) and (getQuest(GVAR_PHENIX_CULT_DESTROY)<qEnd)) then begin
-      set_global_var(GVAR_ENDGAME_SANBRAHMIN,1); // END_SB1
+      set_global_var(GVAR_ENDGAME_SANBRAHMIN,1); // END_SB1 - союз с Фениксом
 	end
    else if ((getQuest(GVAR_BRAHMIN_QST_RANGER)>=qEnd) and (getQuest(GVAR_RANGERS_DUMB_DESTROY)<qEnd)) then begin
-      set_global_var(GVAR_ENDGAME_SANBRAHMIN,2); // END_SB2
+      set_global_var(GVAR_ENDGAME_SANBRAHMIN, 2); // END_SB2 - союз с рейнджерами
    end
    else if (global_var(GVAR_BRAHMIN_STATUS_HEAD_GERONIMO)<0) then begin
-      set_global_var(GVAR_ENDGAME_SANBRAHMIN,3); // END_SB3
+      set_global_var(GVAR_ENDGAME_SANBRAHMIN,3); // END_SB3 - падение племени
+   end
+   else begin
+      set_global_var(GVAR_ENDGAME_SANBRAHMIN,4); // END_SB4
    end
 
    //--- Убежище 27:
@@ -966,7 +1036,7 @@ procedure end_game_cities begin
    if (town_known(AREA_CASA_GRANDE) <= MARK_STATE_KNOWN) then begin
       set_global_var(GVAR_ENDGAME_CASAGRANDE,0);
    end
-	else if ((getQuest(GVAR_PHENIX_CULT_DESTROY)>=qEnd) or (global_var(GVAR_TWOSUN_STATUS_ZAX)>0)) then begin
+	else if ((getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) or (global_var(GVAR_TWOSUN_STATUS_ZAX)>0)) then begin
       set_global_var(GVAR_ENDGAME_CASAGRANDE,1); // END_CG1
 	end
 	else if ((global_var(GVAR_TWOSUN_STATUS_ZAX)<0) and (global_var(GVAR_ENDGAME_TWOSUN)!=3)) then begin

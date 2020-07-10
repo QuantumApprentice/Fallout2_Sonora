@@ -138,7 +138,7 @@ end
 
 procedure talk_p_proc begin
    if (map_var(MVAR_FLAG_PostSlav) > 0) then begin
-   dialog_proc(1,0,NodeDialog,-1,-1)
+   dialog_proc(104,0,NodeDialog,-1,-1)
    end
    else begin
    floater(self_obj,102,COLOR_MSG_RED);

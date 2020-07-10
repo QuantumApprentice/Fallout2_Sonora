@@ -156,7 +156,7 @@ procedure talk_p_proc begin
    end
    else begin
    move_obj_inven_to_obj(self_obj,CoaBox);
-   dialog_proc_barter(102,103,NodeStartDialog,-1,-1)
+   dialog_proc_barter(0,0,NodeStartDialog,-1,-1)
    move_obj_inven_to_obj(CoaBox,self_obj);
    end
 end
@@ -246,7 +246,7 @@ end
 
 procedure NodeAnswer103 begin
    bitDialogExp(bit_2,50)
-   Reply(228)
+   zReply(228)
    NAnswer(229,1,NodeSndDialog)
 end
 

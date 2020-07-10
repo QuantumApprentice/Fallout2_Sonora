@@ -53,6 +53,8 @@ procedure NodeDopusk3;
 procedure NodeDopusk4;
 procedure NodeBarQst;
 procedure NodeBarQst2;
+procedure NodeBarQst3;
+procedure NodeBarQst4;
 procedure NodeQuestRanger100;
 procedure NodeQuestRanger102;
 procedure NodeQuestRanger103;
@@ -94,7 +96,7 @@ procedure NodeAnswer404;
 
 //---------------------
 
-//#define LVAR_Flag_A                     (6) // отвечает за ...
+#define LVAR_Alcoghol                   (6) // алкоголь: 0 - не использован, 1 - использован
 
 import variable box_stop_use;
 
@@ -108,6 +110,7 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+       set_local_var(LVAR_Alcoghol,0);
        if (map_first_run) then begin
        item_add(self_obj,PID_BOOTLE_CAPS,random(120,140))
        end
@@ -139,7 +142,9 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
+   if (local_var(LVAR_Alcoghol)<=3) then begin
    set_using_stop // привязка хозяина и объекта (удалить, если не нужно)
+   end
    set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 end
 
@@ -154,6 +159,10 @@ end
 
 procedure use_obj_on_p_proc begin
    UsedItemToCrit_Proc
+   if (itemTypeUseDude == 2) then begin
+       box_stop_use := 0;
+       inc_local_var(LVAR_Alcoghol);
+   end
 end
 
 procedure combat_p_proc begin
@@ -167,6 +176,7 @@ end
 procedure destroy_p_proc begin
    dec_global_var(GVAR_FLAGSTAFF_MERCS_LIFE);
    set_global_var(GVAR_STATUS_FLAGSTAFF_FABER,-1);
+   set_global_var(GVAR_FLAGSTAFF_WINONA_PARTY,-1);
    if (getQuest(GVAR_FLAGSTAFF_RANGER_KILL) == qStart) then begin
       if (global_var(GVAR_STATUS_FLAGSTAFF_RANGER) == -1) then begin
       setQuest(GVAR_FLAGSTAFF_RANGER_KILL,qEnd);
@@ -189,7 +199,7 @@ procedure talk_p_proc begin
    fracReaction(GVAR_TITUL_WARRIOR_ROAD,10) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_DUDE_IS_SLAVE,-40) // Поправка к отношению за принадлежность к фракциям
 
-   dialog_proc(1,0,NodeStartDialog,HEAD_FLAGSTAFF_BOSS,BACKGROUND_WASTELND)
+   dialog_proc(0,0,NodeStartDialog,HEAD_FLAGSTAFF_BOSS,BACKGROUND_WASTELND)
 end
 
 procedure Node998 begin
@@ -240,7 +250,7 @@ end
 
 procedure NodeStopDialog4 begin
    bitDialogExp(bit_8,0)
-   Reply(208)
+   zReply(208)
    NAnswer(209,1,NodeSndDialog)
 end
 
@@ -253,7 +263,7 @@ procedure NodeFstDialog begin
    Reply(208)
    end
    else begin
-   Reply(200)
+   zReply(200)
    end
    BAnswer(201,3,NodeFstDialog2)
    NAnswer(205,3,NodeFstDialog3)
@@ -285,7 +295,7 @@ end
 
 procedure NodeFstDialog201 begin
    Reply(331)
-   GAnswer(332,1,NodeFstDialog202)
+   GAnswer(332,1,NodeFstDialog203)
 end
 
 procedure NodeFstDialog202 begin
@@ -304,18 +314,18 @@ procedure NodeFstDialog204 begin
 end
 
 procedure NodeFstDialog205 begin
-   Reply(337)
-   BAnswer(338,1,NodeFstDialog206)
-   NAnswer(339,1,Node999)
-end
-
-procedure NodeFstDialog206 begin
    if (getQuest(GVAR_FLAGSTAFF_SLAVES_ZAGON) < qStart) then begin
    setQuest(GVAR_FLAGSTAFF_SLAVES_ZAGON,qStart);
    end
    if (getQuest(GVAR_FLAGSTAFF_MERPSWDR) == qZero) then begin
    setQuest(GVAR_FLAGSTAFF_MERPSWDR,qStart);
    end
+   Reply(337)
+   BAnswer(338,1,NodeFstDialog206)
+   NAnswer(339,1,Node999)
+end
+
+procedure NodeFstDialog206 begin
    Reply(340)
    BAnswer(341,1,Node999)
    NAnswer(342,1,Node999)
@@ -341,10 +351,16 @@ procedure NodeSndDialog begin
    //--- Расспросы
    NAnswer(213,3,NodeAnswer)
 
-   //--- Квест бармена
+   //--- Квесты бармена
    if (getQuest(GVAR_FLAGSTAFF_BARMEN_DOLG) == qStart) then begin
       if (map_var(MVAR_DolgSten) == 0) then begin
-      NAnswer(301,3,NodeBarQst)
+      NAnswer(301,1,NodeBarQst)
+      end
+   end
+
+   if (getQuest(GVAR_FLAGSTAFF_QST_TRAPERS) == qStart) then begin
+      if (global_var(GVAR_FLAGSTAFF_WINONA_PARTY) == 0) then begin
+      NAnswer(325,1,NodeBarQst3)
       end
    end
 
@@ -424,6 +440,17 @@ procedure NodeBarQst2 begin
    Reply(304)
    NAnswer(218,1,NodeSndDialog)
    NAnswer(219,1,Node999)
+end
+
+procedure NodeBarQst3 begin
+   Reply(326)
+   NAnswer(327,1,NodeBarQst4)
+   NAnswer(328,1,Node999)
+end
+
+procedure NodeBarQst4 begin
+   set_global_var(GVAR_FLAGSTAFF_WINONA_PARTY, 1);
+   call Node999;
 end
 
 //--- КВЕСТ - ОДИНОКИЙ РЕЙНДЖЕР
@@ -525,7 +552,7 @@ procedure NodeFreedom100 begin
    Reply(250)
 
    if (global_var(GVAR_TITUL_BOS) != 0) then begin
-      NAnswer(344,1,NodeFreedom109)
+      BAnswer(344,1,NodeFreedom109)
    end
 
    if (getQuest(GVAR_FLAGSTAFF_MERPSWDR) == qEnd) then begin

@@ -1,5 +1,5 @@
 #include "..\headers\define.h"
-//---------------------
+//--------------------- Заложник Пауль
 
 #define NAME                            SCRIPT_EncMtntC
 #define TOWN_REP_VAR                    GVAR_TOWN_REP_PUERTO  // привязка к репутации (-1, если не нужно)
@@ -53,6 +53,7 @@ procedure NodeAnswer107;
 procedure NodeAnswer108;
 procedure NodeAnswer109;
 procedure NodeAnswer200;
+procedure NodeAnswer201;
 
 //---------------------
 
@@ -68,7 +69,8 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
-       if (local_var(LVAR_Party_Status) != 0) then begin
+       set_obj_visibility(self_obj, 0);
+       if ((local_var(LVAR_Party_Status) != 0) or (global_var(GVAR_PUERTO_STATUS_PAUL) != 0)) then begin
        set_obj_visibility(self_obj, 1);
        end
    end
@@ -126,6 +128,7 @@ procedure damage_p_proc begin
 end
 
 procedure destroy_p_proc begin
+   set_global_var(GVAR_PUERTO_STATUS_PAUL, -1);
    kill_critter_BoS_item
    kill_critter_opt
 end
@@ -179,6 +182,9 @@ procedure NodeSndDialog begin
    if (map_var(MVAR_ENC_SMUTANT_REACTOR)>0) then begin
    GAnswer(250,1,NodeAnswer200)
    end
+   if (map_var(MVAR_ENC_SMUTANT_DEAD)>=8) then begin
+   GAnswer(259,1,NodeAnswer201)
+   end
    end
 
    NAnswer(219,1,Node999)
@@ -204,9 +210,10 @@ end
 
 procedure NodeSndDialog4 begin
    set_local_var(LVAR_Party_Status,-1);
+   set_global_var(GVAR_PUERTO_STATUS_PAUL, 1);
    critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,NUM_TEAM);
    exp_add(350);
-   set_REP(4)
+   set_REP(5)
    set_SLAVA(5)
    set_obj_visibility(self_obj, 1);
    call Node999;
@@ -326,6 +333,9 @@ procedure NodeAnswer109 begin
    if (map_var(MVAR_ENC_SMUTANT_REACTOR)>0) then begin
    GAnswer(250,1,NodeAnswer200)
    end
+   if (map_var(MVAR_ENC_SMUTANT_DEAD)>=8) then begin
+   GAnswer(259,1,NodeAnswer201)
+   end
 
    NAnswer(220,1,NodeAnswer100)
    NAnswer(230,1,NodeAnswer102)
@@ -343,4 +353,12 @@ procedure NodeAnswer200 begin
    rm_timer_event(self_obj);
    Reply(251)
    NAnswer(252,1,Node999)
+end
+
+procedure NodeAnswer201 begin
+   inc_local_var(LVAR_Party_Status);
+   critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PLAYER);
+   rm_timer_event(self_obj);
+   Reply(260)
+   NAnswer(261,1,Node999)
 end

@@ -1,6 +1,7 @@
 #include "..\headers\define.h"
 #include "..\headers\REPAIR.h"
 #define NAME                            SCRIPT_GSWhole
+#define SKILL_LIMIT                     100
 
 procedure start;
 procedure map_enter_p_proc;
@@ -41,7 +42,7 @@ procedure use_skill_on_p_proc begin
    display_mstr(114);
    end
    else begin
-   RepairVarCheck(100)
+   RepairVarCheck
    RepairSkillRepair
    end
 end

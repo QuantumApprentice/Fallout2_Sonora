@@ -317,7 +317,12 @@ procedure NodeFAID100 begin
    MedicMany += 20;
    end
 
-   MedicMany += MedicMany*(100/has_skill(dude_obj, SKILL_BARTER));
+   if (has_skill(dude_obj, SKILL_BARTER)>=10) then begin
+   MedicMany := MedicMany*(100/has_skill(dude_obj, SKILL_BARTER));
+   end
+   else begin
+   MedicMany := (MedicMany*10);
+   end
 
    Reply(mstr(227)+MedicMany+mstr(228))
    if (item_amnt(dude_obj,PID_BOOTLE_CAPS) >= MedicMany) then begin

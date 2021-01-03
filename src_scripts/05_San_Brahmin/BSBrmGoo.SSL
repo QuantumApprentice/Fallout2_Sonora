@@ -43,7 +43,7 @@ procedure shovel_proc begin
 
    gfade_out(ONE_GAME_SECOND);
       play_sfx("iccntnre");
-      game_time_advance(ONE_GAME_HOUR);
+      game_time_advance(ONE_GAME_MINUTE*30);
       if DudePerkHas(PERK_ghouling_fiziology) then begin
       end
       else if (global_var(GVAR_GAZ_MASK_ACTIVE) > 0) then begin

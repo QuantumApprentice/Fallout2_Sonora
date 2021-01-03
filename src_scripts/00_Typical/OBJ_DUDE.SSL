@@ -219,6 +219,7 @@ procedure critter_p_proc begin
            mark_on_map(AREA_INFERNO)
            mark_on_map(AREA_HERMOSILLO)
            //mark_on_map(AREA_SAN_FELIPE)
+           mark_on_map(AREA_SANTA_ANA)
            if (getQuest(GVAR_PUERTO_BOS_DESTROY) < qEnd) then begin
            mark_on_map(AREA_PUERTO_STEEL)
            end
@@ -320,6 +321,7 @@ procedure critter_p_proc begin
 end
 
 procedure description_p_proc begin
+
    //exp_add(20000);
    //call CHIT_BONUS_loot;
    //call CHIT_BONUS_stat;
@@ -582,7 +584,7 @@ procedure use_skill_on_p_proc begin
 end
 
 procedure is_dropping_p_proc begin
-   //--- Запрет сброса предметов
+   //--- Сброс предметов
    if (obj_pid(source_obj) == PID_RELICT_VILLA_FAMILY) then begin
        display_mstr(140);
    end
@@ -591,6 +593,14 @@ procedure is_dropping_p_proc begin
    end
    if (obj_pid(source_obj) == PID_MANY) then begin
        display_mstr(142);
+   end
+   if ((obj_pid(source_obj) == PID_M_MEAT_JERKY) or (obj_pid(source_obj) == PID_M_IGUANA)) then begin
+       if (cur_map_index == MAP_SANTA_ANA_PLAZA) then begin
+          if (global_var(GVAR_SANTAANA_STATUS_EL_DIABLO) == 0) then begin
+          display_mstr(144);
+          set_map_var(MVAR_SANTA_MEAT_TILE,dude_tile);
+          end
+       end
    end
 end
 
@@ -651,6 +661,30 @@ procedure use_obj_on_p_proc begin
        else begin
           display_mstr(119);
        end
+   end
+   else if (objUsedPid == PID_SANDALS) then begin
+       script_overrides;
+       display_mstr(158);
+       /*
+       if (item_amnt(dude_obj,objUsedPid) > 0) then begin
+          if (global_var(GVAR_BOOTS_DAMAGE) > 80) then begin
+          display_mstr(132);
+          end
+          else begin
+          inc_global_var_amt(GVAR_BOOTS_DAMAGE,20);
+          play_sfx("ARMRLTH");
+          display_mstr(143);
+          item_remove(dude_obj, objUsedPid, 1)
+          end
+       end
+       else begin
+          display_mstr(119);
+       end
+       */
+   end
+   else if (objUsedPid == PID_MEX_TORPEDOS) then begin
+       script_overrides;
+       display_mstr(159);
    end
    else if (objUsedPid == PID_TOOL_GAS_MASK) then begin
        script_overrides;

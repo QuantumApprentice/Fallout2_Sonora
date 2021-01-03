@@ -29,7 +29,7 @@
                                                 end                                                \
                                              end                                                   \
                                              set_lvar_bit_off(LVAR_Self_Flags, bit_7);             \
-                                             if (critter_is_fleeing(self_obj) == true) then begin  \
+                                             if (critter_is_fleeing(self_obj) != 0) then begin  \
                                              critter_set_flee_state(self_obj, 0);                  \
                                              end                                                   \
                                              if (self_TEAM != TEAM_PLAYER) then begin              \
@@ -268,8 +268,8 @@ variable damage_amnt;
 
 #define set_damage_fire             if (weapon_dmg_type(target_obj) == DMG_fire) then begin \
                                         if ((critter_is_fleeing(self_obj) == false) and (self_cur_hits>0)) then begin \
-                                           if (type_kill(KILL_TYPE_brahmin) or type_kill(KILL_TYPE_radscorpion) or type_kill(KILL_TYPE_rat) or type_kill(KILL_TYPE_dog) or type_kill(KILL_TYPE_centaur)) then begin \
-                                                if (is_success(do_check(dude_obj, STAT_lu, -3)) == true) then begin \
+                                           if (type_kill(KILL_TYPE_brahmin) or type_kill(KILL_TYPE_radscorpion) or type_kill(KILL_TYPE_rat) or type_kill(KILL_TYPE_giant_ant) or type_kill(KILL_TYPE_dog) or type_kill(KILL_TYPE_centaur) or type_kill(KILL_TYPE_deathclaw)) then begin \
+                                                if (is_success(do_check(dude_obj, STAT_lu, -1)) == true) then begin \
                                                 display_msg(g_mstr(323)+self_name+g_mstr(324)); \
                                                 critter_set_flee_state(self_obj, 1); \
                                                 end                             \
@@ -669,6 +669,13 @@ variable damage_amnt;
                                         //display_msg(g_mstr(105));                                     \
                                     //end                                                               \
 
+#define skillUseFAidx(x)            if (action_being_used == SKILL_FIRST_AID) then begin                  \
+                                        if (has_skill(dude_obj, SKILL_FIRST_AID) < x) then begin          \
+                                        script_overrides;                                                 \
+                                        g_skill_display_mstr(147,SKILL_FIRST_AID,x)                       \
+                                        end                                                               \
+                                    end                                                                   \
+
 #define skillUseDoctor(x)           if (action_being_used == SKILL_DOCTOR) then begin                     \
                                         if (has_skill(dude_obj, SKILL_DOCTOR) < x) then begin             \
                                         script_overrides;                                                 \
@@ -739,6 +746,7 @@ itemTypeUseDude фиксирует успех применения предме�
                                        UsedToCrit_Shovel                        \
                                        UsedToCrit_Decoder                       \
                                        UsedToCrit_DoctorsBag                    \
+                                       UsedToCrit_Scull                         \
                                     end                                         \
                                     else if (obj_item_subtype(obj_being_used_with) == item_type_armor) then begin \
                                     end                                         \
@@ -1068,6 +1076,16 @@ itemTypeUseDude фиксирует успех применения предме�
                                                end                                          \
                                             end                                             \
 */
+
+#define UsedToCrit_Scull                    if (objUsedPid == PID_SCULL_DEATHCLAW) then begin \
+                                               if (source_obj != dude_obj) then begin       \
+                                               end                                          \
+                                               else if type_kill(KILL_TYPE_children) then begin \
+                                                  script_overrides;                         \
+                                                  g_display_mstr(434);                      \
+                                                  g_floater(dude_obj,433,COLOR_MSG_NORMAL); \
+                                               end                                          \
+                                            end                                             \
 
 #define UsedToCrit_DoctorsBag               if (objUsedPid == PID_TOOL_DOCTORS_BAG) then begin \
                                                script_overrides;                            \

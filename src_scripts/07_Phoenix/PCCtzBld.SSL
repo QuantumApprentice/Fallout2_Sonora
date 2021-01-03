@@ -35,6 +35,7 @@ procedure talk_p_proc;
 #define LVAR_InvisTime                   (6) // статус появления на карте
 
 variable critterObj;
+variable paramAttak;
 
 //---------------------
 
@@ -117,5 +118,12 @@ procedure destroy_p_proc begin
 end
 
 procedure talk_p_proc begin
+   paramAttak += 1;
+   if (paramAttak >= 4) then begin
+   floater(self_obj,103,COLOR_MSG_RED);
+   self_attack_dude;
+   end
+   else begin
    floater(self_obj,random(110,119),COLOR_MSG_RED);
+   end
 end

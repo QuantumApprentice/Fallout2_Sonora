@@ -56,8 +56,10 @@ procedure map_enter_p_proc begin
           add_timer_event(self_obj, random(30,70), 2);
        end
 
-       if ((cur_map_index == MAP_PUERTO_BASA) or (cur_map_index == MAP_PUERTO_DOCS) or (cur_map_index == MAP_PUERTO_SIGN)) then begin
-           critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_BROTHERS_STEEL);
+       if (self_TEAM != TEAM_PLAYER) then begin
+          if ((cur_map_index == MAP_PUERTO_BASA) or (cur_map_index == MAP_PUERTO_DOCS) or (cur_map_index == MAP_PUERTO_SIGN)) then begin
+          critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_BROTHERS_STEEL);
+          end
        end
        if (item_amnt(self_obj,PID_TEST) > 0) then begin
            if (cur_map_index == MAP_PHOENIX_COLA) then begin

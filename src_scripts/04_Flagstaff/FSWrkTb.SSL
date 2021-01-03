@@ -1,6 +1,7 @@
 #include "..\headers\define.h"
 #include "..\headers\REPAIR.h"
 #define NAME                            SCRIPT_FSWrkTb
+#define SKILL_LIMIT                     0
 
 procedure start;
 procedure map_enter_p_proc;
@@ -27,12 +28,13 @@ procedure use_p_proc begin
 end
 
 procedure use_skill_on_p_proc begin
-   RepairVarCheck(0)
+   RepairVarCheck
    RepairSkillRepair
 end
 
 procedure use_obj_on_p_proc begin
    stopUseCarGaz
+   else RepairProcUsingMexTorpedos
 end
 
 procedure repair_proc begin

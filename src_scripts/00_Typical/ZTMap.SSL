@@ -91,7 +91,10 @@ procedure map_enter_p_proc begin
           //--- Дополнительные операции для отдельных локаций
           call map_first_proc; // Эта процедура должна быть внутри map_first_run!
       end
+
       if (cur_map_index == MAP_PUERTO_BASA) then begin
+          set_map_var(MVAR_PUERTO_ALARM_BOS,1);
+          set_map_var(MVAR_PUERTO_ALARM_SCLAD,1);
           if (global_var(GVAR_PUERTO_DOPUSK) == 0) then begin
           floater(dude_obj, 511, COLOR_MSG_GREY);
           display_mstr(510);

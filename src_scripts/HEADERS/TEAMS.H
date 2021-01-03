@@ -47,6 +47,8 @@
 #define TEAM_INFERNO_CULT                       (41) // разумные гули Инферно
 #define TEAM_INFERNO_GHOUL                      (42) // дикие гули Инферно (не актуально)
 #define TEAM_SANFELIPE_CTZN                     (76) // жители Сан-Фелипе
+#define TEAM_SANTA_ANA_CTZN                     (77) // жители Санта Аны
+#define TEAM_SANTA_ANA_CRCH                     (78) // сторонники старосты в церкви (Санта Ана)
 
 //--- Фракции
 

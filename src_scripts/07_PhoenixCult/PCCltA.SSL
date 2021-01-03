@@ -59,9 +59,9 @@ end
 
 procedure map_update_p_proc begin
    if (global_var(GVAR_PHENIX_MATIAS_NONATTAK) > 0) then begin
-   if (local_var(LVAR_Flag_AttakNon) > 0) then begin
-   critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PHOENIX_COLLECTOR);
-   end
+       if (local_var(LVAR_Flag_AttakNon) > 0) then begin
+       critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PHOENIX_COLLECTOR);
+       end
    end
 end
 

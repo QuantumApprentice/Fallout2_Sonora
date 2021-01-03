@@ -5,6 +5,7 @@ procedure start;
 procedure map_enter_p_proc;
 procedure use_p_proc;
 procedure use_obj_on_p_proc;
+procedure use_skill_on_p_proc;
 procedure obval_proc;
 
 import variable obj_critter_a; // указатель на криттера 1
@@ -24,6 +25,21 @@ end
 
 procedure use_obj_on_p_proc begin
    stopUseCarGaz
+end
+
+procedure use_skill_on_p_proc begin
+   if (action_being_used == SKILL_TRAPS) then begin
+      script_overrides;
+      display_mstr(112);
+   end
+   if (action_being_used == SKILL_REPAIR) then begin
+      script_overrides;
+      display_mstr(112);
+   end
+   if (action_being_used == SKILL_SCIENCE) then begin
+      script_overrides;
+      display_mstr(112);
+   end
 end
 
 procedure obval_proc begin

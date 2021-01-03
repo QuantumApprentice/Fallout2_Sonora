@@ -526,9 +526,11 @@ procedure NodeSndDialog begin
          NAnswer(310,1,NodeQst)
 
          if (gvar_bit(GVAR_RADIO_FLAGS_BIT, bit_10) == 0) then begin
+            /*
             if (item_amnt(dude_obj,PID_BOS_ARMY_TAG)>=2) then begin
-            //NAnswer(350,1,NodeQst200)
+            NAnswer(350,1,NodeQst200)
             end
+            */
 
             if ((item_amnt(dude_obj,PID_BOS_ARMYTAG_A)>0) and (item_amnt(dude_obj,PID_BOS_ARMYTAG_B)>0)) then begin
             NAnswer(350,1,NodeQst200)
@@ -830,6 +832,7 @@ procedure NodeQst200 begin
 end
 
 procedure NodeQst200a begin
+   set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_10);
    set_local_var(LVAR_ARMSTAGS,2);
    item_remove(dude_obj,PID_BOS_ARMYTAG_A,1)
    item_remove(dude_obj,PID_BOS_ARMYTAG_B,1)
@@ -862,7 +865,6 @@ procedure NodeQst200b begin
 end
 
 procedure NodeQst201 begin
-   set_gvar_bit_on(GVAR_RADIO_FLAGS_BIT, bit_10);
    Reply(353)
    NAnswer(354,1,Node999)
 end

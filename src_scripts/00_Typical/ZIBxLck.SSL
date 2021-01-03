@@ -71,7 +71,7 @@ procedure use_obj_on_p_proc begin
       powerCheck += 5;
    end
    else if (objUsedPid == PID_W_CROWBAR) then begin
-      powerCheck += 5;
+      powerCheck += 10;
    end
    else if (objUsedPid == PID_W_SLEDGEHAMMER) then begin
       powerCheck += 20;
@@ -106,7 +106,7 @@ procedure damage_p_proc begin
 end
 
 procedure locked_proc begin
-   if (local_var(LVAR_HP_BOX) >= 50) then begin
+   if (local_var(LVAR_HP_BOX) >= 25) then begin
       obj_unlock(self_obj);
       play_sfx("BRDSWELL");
       display_mstr(112);

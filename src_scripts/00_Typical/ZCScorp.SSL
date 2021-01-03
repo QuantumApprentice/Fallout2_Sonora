@@ -28,6 +28,8 @@ procedure combat_p_proc;
 procedure damage_p_proc;
 procedure destroy_p_proc;
 
+import variable obj_critter_a; // указатель на криттера 1
+
 //---------------------
 
 
@@ -38,6 +40,16 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+
+       if (global_var(GVAR_BRAHMIN_QST_CARAVAN_NO_ENEMY) > 0) then begin
+       rm_timer_event(self_obj);
+       set_obj_visibility(self_obj, 1);
+       //destroy_object(self_obj);
+       end
+       else begin
+       brahminCaravanEnemyCount
+       end
+
        if (self_PID == PID_SCORPION_LEGEND) then begin
        floater(dude_obj,102,COLOR_MSG_RED);
        end
@@ -58,7 +70,10 @@ procedure timed_event_p_proc begin
    // Таймер за номером 1 рарезервирован под перемещение персонажа по локации
    // Таймер за номером 2 рарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
-       if (cur_map_index == MAP_SAN_BRAHMIN_OASIS) then begin
+       if (cur_map_index == MAP_SANTA_ANA_MONUMENT) then begin
+       timer_move_random
+       end
+       else if (cur_map_index == MAP_SAN_BRAHMIN_OASIS) then begin
        timer_move_random_home(3)
        end
        else begin
@@ -71,6 +86,7 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
+   brahminCaravanAttak
    //invisToDude(0,0) // Скрывание нпс от ГГ до некоторой дистанции, в скобках реплика для лога (устанавливать set_obj_visibility(self_obj, 1) в map_enter_p_proc)
    set_critter_options(2,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 end
@@ -104,12 +120,13 @@ procedure destroy_p_proc begin
       floater(dude_obj, 105, COLOR_MSG_NORMAL);
       end
    end
+   brahminCaravanEnemyDead
    kill_critter_opt
    if (self_PID == PID_SCORPION_LEGEND) then begin
-      //важно: процежура должна идти ПОСЛЕ kill_critter_opt
+      //важно: код должен идти ПОСЛЕ kill_critter_opt
       set_global_var(GVAR_STATUS_SCORPION_LEGEND,-1);
       display_mstr(103);
-      //floater(dude_obj,104,COLOR_MSG_RED);
+      floater(dude_obj,104,COLOR_MSG_NORMAL);
       item_add(self_obj,PID_W_BROCK,1)
       item_add(self_obj,PID_M_FRUIT,1)
       item_add(self_obj,PID_AMMO_308,2)

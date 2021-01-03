@@ -1,6 +1,7 @@
 #include "..\headers\define.h"
 #include "..\headers\REPAIR.h"
 #define NAME                            SCRIPT_VVSGntr
+#define SKILL_LIMIT                     140
 
 procedure start;
 procedure timed_event_p_proc;
@@ -30,13 +31,13 @@ procedure use_p_proc begin
 end
 
 procedure use_skill_on_p_proc begin
-   RepairVarCheck(200)
+   RepairVarCheck
    RepairSkillRepair
 end
 
 procedure use_obj_on_p_proc begin
    stopUseCarGaz
-   RepairUsedJunk(PID_GENERATOR_ENERGY,1,200) // (pid,limit,bonus) - детали, лимит на число использования, бонус к навыку (обычно 20)
+   RepairUsedJunk(PID_GENERATOR_ENERGY,140) // (pid,limit,bonus) - детали, лимит на число использования, бонус к навыку (обычно 20)
    else if (objUsedPid == PID_TOOL_PARTS_MECHANICAL) then begin
       RepairProcUsing(113,114)
    end
@@ -52,6 +53,6 @@ procedure repair_proc begin
    if (getQuest(GVAR_VAULT27_GENERATOR) <= qStart) then begin
    setQuest(GVAR_VAULT27_GENERATOR,qEnd);
    end
-   RepairProcRepair(112,250,"ZAPPER2")
+   RepairProcRepair(112,250,"COOLANT")
    add_timer_event(self_obj, 1, 1); // Эта опция нужна для иницирования процедуры map_update_p_proc в ZTMap (уловка для обмана движка)
 end

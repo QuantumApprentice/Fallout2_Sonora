@@ -39,6 +39,7 @@ procedure NodeFstDialog3;
 procedure NodeFstDialog4;
 procedure NodeFstDialog5;
 procedure NodeFstDialog6;
+procedure NodeFstDialog7;
 procedure NodeSndDialog;
 
 //---------------------
@@ -88,6 +89,23 @@ end
 
 procedure use_obj_on_p_proc begin
    UsedItemToCrit_Proc
+   if (objUsedPid == PID_SANDALS) then begin
+      script_overrides;
+      if self_enemy_dude then begin
+      end
+      else if (bitDialog(bit_2) != 0) then begin
+      z_floater(self_obj,103,COLOR_MSG_NORMAL);
+      end
+      else begin
+      set_REP(1)
+      set_SLAVA(1)
+      exp_add(100);
+      display_mstr(104);
+      item_remove(dude_obj, objUsedPid, 1)
+      z_floater(self_obj,102,COLOR_MSG_GREEN);
+      bitDialogExp(bit_2,0)
+      end
+   end
 end
 
 procedure combat_p_proc begin
@@ -157,12 +175,25 @@ end
 
 procedure NodeFstDialog6 begin
    Reply(213)
+   if (bitDialog(bit_2) == 0) then begin
+   NAnswer(216,3,NodeFstDialog7)
+   end
    NAnswer(214,1,Node999)
+end
+
+procedure NodeFstDialog7 begin
+   Reply(231)
+   NAnswer(232,1,NodeFstDialog6)
+   NAnswer(221,1,Node999)
 end
 
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
    Reply(220)
+   NAnswer(232,1,NodeFstDialog6)
+   if (bitDialog(bit_2) == 0) then begin
+   NAnswer(230,3,NodeFstDialog7)
+   end
    NAnswer(221,1,Node999)
 end

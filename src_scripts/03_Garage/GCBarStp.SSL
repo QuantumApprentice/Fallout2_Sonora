@@ -61,6 +61,8 @@ procedure NodeSndDialog30;
 
 #define LVAR_WeaponUp                     (6) // смена оружия под уровень ГГ
 
+import variable box_stop_use;
+
 //---------------------
 
 
@@ -119,6 +121,7 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
+   set_using_stop // привязка хозяина и объекта (удалить, если не нужно)
    set_critter_options(0,1) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 
    if (map_var(MVAR_GARAGE_BAR_COMBAT) == 1) then begin

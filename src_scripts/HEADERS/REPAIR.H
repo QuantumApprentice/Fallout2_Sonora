@@ -8,7 +8,7 @@
                                                 display_mstr(b);                \
                                                 end                             \
 
-#define RepairUsedJunk(pid,limit,bonus)         if (objUsedPid == pid) then begin \
+#define RepairUsedJunk(pid,bonus)               if (objUsedPid == pid) then begin \
                                                    script_overrides;            \
                                                    if (local_var(LVAR_Status) != 0) then begin \
                                                    display_msg(self_name+g_mstr(570)); \
@@ -16,7 +16,7 @@
                                                    else if (combat_is_initialized == true) then begin \
                                                    g_display_mstr(571);         \
                                                    end                          \
-                                                   else if (local_var(LVAR_SkillBonus) >= (limit*bonus)) then begin \
+                                                   else if ((SKILL_LIMIT-local_var(LVAR_SkillBonus)) <= -15) then begin \
                                                    g_display_mstr(578);         \
                                                    end                          \
                                                    else begin                   \
@@ -32,8 +32,8 @@
                                                    end                          \
                                                 end                             \
 
-#define RepairVarCheck(lvl)                     variable skillcheck;            \
-                                                skillcheck := lvl;              \
+#define RepairVarCheck                          variable skillcheck;            \
+                                                skillcheck := SKILL_LIMIT;      \
                                                 if (global_var(GVAR_GARAGE_EUGENE_STATUS) == 1) then begin \
                                                 skillcheck -= 20;               \
                                                 end                             \
@@ -78,5 +78,14 @@
                                                 if (msg>0) then begin           \
                                                 display_mstr(msg);              \
                                                 end                             \
+
+#define RepairProcUsingMexTorpedos              if (objUsedPid == PID_MEX_TORPEDOS) then begin \
+                                                script_overrides; \
+                                                item_add(dude_obj,PID_AMMO_SIGNAL_A,20) \
+                                                item_remove(dude_obj, objUsedPid, 1) \
+                                                play_sfx("TANKS"); \
+                                                dude_floater_OK; \
+                                                g_display_mstr(435); \
+                                                end \
 
 #endif

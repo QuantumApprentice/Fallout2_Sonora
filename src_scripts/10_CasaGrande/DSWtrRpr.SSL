@@ -1,6 +1,7 @@
 #include "..\headers\define.h"
 #include "..\headers\REPAIR.h"
 #define NAME                            SCRIPT_DSWtrRpr
+#define SKILL_LIMIT                     90
 
 procedure start;
 procedure map_enter_p_proc;
@@ -25,7 +26,7 @@ end
 
 procedure use_skill_on_p_proc begin
    if (getQuest(GVAR_CGRANDE_WATER_REPAIR) > qZero) then begin
-   RepairVarCheck(90)
+   RepairVarCheck
    RepairSkillRepair
    end
 end
@@ -33,7 +34,7 @@ end
 procedure use_obj_on_p_proc begin
    if (getQuest(GVAR_CGRANDE_WATER_REPAIR) > qZero) then begin
    stopUseCarGaz
-   RepairUsedJunk(PID_TOOL_PARTS_MECHANICAL,5,20) // (pid,limit,bonus) - детали, лимит на число использования, бонус к навыку (обычно 20)
+   RepairUsedJunk(PID_TOOL_PARTS_MECHANICAL,20) // (pid,limit,bonus) - детали, лимит на число использования, бонус к навыку (обычно 20)
    end
 end
 
@@ -42,5 +43,5 @@ procedure repair_proc begin
    gfade_out(ONE_GAME_SECOND);
     game_time_advance(ONE_GAME_HOUR*5);
    gfade_in(ONE_GAME_SECOND);
-   RepairProcRepair(112,350,"FIXSTILL")
+   RepairProcRepair(112,350,"MECHPUMP")
 end

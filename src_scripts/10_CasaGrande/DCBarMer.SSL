@@ -58,6 +58,7 @@ procedure NodeAnswer202;
 procedure NodeAnswer203;
 procedure NodeAnswer204;
 procedure NodeAnswer205;
+procedure NodeAnswer206;
 
 //---------------------
 
@@ -334,7 +335,10 @@ end
 
 procedure NodeAnswer201 begin
    Reply(253)
-   if (map_var(MVAR_CGRANDE_BAR_PARTY) == 0) then begin
+   if (map_var(MVAR_CGRANDE_BAR_RDRLIFE) <= 0) then begin
+   GAnswer(276,1,NodeAnswer206)
+   end
+   else if (map_var(MVAR_CGRANDE_BAR_PARTY) == 0) then begin
    NAnswer(254,1,NodeAnswer103)
    NAnswer(255,1,NodeAnswer103)
    NAnswer(264,1,NodeAnswer204)
@@ -371,4 +375,9 @@ procedure NodeAnswer205 begin
    end
    Reply(268)
    NAnswer(269,1,Node999) //!!! стычка со Cтэном
+end
+
+procedure NodeAnswer206 begin
+   Reply(277)
+   NAnswer(278,1,Node999) //!!! стычка со Cтэном
 end

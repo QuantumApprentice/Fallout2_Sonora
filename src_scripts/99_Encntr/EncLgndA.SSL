@@ -86,6 +86,9 @@ end
 
 procedure critter_p_proc begin
    set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   if (bitDialog(bit_1) == 0) then begin
+   dialogue_system_forcing(3)
+   end
 end
 
 procedure use_skill_on_p_proc begin

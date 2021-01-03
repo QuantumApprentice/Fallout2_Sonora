@@ -118,7 +118,7 @@ procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
        if (map_first_run) then begin
-       item_add(self_obj,PID_BOOTLE_CAPS,random(10,18))
+       item_add(self_obj,PID_BOOTLE_CAPS,10+dude_luck)
        end
    end
 end
@@ -190,7 +190,7 @@ procedure talk_p_proc begin
    floater(self_obj,103,COLOR_MSG_RED);
    end
    else begin
-   setReaction(0) // Отношение к ГГ(1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
+   setReaction(0) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
    fracReaction(GVAR_TITUL_PHENIX_CULT,-20) // Поправка к отношению за принадлежность к фракциям
    fracReaction(GVAR_TITUL_ARENA_MASTER,30) // Поправка к отношению за принадлежность к фракциям
    dialog_proc(1,0,NodeStartDialog,-1,-1)
@@ -325,13 +325,11 @@ procedure NodeSndDialog begin
    else if (getReaction <= -50) then begin
    Reply(302)
    end
+   else if (getReaction < 0) then begin
+   Reply(304)
+   end
    else begin
-      if (getReaction < 0) then begin
-      Reply(304)
-      end
-      else begin
-      Reply(300)
-      end
+   Reply(300)
    end
 
    //--- Вопросы
@@ -387,13 +385,13 @@ procedure NodeSndDialog begin
    if (getQuest(GVAR_PHENIX_QST_BNDCS_A) >= qEnd) then begin
    if (getQuest(GVAR_PHENIX_QST_BNDCS_B) >= qEnd) then begin
       if (getQuest(GVAR_PHENIX_QST_BNDCS_C) == qZero) then begin
-      NAnswerReaction(420,1,NodeQst205,0,420,NodeQst214)
+         NAnswerReaction(420,1,NodeQst205,0,420,NodeQst214)
       end
       if (getQuest(GVAR_PHENIX_QST_BNDCS_C) == qStart) then begin
-      NAnswer(432,1,NodeQst209)
-      if (global_var(GVAR_PHENIX_STATUS_CARDINAL)<0) then begin
-      GAnswer(434,1,NodeQst210)
-      end
+         NAnswer(432,1,NodeQst209)
+         if (global_var(GVAR_PHENIX_STATUS_CARDINAL)<0) then begin
+         GAnswer(434,1,NodeQst210)
+         end
       end
    end
    end
@@ -650,9 +648,10 @@ procedure NodeQst210 begin
    setQuest(GVAR_PHENIX_QST_BNDCS_PIP,qEnd);
    setQuest(GVAR_PHENIX_QST_BNDCS_C,qEnd);
    setBonusReaction(50)
-   exp_add(250);
+   exp_add(300);
    set_REP(3)
    set_SLAVA(10)
+
    zReply(435)
    GAnswer(443,1,NodeQst213)
    BAnswer(437,1,NodeQst211)

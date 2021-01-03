@@ -69,7 +69,16 @@ procedure timed_event_p_proc begin
    // Таймер за номером 1 рарезервирован под перемещение персонажа по локации
    // Таймер за номером 2 рарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
-       timer_move_random
+       if ((cur_map_index == MAP_SANTA_ANA_PLAZA) and (map_var(MVAR_SANTA_MEAT_TILE) > 0)) then begin
+          timer_move_to_tile(0,map_var(MVAR_SANTA_MEAT_TILE),random(0,5))
+          //if (self_tile == map_var(MVAR_SANTA_MEAT_TILE)) then begin
+          if (tile_distance(self_tile,map_var(MVAR_SANTA_MEAT_TILE)) <= 1) then begin
+          set_map_var(MVAR_SANTA_MEAT_TILE, 0);
+          end
+       end
+       else begin
+          timer_move_random
+       end
    end
    if (fixed_param == 2) then begin
        //timer_float_reply(120,121)
@@ -98,12 +107,28 @@ procedure use_obj_on_p_proc begin
 end
 
 procedure combat_p_proc begin
+   if (critter_is_fleeing(self_obj) != 0) then begin
+      if (random(0,100) <= (25-dude_luck)) then begin
+      display_mstr(106);
+      critter_set_flee_state(self_obj, 0);
+      terminate_combat;
+      end
+   end
    effectAttak(0,0,3,3,3) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
    effectIntimidationPerk
 end
 
 procedure damage_p_proc begin
    set_damage_dude
+   else if (cur_map_index == MAP_SANTA_ANA_PLAZA) then begin
+      if (fixed_param>0) then begin
+         set_damage_check
+         if (damage_amnt > 0) then begin
+         inc_global_var_amt(GVAR_EXPOINT_COMBAT_CHECK,damage_amnt);
+         end
+         damage_amnt := 0;
+      end
+   end
 end
 
 procedure destroy_p_proc begin
@@ -116,6 +141,10 @@ procedure destroy_p_proc begin
    end
    if (cur_map_index == MAP_SAN_BRAHMIN_CAVE) then begin
    set_global_var(GVAR_BRAHMIN_STATUS_EL_MONSTRO,-1);
+   end
+   if (cur_map_index == MAP_SANTA_ANA_PLAZA) then begin
+   set_CITY_REP(GVAR_TOWN_REP_SANTA_ANA,15)
+   set_global_var(GVAR_SANTAANA_STATUS_EL_DIABLO,-1);
    end
    kill_critter_opt
 end

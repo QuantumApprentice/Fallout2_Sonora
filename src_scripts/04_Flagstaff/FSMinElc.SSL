@@ -58,7 +58,7 @@ procedure repair_proc begin
    variable elctrTile; // точка размещения крысобога
 
    //--- Определение урона от навыка ремонта
-   elctrAmnt := random(25,30)+(has_skill(dude_obj, SKILL_REPAIR)/4);
+   elctrAmnt := random(10,20); // у крыса 68 ОЗ
 
    //--- Определение местоположения крысиного короля
    elctrTile := 0;
@@ -76,10 +76,10 @@ procedure repair_proc begin
 
    //--- Нанесение урона
    play_sfx("ZAPPER2");
-   set_map_var(MVAR_FLAGMINE_MAP_SOLAR,0);
-   display_mstr(112);
+   //display_mstr(112);
    if (elctrTile>0) then begin
       if (get_critter_stat(RatGodObj,STAT_current_hp)>0) then begin
+      set_map_var(MVAR_FLAGMINE_RAT_EXP, 1);
       critter_dmg(RatGodObj, elctrAmnt, DMG_electrical);
       end
    end

@@ -46,8 +46,8 @@ procedure map_enter_p_proc begin
 end
 
 procedure timed_event_p_proc begin
-   // Таймер за номером 1 рарезервирован под перемещение персонажа по локации
-   // Таймер за номером 2 рарезервирован под всплывающие реплики
+   // Таймер за номером 1 зарезервирован под перемещение персонажа по локации
+   // Таймер за номером 2 зарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
        if (cur_map_index == MAP_HERMO_RANCHO) then begin
        timer_move_random_home(3)
@@ -60,20 +60,17 @@ procedure timed_event_p_proc begin
        end
    end
    if (fixed_param == 2) then begin
-       if ((dude_iq <= 2) and (cur_map_index == MAP_SAN_BRAHMIN_GARD)) then begin
-          if dude_is_female then begin
-          timer_floater(1120,1149,COLOR_MSG_LIGHT_GREY,random(70,200))
+       if ((dude_iq <= 2) and (random(0,100) <= 25)) then begin
+          if ((cur_map_index == MAP_HERMO_RANCHO) or (cur_map_index == MAP_SAN_BRAHMIN_GARD)) then begin
+            if dude_is_female then begin
+            timer_floater(1120,1151,COLOR_MSG_LIGHT_GREY,random(70,200))
+            end
+            else begin
+            timer_floater(120,151,COLOR_MSG_LIGHT_GREY,random(70,200))
+            end
           end
           else begin
-          timer_floater(120,149,COLOR_MSG_LIGHT_GREY,random(70,200))
-          end
-       end
-       else if ((dude_iq <= 2) and (cur_map_index == MAP_HERMO_RANCHO)) then begin
-          if dude_is_female then begin
-          timer_floater(1120,1149,COLOR_MSG_LIGHT_GREY,random(70,200))
-          end
-          else begin
-          timer_floater(120,149,COLOR_MSG_LIGHT_GREY,random(70,200))
+            timer_float_reply(110,119)
           end
        end
        else begin
@@ -104,7 +101,7 @@ procedure use_obj_on_p_proc begin
 end
 
 procedure combat_p_proc begin
-   effectAttak(0,0,2,2,1) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
+   effectAttak(0,0,2,2,0) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
    effectIntimidationPerk
 end
 

@@ -38,14 +38,29 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+       if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin
+          inc_map_var(MVAR_BRAHMIN_CARAVAN_BRAM);
+          critter_set_flee_state(self_obj, 1);
+       end
+
+       if ((cur_map_index == MAP_SAN_BRAHMIN_GARD) or (cur_map_index == MAP_SAN_BRAHMIN_CITY) or (cur_map_index == MAP_SAN_BRAHMIN_OASIS)) then begin
+          if (global_var(GVAR_BRAHMIN_QST_CARAVAN_DEADBRAM) >= map_var(MVAR_BRAHMIN_CARAVAN_BRAM)) then begin
+          rm_timer_event(self_obj);
+          set_obj_visibility(self_obj, 1);
+          destroy_object(self_obj);
+          end
+       end
    end
 end
 
 procedure timed_event_p_proc begin
-   // Таймер за номером 1 рарезервирован под перемещение персонажа по локации
-   // Таймер за номером 2 рарезервирован под всплывающие реплики
+   // Таймер за номером 1 зарезервирован под перемещение персонажа по локации
+   // Таймер за номером 2 зарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
-       if (game_time_hour < 0600) then begin
+       if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin
+       timer_move_to_home
+       end
+       else if (game_time_hour < 0600) then begin
        timer_move_to_home
        end
        else begin
@@ -79,14 +94,21 @@ procedure use_obj_on_p_proc begin
 end
 
 procedure combat_p_proc begin
-   effectAttak(0,0,2,1,0) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
+   effectAttak(0,0,2,2,0) //отравление min, облучение min, травма ног %, травма рук %, травма глаз %
    effectIntimidationPerk
 end
 
 procedure damage_p_proc begin
    set_damage_dude
+   if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin
+       if (source_obj == dude_obj) then begin
+       off_enemy_dude;
+       end
+   end
 end
 
 procedure destroy_p_proc begin
+   brahminCaravanBramDead
+   brahminCaravanDudeEnemy
    kill_critter_opt
 end

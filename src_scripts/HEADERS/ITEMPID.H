@@ -122,6 +122,7 @@ SONORA Active Items
 #define PID_W_MICROWAVE_PISTOL              (173)
 #define PID_W_RAILGUN                       (183)
 #define PID_W_FLAMER                        (184)
+#define PID_W_ELECTRO_PISTOL                (187)
 
 /*****************************************************************
 ***************        SONORA Armor     **************************
@@ -142,6 +143,7 @@ SONORA Active Items
 #define PID_ARMOR_ROAD                      (36)
 #define PID_ARMOR_LEATHER_RANGER            (37)
 #define PID_ARMOR_CHEST_SHIELD              (57)
+#define PID_ARMOR_INDIAN_PROTEGER           (103)
 
 /*****************************************************************
 ***************      SONORA Medical and Food     *****************
@@ -190,6 +192,8 @@ SONORA Active Items
 #define PID_BOOK_FIRST_AID                  (80)
 #define PID_BOOK_OUTDOORSMAN                (86)
 #define PID_BOOK_SMALL_WEAPON               (102)
+
+#define PID_BOOK_COMIX                      (499)
 
 /*****************************************************************
 ***************        SONORA Keys      **************************
@@ -241,6 +245,7 @@ SONORA Active Items
 #define PID_BOS_ARMY_TAG                    (44)
 #define PID_BOS_ARMYTAG_A                   (113)
 #define PID_BOS_ARMYTAG_B                   (114)
+#define PID_Q_SANTAANA_CORONA               (361)
 #define PID_Q_BRAHMIN_BARTER                (362)
 #define PID_Q_RADIO_HERMOSILLO              (364)
 #define PID_Q_PORTMONE                      (365)
@@ -324,6 +329,7 @@ SONORA Active Items
 #define PID_HYPO                            (112)
 #define PID_AGAVE_JUICE                     (121)
 #define PID_AMMO_CULON                      (431)
+#define PID_MEX_TORPEDOS                    (360)
 
 #define dude_caps                           (item_caps_total(dude_obj))
 

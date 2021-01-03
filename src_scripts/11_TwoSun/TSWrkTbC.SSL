@@ -1,6 +1,7 @@
 #include "..\headers\define.h"
 #include "..\headers\REPAIR.h"
 #define NAME                            SCRIPT_TSWrkTbC
+#define SKILL_LIMIT                     100
 
 procedure start;
 procedure map_enter_p_proc;
@@ -27,13 +28,21 @@ procedure use_p_proc begin
 end
 
 procedure use_skill_on_p_proc begin
-   RepairVarCheck(100)
+   RepairVarCheck
    RepairSkillRepair
 end
 
 procedure use_obj_on_p_proc begin
    stopUseCarGaz
-   RepairUsedJunk(PID_TOOL_PARTS_ELECTRONIC,1,20) // (pid,limit,bonus) - детали, лимит на число использования, бонус к навыку (обычно 20)
+   RepairUsedJunk(PID_TOOL_PARTS_ELECTRONIC,20) // (pid,limit,bonus) - детали, лимит на число использования, бонус к навыку (обычно 20)
+   else if (objUsedPid == PID_MEX_TORPEDOS) then begin
+       script_overrides;
+       item_add(dude_obj,PID_AMMO_SIGNAL_A,20)
+       item_remove(dude_obj, objUsedPid, 1)
+       play_sfx("TANKS");
+       dude_floater_OK;
+       display_mstr(102);
+   end
 end
 
 procedure repair_proc begin

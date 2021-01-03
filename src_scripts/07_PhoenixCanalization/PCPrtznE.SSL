@@ -42,6 +42,7 @@ procedure NodeFstDialog6;
 procedure NodeFstDialog7;
 procedure NodeFstDialog8;
 procedure NodeFstDialog9;
+procedure NodeFstDialog10;
 //procedure NodeSndDialog;
 
 //---------------------
@@ -127,14 +128,22 @@ end
 
 procedure talk_p_proc begin
    if (map_var(MVAR_PNX_RUINS_SPY) > 0) then begin
-   floater(self_obj,103,COLOR_MSG_NORMAL);
+      if (global_var(GVAR_TITUL_PHENIX_CULT)>0) then begin
+      floater(self_obj,104,COLOR_MSG_NORMAL);
+      end
+      else if ((armor_pid_dude_var == PID_ARMOR_PURPLE_ROBE_B) or (armor_pid_dude_var == PID_ARMOR_PURPLE_ROBE_A)) then begin
+      floater(self_obj,104,COLOR_MSG_NORMAL);
+      end
+      else begin
+      floater(self_obj,103,COLOR_MSG_NORMAL);
+      end
    end
    else if (global_var(GVAR_PHENIX_STATUS_SPYPARTY) == 1) then begin
-   floater(self_obj,102,COLOR_MSG_RED);
+      floater(self_obj,102,COLOR_MSG_RED);
    end
    else begin
-   setReaction(0) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
-   dialog_proc(0,0,NodeStartDialog,-1,-1)
+      setReaction(0) // Отношение к ГГ (1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
+      dialog_proc(0,0,NodeStartDialog,-1,-1)
    end
 end
 
@@ -161,10 +170,23 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
+   if (global_var(GVAR_TITUL_PHENIX_CULT)>0) then begin
+   Reply(250)
+   GAnswer(251,1,NodeFstDialog10)
+   NAnswer(254,1,Node999)
+   end
+   else if ((armor_pid_dude_var == PID_ARMOR_PURPLE_ROBE_B) or (armor_pid_dude_var == PID_ARMOR_PURPLE_ROBE_A)) then begin
+   Reply(260)
+   GAnswer(251,3,NodeFstDialog10)
+   BAnswer(261,1,Node998)
+   NAnswer(262,1,Node999)
+   end
+   else begin
    Reply(200)
    NAnswer(220,3,NodeFstDialog5)
    NAnswer(205,1,NodeFstDialog3)
    BAnswer(201,1,NodeFstDialog2)
+   end
 end
 
 procedure NodeFstDialog2 begin
@@ -212,6 +234,16 @@ procedure NodeFstDialog9 begin
    NAnswer(233,1,Node999)
 end
 
+procedure NodeFstDialog10 begin
+   inc_map_var(MVAR_PNX_RUINS_SPY);
+   Reply(252)
+   NAnswer(253,1,Node999)
+end
+
+procedure NodeFstDialog11 begin
+   Reply(264)
+   BAnswer(265,1,Node998)
+end
 
 
 /*

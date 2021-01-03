@@ -145,7 +145,11 @@ procedure NodeFstDialog2 begin
 end
 
 procedure NodeFstDialog3 begin
-   if (worldmap_ypos < 1500) then begin
+   if ((worldmap_ypos > 1200) and (worldmap_ypos < 1550)) then begin
+   mark_on_map(AREA_SANTA_ANA)
+   Reply(228)
+   end
+   else if (worldmap_ypos < 1500) then begin
    mark_on_map(AREA_TWO_SUN)
    Reply(224)
    end

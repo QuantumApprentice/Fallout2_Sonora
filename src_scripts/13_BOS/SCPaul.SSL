@@ -152,6 +152,7 @@ procedure NodeFstDialog101 begin
    item_add(dude_obj,PID_M_STIMPAK,3)
    item_add(dude_obj,PID_AMMO_MICRO_FUSION_CELL,10)
    item_add(dude_obj,PID_W_LASER_PISTOL,1)
+   //По-хорошему он должен сделать редкий или уникальный апгрейд энергооружия. На этом этапе немного вариантов остаётся - лазер и плазмо ружья, рельсотрон, излучатель гулей.
 
    Reply(202)
    NAnswer(203,1,Node999)
@@ -207,6 +208,7 @@ end
 
 procedure NodeAnswer105 begin
    Reply(235)
+   //NAnswer(236,1,NodeAnswer106) -- А как насчет тебя? Ты сможешь её починить?
    NAnswer(220,1,NodeAnswer101)
    NAnswer(222,1,NodeAnswer102)
    NAnswer(230,1,NodeAnswer103)

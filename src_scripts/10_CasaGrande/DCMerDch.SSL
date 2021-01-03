@@ -123,7 +123,12 @@ procedure timed_event_p_proc begin
    // Таймер за номером 1 рарезервирован под перемещение персонажа по локации
    // Таймер за номером 2 рарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
+       if (self_elevation == 0) then begin
+       timer_move_random_home(1)
+       end
+       else begin
        timer_move_to_home
+       end
    end
    if (fixed_param == 2) then begin
        if (self_elevation > 0) then begin

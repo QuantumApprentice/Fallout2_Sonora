@@ -108,20 +108,39 @@ procedure tamper_stop begin
        if (local_var(LVAR_Status) == 0) then begin
           if (obj_type(self_obj) == 0) then begin
              if (critter_kill_type(box_stop_use) == KILL_TYPE_robot) then begin
-             floater(box_stop_use,109,COLOR_MSG_RED);
-             display_mstr(124);
-             end else begin
-             floater(box_stop_use,random(100,108),COLOR_MSG_RED);
-             display_mstr(122);
+               floater(box_stop_use,109,COLOR_MSG_RED);
+               display_mstr(124);
+             end
+             else begin
+               floater(box_stop_use,random(100,108),COLOR_MSG_RED);
+               //display_mstr(122);
+               if (get_critter_stat(box_stop_use,STAT_gender) == GENDER_FEMALE) then begin
+               display_msg(obj_name(box_stop_use)+mstr(127));
+               end
+               else begin
+               display_msg(obj_name(box_stop_use)+mstr(126));
+               end
              end
           end
           else begin
              if (critter_kill_type(box_stop_use) == KILL_TYPE_robot) then begin
-             floater(box_stop_use,119,COLOR_MSG_RED);
-             display_mstr(125);
-             end else begin
-             floater(box_stop_use,random(110,118),COLOR_MSG_RED);
-             display_mstr(123);
+               floater(box_stop_use,119,COLOR_MSG_RED);
+               display_mstr(125);
+             end
+             else begin
+               if (cur_map_index == MAP_SANTA_ANA_PLAZA) then begin
+               floater(box_stop_use,130,COLOR_MSG_RED);
+               end
+               else begin
+               floater(box_stop_use,random(110,118),COLOR_MSG_RED);
+               end
+               //display_mstr(123);
+               if (get_critter_stat(box_stop_use,STAT_gender) == GENDER_FEMALE) then begin
+               display_msg(obj_name(box_stop_use)+mstr(129));
+               end
+               else begin
+               display_msg(obj_name(box_stop_use)+mstr(128));
+               end
              end
           end
        end

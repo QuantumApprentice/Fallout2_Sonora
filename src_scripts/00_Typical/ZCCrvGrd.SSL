@@ -34,6 +34,8 @@ procedure talk_p_proc;
 
 //#define LVAR_Flag_A                     (6) // отвечает за ...
 
+import variable obj_critter_a; // указатель на криттера 1
+
 //---------------------
 
 
@@ -44,6 +46,33 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+
+       if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin
+          /*
+          if (global_var(GVAR_BRAHMIN_QST_CARAVAN_DUDEENEMY) == 0) then begin
+             critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,TEAM_PLAYER);
+          end
+          */
+          if self_is_female then begin
+             if (gvar_bit(GVAR_BRAHMIN_QST_CARAVAN_GUARD_DEAD, bit_1) != 0) then begin
+             rm_timer_event(self_obj);
+             set_obj_visibility(self_obj, 1);
+             destroy_object(self_obj);
+             end
+          end
+          else begin
+             if ((gvar_bit(GVAR_BRAHMIN_QST_CARAVAN_GUARD_DEAD, bit_2) != 0) and (item_amnt(self_obj,PID_TOOL_FLARE)>0)) then begin
+             rm_timer_event(self_obj);
+             set_obj_visibility(self_obj, 1);
+             destroy_object(self_obj);
+             end
+             if ((gvar_bit(GVAR_BRAHMIN_QST_CARAVAN_GUARD_DEAD, bit_3) != 0) and (item_amnt(self_obj,PID_TOOL_FLARE)<=0)) then begin
+             rm_timer_event(self_obj);
+             set_obj_visibility(self_obj, 1);
+             destroy_object(self_obj);
+             end
+          end
+       end
    end
 end
 
@@ -59,7 +88,12 @@ procedure timed_event_p_proc begin
    // Таймер за номером 1 рарезервирован под перемещение персонажа по локации
    // Таймер за номером 2 рарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
+       if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin
+       timer_move_random
+       end
+       else begin
        timer_move_to_home
+       end
    end
    if (fixed_param == 2) then begin
        //timer_float_reply(110,119)
@@ -67,7 +101,18 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
-   set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin
+      if (random(0,4) == 1) then begin
+      obj_critter_a := self_obj;
+      end
+   end
+   if (global_var(GVAR_BRAHMIN_QST_CARAVAN_DUDEENEMY) >0) then begin
+      critter_add_trait(self_obj,TRAIT_OBJECT,OBJECT_TEAM_NUM,NUM_TEAM);
+      set_critter_options(2,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   end
+   else begin
+      set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   end
 end
 
 procedure use_skill_on_p_proc begin
@@ -89,9 +134,31 @@ end
 
 procedure damage_p_proc begin
    set_damage_dude
+   if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin
+       if (source_obj == dude_obj) then begin
+       off_enemy_dude;
+       end
+   end
 end
 
 procedure destroy_p_proc begin
+   if (obj_critter_a == self_obj) then begin
+   obj_critter_a := 0;
+   end
+   brahminCaravanDudeEnemy
+   if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin
+      if self_is_female then begin
+         set_gvar_bit_on(GVAR_BRAHMIN_QST_CARAVAN_GUARD_DEAD, bit_1);
+      end
+      else begin
+         if (gvar_bit(GVAR_BRAHMIN_QST_CARAVAN_GUARD_DEAD, bit_2) == 0) then begin
+         set_gvar_bit_on(GVAR_BRAHMIN_QST_CARAVAN_GUARD_DEAD, bit_2);
+         end
+         else if (gvar_bit(GVAR_BRAHMIN_QST_CARAVAN_GUARD_DEAD, bit_3) == 0) then begin
+         set_gvar_bit_on(GVAR_BRAHMIN_QST_CARAVAN_GUARD_DEAD, bit_3);
+         end
+      end
+   end
    kill_critter_opt
 end
 

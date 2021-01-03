@@ -55,7 +55,8 @@ procedure use_skill_on_p_proc begin
    if (action_being_used == SKILL_REPAIR) then begin
       script_overrides;
       if (has_skill(dude_obj, SKILL_REPAIR) >= 50) then begin
-      play_sfx("WH32WXX1");
+       play_sfx("WH21FXX1");
+       play_sfx("PEBBLE");
       call destroy_proc;
       end
       else begin
@@ -108,7 +109,8 @@ procedure use_obj_on_p_proc begin
 
    if (damageCheck >0) then begin
        display_mstr(112);
-       play_sfx("WH32WXX1");
+       play_sfx("WH21FXX1");
+       play_sfx("PEBBLE");
        call destroy_proc;
    end
 

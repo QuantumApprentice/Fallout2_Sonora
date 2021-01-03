@@ -63,6 +63,8 @@ procedure NodeKid113;
 #define LVAR_Stop_Run                   (6) // возможность оставить персонажа одного
 #define LVAR_MSG_reply                  (7) // номера реплик в диалоге
 
+import variable box_stop_use;
+
 //---------------------
 
 
@@ -99,6 +101,7 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
+   set_using_stop // привязка хозяина и объекта (удалить, если не нужно)
    set_critter_options(0,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 end
 

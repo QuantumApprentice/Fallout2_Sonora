@@ -1,5 +1,5 @@
 #include "..\headers\define.h"
-//---------------------
+//--------------------- Тодд
 
 #define NAME                            SCRIPT_GCCtzB
 #define TOWN_REP_VAR                    GVAR_TOWN_REP_GARAGE  // привязка к репутации (-1, если не нужно)

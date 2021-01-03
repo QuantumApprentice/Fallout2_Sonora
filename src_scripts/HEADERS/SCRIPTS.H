@@ -24,6 +24,7 @@
 #define SCRIPT_ZTRotat          (463)
 #define SCRIPT_ZTPoison         (612)
 #define SCRIPT_ZTTriger         (627)
+#define SCRIPT_ZTFire           (779)
 
 #define SCRIPT_ZTMin            (12)
 #define SCRIPT_ZTCapcan         (13)
@@ -33,6 +34,7 @@
 #define SCRIPT_ZSDoor           (16)
 #define SCRIPT_ZSCola           (17)
 #define SCRIPT_ZSBlock          (18)
+#define SCRIPT_ZSMentat         (769)
 #define SCRIPT_ZSRocks          (92)
 #define SCRIPT_ZSSolar          (19)
 #define SCRIPT_ZSLump           (55)
@@ -57,6 +59,7 @@
 #define SCRIPT_ZSDorCls         (404)
 #define SCRIPT_ZSHole           (610)
 #define SCRIPT_ZSRprJnk         (751)
+#define SCRIPT_ZSWater          (770)
 
 #define SCRIPT_ZSTblWrk         (31)
 #define SCRIPT_ZSChemTb         (47)
@@ -153,6 +156,9 @@
 #define SCRIPT_EncLgndA        (757) // ЛегендСити - встречающий робот
 #define SCRIPT_EncLgndB        (758) // ЛегендСити - мишени
 #define SCRIPT_EncLgndC        (759) // ЛегендСити - муз аппарат
+#define SCRIPT_EncInfrn        (771) // раненный супермутант возле Инферно
+#define SCRIPT_EncBnkrt        (773) // фермер-банкрот
+#define SCRIPT_EncScrib        (775) // писарь-заложник на побережье у Пуэрто
 
 //------------------------------------------------------
 //---------------------- Вилла
@@ -380,6 +386,7 @@
 #define SCRIPT_BSStrBns        (729)
 #define SCRIPT_BCHunter        (752)
 #define SCRIPT_BCCrvnQt        (756)
+#define SCRIPT_BCCrvnSv        (774)
 
 //------------------------------------------------------
 //---------------------- Рейнджеры
@@ -807,6 +814,7 @@
 #define SCRIPT_NSWanted        (704)
 #define SCRIPT_NCAlco          (706)
 #define SCRIPT_NCCarlos        (739)
+#define SCRIPT_NSGidro         (777)
 
 //------------------------------------------------------
 //---------------------- Инферно
@@ -882,6 +890,24 @@
 #define SCRIPT_ASFaro          (748)
 #define SCRIPT_ASLampar        (749)
 #define SCRIPT_ATCave          (750)
+
+//------------------------------------------------------
+//---------------------- Санта Ана
+//------------------------------------------------------
+
+#define SCRIPT_CCCtzn          (760)
+#define SCRIPT_CCChild         (761)
+#define SCRIPT_CCBoss          (762)
+#define SCRIPT_CCPapa          (763)
+#define SCRIPT_CCNina          (764)
+#define SCRIPT_CCNino          (765)
+#define SCRIPT_CCBosGrd        (766)
+#define SCRIPT_CCCrvBos        (767)
+#define SCRIPT_CCNinb          (768)
+#define SCRIPT_CCNinb          (768)
+#define SCRIPT_CSCar           (772)
+#define SCRIPT_CIShovel        (776)
+#define SCRIPT_CSWrkTb         (778)
 
 //------------------------------------------------------
 //---------------------- Эрмосильо

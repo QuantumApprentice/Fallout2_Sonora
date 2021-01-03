@@ -100,6 +100,10 @@
                                                 else if (has_skill(source_obj, SKILL_SCIENCE) < skillcheck) then begin \
                                                 g_skill_display_mstr(556,SKILL_SCIENCE,skillcheck) \
                                                 end                             \
+                                                else if (random(0,100)<(12-dude_luck)) then begin \
+                                                critter_dmg(source_obj, random(1,5), DMG_electrical); \
+                                                g_display_mstr(575);            \
+                                                end                             \
                                                 else begin                      \
                                                 call sience_proc;               \
                                                 end                             \

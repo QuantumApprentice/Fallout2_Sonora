@@ -49,6 +49,8 @@
 #define PID_TRAP_Db                         33554442   // растяжка выкл
 #define PID_TRAP_Ea                         33554443   // растяжка вкл
 #define PID_TRAP_Eb                         33554444   // растяжка выкл
+#define PID_TRAP_Fa                         33556573   // газовый баллон вкл
+#define PID_TRAP_Fb                         33556572   // газовый баллон выкл
 
 #define trapObj(pid)                        (tile_contains_obj_pid(self_tile,self_elevation,pid) == true) \
 

@@ -1,6 +1,7 @@
 #include "..\headers\define.h"
 #include "..\headers\REPAIR.h"
 #define NAME                            SCRIPT_PSAtmElc
+#define SKILL_LIMIT                     35
 
 procedure start;
 procedure map_enter_p_proc;
@@ -34,7 +35,7 @@ procedure use_p_proc begin
 end
 
 procedure use_skill_on_p_proc begin
-   RepairVarCheck(35)
+   RepairVarCheck
    RepairSkillRepair
 end
 

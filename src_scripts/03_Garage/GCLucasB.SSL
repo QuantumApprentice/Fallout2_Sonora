@@ -178,6 +178,9 @@ procedure destroy_p_proc begin
    set_map_var(MVAR_GARAGE_TRADE_STATUS,-1);
    set_global_var(GVAR_GARAGE_STATUS_LUCAS,-2);
    setQuest(GVAR_GARAGE_QST_LUCS_TRADE,-1);
+   if (getQuest(GVAR_GARAGE_QST_LUCS_COMP) == qStart) then begin
+   setQuest(GVAR_GARAGE_QST_LUCS_COMP,qZero);
+   end
    kill_critter_opt
 end
 

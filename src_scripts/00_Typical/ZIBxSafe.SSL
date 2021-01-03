@@ -78,7 +78,8 @@ procedure set_locked_indx begin
           end
           else if (cur_map_index == MAP_PHOENIX_CENTER) then begin
              if (self_elevation == 2) then begin
-             set_local_var(LVAR_Locked_Level,80);
+             set_local_var(LVAR_Locked_Level,80); // сейф Дона Диего
+             set_local_var(LVAR_Trap_Type,TRAP_ALARMS);
              end
           end
 
@@ -231,10 +232,10 @@ procedure use_skill_on_p_proc begin
       varTrapSkill := 60;
       end
       if (local_var(LVAR_Trap_Type) == TRAP_ALARMS) then begin
-      varTrapSkill := 80;
+      varTrapSkill := 50;
       end
       if (local_var(LVAR_Trap_Type) == TRAP_ELECTR) then begin
-      varTrapSkill := 100;
+      varTrapSkill := 80;
       end
 
       if (local_var(LVAR_Trap_Type) == TRAP_NON) then begin
@@ -458,6 +459,11 @@ procedure trap_expl begin
        play_sfx("BIGWIN1");
        end
        //? Переменные по ситуации
+          if (cur_map_index == MAP_PHOENIX_CENTER) then begin
+             if (self_elevation == 2) then begin
+             set_global_var(GVAR_TOWN_REP_PHOENIX_CASINO,REP_KILL_CRITICAL);
+             end
+          end
    end
 
    display_msg(self_name+mstr(123));

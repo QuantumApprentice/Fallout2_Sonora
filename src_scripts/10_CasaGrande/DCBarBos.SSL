@@ -69,6 +69,9 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+       if (map_first_run == true) then begin
+       inc_map_var(MVAR_CGRANDE_BAR_RDRLIFE);
+       end
        set_obj_visibility(self_obj, 0);
        if (getQuest(GVAR_CGRANDE_ATTAK_TO_BAR) != qStart) then begin
        rm_timer_event(self_obj);
@@ -139,6 +142,7 @@ end
 
 procedure destroy_p_proc begin
    set_global_var(GVAR_RAIDER_STATUS_BAR,-1);
+   dec_map_var(MVAR_CGRANDE_BAR_RDRLIFE);
    if (obj_critter_b == self_obj) then begin
    obj_critter_b := 0;
    end

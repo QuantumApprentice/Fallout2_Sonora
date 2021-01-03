@@ -32,7 +32,7 @@ procedure talk_p_proc;
 
 //---------------------
 
-//#define LVAR_Flag_A                     (6) // отвечает за ...
+#define LVAR_SANDAL_STATUS                 (6) // получение сандалий от ГГ
 
 //---------------------
 
@@ -94,6 +94,22 @@ end
 
 procedure use_obj_on_p_proc begin
    UsedItemToCrit_Proc
+   if (objUsedPid == PID_SANDALS) then begin
+      script_overrides;
+      if self_enemy_dude then begin
+      end
+      else if (local_var(LVAR_SANDAL_STATUS) != 0) then begin
+      display_mstr(103);
+      end
+      else begin
+      set_REP(1)
+      exp_add(75);
+      display_mstr(104);
+      floater(self_obj,105,COLOR_MSG_GREEN);
+      item_remove(dude_obj, objUsedPid, 1)
+      set_local_var(LVAR_SANDAL_STATUS,1);
+      end
+   end
 end
 
 procedure combat_p_proc begin
@@ -116,9 +132,9 @@ procedure talk_p_proc begin
    floater(self_obj,102,COLOR_MSG_RED);
    end
    else if town_rep_is_liked then begin
-   z_floater(self_obj,random(110,119),COLOR_MSG_NORMAL);
+   z_floater(self_obj,random(110,120),COLOR_MSG_NORMAL);
    end
    else begin
-   z_floater(self_obj,random(110,119),COLOR_MSG_RED);
+   z_floater(self_obj,random(110,120),COLOR_MSG_RED);
    end
 end

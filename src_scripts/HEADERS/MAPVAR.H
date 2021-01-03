@@ -121,6 +121,10 @@
 
 #define TILE_CRVN                        map_var(MVAR_GARAGE_TILE_CRVN)
 
+//------------------------------- Трейлер
+
+#define MVAR_GARAGE_TRILER_FIRE          (1) // текущее число костров для отпугивания койотов
+
 /***************************************************************
 ************************** ФЛАГПУЛ *****************************
 ***************************************************************/
@@ -155,11 +159,13 @@
 //------------------------------- Шахта (под землей)
 
 #define MVAR_FLAGMINE_MAP_SOLAR          (1) // бонус освещения: 0 - не задан, 1 - задан (точные изменения записаны в скрипте ZTMap, процедура map_light_proc)
+#define MVAR_FLAGMINE_RAT_EXP            (2) // служит для расчета урона, получаемого королем крыс от электрической ловушки (иначе опыт не начисляется)
 #define MVAR_FLAG_RatKingVsbl            (4) // обнаружение крысиного короля: 0 - невидим, 1 - видим
 
 //------------------------------- Заброшенный район (музей)
 
 #define MVAR_FLAGMUS_TRAPS_VSBL          (1) // показал ли рейнджер ловушки на локации: 0 - нет, 1 - да
+#define MVAR_FLAGMUS_BONES_BONUS         (2) // обнаружение бонуса у подножия скелета в музее
 
 //------------------------------- Захваченная ферма
 
@@ -243,6 +249,39 @@
 
 #define MVAR_BRAHMIN_CHILD_RUN           (1) // <0 - ГГ стал врагом детей, >0 - приобщение детей в подземке к партии ГГ
 #define MVAR_BRAHMIN_CHILD_KNOW          (2) // состоялся первый диалог с потерянными детьми
+
+//------------------------------- Защита каравана
+
+#define MVAR_BRAHMIN_CARAVAN_BRAM        (1) // текущее число браминов на карте
+
+#define brahminCaravanEnemyCount         if (map_first_run == true) then begin \
+                                             if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin \
+                                             inc_global_var(GVAR_BRAHMIN_QST_CARAVAN_ENEMY); \
+                                             end \
+                                         end \
+
+#define brahminCaravanEnemyDead          if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin \
+                                             dec_global_var(GVAR_BRAHMIN_QST_CARAVAN_ENEMY); \
+                                         end \
+
+#define brahminCaravanAttak              if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin \
+                                             if (self_visible == true) then begin \
+                                             if (obj_critter_a > 0) then begin \
+                                             attack(obj_critter_a); \
+                                             end \
+                                             end \
+                                         end \
+
+#define brahminCaravanBramDead           if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin \
+                                             inc_global_var(GVAR_BRAHMIN_QST_CARAVAN_DEADBRAM); \
+                                         end \
+
+#define brahminCaravanDudeEnemy          if ((cur_map_index == MAP_SB_CARAVAN_A) or (cur_map_index == MAP_SB_CARAVAN_B) or (cur_map_index == MAP_SB_CARAVAN_C)) then begin \
+                                             if (source_obj == dude_obj) then begin \
+                                                inc_global_var(GVAR_BRAHMIN_QST_CARAVAN_DUDEENEMY); \
+                                             end \
+                                         end \
+
 
 /***************************************************************
 *************************  ФИНИКС  ****************************
@@ -386,6 +425,7 @@
 #define MVAR_CGRANDE_BAR_PARTY          (3) // 0 - дочь не в партии ГГ, 1 - дочь мэра в партии ГГ, 2 - дочь мэра достигла безопасного места
 #define MVAR_CGRANDE_BAR_ATTAK          (4) // >0 - сигнал к атаке в баре
 #define MVAR_CGRANDE_BAR_RUN            (5) // >0 - ГГ уговорил рейдеров покинуть бар и освободить заложника
+#define MVAR_CGRANDE_BAR_RDRLIFE        (6) // число еще живых рейдеров (-100, если рейдеры ушли из локации)
 
 //------------------------------- Тайник магистралов
 
@@ -462,6 +502,32 @@
 #define MVAR_NUEVA_LAB_MANTIS_COUNT      (5) // хранит количество сгенерированных в бою мантисов
 
 /***************************************************************
+************************ САНТА АНА *****************************
+***************************************************************/
+
+//------------------------------- Поселение
+
+#define MVAR_SANTA_DIALOG                (1) // число проведенных диалогов по квесту GVAR_SANTAANA_QST_DIALOG
+#define MVAR_SANTA_BOSS_ATTAK            (2) // инициация драки со старостой в церкви
+#define MVAR_SANTA_MEAT_TILE             (3) // тайл для перемещения Эль Диабло к месту сброса мяса
+
+#define dialog_qst_SANTA                 if (getQuest(GVAR_SANTAANA_QST_DIALOG) == qStart) then begin \
+                                            inc_map_var(MVAR_SANTA_DIALOG); \
+                                            display_msg(message_str(SCRIPT_CCBoss,103)+map_var(MVAR_SANTA_DIALOG)+message_str(SCRIPT_CCBoss,104)); \
+                                            if (map_var(MVAR_SANTA_DIALOG) >= 3) then begin \
+                                            set_CITY_REP(GVAR_TOWN_REP_SANTA_ANA,2) \
+                                            exp_add(200); \
+                                            setQuest(GVAR_SANTAANA_QST_DIALOG, qEnd); \
+                                            end \
+                                         end
+
+#define stop_santa_fiesta                if (self_elevation == 0) then begin \
+                                            if (global_var(GVAR_SANTAANA_STATUS_FIESTA) < 10) then begin \
+                                            set_global_var(GVAR_SANTAANA_STATUS_FIESTA, -1); \
+                                            end \
+                                         end \
+
+/***************************************************************
 ************************ ИНФЕРНО *******************************
 ***************************************************************/
 
@@ -505,6 +571,8 @@
 //#define MVAR_PUERTO_SKLAD_DOPUSK         (2) // не актуально, заменено на GVAR
 #define MVAR_PUERTO_MEDIC_FLOAT          (3) // стадии плавающего диалога между пациентом и врачом в лазарете
 #define MVAR_PUERTO_ALARM_A              (4) // сигнал тревоги в торпедном отсеке
+#define MVAR_PUERTO_ALARM_BOS            (5) // сигнал тревоги в кабинете генерала
+#define MVAR_PUERTO_ALARM_SCLAD          (6) // сигнал тревоги на складе интенданта
 
 //------------------------------- Каборка
 

@@ -90,17 +90,26 @@ procedure set_level_lock begin
    if (cur_town == AREA_PHOENIX) then begin
    set_local_var(LVAR_Locked_Level,60);
    end
-   if (cur_town == AREA_RANGERS) then begin
+   else if (cur_town == AREA_RANGERS) then begin
    set_local_var(LVAR_Locked_Level,80);
    end
-   if (cur_town == AREA_TWO_SUN) then begin
+   else if (cur_town == AREA_CASA_GRANDE) then begin
+   set_local_var(LVAR_Locked_Level,70);
+   end
+   else if (cur_town == AREA_TWO_SUN) then begin
    set_local_var(LVAR_Locked_Level,100);
    end
-   if (cur_town == AREA_PUERTO_STEEL) then begin
-   set_local_var(LVAR_Locked_Level,120);
+   else if (cur_town == AREA_SANTA_ANA) then begin
+   set_local_var(LVAR_Locked_Level,60);
+   end
+   else if (cur_town == AREA_PUERTO_STEEL) then begin
+   set_local_var(LVAR_Locked_Level,110);
+   end
+   else if (cur_town == AREA_HERMOSILLO) then begin
+   set_local_var(LVAR_Locked_Level,80);
    end
 
-   //--- Определение уровня замка для конкретных дверей
+   //--- Определение уровня замка для конкретных дверей или локаций
    //Индексация: карта + уровень + тайл + сложность замка + ключ + тип ловушки
 
           if (cur_map_index == MAP_VILLA_CAVE) then begin
@@ -135,6 +144,9 @@ procedure set_level_lock begin
              set_local_var(LVAR_Locked_Level,20);
              set_local_var(LVAR_Trap_Type,TRAP_RATTRP);
           end
+          else if (cur_map_index == MAP_RANGERS_QUARTZ) then begin
+             set_local_var(LVAR_Locked_Level,50);
+          end
 
           if (cur_map_index == MAP_PHOENIX_CENTER) then begin
              if (self_tile == 23746) then begin // тюремная камера в офисе наемников
@@ -142,6 +154,7 @@ procedure set_level_lock begin
              end
              if (self_tile == 13466) then begin // черный выход казино
              set_local_var(LVAR_Locked_Level,100);
+             //set_local_var(LVAR_Trap_Type,TRAP_ALARMS);
              end
              if (self_tile == 18282) then begin // дверь в кассу казино
              if (self_elevation == 0) then begin
@@ -198,11 +211,6 @@ procedure set_level_lock begin
              set_local_var(LVAR_Locked_Level,20);
              set_local_var(LVAR_Trap_Type,TRAP_CALIBR);
           end
-          else if (cur_map_index == MAP_CASA_GRANDE_CITY) then begin
-             if (self_tile == 13114) then begin
-             set_local_var(LVAR_Locked_Level,75);
-             end
-          end
           else if (cur_map_index == MAP_TWO_SUN_WORKSHOP) then begin
              set_local_var(LVAR_Locked_Level,90);
              if (self_tile == 19118) then begin
@@ -223,8 +231,11 @@ procedure set_level_lock begin
              set_local_var(LVAR_Locked_Level,100);
              set_local_var(LVAR_Type_Lock,1);
              set_local_var(LVAR_Key_PID,PID_KEY_DESTROYER);
+             if (self_tile == 20078) then begin
+             set_local_var(LVAR_Trap_Type,TRAP_ALARMS); // дверь на склад интенданта
+             end
              if (self_tile == 19656) then begin
-             set_local_var(LVAR_Trap_Type,TRAP_ALARMS);
+             set_local_var(LVAR_Trap_Type,TRAP_ALARMS); // дверь в коморку позади генерала
              end
           end
           else if (cur_map_index == MAP_SPECIAL_VAULT) then begin
@@ -327,7 +338,7 @@ procedure use_skill_on_p_proc begin
       varTrapSkill := 60;
       end
       if (local_var(LVAR_Trap_Type) == TRAP_ALARMS) then begin
-      varTrapSkill := 60;
+      varTrapSkill := 50;
       end
       if (local_var(LVAR_Trap_Type) == TRAP_ELECTR) then begin
       varTrapSkill := 80;
@@ -636,6 +647,16 @@ procedure trap_expl begin
          //--- Локальная ситуация на карте:
          if (cur_map_index == MAP_PHOENIX_VAULT) then begin
          set_map_var(MVAR_PnxVlt_Alarm,1);
+         end
+
+         if ((cur_map_index == MAP_PUERTO_BASA) and (self_tile == 19656)) then begin
+         set_map_var(MVAR_PUERTO_ALARM_BOS,1);
+         end
+         if ((cur_map_index == MAP_PUERTO_BASA) and (self_elevation == 1)) then begin
+         set_map_var(MVAR_PUERTO_ALARM_A,1);
+         end
+         if ((cur_map_index == MAP_PUERTO_BASA) and (self_tile == 20078)) then begin
+         set_map_var(MVAR_PUERTO_ALARM_SCLAD,1);
          end
    end
 

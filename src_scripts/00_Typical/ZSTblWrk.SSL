@@ -1,4 +1,5 @@
 #include "..\headers\define.h"
+#include "..\headers\REPAIR.h"
 #define NAME                    SCRIPT_ZSTblWrk
 
 procedure start;
@@ -81,6 +82,7 @@ procedure use_obj_on_p_proc begin
        dude_floater_OK;
        display_mstr(116);
    end
+   else RepairProcUsingMexTorpedos
 end
 
 procedure repair_proc begin

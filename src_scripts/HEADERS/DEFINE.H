@@ -411,7 +411,7 @@
 #define TRAIT_kamikaze                     (5) // Камикадзе
 #define TRAIT_heavy_handed                 (6) // Тяжелая рука
 #define TRAIT_fast_shot                    (7) // Стрельба навскидку
-#define TRAIT_espanol                      (8) // Испанский язык
+#define TRAIT_espanol                      (8) // Горячая кровь
 #define TRAIT_jinxed                       (9) // Порченый
 #define TRAIT_good_natured                (10) // Добрая душа
 #define TRAIT_drug_addict                 (11) // Чувств. к химии

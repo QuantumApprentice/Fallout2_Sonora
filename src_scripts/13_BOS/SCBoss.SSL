@@ -155,8 +155,13 @@ procedure critter_p_proc begin
    set_using_stop // привязка хозяина и объекта (удалить, если не нужно)
    end
    set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
+   if ((map_var(MVAR_PUERTO_ALARM_BOS) > 0) and (tile_distance_objs(self_obj,dude_obj)<=15)) then begin
+   if (global_var(GVAR_TITUL_BOS) <= 0) then begin
+   attack(dude_obj);
+   end
+   end
    if self_enemy_dude then begin
-   BarklyAttakDude
+      BarklyAttakDude
    end
 end
 

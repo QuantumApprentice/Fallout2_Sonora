@@ -1,6 +1,7 @@
 #include "..\headers\define.h"
 #include "..\headers\REPAIR.h"
 #define NAME                            SCRIPT_DSBthRpr
+#define SKILL_LIMIT                     30
 
 procedure start;
 procedure map_enter_p_proc;
@@ -29,7 +30,7 @@ end
 
 procedure use_skill_on_p_proc begin
    if (global_var(GVAR_CGRANDE_STATUS_BATHHOUSE) > 0) then begin
-   RepairVarCheck(30)
+   RepairVarCheck
    RepairSkillRepair
    end
 end
@@ -37,7 +38,7 @@ end
 procedure use_obj_on_p_proc begin
    stopUseCarGaz
    if (global_var(GVAR_CGRANDE_STATUS_BATHHOUSE) > 0) then begin
-   RepairUsedJunk(PID_TOOL_PARTS_MECHANICAL,2,20) // (pid,limit,bonus) - детали, лимит на число использования, бонус к навыку (обычно 20)
+   RepairUsedJunk(PID_TOOL_PARTS_MECHANICAL,20) // (pid,limit,bonus) - детали, лимит на число использования, бонус к навыку (обычно 20)
    end
 end
 

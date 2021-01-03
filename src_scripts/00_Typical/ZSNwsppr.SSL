@@ -1,6 +1,7 @@
 #include "..\headers\define.h"
 #include "..\headers\REPAIR.h"
 #define NAME                            SCRIPT_ZSNwsppr
+#define SKILL_LIMIT                     25
 
 procedure start;
 procedure map_enter_p_proc;
@@ -34,7 +35,7 @@ procedure use_p_proc begin
 end
 
 procedure use_skill_on_p_proc begin
-   RepairVarCheck(25)
+   RepairVarCheck
    if (action_being_used == SKILL_LOCKPICK) then begin
       script_overrides;
       //if (obj_is_locked(self_obj) == true) then begin

@@ -45,7 +45,7 @@ procedure use_skill_on_p_proc begin
       call sience_proc;
       end
       else begin
-      floater(source_obj, 108, COLOR_MSG_NORMAL);
+      //floater(source_obj, 108, COLOR_MSG_NORMAL);
       display_mstr(104);
       end
    end

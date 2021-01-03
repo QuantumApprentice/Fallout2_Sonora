@@ -159,6 +159,8 @@ end
 
 procedure NodeFstDialog2 begin
    setQuest(GVAR_PHENIX_PARTY_ATTAKTOAARON, qStart);
+   set_local_var(LVAR_Home_Tile, 11702);
+   set_local_var(LVAR_Home_Rotat, 5);
    Reply(203)
    NAnswer(204,1,Node999)
 end

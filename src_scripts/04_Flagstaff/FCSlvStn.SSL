@@ -238,7 +238,7 @@ end
 procedure NodeSndDialog4b begin
    Reply(224)
    BAnswer(220,1,NodeSndDialog5)
-   NAnswer(225,1,Node999)
+   NAnswer(229,1,Node999)
 end
 
 procedure NodeSndDialog5 begin

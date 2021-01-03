@@ -32,7 +32,9 @@ procedure talk_p_proc;
 
 //---------------------
 
-//#define LVAR_Flag_A                     (6) // отвечает за ...
+#define LVAR_Flag_Alcohole                  (6) // ГГ поюзал на нпс алкоголь
+
+import variable box_stop_use;
 
 //---------------------
 
@@ -43,6 +45,7 @@ end
 
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
+       set_local_var(LVAR_Flag_Alcohole,0);
        set_start_home
    end
 end
@@ -72,6 +75,9 @@ procedure timed_event_p_proc begin
 end
 
 procedure critter_p_proc begin
+   if (global_var(GVAR_TITUL_ARIZONA_RANGER) <= 0) then begin
+   set_using_stop // привязка хозяина и объекта (удалить, если не нужно)
+   end
    set_critter_options(1,0) //условие нападения (0 личная вражда, 1 вражда клановая, 2 всегда), разворот к ГГ
 end
 
@@ -86,6 +92,10 @@ end
 
 procedure use_obj_on_p_proc begin
    UsedItemToCrit_Proc
+   if (itemTypeUseDude == 2) then begin
+      inc_local_var(LVAR_Flag_Alcohole);
+      box_stop_use := 0;
+   end
 end
 
 procedure combat_p_proc begin

@@ -44,12 +44,7 @@ procedure timed_event_p_proc begin
    // Таймер за номером 1 рарезервирован под перемещение персонажа по локации
    // Таймер за номером 2 рарезервирован под всплывающие реплики
    if (fixed_param == 1) then begin
-       if (cur_map_index == MAP_SAN_FELIPE_COAST) then begin
-       timer_move_random_home(5)
-       end
-       else begin
        timer_move_random
-       end
    end
    if (fixed_param == 2) then begin
        //timer_float_reply(120,121)

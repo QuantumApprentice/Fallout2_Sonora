@@ -47,6 +47,9 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
+       if (map_first_run == true) then begin
+       inc_map_var(MVAR_CGRANDE_BAR_RDRLIFE);
+       end
        if (item_amnt(self_obj,PID_TEST) == 1) then begin
        set_local_var(LVAR_Flag_Street,12104);
        end
@@ -129,6 +132,7 @@ procedure destroy_p_proc begin
    if (source_obj == dude_obj) then begin
    set_map_var(MVAR_CGRANDE_BAR_RDR,2);
    end
+   dec_map_var(MVAR_CGRANDE_BAR_RDRLIFE);
    kill_critter_opt
 end
 

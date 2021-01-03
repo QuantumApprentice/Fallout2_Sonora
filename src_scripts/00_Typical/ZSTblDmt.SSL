@@ -43,6 +43,7 @@ end
 
 procedure use_obj_on_p_proc begin
    stopUseCarGaz
+   else RepairProcUsingMexTorpedos
 end
 
 procedure traps_proc begin

@@ -40,7 +40,7 @@ procedure expl_proc begin
    	      if (getQuest(GVAR_SANFELIPE_STATUS_CTZNCAVE) == qZero) then begin
             setQuest(GVAR_SANFELIPE_STATUS_CTZNCAVE,qStop);
    	      end
-            set_global_var(GVAR_SANFELIPE_STATUS_MONSTRCAVE,100);
+            set_global_var(GVAR_SANFELIPE_STATUS_MONSTRCAVE,100); // сразу 100, чтобы не мучиться с подсчетом
             setQuest(GVAR_SANFELIPE_DESTROY_CAVE,qEnd);
    end
 end

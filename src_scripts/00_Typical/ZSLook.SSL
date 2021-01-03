@@ -96,7 +96,13 @@ procedure id_proc begin
    setObjScience(20,220,33555623,MAP_FLAGSTAFF_CITY,0)
    setObjScience(20,222,33555637,MAP_FLAGSTAFF_MINE,0)
    setObjScience(20,224,33555619,MAP_FLAGSTAFF_MINE,0)
-   setObjScience(20,226,-1,MAP_FLAGSTAFF_MUSEUM,0)
+   setObjScience(20,226,33555638,MAP_FLAGSTAFF_MUSEUM,0)
+   if (map_var(MVAR_FLAGMUS_BONES_BONUS) == 0) then begin
+   setObjScience(0,228,33556180,MAP_FLAGSTAFF_MUSEUM,12)
+   end
+   else begin
+   setObjScience(0,230,33556180,MAP_FLAGSTAFF_MUSEUM,0)
+   end
 
    //--- ТуСан
    setObjScience(30,250,33555745,MAP_TWO_SUN_WORKSHOP,0)
@@ -113,8 +119,8 @@ procedure id_proc begin
    setObjScience(20,268,33555964,MAP_RANGERS_BASA,0)
    setObjScience(10,274,33555966,MAP_RANGERS_BASA,0)
    setObjScience(50,270,33555515,MAP_RANGERS_QUARTZ,3)
-   setObjScience(20,272,33555962,MAP_RANGERS_QUARTZ,0)
-   //setObjScience(10,276,33555...,MAP_RANGERS_CAVE,0)
+   setObjScience(10,272,33555962,MAP_RANGERS_QUARTZ,0)
+   //setObjScience(10,276,33555...,MAP_RANGERS_CAVE,0) -- дорожный указатель у дороги возле хижины
 
    //--- Феникс
    setObjScience(30,240,-1,MAP_PHOENIX_CHURCH,0)
@@ -129,12 +135,18 @@ procedure id_proc begin
 
    //--- Каса-Гранде
    setObjScience(50,254,33555104,MAP_CASA_GRANDE_CITY,8)
+   if (self_elevation == 0) then begin
+   setObjScience(0,288,33556183,MAP_CASA_GRANDE_CITY,0)
+   end
+   else begin
    setObjScience(55,256,33556183,MAP_CASA_GRANDE_CITY,9)
+   end
 
    //--- Каса-Нуэвa
    setObjScience(0,284,33556396,MAP_CASA_NUEVA_CITY,0)
 
    //--- Пуэрто
+   setObjScience(10,298,-1,MAP_PUERTO_SIGN,0)
    setObjScience(50,296,33556320,MAP_PUERTO_BASA,0)
    if (self_elevation == 1) then begin
    setObjScience(100,290,-1,MAP_PUERTO_DOCS,10)
@@ -232,6 +244,13 @@ procedure science_proc begin
          else begin
          skill_up(SKILL_SCOUT,5);
          end
+      end
+   end
+   else if (scienceIndx == 12) then begin
+      if (map_var(MVAR_FLAGMUS_BONES_BONUS) == 0) then begin
+      //create_object_sid(PID_W_GRENADE_FRAG, dude_tile, self_elevation, -1); -- предмет будет не виден игроку, если ГГ окажется позади монумента
+      item_add(dude_obj,PID_W_GRENADE_FRAG,1)
+      inc_map_var(MVAR_FLAGMUS_BONES_BONUS);
       end
    end
 

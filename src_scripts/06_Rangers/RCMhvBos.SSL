@@ -261,7 +261,7 @@ procedure NodeFstDialog307 begin
 end
 
 procedure NodeFstDialog308 begin
-   bitDialogExp(bit_2,150)
+   bitDialogExp(bit_2,200)
    if (item_amnt(self_obj,PID_Q_RANGER_STAR_QST) > 0) then begin
    item_add(dude_obj,PID_Q_RANGER_STAR_QST,1)
    item_remove(self_obj,PID_Q_RANGER_STAR_QST,1)

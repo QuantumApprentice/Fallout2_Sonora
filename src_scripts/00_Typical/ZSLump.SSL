@@ -4,6 +4,7 @@
 procedure start;
 procedure ID_proc;
 procedure map_enter_p_proc;
+procedure use_p_proc;
 procedure use_obj_on_p_proc;
 procedure damage_p_proc;
 procedure lump_gener;
@@ -38,6 +39,11 @@ procedure map_enter_p_proc begin
        call delete_lump;
        end
    end
+end
+
+procedure use_p_proc begin
+   script_overrides;
+   display_mstr(103);
 end
 
 procedure use_obj_on_p_proc begin
@@ -89,6 +95,10 @@ procedure lump_gener begin
 
    if (cur_map_index == MAP_VILLA_CAVE) then begin
    display_mstr(110);
+   end
+   if ((cur_map_index == MAP_GARAGE_TRILER) and (self_elevation == 0)) then begin
+   display_mstr(114);
+   inc_map_var(MVAR_GARAGE_TRILER_FIRE);
    end
 end
 

@@ -152,6 +152,23 @@ end
 
 procedure use_obj_on_p_proc begin
    stopUseCarGaz
+
+   if ((objUsedPid == PID_W_GRENADE_FRAG) or (objUsedPid == PID_W_GRENADE_PLASMA)) then begin
+      script_overrides;
+
+      if trapObj(TRAP_ACTIV) then begin
+         display_mstr(115);
+      end
+      else if trapObj(TRAP_DSTR) then begin
+         item_remove(dude_obj, objUsedPid, 1)
+         dude_floater_OK;
+         display_mstr(118);
+         call trap_install;
+      end
+      else begin
+         display_mstr(119);
+      end
+   end
 end
 
 procedure damage_p_proc begin
@@ -197,7 +214,7 @@ procedure step_proc begin
    critter_dmg(critter_source, random(40,60), DMG_explosion);
 
    if (random(0,100) <= (40+(combat_difficulty*2))) then begin
-       if (get_critter_stat(critter_source,STAT_current_hp) <=0) then begin
+       if (get_critter_stat(critter_source,STAT_current_hp) <5) then begin
        end
        else if (critter_source == dude_obj) then begin
           dam_to_dude_LEG
@@ -232,7 +249,7 @@ procedure trap_install begin
    if trapObj(TRAP_ACTIV) then begin
    end
    else begin
-   create_object_sid(TRAP_ACTIV,self_tile,self_elevation,SCRIPT_ZTMin);
+   create_object_sid(TRAP_ACTIV,self_tile,self_elevation,TRAP_SCRIPT);
    end
    destroy_object(self_obj);
 end

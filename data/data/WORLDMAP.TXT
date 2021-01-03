@@ -95,19 +95,19 @@ map_04=Road Encounter 5
 ;-------------
 
 [Encounter: TRG_ROCKS]
-type_00=ratio:100%, pid:16777222, Item:(1)46, Script:627     ; обвал камней в горах
+type_00=pid:16777222, Item:(1)46, Script:627     ; обвал камней в горах
 position=surrounding, spacing:5, distance:10
 
 [Encounter: TRG_RADACTIV]
-type_00=ratio:100%, pid:16777222, Item:(2)46, Script:627     ; облучение
+type_00=pid:16777222, Item:(2)46, Script:627     ; облучение
 position=surrounding, spacing:5, distance:10
 
 [Encounter: TRG_DESERT_WIND]
-type_00=ratio:100%, pid:16777222, Item:(3)46, Script:627     ; пылевая буря
+type_00=pid:16777222, Item:(3)46, Script:627     ; пылевая буря
 position=surrounding, spacing:5, distance:10
 
 [Encounter: TRG_NON_WATER]
-type_00=ratio:100%, pid:16777222, Item:(4)46, Script:627     ; обезвоживание
+type_00=pid:16777222, Item:(4)46, Script:627     ; обезвоживание
 position=surrounding, spacing:5, distance:10
 
 [Encounter: Special1]
@@ -301,7 +301,7 @@ type_01=Ratio:40%, pid:16777257, Item:132(wielded)					; зеленый гуль
 position=surrounding, spacing:5, distance:10
 
 [Encounter: INF_USBP]
-type_00=Ratio:100%, pid:16777255, Item:149(wielded), Item:59, Item:(4-6)7, Script:45	; агент пограничной службы США (USBP)
+type_00=pid:16777255, Item:149(wielded), Item:59, Item:(4-6)7, Script:45	; агент пограничной службы США (USBP)
 position=surrounding, spacing:5, distance:10
 
 [Encounter: MEXI_Patrul]
@@ -389,31 +389,31 @@ position=surrounding, spacing:3, distance:10
 ;-------------
 
 [Encounter: BODY_ISLD]
-type_00=Ratio:100%, pid:16777265, Script:625						; спрайт крестьянина в желтой рубахе
+type_00=pid:16777265, Script:625						; спрайт крестьянина в желтой рубахе
 position=surrounding, spacing:3, distance:6
 
 [Encounter: BODY_PHNX]
-type_00=Ratio:100%, pid:16777277, Script:625						; спрайт в кожанке
+type_00=pid:16777277, Script:625						; спрайт в кожанке
 position=surrounding, spacing:5, distance:10
 
 [Encounter: BODY_FLAG]
-type_00=Ratio:100%, pid:16777275, Item:(0-3)62, Script:625				; спрайт купца в кепке
+type_00=pid:16777275, Item:(0-3)62, Script:625				; спрайт купца в кепке
 position=surrounding, spacing:5, distance:7
 
 [Encounter: BODY_ROAD]
-type_00=Ratio:100%, pid:16777279, Script:625						; спрайт в кожанке и синих штанах
+type_00=pid:16777279, Script:625						; спрайт в кожанке и синих штанах
 position=surrounding, spacing:5, distance:10
 
 [Encounter: BODY_TUSN]
-type_00=Ratio:100%, pid:16777267, Script:625						; спрайт лошины
+type_00=pid:16777267, Script:625						; спрайт лошины
 position=surrounding, spacing:5, distance:10
 
 [Encounter: BODY_CURIER]
-type_00=Ratio:100%, pid:16777275, Item:46, Script:625					; спрайт купца в кепке
+type_00=pid:16777275, Item:46, Script:625					; спрайт купца в кепке
 position=surrounding, spacing:5, distance:10
 
 [Encounter: BODY_MEXI]
-type_00=Ratio:100%, pid:16777271, Item:(2)46, Script:625				; спрайт крестьянина в зеленой рубахе
+type_00=pid:16777271, Item:(2)46, Script:625				; спрайт крестьянина в зеленой рубахе
 position=surrounding, spacing:5, distance:10
 
 
@@ -463,11 +463,11 @@ enc_21=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_22=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_23=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_24=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_25=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_25=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_26=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
 enc_27=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
-enc_28=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
-enc_29=Chance:1%,Counter:1,Special,Map:Special Rail Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(612) == 0)
+enc_28=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 10) And If(Global(611) == 0)
+enc_29=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 1]
 lookup_name=VILL_D
@@ -475,7 +475,7 @@ maps=Desert Encounter 1, Desert Encounter 3
 enc_00=Chance:20%,Enc:(1-3) ENC_Ants AMBUSH Player
 enc_01=Chance:25%,Enc:(1-3) ENC_Coyote AMBUSH Player
 enc_02=Chance:20%,Enc:(1-2) ENC_RatPig AMBUSH Player
-enc_03=Chance:17%,Enc:(1-3) ENC_SmallScorpions AMBUSH Player
+enc_03=Chance:16%,Enc:(1-3) ENC_SmallScorpions AMBUSH Player
 enc_04=Chance:8%,Enc:(1-2) VILLA_Jackals AMBUSH Player)
 enc_05=Chance:1%,Counter:1,Enc: VILLA_Banda_Nevada AMBUSH Player,If(Player(Level) > 4
 enc_06=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
@@ -484,10 +484,11 @@ enc_08=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_09=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_10=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_11=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_13=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
 enc_14=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
-enc_15=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
+enc_15=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 10) And If(Global(611) == 0)
+enc_16=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 2]
 lookup_name=FLAG_D
@@ -495,7 +496,7 @@ maps=Mountain Encounter 7, Mountain Encounter 8, Mountain Encounter 2
 enc_00=Chance:3%,Enc: ENC_RedRyder,If(Global(3) > 2) And If(Global(353) == 0)
 enc_01=Chance:25%,Enc:(1-3) ENC_RatPig AMBUSH Player
 enc_02=Chance:25%,Enc:(1-3) ENC_Wolf AMBUSH Player
-enc_03=Chance:17%,Enc:(1-2) ENC_BraminWild AMBUSH Player
+enc_03=Chance:16%,Enc:(1-2) ENC_BraminWild AMBUSH Player
 enc_04=Chance:15%,Enc:(1-2) FLAG_Savage AMBUSH Player
 enc_05=Chance:4%,Enc: FLAG_Traper
 enc_06=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
@@ -504,11 +505,12 @@ enc_08=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_09=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_10=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_11=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_13=Chance:1%,Counter:1,Special,Map:Special Padre Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(607) == 0)
 enc_14=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
 enc_15=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
-enc_16=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
+enc_16=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 10) And If(Global(611) == 0)
+enc_17=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 3]
 lookup_name=FLAG_M
@@ -517,7 +519,7 @@ enc_00=Chance:3%,Enc: ENC_RedRyder,If(Global(3) > 2) And If(Global(353) == 0)
 enc_01=Chance:10%,Enc: TRG_ROCKS
 enc_02=Chance:30%,Enc:(1-3) ENC_RatMole AMBUSH Player
 enc_03=Chance:30%,Enc:(1-3) ENC_Wolf AMBUSH Player
-enc_04=Chance:8%,Enc: BODY_FLAG
+enc_04=Chance:7%,Enc: BODY_FLAG
 enc_05=Chance:10%,Enc: FLAG_Traper
 enc_06=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
 enc_07=Chance:1%,Counter:1,Special,Map:Special Bibl Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(601) == 0)
@@ -525,8 +527,9 @@ enc_08=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_09=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_10=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_11=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_13=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
+enc_14=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 4]
 lookup_name=FLAG_R
@@ -549,7 +552,7 @@ enc_02=Chance:25%,Enc:(1-4) ENC_Coyote AMBUSH Player
 enc_03=Chance:25%,Enc:(1-3) ENC_Scorpions AMBUSH Player
 enc_04=Chance:10%,Enc: ENC_RaiderA AMBUSH Player
 enc_05=Chance:5%,Enc: RNGR_Farmer
-enc_06=Chance:7%,Enc:(1-2) RNGR_Rangers, If(Global(130) == 0)
+enc_06=Chance:6%,Enc:(1-2) RNGR_Rangers, If(Global(130) == 0)
 enc_07=Chance:5%,Enc:(1-2) RNGR_Rangers FIGHTING ENC_RaiderA
 enc_08=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
 enc_09=Chance:1%,Counter:1,Special,Map:Special Bibl Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(601) == 0)
@@ -557,17 +560,18 @@ enc_10=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_11=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_12=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_13=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_14=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_14=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_15=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
 enc_16=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
-enc_17=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
+enc_17=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 10) And If(Global(611) == 0)
+enc_18=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 6]
 lookup_name=DSRT_A
 maps=Desert Encounter 1
 enc_00=Chance:10%,Enc: TRG_DESERT_WIND
 enc_01=Chance:10%,Enc: TRG_NON_WATER
-enc_02=Chance:67%,Enc:(1-4) ENC_Scorpions AMBUSH Player
+enc_02=Chance:66%,Enc:(1-4) ENC_Scorpions AMBUSH Player
 enc_03=Chance:3%,Enc: ENC_ScorpLegend,If(Global(229) == 0)
 enc_04=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
 enc_05=Chance:1%,Counter:1,Special,Map:Special Bibl Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(601) == 0)
@@ -575,15 +579,16 @@ enc_06=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_07=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_08=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_09=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_10=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_10=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_11=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
 enc_12=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
-enc_13=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
+enc_13=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 10) And If(Global(611) == 0)
+enc_14=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 7]
 lookup_name=DSRT_B
 maps=Desert Encounter 1
-enc_00=Chance:13%,Enc: TRG_DESERT_WIND
+enc_00=Chance:12%,Enc: TRG_DESERT_WIND
 enc_01=Chance:25%,Enc: TRG_NON_WATER
 enc_02=Chance:25%,Enc:(1-4) ENC_Scorpions AMBUSH Player
 enc_03=Chance:25%,Enc:(2-6) ENC_Mantis AMBUSH Player
@@ -593,18 +598,19 @@ enc_06=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_07=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_08=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_09=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_10=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_10=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_11=Chance:2%,Counter:1,Enc:DSRT_Shybot
 enc_12=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
 enc_13=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
-enc_14=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
+enc_14=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 10) And If(Global(611) == 0)
+enc_15=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 8]
 lookup_name=MEXI_D
 maps=Desert Encounter 1, Desert Encounter 3, Desert Encounter 4
 enc_00=Chance:3%,Enc: ENC_RedRyder,If(Global(3) > 2) And If(Global(353) == 0)
 enc_01=Chance:30%,Enc:(1-3) ENC_Scorpions AMBUSH Player
-enc_02=Chance:35%,Enc:(2-6) ENC_Mantis AMBUSH Player
+enc_02=Chance:34%,Enc:(2-6) ENC_Mantis AMBUSH Player
 enc_03=Chance:10%,Enc: MEXI_Patrul
 enc_04=Chance:10%,Enc: ENC_Citizen
 enc_05=Chance:1%,Enc:BODY_MEXI
@@ -615,16 +621,17 @@ enc_09=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_10=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_11=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_12=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_13=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_13=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_14=Chance:1%,Counter:1,Special,Map:Special Padre Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(607) == 0)
 enc_15=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
-enc_16=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
+enc_16=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 10) And If(Global(611) == 0)
+enc_17=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 9]
 lookup_name=MEXI_M
 maps=Mountain Encounter 1, Mountain Encounter 9, Mountain Encounter 2, Mountain Encounter 3
 enc_00=Chance:3%,Enc: ENC_RedRyder,If(Global(3) > 2) And If(Global(353) == 0)
-enc_01=Chance:24%,Enc: TRG_ROCKS
+enc_01=Chance:23%,Enc: TRG_ROCKS
 enc_02=Chance:40%,Enc:(1-3) ENC_RatMole AMBUSH Player
 enc_03=Chance:10%,Enc: MEXI_Patrul
 enc_04=Chance:15%,Enc: ENC_Citizen
@@ -634,8 +641,9 @@ enc_07=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_08=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_09=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_10=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_11=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_11=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_12=Chance:1%,Counter:1,Special,Map:Special Padre Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(607) == 0)
+enc_13=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 10]
 lookup_name=CALF_D
@@ -643,7 +651,7 @@ maps=Desert Encounter 2, Desert Encounter 9
 enc_00=Chance:3%,Enc: ENC_RedRyder,If(Global(3) > 2) And If(Global(353) == 0)
 enc_01=Chance:20%,Enc: TRG_RADACTIV
 enc_02=Chance:25%,Enc:(2-6) ENC_Rats AMBUSH Player
-enc_03=Chance:22%,Enc:(1-3) ENC_Scorpions AMBUSH Player
+enc_03=Chance:20%,Enc:(1-3) ENC_Scorpions AMBUSH Player
 enc_04=Chance:20%,Enc:(1-3) INF_GhoulB AMBUSH Player
 enc_05=Chance:1%,Counter:1,Enc:CALF_Maxx
 enc_06=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
@@ -652,10 +660,11 @@ enc_08=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_09=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_10=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_11=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_13=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
 enc_14=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
-enc_15=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 8) And If(Global(611) == 0)
+enc_15=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 10) And If(Global(611) == 0)
+enc_16=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 11]
 lookup_name=PHNX_D
@@ -667,12 +676,13 @@ enc_03=Chance:5%,Enc: PNX_LosPanchos_A,If(Global(246) == 0)
 enc_04=Chance:5%,Enc: PNX_LosPanchos_B,If(Global(247) == 0)
 enc_05=Chance:5%,Enc: PNX_LosPanchos_C,If(Global(248) == 0)
 enc_06=Chance:13%,Enc: ENC_BanditA AMBUSH Player
-enc_07=Chance:13%,Enc:(2-4) ENC_BanditB AMBUSH Player
+enc_07=Chance:12%,Enc:(2-4) ENC_BanditB AMBUSH Player
 enc_08=Chance:11%,Enc: ENC_Citizen
 enc_09=Chance:1%,Counter:1,Enc:PHNX_Psychoman
 enc_10=Chance:1%,Counter:1,Enc:PNX_GangstersBody
 enc_11=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(609) == 0)
 enc_12=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
+enc_13=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 12]
 lookup_name=PHNX_M
@@ -691,12 +701,13 @@ enc_01=Chance:5%,Enc:BODY_ROAD
 enc_02=Chance:20%,Enc:(1-4) ENC_Rats AMBUSH Player
 enc_03=Chance:20%,Enc:(1-3) ENC_Scorpions AMBUSH Player
 enc_04=Chance:15%,Enc: ENC_RaiderA AMBUSH Player
-enc_05=Chance:14%,Enc: ENC_RaiderB AMBUSH Player
+enc_05=Chance:12%,Enc: ENC_RaiderB AMBUSH Player
 enc_06=Chance:10%,Enc: ROAD_RoadWar AMBUSH Player,If(Global(288) == 0)
 enc_07=Chance:10%,Enc: CRVN_GuardB AND (1-3) CRVN_Brahmin, If(Global(378) < 10)
 enc_08=Chance:1%,Counter:1,Enc:BODY_CURIER,If(Global(381) == 0)
 enc_09=Chance:1%,Enc: ROAD_RaiderHelp FIGHTING ENC_BanditA,If(Global(447) == 0)
 enc_10=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
+enc_11=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 14]
 lookup_name=TUSN_D
@@ -716,7 +727,7 @@ enc_00=Chance:12%,Enc: TRG_ROCKS
 enc_01=Chance:30%,Enc:(1-3) ENC_RatMole AMBUSH Player
 enc_02=Chance:30%,Enc:(1-4) ENC_Wolf AMBUSH Player
 enc_03=Chance:1%,Enc: ENC_Wolf FIGHTING ENC_Wolf
-enc_04=Chance:20%,Enc: TUSN_Hermit
+enc_04=Chance:17%,Enc: TUSN_Hermit
 enc_05=Chance:1%,Counter:1,Enc:TUSN_Cannibal
 enc_06=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
 enc_07=Chance:1%,Counter:1,Special,Map:Special Bibl Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(601) == 0)
@@ -724,8 +735,9 @@ enc_08=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_09=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_10=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_11=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_13=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
+enc_14=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 16]
 lookup_name=INFN_D
@@ -757,7 +769,7 @@ enc_03=Chance:15%,Enc:(1-3) ISLD_Fishers
 [Encounter Table 19]
 lookup_name=ISLD_M
 maps=Mountain Encounter 1
-enc_00=Chance:15%,Enc: TRG_ROCKS
+enc_00=Chance:13%,Enc: TRG_ROCKS
 enc_01=Chance:10%,Enc: TRG_RADACTIV
 enc_02=Chance:25%,Enc:(1-4) ENC_AntRad AMBUSH Player
 enc_03=Chance:20%,Enc:(1-3) ENC_Floater AMBUSH Player
@@ -769,8 +781,9 @@ enc_08=Chance:1%,Counter:1,Special,Map:Special Cafe Encounter,Enc:Special1, If(P
 enc_09=Chance:1%,Counter:1,Special,Map:Special Bomber Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(603) == 0)
 enc_10=Chance:1%,Counter:1,Special,Map:Special Petro Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(604) == 0)
 enc_11=Chance:1%,Counter:1,Special,Map:Special Cry Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(605) == 0)
-enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 5) And If(Global(606) == 0)
+enc_12=Chance:1%,Counter:1,Special,Map:Special DriveIn Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(606) == 0)
 enc_13=Chance:1%,Counter:1,Special,Map:Special Padre Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(607) == 0)
+enc_14=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
 
 [Encounter Table 20]
 lookup_name=OCEAN_O

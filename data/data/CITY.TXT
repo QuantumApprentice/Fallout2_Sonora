@@ -141,7 +141,7 @@ entrance_7=Off,-1,-1,PhoenixDstr,-1,-1,0
 entrance_8=Off,-1,-1,PhoenixAnal,-1,-1,0
 entrance_9=Off,160,90,PhoenixCola,-1,-1,0
 
-[Area 08]                ; ! Свободный слот (Сьерра в F2)
+[Area 08]                ; !!! Свободный слот (Сьерра в F2)
 area_name=City08
 world_pos=100,100
 start_state=Off
@@ -213,7 +213,7 @@ entrance_2=Off,140,280,CNuevaLab,-1,-1,0
 entrance_3=Off,-1,-1,CNuevaGidro,-1,-1,0
 entrance_4=Off,320,280,CNuevaCarier,-1,-1,0
 
-[Area 14]                ; ! Свободный слот (Сан-Франциско в F2)
+[Area 14]                ; !!! Свободный слот (Сан-Франциско в F2)
 area_name=City14
 world_pos=100,100
 start_state=Off
@@ -231,7 +231,7 @@ townmap_art_idx=-1
 townmap_label_art_idx=-1
 entrance_0=On,-1,-1,MotelMap,-1,-1,0
 
-[Area 16]                ; ! Свободный слот (Анклав в F2)
+[Area 16]                ; !!! Свободный слот (Анклав в F2)
 area_name=City16
 world_pos=100,100
 start_state=Off
@@ -240,7 +240,7 @@ townmap_art_idx=-1
 townmap_label_art_idx=-1
 entrance_0=On,50,50,Desert Encounter 999,-1,-1,0
 
-[Area 17]                ; ! Свободный слот (Эббей в F2)
+[Area 17]                ; !!! Свободный слот (Эббей в F2)
 area_name=City17
 world_pos=100,100
 start_state=Off
@@ -249,7 +249,7 @@ townmap_art_idx=-1
 townmap_label_art_idx=-1
 entrance_0=On,50,50,Desert Encounter 999,-1,-1,0
 
-[Area 18]                ; ! Свободный слот (Примитивная деревня в F2)
+[Area 18]                ; !!! Свободный слот (Примитивная деревня в F2)
 area_name=City18
 world_pos=100,100
 start_state=Off
@@ -258,7 +258,7 @@ townmap_art_idx=-1
 townmap_label_art_idx=-1
 entrance_0=On,50,50,Desert Encounter 999,-1,-1,0
 
-[Area 19]                ; ! Свободный слот (EPA в F2)
+[Area 19]                ; !!! Свободный слот (EPA в F2)
 area_name=City19
 world_pos=100,100
 start_state=Off
@@ -279,7 +279,7 @@ entrance_0=On,-1,-1,JackalsMap,-1,-1,5
 ; NOTE: This index # CANNOT CHANGE without a code change in Worldmap.c!
 [Area 21]                ; Машина без энергии
 area_name=Car Outta Gas
-world_pos=100,100
+world_pos=1000,500
 start_state=Off
 lock_state=Off
 size=Small
@@ -524,7 +524,7 @@ townmap_art_idx=-1
 townmap_label_art_idx=-1
 entrance_0=On,-1,-1,Special Army Encounter,-1,-1,0
 
-[Area 43]                ; Специальная встреча - Рельсовые кочевники (в F2 - Бешеный брамин)
+[Area 43]                ; Специальная встреча - Легенд-Сити (в F2 - Бешеный брамин)
 area_name=Special43
 world_pos=100,100
 start_state=Off
@@ -532,9 +532,9 @@ lock_state=On
 size=Small
 townmap_art_idx=-1
 townmap_label_art_idx=-1
-entrance_0=On,-1,-1,Special Rail Encounter,-1,-1,0
+entrance_0=On,-1,-1,Special LegendCity Encounter,-1,-1,0
 
-[Area 44]                ; ! Свободный слот (Caravan Encounters)
+[Area 44]                ; !!! Свободный слот (Caravan Encounters)
 area_name=City44
 world_pos=100,100
 start_state=Off
@@ -544,8 +544,8 @@ townmap_art_idx=-1
 townmap_label_art_idx=-1
 entrance_0=On,-1,-1,Desert Encounter 999,-1,-1,0
 
-[Area 45]                ; ! Свободный слот (Ложное убежище 13 в F2)
-area_name=City46
+[Area 45]                ; !!! Свободный слот (Ложное убежище 13 в F2)
+area_name=City45
 world_pos=100,100
 start_state=Off
 lock_state=On
@@ -563,11 +563,11 @@ townmap_art_idx=-1
 townmap_label_art_idx=-1
 entrance_0=On,-1,-1,RangersQuartz,-1,-1,0
 
-[Area 47]		 ; локации, которые больше некуда приткнуть
+[Area 47]		 ; Локации, которые больше некуда приткнуть
 area_name=Shadow Worlds
 world_pos=100,100
 start_state=Off
-lock_state=on
+lock_state=On
 size=Small
 townmap_art_idx=-1
 townmap_label_art_idx=-1

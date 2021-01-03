@@ -966,7 +966,7 @@ saved=Yes
 dead_bodies_age=No
 
 [Map 108]
-lookup_name=Special Rail Encounter
+lookup_name=Special LegendCity Encounter
 map_name=rndRail
 music=f1_dsrt
 ambient_sfx=blank:100

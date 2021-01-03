@@ -754,3 +754,6 @@ ISEd.int        ; Инферно: кости Эда из убежища 13              # local_vars=0
 EncBarnB.int    ; world: соратники Барона Аризоны               # local_vars=7
 EncBarnC.int    ; world: враги Барона Аризоны                   # local_vars=7
 BCCrvnQt.int    ; СанБрамин: квест-караванщик идущий в Феникс   # local_vars=8
+EncLgndA.int    ; world: встречающий робот в Легенд Сити        # local_vars=7
+EncLgndB.int    ; world: мишень в Легенд Сити                   # local_vars=0
+EncLgndC.int    ; world: муз автомат в Легенд Сити              # local_vars=0

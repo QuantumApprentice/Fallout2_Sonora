@@ -111,7 +111,7 @@ type_00=pid:16777222, Item:(4)46, Script:627     ; обезвоживание
 position=surrounding, spacing:5, distance:10
 
 [Encounter: Special1]
-type_00=ratio:0%, pid:18                                     ; болванка, необходимая для спецвстреч (внимание: используется движком, не удалять)
+type_00=ratio:0%, pid:18                         ; болванка, необходимая для спецвстреч (внимание: используется движком, не удалять)
 
 ;-------------
 
@@ -185,14 +185,14 @@ position=surrounding, spacing:5, distance:8
 [Encounter: ENC_BanditA]
 type_00=pid:16777277, Item:153(wielded), Item:(1-7)41, Script:396			; бандит в кожанке М
 type_01=pid:16777278, Item:137(wielded), Item:(1-7)41, Script:396			; бандит в кожанке Ж
-type_02=pid:16777277, Item:164(wielded), Item:(2-6)11, Item:132, Item:(1-7)41, Script:396, If (Rand(25%))			; бандит в кожанке М
+type_02=pid:16777277, Item:164(wielded), Item:(2-6)11, Item:132, Item:(1-7)41, Script:396, If (Rand(25%))	; бандит в кожанке М
 type_03=pid:16777279, Item:153(wielded), Item:(3-9)41, Script:396, If (Rand(15%))	; бандит в кожанке и синих штанах М
-position=surrounding, spacing:5, distance:10
+position=surrounding, spacing:5, distance:15
 
 [Encounter: ENC_BanditB]
 type_00=ratio:100%, pid:16777279, Item:153(wielded), Item:(3-9)41, Script:396		; бандит в кожанке и синих штанах М
 type_01=pid:16777280, Item:137(wielded), Item:(3-9)41, Script:396, If (Rand(15%))	; бандитка в кожанке с ирокезом Ж
-position=surrounding, spacing:5, distance:10
+position=surrounding, spacing:5, distance:15
 
 [Encounter: ENC_RaiderA]
 type_00=pid:16777281, Item:157(wielded), Item:(3-12)41, Item:(0-1)132, Script:624	; рейдер в кожброне М
@@ -200,7 +200,7 @@ type_01=pid:16777282, Item:137(wielded), Item:(3-10)41, Script:624			; рейдер в 
 type_02=pid:16777281, Item:153(wielded), Item:(3-10)41, Script:624, If (Rand(25%))	; рейдер в кожброне М
 type_03=pid:16777281, Item:153(wielded), Item:(3-10)41, Script:624, If (Rand(25%))	; рейдер в кожброне М
 type_04=pid:16777281, Item:164(wielded), Item:(4-10)11, Item:(0-1)132, Item:(3-10)41, Script:624, If (Rand(25%))	; рейдер в кожброне М
-position=surrounding, spacing:5, distance:10
+position=surrounding, spacing:5, distance:15
 
 [Encounter: ENC_RaiderB]
 type_00=pid:16777283, Item:157(wielded), Item:(3-15)41, Script:624			; рейдер в металброне М
@@ -208,7 +208,7 @@ type_01=pid:16777283, Item:164(wielded), Item:(4-10)11, Item:(0-1)133, Item:(3-1
 type_02=pid:16777284, Item:137(wielded), Item:(3-10)41, Script:624, If (Rand(25%))	; рейдер в металброне Ж
 type_03=pid:16777281, Item:137(wielded), Item:(3-10)41, Script:624, If (Rand(25%))	; рейдер в кожброне М
 type_04=pid:16777281, Item:157(wielded), Item:(3-15)41, Script:624, If (Rand(25%))	; рейдер в кожброне М
-position=surrounding, spacing:5, distance:10
+position=surrounding, spacing:5, distance:15
 
 [Encounter: ENC_Citizen]
 type_00=pid:16777267, Script:635, If (Rand(25%))					; лошина М
@@ -232,7 +232,7 @@ position=surrounding, spacing:5, distance:10
 type_00=pid:16777283, Item:169(wielded), Item:(25-35)41, Item:133, Item:40, Item:52, Script:396	; главарь с лазерным пистолетом
 type_01=pid:16777277, Item:157(wielded), Item:(4-10)41, Item:133, Script:396		; бандит М
 type_02=pid:16777278, Item:157(wielded), Item:(4-10)41, Item:133, Script:396		; бандит Ж
-position=huddle, spacing:3, distance:10
+position=huddle, spacing:3, distance:12
 
 [Encounter: FLAG_Savage]
 type_00=ratio:75%, pid:16777263, Item:137(wielded), Item:(0-1)60, Script:622		; дикарь М
@@ -245,7 +245,7 @@ position=huddle, spacing:3, distance:10
 
 [Encounter: FLAG_RunCriminal]
 type_00=pid:16777281, Item:148(wielded), Item:132, Item:(2-8)7, Item:(4-12)41, Script:396	; бандит в кожанке и синих штанах М
-position=surrounding, spacing:5, distance:10
+position=surrounding, spacing:5, distance:15
 
 [Encounter: CALF_Maxx]
 type_00=pid:16777277, Item:164(wielded), Item:(2-3)108, Item:(6-8)11, Item:(12-16)41, Script:647	; путешественник из Калифорнии с собакой
@@ -263,21 +263,21 @@ type_00=pid:16777283, Item:158(wielded), Item:(12-16)10, Item:40, Script:397, If
 type_01=pid:16777281, Item:138(wielded), Item:40, Script:396                  		; Bandit - Пневмокопье
 type_02=pid:16777281, Item:161(wielded), Item:(30-35)9, Item:133, Script:396  		; Bandit - Штурмовая винтовка и нож
 type_03=pid:16777282, Item:154(wielded), Item:(28-32)5, Item:133, Script:396  		; Bandit Wmn - ПП 10 мм и нож
-position=huddle, spacing:2, distance:10
+position=huddle, spacing:2, distance:12
 
 [Encounter: PNX_LosPanchos_B]
 type_00=pid:16777281, Item:142(wielded), Item:(16-24)2, Item:40, Script:398, If(Global(247) == 0)  ; Ataman (псих) - Погонялка
 type_01=pid:16777277, Item:129(wielded), Item:40, Script:396                  		; Bandit - Пневмокулак
 type_02=pid:16777277, Item:165(wielded), Item:(12-16)11, Item:133, Script:396 		; Bandit - Боевой дробовик и нож
 type_03=pid:16777280, Item:154(wielded), Item:(28-32)5, Item:133, Script:396  		; Bandit Wmn - ПП 10 мм и нож
-position=huddle, spacing:2, distance:10
+position=huddle, spacing:2, distance:12
 
 [Encounter: PNX_LosPanchos_C]
 type_00=pid:16777284, Item:169(wielded), Item:(16-24)2, Item:40, Script:399, If(Global(248) == 0)  ; Ataman (женщина) - Лазерный пистолет
 type_01=pid:16777281, Item:138(wielded), Item:40, Script:396                		; Bandit - Пневмокопье
 type_02=pid:16777281, Item:161(wielded), Item:(30-35)9, Item:133, Script:396  		; Bandit - Штурмовая винтовка и нож
 type_03=pid:16777282, Item:154(wielded), Item:(28-32)5, Item:133, Script:396		; Bandit Wmn - ПП 10 мм и нож
-position=huddle, spacing:2, distance:10
+position=huddle, spacing:2, distance:12
 
 [Encounter: ROAD_RoadWar]
 type_00=pid:16777283, Item:157(wielded), Item:(9-25)41, Item:133, Script:626		; главарь
@@ -285,7 +285,7 @@ type_01=pid:16777278, Item:153(wielded), Item:(4-10)41, Item:132, Script:626		; 
 type_02=pid:16777277, Item:137(wielded), Item:(4-10)41, Item:(2-5)159, Script:626	; бандит М
 type_03=pid:16777277, Item:153(wielded), Item:(4-10)41, Script:626, If (Rand(25%))	; бандит М
 type_04=pid:16777277, Item:164(wielded), Item:(4-10)41, Item:132, Item:(2-5)11, Script:626, If (Rand(25%))	; бандит М
-position=huddle, spacing:3, distance:10
+position=huddle, spacing:3, distance:12
 
 [Encounter: ROAD_RaiderHelp]
 type_00=pid:16777279, Item:153(wielded), Item:(3-9)41, Item:126, Script:716		; магистральщик
@@ -301,7 +301,7 @@ type_01=Ratio:40%, pid:16777257, Item:132(wielded)					; зеленый гуль
 position=surrounding, spacing:5, distance:10
 
 [Encounter: INF_USBP]
-type_00=pid:16777255, Item:149(wielded), Item:59, Item:(4-6)7, Script:45	; агент пограничной службы США (USBP)
+type_00=pid:16777255, Item:149(wielded), Item:59, Item:(4-6)7, Script:45	        ; агент пограничной службы США (USBP)
 position=surrounding, spacing:5, distance:10
 
 [Encounter: MEXI_Patrul]
@@ -322,6 +322,12 @@ type_01=pid:16777294, Item:161(wielded), Item:133, Item:(2-3)9, Script:629		; ря
 type_02=pid:16777294, Item:165(wielded), Item:133, Item:(2-6)11, Script:629		; рядовой в боевой броне
 position=huddle, spacing:3, distance:10
 
+[Encounter: PORT_ScribeHelp]
+type_00=pid:16777291, Script:775							; писарь-заложник
+type_01=pid:16777283, Item:169(wielded), Item:40, Item:75, Script:396			; бандит в металлброне М
+type_02=pid:16777283, Item:169(wielded), Item:40, Script:396				; бандит в металлброне М
+position=huddle, spacing:3, distance:10
+
 [Encounter: RNGR_Rangers]
 type_00=pid:16777287, Item:157(wielded), Item:133, Script:637				; рейнджер М
 type_01=pid:16777288, Item:149(wielded), Item:133, Item:(2-6)7, Script:637		; рейнджер Ж
@@ -340,6 +346,17 @@ type_00=pid:16777267, Item:132(wielded), Item:110, Script:642				; торчок
 type_01=Dead, pid:16777269, Script:635							; негр
 type_02=Dead, pid:16777270, Script:635							; женщина
 type_03=Dead, pid:16777262, Script:635							; ребенок Ж
+position=huddle, spacing:5, Distance:10
+
+[Encounter: RNGR_Bancrot]
+type_00=pid:16777265, Item:164(wielded), Item:(4-6)11, Script:773			; фермер-банкрот с дробовиком
+position=huddle, spacing:5, Distance:12
+
+[Encounter: INFR_Harvey]
+type_00=pid:16777332, Item:162(wielded), Script:771					; супермутант
+type_01=Dead, pid:16777258, Item:107							; гуль-потрошитель светящийся
+type_02=Dead, pid:16777257, Item:(1-4)41						; гуль-потрошитель зеленый
+type_03=Dead, pid:16777257, Item:(1-4)41						; гуль-потрошитель зеленый
 position=huddle, spacing:5, Distance:10
 
 [Encounter: PHNX_CrazyHandy]
@@ -397,7 +414,7 @@ type_00=pid:16777277, Script:625						; спрайт в кожанке
 position=surrounding, spacing:5, distance:10
 
 [Encounter: BODY_FLAG]
-type_00=pid:16777275, Item:(0-3)62, Script:625				; спрайт купца в кепке
+type_00=pid:16777275, Item:(0-3)62, Script:625				        ; спрайт купца в кепке
 position=surrounding, spacing:5, distance:7
 
 [Encounter: BODY_ROAD]
@@ -413,8 +430,12 @@ type_00=pid:16777275, Item:46, Script:625					; спрайт купца в кепке
 position=surrounding, spacing:5, distance:10
 
 [Encounter: BODY_MEXI]
-type_00=pid:16777271, Item:(2)46, Script:625				; спрайт крестьянина в зеленой рубахе
+type_00=pid:16777271, Item:(2)46, Script:625				        ; спрайт крестьянина в зеленой рубахе
 position=surrounding, spacing:5, distance:10
+
+[Encounter: BODY_BOSCAVALER]
+type_00=Dead, pid:16777293, Item:79, Item:44					; тело разведчика БС с жетоном
+position=surrounding, spacing:5, distance:15
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -552,7 +573,7 @@ enc_02=Chance:25%,Enc:(1-4) ENC_Coyote AMBUSH Player
 enc_03=Chance:25%,Enc:(1-3) ENC_Scorpions AMBUSH Player
 enc_04=Chance:10%,Enc: ENC_RaiderA AMBUSH Player
 enc_05=Chance:5%,Enc: RNGR_Farmer
-enc_06=Chance:6%,Enc:(1-2) RNGR_Rangers, If(Global(130) == 0)
+enc_06=Chance:5%,Enc:(1-2) RNGR_Rangers, If(Global(130) == 0)
 enc_07=Chance:5%,Enc:(1-2) RNGR_Rangers FIGHTING ENC_RaiderA
 enc_08=Chance:1%,Counter:1,Special,Map:Special Gold Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(600) == 0)
 enc_09=Chance:1%,Counter:1,Special,Map:Special Bibl Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(601) == 0)
@@ -565,6 +586,7 @@ enc_15=Chance:1%,Counter:1,Special,Map:Special Snow Encounter,Enc:Special1, If(P
 enc_16=Chance:1%,Counter:1,Special,Map:Special Vault Encounter,Enc:Special1, If(Player(Level) > 7) And If(Global(610) == 0)
 enc_17=Chance:1%,Counter:1,Special,Map:Special Army Encounter,Enc:Special1, If(Player(Level) > 10) And If(Global(611) == 0)
 enc_18=Chance:1%,Counter:1,Special,Map:Special LegendCity Encounter,Enc:Special1, If(Player(Level) > 4) And If(Global(612) == 0)
+enc_19=Chance:1%,Counter:1,Enc: RNGR_Bancrot AMBUSH Player
 
 [Encounter Table 6]
 lookup_name=DSRT_A
@@ -744,9 +766,10 @@ lookup_name=INFN_D
 maps=City Encounter 9, Desert Encounter 9
 enc_00=Chance:25%,Enc: TRG_RADACTIV
 enc_01=Chance:25%,Enc:(1-6) ENC_AntRad AMBUSH Player
-enc_02=Chance:25%,Enc:(2-3) INF_GhoulB AMBUSH Player
-enc_03=Chance:24%,Enc:(1-3) INF_GhoulB AND INF_GhoulA AMBUSH Player
+enc_02=Chance:24%,Enc:(2-3) INF_GhoulB AMBUSH Player
+enc_03=Chance:23%,Enc:(1-3) INF_GhoulB AND INF_GhoulA AMBUSH Player
 enc_04=Chance:1%,Counter:1,Enc: INF_USBP
+enc_05=Chance:2%,Counter:1,Enc:INFR_Harvey
 
 [Encounter Table 17]
 lookup_name=PORT_D
@@ -761,10 +784,12 @@ enc_05=Chance:10%,Enc: PORT_Patrul,If(Global(129) == 0)
 [Encounter Table 18]
 lookup_name=ISLD_D
 maps=Coast Encounter 1, Coast Encounter 2, Coast Encounter 3, Coast Encounter 4
-enc_00=Chance:65%,Enc:(1-3) ENC_AntRad AMBUSH Player
+enc_00=Chance:63%,Enc:(1-3) ENC_AntRad AMBUSH Player
 enc_01=Chance:15%,Enc: ENC_Floater AMBUSH Player
-enc_02=Chance:5%,Enc:BODY_ISLD
-enc_03=Chance:15%,Enc:(1-3) ISLD_Fishers
+enc_02=Chance:4%,Enc:BODY_ISLD
+enc_03=Chance:14%,Enc:(1-3) ISLD_Fishers
+enc_04=Chance:2%,Counter:1,Enc:BODY_BOSCAVALER
+enc_05=Chance:2%,Enc: PORT_ScribeHelp,If(Global(495) == 0)
 
 [Encounter Table 19]
 lookup_name=ISLD_M

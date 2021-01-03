@@ -18,10 +18,10 @@
 #----------------------- Кармические титулы
 #----------------------------------------------
 
-# GVAR_REPUTATION_CHILDKILLER -- Дурная слава
+# GVAR_REPUTATION_BAD -- Дурная слава
 #1, 8, 1001, 1101
 
-# GVAR_REPUTATION_CHILDKILLER -- Добрая слава
+# GVAR_REPUTATION_GOOD -- Добрая слава
 #2, 8, 1002, 1102
 
 # GVAR_REPUTATION_CHILDKILLER -- Детоубийца

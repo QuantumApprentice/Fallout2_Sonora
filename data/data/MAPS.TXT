@@ -1009,7 +1009,7 @@ can_rest_here=No,No,No
 [Map 112]
 lookup_name=CNuevaCarier
 map_name=CNCarier
-music=f1_dsrt
+music=f1_nueva
 ambient_sfx=blank:100
 saved=Yes
 can_rest_here=No,No,No
@@ -1082,49 +1082,57 @@ ambient_sfx=blank:100
 saved=Yes
 can_rest_here=No,No,No
 
-;---------------- !!!
+;---------------- Санта Ана
 
 [Map 120]
-lookup_name=mapreserv120
-map_name=desert1
-music=f1_dsrt
+lookup_name=SantaAnaPlaza
+map_name=SAPlaza
+music=fs_flag
 ambient_sfx=blank:100
 saved=Yes
 
 [Map 121]
-lookup_name=mapreserv121
-map_name=desert1
-music=f1_dsrt
+lookup_name=SantaAnaMonument
+map_name=SAMnmnt
+music=fs_flag
 ambient_sfx=blank:100
 saved=Yes
 
 [Map 122]
-lookup_name=mapreserv122
-map_name=desert1
-music=f1_dsrt
+lookup_name=SantaAnaGrave
+map_name=SAGrave
+music=fs_flag
 ambient_sfx=blank:100
 saved=Yes
+can_rest_here=No,No,No
+
+;---------------- Сопровождение каравана СБ-Феникс
 
 [Map 123]
-lookup_name=mapreserv123
-map_name=desert1
+lookup_name=SanBrahminCaravanA
+map_name=SBCrvnA
 music=f1_dsrt
 ambient_sfx=blank:100
 saved=Yes
+can_rest_here=No,No,No
 
 [Map 124]
-lookup_name=mapreserv124
-map_name=desert1
+lookup_name=SanBrahminCaravanB
+map_name=SBCrvnB
 music=f1_dsrt
 ambient_sfx=blank:100
 saved=Yes
+can_rest_here=No,No,No
 
 [Map 125]
-lookup_name=mapreserv125
-map_name=desert1
+lookup_name=SanBrahminCaravanC
+map_name=SBCrvnC
 music=f1_dsrt
 ambient_sfx=blank:100
 saved=Yes
+can_rest_here=No,No,No
+
+;---------------- !!!
 
 [Map 126]
 lookup_name=mapreserv126

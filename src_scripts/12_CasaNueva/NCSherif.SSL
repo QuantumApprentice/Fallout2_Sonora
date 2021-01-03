@@ -299,7 +299,7 @@ end
 procedure NodeFstDialog3 begin
    bitDialogExp(bit_1,0)
    bitDialogExp(bit_2,0)
-   Reply(204)
+   zReply(204)
    NAnswer(205,1,NodeFstDialog4)
 end
 
@@ -340,7 +340,7 @@ procedure NodeSndDialog begin
    //--- Эль Гиганто
    if (getQuest(GVAR_NUEVA_QST_EL_GIGANTO) < qEnd) then begin
       if ((bitDialog(bit_6) != 0) or (getQuest(GVAR_NUEVA_QST_EL_GIGANTO) != qZero)) then begin
-      NAnswer(300,3,NodeAnswer306)
+      NAnswer(300,1,NodeAnswer306)
       end
    end
 
@@ -452,7 +452,7 @@ procedure NodeAnswer203 begin
 end
 
 procedure NodeAnswer300 begin
-   Reply(281)
+   zReply(281)
    NAnswer(282,1,NodeSndDialog)
 end
 
@@ -493,11 +493,11 @@ end
 procedure NodeAnswer306 begin
    Reply(301)
    if (getQuest(GVAR_NUEVA_QST_EL_GIGANTO) == qZero) then begin
-   NAnswer(303,3,NodeAnswer307)
-   GAnswer(322,3,NodeAnswer307)
+   NAnswer(303,1,NodeAnswer307)
+   GAnswer(322,1,NodeAnswer307)
    end
    else if (global_var(GVAR_NUEVA_STATUS_EL_GIGANTO) <0) then begin
-   GAnswer(307,3,NodeAnswer309)
+   GAnswer(307,1,NodeAnswer309)
    end
    NAnswer(302,1,NodeSndDialog)
 end

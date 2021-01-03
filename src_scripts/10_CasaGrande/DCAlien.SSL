@@ -256,7 +256,7 @@ procedure NodeAnswer102 begin
 end
 
 procedure NodeAnswer102b begin
-   Reply(226)
+   zReply(226)
    if (getQuest(GVAR_PHENIX_CULT_DESTROY) >= qEnd) then begin
    NAnswer(211,1,NodeAnswer103)
    end
@@ -524,7 +524,7 @@ procedure NodeQst203 begin
 end
 
 procedure NodeQst204 begin
-   Reply(312)
+   zReply(312)
    BAnswerSkill(318,3,NodeQst206,SKILL_CONVERSANT,40,314,NodeQst205)
    NAnswer(313,1,Node999)
 end
@@ -569,6 +569,6 @@ procedure NodeQst302 begin
    set_REP(5)
    set_SLAVA(25)
    setBonusReaction(100)
-   Reply(339)
+   zReply(339)
    NAnswer(340,1,Node999)
 end

@@ -339,7 +339,7 @@ end
 
 procedure NodeFstDialog13 begin
    setBonusReaction(10)
-   Reply(208)
+   zReply(208)
    NAnswer(211,1,NodeFstDialog20)
 end
 
@@ -687,7 +687,7 @@ end
 procedure NodeQstB203 begin
    Reply(337)
    NAnswer(341,1,NodeQstB205)
-   BAnswer(338,1,NodeQstB204)
+   zBAnswer(338,1,NodeQstB204)
 end
 
 procedure NodeQstB204 begin

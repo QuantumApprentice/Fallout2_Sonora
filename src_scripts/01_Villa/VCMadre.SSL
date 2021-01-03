@@ -149,7 +149,7 @@ end
 procedure talk_p_proc begin
    if (global_var(GVAR_GAME_END) != 0) then begin
       if (global_var(GVAR_TITUL_VILLA_TRADITION)>0) then begin
-      floater(self_obj,106,COLOR_MSG_GREEN);
+      z_floater(self_obj,106,COLOR_MSG_GREEN);
       end
       else if (global_var(GVAR_TITUL_VILLA_DISTROY)>0) then begin
       floater(self_obj,107,COLOR_MSG_RED);
@@ -190,7 +190,7 @@ end
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
    setQuest(GVAR_MAIN_QUEST_FLAGSTAFF,qEnd); // для контроля на всякий случай
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog2)
 end
 

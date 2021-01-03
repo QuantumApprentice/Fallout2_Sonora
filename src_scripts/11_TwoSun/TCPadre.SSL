@@ -257,7 +257,7 @@ procedure NodeSndDialog begin
    NAnswer(260,1,NodeParty)
    end
    else begin
-   NAnswer(266,1,NodeParty1)
+   zNAnswer(266,1,NodeParty1)
    end
 
    NAnswer(222,1,Node999)
@@ -352,7 +352,7 @@ procedure NodeParty1 begin
 end
 
 procedure NodeParty2 begin
-   Reply(264)
+   zReply(264)
    NAnswer(265,1,Node999)
 end
 

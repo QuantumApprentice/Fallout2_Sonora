@@ -392,7 +392,7 @@ procedure NodeSndDialog2 begin
    Reply(300)
 
    if (gvar_bit(GVAR_TWOSUN_QST_FAMILY_STATUS, bit_6) == 0) then begin
-   NAnswer(326,1,NodeQuest208)
+   zNAnswer(326,1,NodeQuest208)
    end
    else begin
    NAnswer(335,1,NodeQuest301)

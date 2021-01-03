@@ -173,10 +173,28 @@ procedure critter_p_proc begin
        if (global_var(GVAR_RADIOACTIV_GLOBAL) != 0) then begin
        radiation_inc(dude_obj, global_var(GVAR_RADIOACTIV_GLOBAL));
        end
+
        if DudePerkHas(PERK_ranger) then begin
-       set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*120) + game_time);
-       end else begin
-       set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*60) + game_time);
+          if (difficulty_level > 1) then begin
+          set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*60) + game_time);
+          end
+          else if (difficulty_level == 1) then begin
+          set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*70) + game_time);
+          end
+          else begin
+          set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*120) + game_time);
+          end
+       end
+       else begin
+          if (difficulty_level > 1) then begin
+          set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*30) + game_time);
+          end
+          else if (difficulty_level == 1) then begin
+          set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*45) + game_time);
+          end
+          else begin
+          set_global_var(GVAR_RADIOACTIV_GLBLTIMER, (ONE_GAME_SECOND*60) + game_time);
+          end
        end
    end
 
@@ -678,11 +696,21 @@ procedure use_obj_on_p_proc begin
    end
    else if (objUsedPid == PID_TOOL_SHOVEL) then begin
        script_overrides;
+       if dude_is_female then begin
+       display_mstr(1129);
+       end
+       else begin
        display_mstr(129);
+       end
    end
    else if (objUsedPid == PID_GLASSES) then begin
        script_overrides;
+       if dude_is_female then begin
+       display_mstr(1136);
+       end
+       else begin
        display_mstr(136);
+       end
    end
    else if (objUsedPid == PID_TOOL_STEALTH_BOY) then begin
        script_overrides;

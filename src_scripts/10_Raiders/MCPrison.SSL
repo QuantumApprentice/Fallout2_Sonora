@@ -290,7 +290,7 @@ procedure NodeAnswer104 begin
 end
 
 procedure NodeAnswer105 begin
-   Reply(229)
+   zReply(229)
    BAnswer(230,1,Node999)
    NAnswer(231,1,Node999)
 end

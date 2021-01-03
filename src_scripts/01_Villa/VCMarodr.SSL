@@ -160,7 +160,7 @@ end
 
 procedure NodeDialog000 begin
    inc_map_var(MVAR_VILLA_MaraudersKnow);
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeDialog001)
 end
 

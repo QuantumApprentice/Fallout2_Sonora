@@ -464,7 +464,7 @@ procedure NodeAnswer408 begin
    NAnswerSkill(357,1,NodeAnswer409,SKILL_CONVERSANT,50,357,NodeAnswer410)
    BAnswer(360,1,NodeAnswer411)
    if (global_var(GVAR_TITUL_PHENIX_CULT) != 0) then begin
-   NAnswer(368,1,NodeAnswer412)
+   zNAnswer(368,1,NodeAnswer412)
    NAnswer(366,1,Node998)
    end
    else begin

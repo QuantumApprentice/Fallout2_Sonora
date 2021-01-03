@@ -299,7 +299,7 @@ procedure NodeAnswer130 begin
    if (getQuest(GVAR_TWOSUN_QST_POMPA) < qStart) then begin
    setQuest(GVAR_TWOSUN_QST_POMPA,qStart);
    end
-   Reply(251)
+   zReply(251)
    NAnswer(252,1,NodeAnswer131)
    NAnswer(255,1,NodeAnswer132)
    NAnswer(258,1,NodeAnswer133)

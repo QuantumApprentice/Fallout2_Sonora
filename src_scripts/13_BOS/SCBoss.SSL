@@ -440,7 +440,7 @@ procedure NodeFstDialog300 begin
 end
 
 procedure NodeFstDialog301 begin
-   Reply(263)
+   zReply(263)
    NAnswer(264,1,NodeFstDialog302)
    BAnswer(265,1,NodeStopDialog2)
 end
@@ -536,7 +536,7 @@ end
 procedure NodeFstDialog311 begin
    Reply(287)
    BAnswer(288,1,Node998)
-   BAnswer(289,1,Node998)
+   zNAnswer(289,1,Node998)
 end
 
 procedure NodeFstDialog312 begin
@@ -593,7 +593,7 @@ procedure NodeRangers begin
 end
 
 procedure NodeRangers2 begin
-   Reply(403)
+   zReply(403)
    NAnswer(404,1,Node999)
 end
 
@@ -841,7 +841,7 @@ procedure NodeHolo2 begin
 end
 
 procedure NodeHolo3 begin
-   Reply(315)
+   zReply(315)
    NAnswer(317,1,NodeHolo4)
    NAnswer(316,1,Node999)
 end

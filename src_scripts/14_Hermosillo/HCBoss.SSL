@@ -145,7 +145,7 @@ procedure NodeFstDialog2 begin
 end
 
 procedure NodeFstDialog3 begin
-   Reply(207)
+   zReply(207)
    NAnswer(208,1,NodeFstDialog4)
    BAnswer(209,1,Node998)
 end
@@ -160,7 +160,7 @@ end
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   Reply(210)
+   zReply(210)
    BAnswer(212,1,Node998)
    BAnswer(211,1,Node998)
 end

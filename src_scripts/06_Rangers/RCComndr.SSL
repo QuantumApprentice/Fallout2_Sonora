@@ -278,7 +278,7 @@ procedure NodeStopDialog210 begin
 end
 
 procedure NodeStopDialog211 begin
-   Reply(284)
+   zReply(284)
    NAnswer(285,1,NodeStopDialog220)
    NAnswer(286,1,NodeStopDialog221)
 end
@@ -290,7 +290,7 @@ procedure NodeStopDialog212 begin
 end
 
 procedure NodeStopDialog213 begin
-   Reply(290)
+   zReply(290)
    NAnswer(291,1,NodeStopDialog221)
 end
 
@@ -390,6 +390,7 @@ end
 procedure NodeSndDialog2 begin
    set_global_var(GVAR_RANGERS_STATUS_SPY,-2);
    set_REP(5)
+   exp_add(350);
    Reply(271)
    NAnswer(272,1,Node999)
 end
@@ -578,7 +579,7 @@ procedure NodeVilla104 begin
 end
 
 procedure NodeVilla200 begin
-   Reply(331)
+   zReply(331)
    NAnswer(332,1,NodeVilla201)
 end
 
@@ -683,7 +684,7 @@ procedure NodeQuartz3 begin
    set_REP(3)
    exp_add(500);
    setBonusReaction(10)
-   Reply(378)
+   zReply(378)
    NAnswer(379,1,Node999)
    NAnswer(380,1,Node999)
 end
@@ -754,7 +755,7 @@ procedure NodeJackals2 begin
    Reply(245)
    end
    else begin
-   Reply(246)
+   zReply(246)
    end
    NAnswer(248,1,NodeJackals3)
    if (getQuest(GVAR_JACKALS_UNION_CITY) == qStart) then begin
@@ -868,7 +869,7 @@ procedure NodeMor30 begin
    item_add(dude_obj,PID_M_STIMPAK,2)
    item_add(dude_obj,PID_M_ANTIDOTE,1)
    Reply(467)
-   NAnswer(468,1,Node999)
+   zNAnswer(468,1,Node999)
    NAnswer(469,1,Node999)
 end
 

@@ -251,7 +251,7 @@ procedure NodeFstDialog3 begin
 end
 
 procedure NodeFstDialog4 begin
-   Reply(206)
+   zReply(206)
    NAnswer(207,1,NodeFstDialog5)
 end
 
@@ -272,10 +272,10 @@ procedure NodeSndDialog begin
    Reply(102)
    end
    else if (getReaction<0) then begin
-   Reply(221)
+   zReply(221)
    end
    else begin
-   Reply(220)
+   zReply(220)
    end
 
    if (global_var(GVAR_BRAHMIN_STATUS_CHATTO) == 0) then begin
@@ -420,7 +420,7 @@ procedure NodeQst203 begin
 end
 
 procedure NodeQst204 begin
-   Reply(291)
+   zReply(291)
    NAnswer(293,1,NodeQst205)
    NAnswer(292,1,Node999)
 end

@@ -230,7 +230,7 @@ procedure NodeStopDialog100 begin
    set_REP(5)
    if (global_var(GVAR_CGRANDE_STATUS_MER) < 0) then begin
    Reply(330)
-   NAnswer(331,1,NodeStopDialog101)
+   zNAnswer(331,1,NodeStopDialog101)
    end
    else begin
    Reply(346)
@@ -301,7 +301,7 @@ procedure NodeStopDialog106 begin
    end
 
    if (local_var(LVAR_Game_Stop) > 100) then begin
-   Reply(342)
+   zReply(342)
    end
    else begin
    Reply(340)

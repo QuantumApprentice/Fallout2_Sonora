@@ -211,7 +211,7 @@ procedure NodeAnswer203 begin
 end
 
 procedure NodeAnswer300 begin
-   Reply(252)
+   zReply(252)
    NAnswer(253,1,NodeAnswer301)
    NAnswer(254,1,NodeAnswer301)
 end

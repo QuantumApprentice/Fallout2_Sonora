@@ -170,20 +170,20 @@ procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
    Reply(200)
    NAnswer(201,1,NodeFstDialog100)
-   NAnswer(210,1,NodeFstDialog200)
+   zNAnswer(210,1,NodeFstDialog200)
    BAnswer(220,1,NodeFstDialog300)
 end
 
 procedure NodeFstDialog100 begin
    Reply(202)
    NAnswerSkill(203,1,NodeFstDialog101,SKILL_CONVERSANT,50,203,NodeFstDialog102)
-   NAnswer(210,1,NodeFstDialog200)
+   zNAnswer(210,1,NodeFstDialog200)
    BAnswer(220,1,NodeFstDialog300)
 end
 
 procedure NodeFstDialog101 begin
    bitDialogExp(bit_2,100)
-   Reply(204)
+   zReply(204)
    NAnswer(205,1,NodeFstDialog2)
 end
 
@@ -219,12 +219,12 @@ procedure NodeFstDialog302 begin
 end
 
 procedure NodeFstDialog303 begin
-   Reply(228)
+   zReply(228)
    NAnswer(229,1,Node998)
 end
 
 procedure NodeFstDialog304 begin
-   Reply(230)
+   zReply(230)
    NAnswer(231,1,NodeFstDialog2)
 end
 
@@ -238,7 +238,7 @@ end
 procedure NodeSndDialog begin
    Reply(250)
    NAnswer(260,1,NodeAnswer100)
-   //NAnswer(270,1,NodeAnswer200)
+   //zNAnswer(270,1,NodeAnswer200)
 
    if (gvar_bit(GVAR_TWOSUN_QST_BAND_STATUS, bit_4) == 0) then begin
       if (global_var(GVAR_TWOSUN_STATUS_ZAX) == 1) then begin

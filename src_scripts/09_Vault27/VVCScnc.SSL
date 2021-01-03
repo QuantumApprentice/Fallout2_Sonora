@@ -298,7 +298,7 @@ end
 procedure NodeStopDialog4 begin
    set_local_var(LVAR_Timer_Invis, 0);
    setQuest(GVAR_VAULT27_GO_MERC, qEnd);
-   Reply(470)
+   zReply(470)
    NAnswer(471,1,NodeStopDialog5)
 end
 
@@ -344,7 +344,7 @@ procedure NodeStopDialog10 begin
 end
 
 procedure NodeStopDialog11 begin
-   Reply(470)
+   zReply(470)
    NAnswer(486,1,Node999)
 end
 
@@ -353,7 +353,7 @@ end
 procedure NodeFstDialog100 begin
    if (getQuest(GVAR_VAULT27_QST_MERC) == qZero) then begin
    Reply(200)
-   NAnswer(201,1,NodeFstDialog101)
+   zNAnswer(201,1,NodeFstDialog101)
    end
    else begin
    Reply(204)
@@ -683,7 +683,7 @@ end
 procedure NodeAnswer201 begin
    Reply(363)
    if (global_var(GVAR_VAULT27_KILL_KNOW) > 0) then begin
-   NAnswer(366,3,NodeAnswer203)
+   zNAnswer(366,3,NodeAnswer203)
    end
    NAnswer(368,7,NodeAnswer204)
    NAnswer(364,1,NodeAnswer202)
@@ -707,7 +707,7 @@ procedure NodeAnswer204 begin
    bitDialogExp(bit_11,50)
    Reply(369)
    if (global_var(GVAR_VAULT27_KILL_KNOW) > 0) then begin
-   NAnswer(366,3,NodeAnswer203)
+   zNAnswer(366,3,NodeAnswer203)
    end
    NAnswer(362,1,NodeAnswer201)
    NAnswer(333,1,NodeAnswer)
@@ -716,7 +716,7 @@ end
 procedure NodeAnswer300 begin
    Reply(371)
    if DudePerkHas(PERK_ghouling_charisma) then begin
-   NAnswer(372,3,NodeAnswer301)
+   zNAnswer(372,3,NodeAnswer301)
    end
    NAnswer(333,1,NodeAnswer)
 end

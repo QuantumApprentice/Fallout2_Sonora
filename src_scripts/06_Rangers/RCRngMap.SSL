@@ -249,7 +249,7 @@ procedure NodeQuartz107 begin
    exp_add(500);
 
    Reply(271)
-   NAnswer(272,1,Node999)
+   zNAnswer(272,1,Node999)
    NAnswer(273,1,Node999)
 end
 

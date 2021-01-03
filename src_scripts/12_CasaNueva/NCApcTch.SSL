@@ -204,7 +204,7 @@ end
 procedure NodeFstDialog4 begin
    set_REP(-1)
    setBonusReaction(-20)
-   Reply(206)
+   zReply(206)
    NAnswer(210,1,NodeFstDialog6)
 end
 

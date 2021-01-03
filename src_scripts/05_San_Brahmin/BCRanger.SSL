@@ -362,7 +362,12 @@ procedure NodeSndDialog begin
 
    //--- Сюжетная линия
    if (getQuest(GVAR_BRAHMIN_QST_COMMANDER) <= qStop) then begin
+      if (global_var(GVAR_BRAHMIN_STATUS_COMMANDER) < 0) then begin
+      NAnswer(330,1,NodeQst101)
+      end
+      else begin
       NAnswer(330,1,NodeQst100)
+      end
    end
 
    if (getQuest(GVAR_BRAHMIN_QST_RNGRGOHOME) == qStart) then begin

@@ -294,7 +294,7 @@ end
 
 procedure NodeAnswer103 begin
    mark_on_map(AREA_PHOENIX)
-   Reply(227)
+   zReply(227)
    NAnswer(228,1,NodeSndDialog)
 end
 

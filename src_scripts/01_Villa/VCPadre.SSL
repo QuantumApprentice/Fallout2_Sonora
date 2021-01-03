@@ -299,7 +299,7 @@ procedure NodeQuest1 begin
 end
 
 procedure NodeQuest2 begin
-   Reply(254)
+   zReply(254)
    NAnswer(252,1,Node999)
 end
 
@@ -369,7 +369,7 @@ procedure NodeAnswer202 begin
 end
 
 procedure NodeAnswer203 begin
-   Reply(308)
+   zReply(308)
    NAnswer(309,1,NodeAnswer204)
 end
 

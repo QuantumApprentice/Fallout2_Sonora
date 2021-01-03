@@ -388,7 +388,7 @@ procedure NodeFstDialog100 begin
    NAnswer(203,1,NodeFstDialog101)
    NAnswer(206,1,NodeFstDialog102)
    if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_30) != 0) then begin
-   NAnswer(209,1,NodeFstDialog103)
+   zNAnswer(209,1,NodeFstDialog103)
    end
    if town_rep_is_hated then begin
    BAnswer(213,1,Node998)
@@ -420,7 +420,7 @@ end
 
 procedure NodeFstDialog105 begin
    Reply(223)
-   NAnswer(224,1,NodeFstDialog106)
+   zNAnswer(224,1,NodeFstDialog106)
 end
 
 procedure NodeFstDialog106 begin

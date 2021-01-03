@@ -187,7 +187,7 @@ procedure NodeStopDialog begin
    NAnswer(241,1,NodeStopDialog13)
    end
    else if DudePerkHas(PERK_ghouling_charisma) then begin
-   Reply(260)
+   zReply(260)
    NAnswer(205,1,NodeStopDialog3)
    NAnswer(201,1,NodeStopDialog2)
    end
@@ -217,7 +217,7 @@ procedure NodeStopDialog4 begin
 end
 
 procedure NodeStopDialog5 begin
-   Reply(210)
+   zReply(210)
    BAnswer(211,1,Node998)
 end
 

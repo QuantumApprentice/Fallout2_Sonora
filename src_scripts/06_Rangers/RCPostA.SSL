@@ -219,7 +219,7 @@ procedure NodeFstDialog5 begin
    end
    //if (gvar_bit(GVAR_RANGERS_RECOMMENDATION, bit_3) != 0) then begin
    if (getQuest(GVAR_BRAHMIN_QST_RANGER) >= qEnd) then begin
-   NAnswer(232,1,NodeFstDialogOk)
+   zNAnswer(232,1,NodeFstDialogOk)
    end
    if (gvar_bit(GVAR_RANGERS_RECOMMENDATION, bit_4) != 0) then begin
    NAnswer(233,1,NodeFstDialogOk)
@@ -282,7 +282,7 @@ end
 
 procedure NodeStopDialog14 begin
    bitDialogExp(bit_5,0)
-   Reply(229)
+   zReply(229)
    NAnswer(236,1,Node999)
 end
 

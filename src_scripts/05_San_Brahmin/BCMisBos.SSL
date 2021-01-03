@@ -243,17 +243,17 @@ procedure NodeFstDialog100 begin
    setBonusReaction(-10)
    Reply(202)
    NAnswer(210,1,NodeFstDialog103)
-   BAnswer(203,1,NodeFstDialog101)
+   zBAnswer(203,1,NodeFstDialog101)
 end
 
 procedure NodeFstDialog101 begin
    setBonusReaction(-15)
-   Reply(204)
+   zReply(204)
    BAnswer(205,1,NodeFstDialog102)
 end
 
 procedure NodeFstDialog102 begin
-   Reply(206)
+   zReply(206)
    NAnswer(218,1,NodeQst100)
    //NAnswer(208,1,NodeSndDialog)
    //NAnswer(207,1,Node999)

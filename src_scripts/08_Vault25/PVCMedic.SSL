@@ -163,8 +163,8 @@ procedure NodeFstDialog begin
 end
 
 procedure NodeFstDialog2 begin
-   Reply(202)
-   NAnswer(203,1,NodeFstDialog3)
+   zReply(202)
+   zNAnswer(203,1,NodeFstDialog3)
 end
 
 procedure NodeFstDialog3 begin

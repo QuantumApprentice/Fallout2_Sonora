@@ -193,7 +193,7 @@ procedure NodeDialog5 begin
 end
 
 procedure NodeDialog6 begin
-   Reply(214)
+   zReply(214)
    if has_rep_pelgrim then begin
    GAnswer(215,3,NodeDialog7)
    end

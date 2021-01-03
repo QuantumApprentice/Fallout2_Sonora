@@ -222,7 +222,7 @@ end
 
 procedure NodeStopDialog begin
    bitDialogExp(bit_2,0)
-   Reply(220)
+   zReply(220)
    GAnswer(221,1,NodeStopDialog2)
    NAnswer(224,1,NodeStopDialog3)
 end
@@ -249,12 +249,12 @@ procedure NodeStopDialog5 begin
    bitDialogExp(bit_7,0)
    set_REP(-5)
    setBonusReaction(-50)
-   Reply(313)
+   zReply(313)
    NAnswer(314,1,NodeStopDialog6)
 end
 
 procedure NodeStopDialog6 begin
-   Reply(315)
+   zReply(315)
    NAnswer(316,1,Node999)
 end
 
@@ -265,7 +265,7 @@ procedure NodeSndDialog begin
    Reply(102)
    end
    else if (global_var(GVAR_TITUL_ARIZONA_RANGER) == 0) then begin
-   Reply(210)
+   zReply(210)
    end
    else begin
    Reply(211)
@@ -306,7 +306,7 @@ end
 
 procedure NodeAnswer101 begin
    Reply(272)
-   NAnswer(273,1,NodeStartDialog)
+   zNAnswer(273,1,NodeStartDialog)
    BAnswer(274,1,NodeStartDialog)
 end
 

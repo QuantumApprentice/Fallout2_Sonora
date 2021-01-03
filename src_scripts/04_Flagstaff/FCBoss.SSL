@@ -603,14 +603,14 @@ procedure NodeFreedom103 begin
    else if (getQuest(GVAR_MAIN_QUEST_FLAGSTAFF) >= qEnd) then begin
    set_map_var(MVAR_Freedom_Villa,1);
    set_map_var(MVAR_RoyDopusk,0);
-   Reply(317)
+   zReply(317)
    GAnswer(318,1,Node999)
    NAnswer(319,1,Node999)
    end
    else begin
    set_map_var(MVAR_Freedom_Villa,1);
    set_map_var(MVAR_RoyDopusk,1);
-   Reply(252)
+   zReply(252)
    NAnswer(253,1,Node999)
    end
 end

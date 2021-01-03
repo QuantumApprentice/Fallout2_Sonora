@@ -197,10 +197,10 @@ procedure NodeFstDialog2 begin
    NAnswer(210,1,NodeFstDialog100)
    NAnswer(240,1,NodeFstDialog200)
    if (getQuest(GVAR_CGRANDE_QST_ROADSTOP) == qStart) then begin
-   NAnswer(251,3,NodeFstDialog300)
+   NAnswer(251,1,NodeFstDialog300)
    end
    if (global_var(GVAR_RAIDER_STATUS_ENCHELP)>0) then begin
-   GAnswer(307,3,NodeFstDialog302)
+   GAnswer(307,1,NodeFstDialog302)
    end
 end
 
@@ -219,17 +219,17 @@ end
 
 procedure NodeFstDialog102 begin
    Reply(218)
-   NAnswer(220,4,NodeFstDialog103)
+   NAnswer(220,1,NodeFstDialog103)
    NAnswer(219,1,Node999)
 end
 
 procedure NodeFstDialog103 begin
    Reply(221)
-   NAnswerSkill(226,4,NodeFstDialog105,SKILL_CONVERSANT,50,222,NodeFstDialog104)
+   NAnswerSkill(226,1,NodeFstDialog105,SKILL_CONVERSANT,50,222,NodeFstDialog104)
    if (item_amnt(dude_obj,PID_BOOTLE_CAPS) >= 25) then begin
-   NAnswer(229,3,NodeFstDialog106)
+   NAnswer(229,1,NodeFstDialog106)
    end else begin
-   NAnswer(229,3,NodeFstDialog107)
+   NAnswer(229,1,NodeFstDialog107)
    end
    NAnswer(219,1,Node999)
 end
@@ -272,7 +272,7 @@ procedure NodeFstDialog201 begin
 end
 
 procedure NodeFstDialog202 begin
-   Reply(246)
+   zReply(246)
    BAnswer(247,1,Node998)
    NAnswer(248,1,NodeFstDialog203)
 end
@@ -296,7 +296,7 @@ end
 
 procedure NodeFstDialog300 begin
    Reply(252)
-   NAnswer(255,4,NodeFstDialog105)
+   NAnswer(255,1,NodeFstDialog105)
    NAnswer(254,1,NodeFstDialog100)
    BAnswer(253,1,Node998)
 end
@@ -321,11 +321,11 @@ procedure NodeFstDialog301 begin
    NAnswer(303,3,NodeFstDialog105)
    end
 
-   NAnswerSkill(301,4,NodeFstDialog105,SKILL_CONVERSANT,50,306,NodeFstDialog104)
+   NAnswerSkill(301,1,NodeFstDialog105,SKILL_CONVERSANT,50,306,NodeFstDialog104)
    if (item_amnt(dude_obj,PID_BOOTLE_CAPS) >= 25) then begin
-   NAnswer(229,3,NodeFstDialog106)
+   NAnswer(229,1,NodeFstDialog106)
    end else begin
-   NAnswer(229,3,NodeFstDialog107)
+   NAnswer(229,1,NodeFstDialog107)
    end
    BAnswer(304,1,Node998)
    NAnswer(305,1,Node999)
@@ -334,7 +334,7 @@ end
 procedure NodeFstDialog302 begin
    setBonusReaction(25)
    Reply(308)
-   NAnswer(309,4,NodeFstDialogGo)
+   NAnswer(309,1,NodeFstDialogGo)
 end
 
 //--- ПОВТОРНЫЙ ДИАЛОГ

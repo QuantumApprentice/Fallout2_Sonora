@@ -230,7 +230,7 @@ procedure NodeQst102 begin
    item_add(dude_obj,PID_BOOTLE_CAPS,(proto_data(PID_Q_COLA_BOX,it_cost)/4))
    item_remove(self_obj,PID_BOOTLE_CAPS,(proto_data(PID_Q_COLA_BOX,it_cost)/4))
    Reply(255)
-   BAnswer(257,1,NodeQst103)
+   zBAnswer(257,1,NodeQst103)
    NAnswer(256,1,Node999)
 end
 

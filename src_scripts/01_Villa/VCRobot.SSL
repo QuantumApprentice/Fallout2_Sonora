@@ -247,7 +247,7 @@ procedure NodeOpt100 begin
    end
    else begin
    set_local_var(LVAR_Flag_Sarcasm,0);
-   Reply(254)
+   zReply(254)
    NAnswer(255,1,NodeSndDialog)
    end
 end

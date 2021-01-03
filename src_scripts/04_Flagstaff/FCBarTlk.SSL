@@ -154,7 +154,7 @@ procedure NodeFstDialog begin
    if (map_var(MVAR_FLAG_Huligan) >0) then begin
    Reply(203)
    end else begin
-   Reply(202)
+   zReply(202)
    end
 
    /*

@@ -283,7 +283,7 @@ procedure NodeGruming begin
 end
 
 procedure NodeGruming1 begin
-   Reply(244)
+   zReply(244)
    NAnswer(245,1,NodeGruming3)
    NAnswer(246,1,Node999)
 end
@@ -338,7 +338,7 @@ end
 procedure NodeCulon5 begin
    if (has_skill(dude_obj, SKILL_GAMBLING) >= random(20,120)) then begin
    call NodeCulonEnd;
-   Reply(231)
+   zReply(231)
    NAnswer(232,1,Node999)
    end
    else begin

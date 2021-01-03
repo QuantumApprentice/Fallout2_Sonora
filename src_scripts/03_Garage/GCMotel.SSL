@@ -456,7 +456,10 @@ procedure NodeRoomGo2 begin
    */
 
    if (getQuest(GVAR_GARAGE_QST_MOTEL_BOYS) == qZero) then begin
-   setQuest(GVAR_GARAGE_QST_MOTEL_BOYS, qStart);
+      if (tile_contains_obj_pid(22321,0,PID_HEX_SOLAR) == false) then begin
+      create_object_sid(PID_HEX_SOLAR, 22321, 0, -1);
+      end
+      setQuest(GVAR_GARAGE_QST_MOTEL_BOYS, qStart);
    end
 
    display_mstr(102);

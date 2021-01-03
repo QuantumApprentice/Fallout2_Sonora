@@ -162,7 +162,7 @@ procedure NodeSndDialog begin
    Reply(102)
    end
    else begin
-   Reply(210)
+   zReply(210)
    end
    NAnswer(220,3,NodeAnswer100)
    NAnswer(230,3,NodeAnswer200)

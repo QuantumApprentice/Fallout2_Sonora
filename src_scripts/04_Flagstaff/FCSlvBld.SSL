@@ -182,7 +182,7 @@ procedure NodeFstDialog begin
    if (map_var(MVAR_FLAG_SlavMineDlg) == 0) then begin
    set_map_var(MVAR_FLAG_SlavMineDlg, 1);
    end
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog2)
 end
 
@@ -215,14 +215,14 @@ end
 procedure NodeFstDialog7 begin
    zReply(213)
    NAnswer(216,1,NodeFstDialog6)
-   NAnswer(215,1,Node999)
+   zNAnswer(215,1,Node999)
    BAnswer(214,1,Node999)
 end
 
 //--- ПОВТОРНЫЙ ДИАЛОГ
 
 procedure NodeSndDialog begin
-   Reply(220)
+   zReply(220)
    NAnswer(221,1,Node999)
    BAnswer(222,1,Node999)
 end

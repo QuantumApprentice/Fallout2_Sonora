@@ -318,7 +318,7 @@ procedure NodeFstDialog begin
       NAnswer(241,1,NodeFstDialog107)
    end
    else if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
-      NAnswer(232,1,NodeFstDialog105)
+      zNAnswer(232,1,NodeFstDialog105)
    end
    else if (inven_armor(dude_obj) > 0) then begin
       if (armor_pid_dude_var == PID_ARMOR_PURPLE_ROBE_A) then begin
@@ -398,7 +398,7 @@ procedure NodeFstDialog105 begin
    end
    else begin
    set_REP(2)
-   Reply(233)
+   zReply(233)
    NAnswer(234,1,NodeFstDialog4)
    end
 end

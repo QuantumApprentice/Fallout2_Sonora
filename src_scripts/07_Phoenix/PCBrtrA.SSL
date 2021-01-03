@@ -276,7 +276,7 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeStartDialog)
 end
 
@@ -468,7 +468,7 @@ procedure NodeBarter102 begin
    NAnswer(243,3,NodeBarterNext)
    end
    else if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
-   NAnswer(244,1,NodeBarter105)
+   zNAnswer(244,1,NodeBarter105)
    end
    else if (gvar_bit(GVAR_DIALOGS_FLAGS_BIT, bit_17) != 0) then begin
    NAnswer(259,1,NodeBarterNext)

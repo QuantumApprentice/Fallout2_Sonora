@@ -221,7 +221,7 @@ procedure NodeSndDialog2 begin
 end
 
 procedure NodeSndDialog3 begin
-   Reply(245)
+   zReply(245)
    NAnswer(246,1,Node999)
    NAnswer(247,1,Node999)
 end
@@ -268,7 +268,7 @@ procedure NodeQst1 begin
    Reply(231)
    NAnswer(232,1,NodeQst2)
    NAnswer(233,1,NodeQst3)
-   NAnswer(234,1,NodeAnswer)
+   zNAnswer(234,1,NodeAnswer)
 end
 
 procedure NodeQst2 begin

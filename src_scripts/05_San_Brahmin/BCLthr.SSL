@@ -208,7 +208,7 @@ end
 procedure NodeStopDialog100 begin
    bitDialogExp(bit_2,0)
    item_add(dude_obj,PID_W_CATTLE_PROD_A,1)
-   Reply(260)
+   zReply(260)
    NAnswer(261,1,NodeStopDialog101)
 end
 

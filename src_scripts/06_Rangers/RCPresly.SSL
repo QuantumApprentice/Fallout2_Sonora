@@ -418,7 +418,7 @@ procedure NodeQuest203 begin
    call NodeQuest205;
    end
    else begin
-   Reply(326)
+   zReply(326)
    NAnswer(327,1,NodeQuest204)
    end
 end

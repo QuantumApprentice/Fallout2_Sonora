@@ -298,7 +298,7 @@ procedure NodeFstDialog105 begin
 end
 
 procedure NodeFstDialog106 begin
-   Reply(230)
+   zReply(230)
    NAnswer(231,1,NodeFstDialog107)
    NAnswer(232,1,NodeFstDialog107)
 end
@@ -316,7 +316,7 @@ procedure NodeFstDialog108 begin
 end
 
 procedure NodeFstDialog109 begin
-   Reply(238)
+   zReply(238)
    NAnswer(236,1,NodeGoParom)
    NAnswer(237,1,Node999)
 end

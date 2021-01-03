@@ -258,13 +258,13 @@ procedure NodeSndDialog007 begin
    setBonusReaction(20)
    Reply(227)
    NAnswer(228,1,NodeSndDialog009)
-   BAnswer(229,1,NodeSndDialog008)
+   zBAnswer(229,1,NodeSndDialog008)
 end
 
 procedure NodeSndDialog008 begin
    setBonusReaction(-5)
    item_add(dude_obj,PID_W_KNUCKLES_BRASS,1)
-   Reply(230)
+   zReply(230)
    NAnswer(231,1,Node999)
 end
 

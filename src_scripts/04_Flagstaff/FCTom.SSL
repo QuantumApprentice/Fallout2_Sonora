@@ -222,7 +222,7 @@ end
 procedure NodeAnswer105 begin
    Reply(234)
    NAnswer(235,1,NodeSndDialog)
-   BAnswer(236,1,NodeSndDialog)
+   zBAnswer(236,1,NodeSndDialog)
 end
 
 procedure NodeAnswer200 begin
@@ -295,7 +295,7 @@ procedure NodeAnswer304 begin
    item_remove(dude_obj,PID_BOOTLE_CAPS,10)
    Reply(269)
    NAnswer(270,1,Node999)
-   BAnswer(271,1,Node999)
+   zBAnswer(271,1,Node999)
 end
 
 procedure NodeAnswer305 begin
@@ -309,5 +309,5 @@ procedure NodeAnswer306 begin
    set_map_var(MVAR_FLAG_Vor,1);
    Reply(277)
    NAnswer(270,1,Node999)
-   BAnswer(271,1,Node999)
+   zBAnswer(271,1,Node999)
 end

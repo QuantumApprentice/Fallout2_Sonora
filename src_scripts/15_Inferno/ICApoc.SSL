@@ -382,10 +382,10 @@ procedure NodeSndDialog begin
    end
 
    //--- Расспросы
-   NAnswer(270,3,NodeAnswer100)
-   NAnswer(330,3,NodeAnswer200)
+   NAnswer(270,1,NodeAnswer100)
+   NAnswer(330,1,NodeAnswer200)
    if (global_var(GVAR_INF_STATUS_APOSTOL) == 0) then begin
-   NAnswer(380,3,NodeAnswer400)
+   NAnswer(380,1,NodeAnswer400)
    end
 
    if (map_var(MVAR_INF_PWR_ADD) == 0) then begin
@@ -869,7 +869,7 @@ procedure NodePartyDialog begin
    end
 
    if (cur_map_index == MAP_CASA_NUEVA_CITY) then begin
-   GAnswer(600,3,NodeParty300)
+   GAnswer(600,1,NodeParty300)
    end
 
    NAnswer(550,3,NodeParty200)
@@ -937,7 +937,7 @@ procedure NodeParty104 begin
    BAnswer(540,1,Node999)
    end
    else if (dude_cur_hits<(dude_max_hits/2)) then begin
-   Reply(537)
+   zReply(537)
    NAnswer(538,1,NodeParty105)
    end
    else if dude_is_crippled then begin
@@ -1192,7 +1192,7 @@ end
 
 procedure NodeHomeDialog begin
    if town_rep_is_idolized then begin
-   Reply(612)
+   zReply(612)
    end
    else if town_rep_is_hated then begin
    Reply(611)

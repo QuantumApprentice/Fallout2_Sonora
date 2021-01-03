@@ -272,7 +272,7 @@ procedure NodeStopDialog begin
    bitDialogExp(bit_4,0)
    setBonusReaction(-10)
    incBarterMod(10);
-   Reply(240)
+   zReply(240)
    NAnswerSkill(241,1,NodeStopDialog1,SKILL_UNARMED_COMBAT,75,241,NodeStopDialog1)
 end
 
@@ -597,7 +597,7 @@ end
 procedure NodeVilla102 begin
    if town_rep_is_hated then begin
       Reply(340)
-      NAnswer(341,1,NodeSndDialog)
+      zNAnswer(341,1,NodeSndDialog)
    end
    else begin
       Reply(338)
@@ -686,7 +686,7 @@ end
 
 procedure NodeBrahmin104 begin
    setQuest(GVAR_GARAGE_QST_BRAHMINATTAK,qEnd+1);
-   
+
    if (global_var(GVAR_GARAGE_STATUS_JUNKMAN) < 0) then begin
    Reply(413)
    NAnswer(414,1,NodeBrahmin105)

@@ -193,7 +193,7 @@ end
 
 procedure NodeFstDialog2 begin
    bitDialogExp(bit_1,0)
-   Reply(210)
+   zReply(210)
 
    if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
    NAnswer(211,1,NodeFstDialog101)
@@ -210,7 +210,7 @@ procedure NodeFstDialog2 begin
 end
 
 procedure NodeFstDialog101 begin
-   Reply(212)
+   zReply(212)
    NAnswer(213,1,Node999)
    BAnswer(214,1,Node999)
 end
@@ -221,7 +221,7 @@ procedure NodeFstDialog102 begin
 end
 
 procedure NodeFstDialog103 begin
-   Reply(220)
+   zReply(220)
    NAnswer(221,1,Node999)
 end
 

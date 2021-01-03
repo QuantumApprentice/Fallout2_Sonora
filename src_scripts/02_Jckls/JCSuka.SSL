@@ -180,10 +180,10 @@ procedure NodeStopDialog begin
    set_map_var(MVAR_Jkls_Dopusk,-1);
    bitDialogExp(bit_1,100)
    if ((armor_pid_dude_var == PID_ARMOR_POWER_A) or (armor_pid_dude_var == PID_ARMOR_POWER_B)) then begin
-   Reply(201)
+   zReply(201)
    end
    else begin
-   Reply(200)
+   zReply(200)
    end
    NAnswer(202,1,Node998)
    BAnswer(203,1,Node998)
@@ -202,14 +202,14 @@ procedure NodeFstDialog begin
 end
 
 procedure NodeFstDialog100 begin
-   Reply(210)
+   zReply(210)
    zNAnswer(211,1,NodeFstDialog101)
    GAnswer(212,1,NodeFstDialog101)
    BAnswer(213,1,NodeFstDialog101)
 end
 
 procedure NodeFstDialog101 begin
-   Reply(214)
+   zReply(214)
    BAnswer(215,1,NodeFstDialog102)
    BAnswer(216,1,NodeFstDialog102)
 end
@@ -221,10 +221,10 @@ procedure NodeFstDialog102 begin
 end
 
 procedure NodeFstDialog103 begin
-   Reply(220)
+   zReply(220)
 
    if (inven_armor(dude_obj) <= 0) then begin
-   GAnswer(230,7,NodeFstDialog104)
+   zGAnswer(230,7,NodeFstDialog104)
    end
    if DudePerkHas(PERK_ghouling_charisma) then begin
    GAnswer(235,3,NodeFstDialog106)
@@ -390,7 +390,7 @@ end
 
 procedure NodeQuest102 begin
    setQuest(GVAR_JACKALS_UNION_CITY,qStart);
-   Reply(268)
+   zReply(268)
    NAnswer(269,1,Node999)
 end
 
@@ -418,7 +418,7 @@ procedure NodeQuest203 begin
    setQuest(GVAR_JACKALS_UNION_CITY,qEnd);
    set_map_var(MVAR_JKLS_TRAPS_VSBL,1);
    exp_add(2000);
-   set_REP(20)
+   set_REP(30)
    set_SLAVA(50)
    setBonusReaction(35)
 

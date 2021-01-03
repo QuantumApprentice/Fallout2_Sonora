@@ -123,7 +123,7 @@ procedure critter_p_proc begin
       if self_can_see_dude then begin
          stopDialog := 1;
 
-         if ((armor_pid_dude_var <= 0) or (armor_pid_dude_var == PID_ARMOR_VAULT) or (armor_pid_dude_var == PID_ARMOR_JACKET_A) or (armor_pid_dude_var == PID_ARMOR_JACKET_B)) then begin
+         if ((armor_pid_dude_var <= 0) or (armor_pid_dude_var == PID_ARMOR_VAULT) or (armor_pid_dude_var == PID_ARMOR_JACKET_A) or (armor_pid_dude_var == PID_ARMOR_JACKET_B) or (armor_pid_dude_var == PID_ARMOR_LEATHER)) then begin
          end
          else begin
          stopDialog := 0; // ГГ в хорошей броне

@@ -293,7 +293,7 @@ procedure NodeFAID2 begin
    NAnswer(225,1,NodeFAID100)
    end
    if (local_var(LVAR_Implant_A) == 0) then begin
-   NAnswer(250,4,NodeFAID200)
+   NAnswer(250,1,NodeFAID200)
    end
    NAnswer(224,1,NodeSndDialog)
 end

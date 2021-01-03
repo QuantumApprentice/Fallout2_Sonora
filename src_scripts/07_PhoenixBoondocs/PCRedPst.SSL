@@ -295,7 +295,7 @@ end
 
 procedure NodeLetter11 begin
    call NodeLetterEnd;
-   Reply(253)
+   zReply(253)
    NAnswer(254,1,Node999)
 end
 

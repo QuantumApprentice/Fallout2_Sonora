@@ -273,7 +273,7 @@ procedure NodeQuestA102 begin
 end
 
 procedure NodeQuestA200 begin
-   Reply(261)
+   zReply(261)
    NAnswer(263,1,NodeQuestA201)
    NAnswer(265,1,NodeQuestA202)
    NAnswer(283,1,NodeQuestA203)
@@ -392,6 +392,6 @@ procedure NodeQuestB300 begin
 end
 
 procedure NodeQuestB301 begin
-   Reply(333)
+   zReply(333)
    NAnswer(334,1,Node999)
 end

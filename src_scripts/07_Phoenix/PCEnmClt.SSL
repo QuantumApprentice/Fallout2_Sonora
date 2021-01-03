@@ -230,7 +230,7 @@ procedure NodeDialog105 begin
 end
 
 procedure NodeDialog106 begin
-   Reply(220)
+   zReply(220)
    NAnswer(221,1,Node998)
    BAnswer(222,1,Node998)
 end
@@ -242,7 +242,7 @@ end
 
 procedure NodeDialog201 begin
    Reply(232)
-   NAnswer(233,1,NodeDialog202)
+   zNAnswer(233,1,NodeDialog202)
    BAnswer(238,1,NodeDialog204)
 end
 

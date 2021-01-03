@@ -271,7 +271,7 @@ procedure NodeAnswer103 begin
 end
 
 procedure NodeAnswer104 begin
-   Reply(265)
+   zReply(265)
    NAnswer(267,1,NodeAnswer105)
    BAnswer(266,1,NodeAnswer105)
 end
@@ -325,7 +325,7 @@ procedure NodeAnswer205 begin
 end
 
 procedure NodeAnswer206 begin
-   Reply(315)
+   zReply(315)
    NAnswer(316,1,NodeAnswer207)
 end
 

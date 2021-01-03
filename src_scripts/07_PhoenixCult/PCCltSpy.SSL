@@ -247,7 +247,7 @@ procedure NodeSndDialog begin
    NAnswer(218,4,NodeAnswer102)
    end
    else begin
-   NAnswer(222,4,NodeAnswer200)
+   NAnswer(222,1,NodeAnswer200)
    end
 
    if (getQuest(GVAR_PHENIX_PARTY_QST_B) == qStart) then begin
@@ -285,7 +285,7 @@ end
 
 procedure NodeAnswer103 begin
    Reply(221)
-   NAnswer(222,3,NodeAnswer200)
+   NAnswer(222,1,NodeAnswer200)
    BAnswer(223,1,Node999)
 end
 
@@ -598,7 +598,7 @@ end
 
 procedure NodeQst207 begin
    Reply(347)
-   NAnswer(351,1,NodeQst209)
+   zNAnswer(351,1,NodeQst209)
    BAnswer(348,1,NodeQst208)
 end
 

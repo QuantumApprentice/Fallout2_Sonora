@@ -246,7 +246,7 @@ procedure NodeQstCult3 begin
    else begin
    Reply(306)
    BAnswer(310,3,NodeQstCult5)
-   NAnswer(307,1,Node999)
+   zNAnswer(307,1,Node999)
    end
 end
 
@@ -348,7 +348,7 @@ procedure NodeAnswer200 begin
 end
 
 procedure NodeAnswer201 begin
-   Reply(253)
+   zReply(253)
    NAnswer(254,1,Node999)
    BAnswer(255,1,Node999)
 end

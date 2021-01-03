@@ -751,7 +751,7 @@ procedure NodeBarterTeam begin
 
    if (getQuest(GVAR_VILLA_QST_CULON) == qStart) then begin
       if (local_var(LVAR_Culon_Status) == 0) then begin
-      NAnswer(380,3,NodeBarterTeam101)
+      NAnswer(380,1,NodeBarterTeam101)
       end
    end
 

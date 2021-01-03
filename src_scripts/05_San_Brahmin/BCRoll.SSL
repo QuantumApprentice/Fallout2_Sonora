@@ -145,10 +145,10 @@ procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
    setQuest(GVAR_BRAHMIN_QST_ROLLBAR,qStart);
    if (getReaction<0) then begin
-   Reply(201)
+   zReply(201)
    end
    else begin
-   Reply(200)
+   zReply(200)
    end
    NAnswer(202,1,NodeFstDialog100)
 end
@@ -195,10 +195,10 @@ procedure NodeSndDialog begin
    Reply(222)
    end
    else if (getReaction<0) then begin
-   Reply(221)
+   zReply(221)
    end
    else begin
-   Reply(220)
+   zReply(220)
    end
    NAnswer(250,1,NodeAnswer200)
    NAnswer(253,1,NodeAnswer201)
@@ -214,7 +214,7 @@ end
 procedure NodeAnswer100 begin
    setQuest(GVAR_BRAHMIN_QST_ROLLBAR,qEnd);
    exp_add(200);
-   Reply(231)
+   zReply(231)
    NAnswer(232,1,NodeAnswer101)
    GAnswer(238,1,NodeAnswer103)
 end

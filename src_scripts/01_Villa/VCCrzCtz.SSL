@@ -151,7 +151,7 @@ procedure NodeStartDialog begin
 end
 
 procedure NodeQst100 begin
-   Reply(200)
+   zReply(200)
    if (global_var(GVAR_VILLA_STATUS_CHRIS) == 0) then begin
    NAnswer(201,1,NodeQst101)
    end

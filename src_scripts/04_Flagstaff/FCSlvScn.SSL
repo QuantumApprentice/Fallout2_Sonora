@@ -181,14 +181,14 @@ procedure NodeDialog100 begin
    Reply(202)
    NAnswer(203,4,NodeDialog101)
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog101 begin
    bitDialogExp(bit_2,10)
    Reply(204)
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog200 begin
@@ -201,7 +201,7 @@ procedure NodeDialog200 begin
       Reply(258)
    end
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog201 begin
@@ -209,7 +209,7 @@ procedure NodeDialog201 begin
    NAnswerSkill(227,3,NodeDialog202,SKILL_REPAIR,20,227,NodeDialog203)
    NAnswer(219,3,NodeDialog204)
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog202 begin
@@ -217,14 +217,14 @@ procedure NodeDialog202 begin
    Reply(229)
    NAnswer(219,3,NodeDialog204)
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog203 begin
    Reply(228)
    NAnswer(219,3,NodeDialog204)
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog204 begin
@@ -235,7 +235,7 @@ procedure NodeDialog204 begin
    end
    NAnswer(210,3,NodeDialog201)
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog205 begin
@@ -243,7 +243,7 @@ procedure NodeDialog205 begin
    NAnswerSkill(223,4,NodeDialog206,SKILL_CONVERSANT,70,223,NodeDialog207)
    NAnswer(210,3,NodeDialog201)
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog206 begin
@@ -262,21 +262,21 @@ procedure NodeDialog300 begin
    Reply(251)
    NAnswer(252,4,NodeDialog301)
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog301 begin
    bitDialogExp(bit_7,10)
    Reply(253)
    NAnswer(205,1,NodeSndDialog)
-   NAnswer(206,1,Node999)
+   zNAnswer(206,1,Node999)
 end
 
 procedure NodeDialog302 begin
    set_map_var(MVAR_UmnikDialog,3);
    bitDialogExp(bit_8,50)
    Reply(255)
-   BAnswer(256,1,Node999)
+   zBAnswer(256,1,Node999)
    NAnswer(257,1,Node999)
 end
 

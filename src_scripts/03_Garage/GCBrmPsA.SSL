@@ -154,7 +154,7 @@ procedure talk_p_proc begin
    end
    else begin
       if (global_var(GVAR_GARAGE_STATUS_PASTUH) == 1) then begin
-      floater(self_obj,111,COLOR_MSG_NORMAL);
+      z_floater(self_obj,111,COLOR_MSG_NORMAL);
       end
       else begin
       floater(self_obj,112,COLOR_MSG_RED);
@@ -198,7 +198,7 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeSndDialog)
 end
 
@@ -293,6 +293,6 @@ procedure NodeAnswer205 begin
    goBarter(0);
    //call NodeStartDialog;
 
-   Reply(246)
+   zReply(246)
    NAnswer(247,1,Node999)
 end

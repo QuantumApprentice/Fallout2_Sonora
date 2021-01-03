@@ -403,7 +403,7 @@ procedure NodeAnswer400 begin
 end
 
 procedure NodeAnswer401 begin
-   Reply(324)
+   zReply(324)
    NAnswer(325,1,NodeAnswer402)
    BAnswer(326,1,NodeAnswer402)
 end
@@ -415,7 +415,7 @@ procedure NodeAnswer402 begin
 end
 
 procedure NodeAnswer403 begin
-   Reply(330)
+   zReply(330)
    NAnswer(331,1,NodeAnswer404)
    BAnswer(332,1,NodeAnswer404)
 end

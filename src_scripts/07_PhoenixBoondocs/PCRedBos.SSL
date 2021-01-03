@@ -261,14 +261,14 @@ end
 
 procedure NodeStopDialog100 begin
    bitDialogExp(bit_5,0)
-   Reply(320)
+   zReply(320)
    NAnswerSkill(332,1,NodeStopDialog104,SKILL_CONVERSANT,50,328,NodeStopDialog103)
    NAnswerReaction(325,1,NodeStopDialog102,35,321,NodeStopDialog101)
    BAnswer(335,1,NodeStopDialog101)
 end
 
 procedure NodeStopDialog101 begin
-   Reply(322)
+   zReply(322)
    NAnswer(323,1,Node998)
    NAnswer(324,1,Node998)
 end
@@ -380,13 +380,13 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog100)
 end
 
 procedure NodeFstDialog2 begin
    bitDialogExp(bit_1,0)
-   Reply(224)
+   zReply(224)
    NAnswer(225,1,NodeFstDialog3)
 end
 
@@ -416,7 +416,7 @@ procedure NodeFstDialog102 begin
 end
 
 procedure NodeFstDialog103 begin
-   Reply(207)
+   zReply(207)
    NAnswer(208,1,NodeFstDialog105)
 end
 
@@ -461,7 +461,7 @@ procedure NodeFstDialog107 begin
 end
 
 procedure NodeFstDialog108 begin
-   Reply(218)
+   zReply(218)
    NAnswer(219,1,NodeFstDialog109)
 end
 

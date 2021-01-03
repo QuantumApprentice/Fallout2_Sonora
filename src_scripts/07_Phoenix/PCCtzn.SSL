@@ -176,6 +176,9 @@ procedure talk_reply begin
    end
    else if (global_var(GVAR_TITUL_ARENA_MASTER) > 0) then begin
       replyMsg := random(250,259);
+      if dude_is_female then begin
+      replyMsg := random(1250,1259);
+      end
    end
    else if ((global_var(GVAR_ADDICT_BUFF_OUT) > 0) or (global_var(GVAR_ADDICT_MENTATS) > 0) or (global_var(GVAR_ADDICT_PSYCHO) > 0) or (global_var(GVAR_ADDICT_BUFF_OUT) > 0)) then begin
       replyMsg := random(260,269);

@@ -213,17 +213,17 @@ procedure NodeDialog206 begin
    end
    NAnswerSkill(260,4,NodeDialog211,SKILL_CONVERSANT,50,257,NodeDialog210)
    NAnswerSkill(264,4,NodeDialog212,SKILL_SCIENCE,50,266,NodeDialog210)
-   NAnswer(245,1,NodeDialog207)
+   zNAnswer(245,1,NodeDialog207)
    BAnswer(250,1,NodeDialog208)
 end
 
 procedure NodeDialog207 begin
-   Reply(246)
+   zReply(246)
    NAnswer(247,1,NodeDialogCombat)
 end
 
 procedure NodeDialog208 begin
-   Reply(251)
+   zReply(251)
    BAnswer(252,1,Node998)
    NAnswer(253,1,Node998)
 end
@@ -239,13 +239,13 @@ procedure NodeDialog210 begin
 end
 
 procedure NodeDialog211 begin
-   Reply(261)
+   zReply(261)
    NAnswer(262,1,Node999)
    BAnswer(263,1,Node999)
 end
 
 procedure NodeDialog212 begin
-   Reply(265)
+   zReply(265)
    NAnswer(262,1,Node999)
    BAnswer(263,1,Node999)
 end

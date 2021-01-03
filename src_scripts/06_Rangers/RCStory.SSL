@@ -184,7 +184,7 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog2)
    NAnswer(204,1,NodeFstDialog3)
 end
@@ -250,7 +250,7 @@ procedure NodeStar7 begin
    item_add(dude_obj,PID_M_NUKA_COLA,2)
    item_add(dude_obj,PID_M_WATER_FLASK,1)
    item_add(dude_obj,PID_M_FRUIT,3)
-   Reply(318)
+   zReply(318)
    NAnswer(316,1,NodeSndDialog)
    NAnswer(317,1,Node999)
 end
@@ -466,7 +466,7 @@ end
 procedure NodeAnswer507 begin
    Reply(351)
    if (global_var(GVAR_STATUS_SCORPION_LEGEND) <0) then begin
-   NAnswer(353,1,NodeAnswer508)
+   zNAnswer(353,1,NodeAnswer508)
    end
    NAnswer(336,1,NodeAnswer502)
    NAnswer(338,1,NodeAnswer503)
@@ -483,7 +483,7 @@ procedure NodeAnswer508 begin
 end
 
 procedure NodeAnswer509 begin
-   Reply(356)
+   zReply(356)
    if (item_amnt(dude_obj,PID_Q_SCORP_SPEAR) >0) then begin
    GAnswer(361,1,NodeAnswer512)
    end

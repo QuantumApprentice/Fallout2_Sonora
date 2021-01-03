@@ -180,7 +180,7 @@ procedure NodeFstDialog103 begin
    if dude_skill(SKILL_CONVERSANT,100) then begin
    NAnswer(217,1,NodeFstDialog104)
    end
-   NAnswer(220,1,NodeFstDialog105)
+   zNAnswer(220,1,NodeFstDialog105)
    BAnswer(221,1,NodeFstDialog106)
 end
 

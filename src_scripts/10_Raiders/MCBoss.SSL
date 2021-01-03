@@ -359,7 +359,7 @@ procedure NodeFstDialog300 begin
 end
 
 procedure NodeFstDialog301 begin
-   Reply(256)
+   zReply(256)
    NAnswer(258,1,NodeFstDialog302)
    BAnswer(257,1,NodeFstDialog300)
 end
@@ -401,7 +401,7 @@ procedure NodeFstDialog400 begin
 end
 
 procedure NodeFstDialog401 begin
-   Reply(273)
+   zReply(273)
    if (global_var(GVAR_RAIDER_STATUS_BAR) > 0) then begin
    zGAnswer(275,3,NodeFstDialog403)
    end
@@ -664,7 +664,7 @@ procedure NodeQst201 begin
    item_add(dude_obj,PID_ARMOR_ROAD,1)
    box_stop_use := 0;
 
-   Reply(394)
+   zReply(394)
    NAnswer(397,1,NodeQst202)
 end
 

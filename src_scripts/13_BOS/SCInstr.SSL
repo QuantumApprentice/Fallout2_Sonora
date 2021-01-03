@@ -167,7 +167,7 @@ procedure NodeFstDialog102 begin
 end
 
 procedure NodeFstDialog103 begin
-   Reply(205)
+   zReply(205)
    if (global_var(GVAR_TITUL_BOS_PALADIN)>0) then begin
    NAnswer(221,1,NodeFstDialog106)
    end
@@ -179,7 +179,7 @@ procedure NodeFstDialog103 begin
 end
 
 procedure NodeFstDialog104 begin
-   Reply(210)
+   zReply(210)
    NAnswer(212,1,NodeFstDialog105)
    NAnswer(211,1,Node999)
 end
@@ -193,7 +193,7 @@ procedure NodeFstDialog105 begin
 end
 
 procedure NodeFstDialog106 begin
-   Reply(223)
+   zReply(223)
    call NodeFstDialog107;
    NAnswer(224,1,Node999)
 end

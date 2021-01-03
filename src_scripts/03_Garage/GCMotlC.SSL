@@ -182,7 +182,7 @@ procedure NodeFstDialog3 begin
 end
 
 procedure NodeFstDialog4 begin
-   Reply(206)
+   zReply(206)
    BAnswer(208,1,NodeFstDialog5)
    BAnswer(217,1,NodeFstDialog7)
    NAnswer(207,1,Node999)
@@ -198,7 +198,7 @@ end
 
 procedure NodeFstDialog6 begin
    set_map_var(MVAR_GARAGE_MOTEL_BOYS, 1);
-   Reply(214)
+   zReply(214)
    NAnswer(215,1,Node999)
    NAnswer(216,1,Node999)
 end

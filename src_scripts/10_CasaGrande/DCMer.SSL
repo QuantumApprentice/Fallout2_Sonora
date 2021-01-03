@@ -360,7 +360,7 @@ procedure NodeFstDialog3 begin
 end
 
 procedure NodeFstDialog4 begin
-   Reply(207)
+   zReply(207)
    NAnswer(212,1,NodeFstDialog6)
    NAnswer(216,1,NodeFstDialog8)
 end
@@ -388,7 +388,7 @@ end
 procedure NodeFstDialog7 begin
    set_REP(-1)
    setBonusReaction(-20)
-   Reply(215)
+   zReply(215)
    NAnswer(218,1,NodeFstDialog9)
    NAnswer(224,1,NodeFstDialog11)
 end
@@ -427,7 +427,7 @@ procedure NodeFstDialog12 begin
 end
 
 procedure NodeFstDialog13 begin
-   Reply(229)
+   zReply(229)
    NAnswer(230,1,NodeFstDialog14)
    NAnswer(dude_name+mstr(231),1,NodeFstDialog14)
 end
@@ -473,7 +473,7 @@ procedure NodeSndDialog begin
    end
    end
    if (getQuest(GVAR_TWOSUN_QST_LOST_TIN) == qStart) then begin
-   NAnswer(350,3,NodeAnswer200)
+   NAnswer(350,1,NodeAnswer200)
    end
 
    if (getQuest(GVAR_RAIDER_QST_GRANGE) == qStart) then begin
@@ -486,7 +486,7 @@ procedure NodeSndDialog begin
 
    if (local_var(LVAR_Story_Know) == 0) then begin
    if (getQuest(GVAR_CGRANDE_ATTAK_TO_BAR) >= qEnd) then begin
-   BAnswer(436,4,NodeAnswer402)
+   BAnswer(436,1,NodeAnswer402)
    end
    end
 
@@ -507,7 +507,7 @@ procedure NodeSndDialog begin
 
    if ((getQuest(GVAR_RAIDER_QST_PRISON) == qStart) and (global_var(GVAR_RAIDER_STATUS_PRISON) == 0)) then begin
    if (map_var(MVAR_CGRANDE_PRISON_FREE) == 0) then begin
-   NAnswer(570,3,NodeAnswer600)
+   NAnswer(570,1,NodeAnswer600)
    end
    end
 
@@ -544,7 +544,7 @@ procedure NodeAnswer101 begin
 end
 
 procedure NodeAnswer102 begin
-   Reply(229)
+   zReply(229)
    NAnswer(230,1,NodeAnswer103)
    NAnswer(dude_name+mstr(231),1,NodeFstDialog14)
 end
@@ -591,7 +591,7 @@ procedure NodeAnswer203 begin
 end
 
 procedure NodeAnswer204 begin
-   Reply(361)
+   zReply(361)
    NAnswer(362,1,Node999)
    BAnswer(363,1,Node999)
 end
@@ -819,7 +819,7 @@ procedure NodeAnswer406 begin
    setBonusReaction(-20)
    set_REP(-1)
    Reply(448)
-   NAnswer(449,1,Node999)
+   zNAnswer(449,1,Node999)
    BAnswer(429,1,Node999)
 end
 

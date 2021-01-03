@@ -279,7 +279,7 @@ procedure NodeAnswer105 begin
    BAnswer(238,1,NodeAnswer105b)
    end
    else if (global_var(GVAR_TITUL_BOS)>0) then begin
-   GAnswer(227,1,NodeAnswer105c)
+   zGAnswer(227,1,NodeAnswer105c)
    end
    NAnswer(220,1,NodeAnswer100)
    NAnswer(230,1,NodeAnswer102)

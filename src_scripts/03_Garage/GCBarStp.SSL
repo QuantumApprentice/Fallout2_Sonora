@@ -235,7 +235,7 @@ procedure NodeStopDialog3 begin
 end
 
 procedure NodeStopDialog4 begin
-   Reply(307)
+   zReply(307)
    BAnswer(308,1,Node998)
    NAnswer(309,1,Node999)
 end

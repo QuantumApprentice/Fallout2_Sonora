@@ -174,7 +174,7 @@ procedure NodeFstDialog begin
 end
 
 procedure NodeFstDialog2 begin
-   Reply(202)
+   zReply(202)
    zNAnswer(203,1,NodeFstDialog3)
    NAnswer(207,1,NodeFstDialog4)
    NAnswer(206,1,Node999)
@@ -375,7 +375,7 @@ end
 
 procedure NodeSndDialog211 begin
    setBonusReaction(-20)
-   Reply(278)
+   zReply(278)
    NAnswer(275,1,Node999)
    BAnswer(276,1,Node999)
 end

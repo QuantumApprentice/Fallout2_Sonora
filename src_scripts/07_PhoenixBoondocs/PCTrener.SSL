@@ -199,7 +199,7 @@ procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
    Reply(200)
    BAnswer(201,1,NodeFstDialog2)
-   NAnswer(202,1,NodeFstDialog3)
+   zNAnswer(202,1,NodeFstDialog3)
 end
 
 procedure NodeFstDialog2 begin
@@ -391,7 +391,7 @@ procedure NodeTrener102 begin
       if (map_var(MVAR_PNX_TRENER_INFO) > 0) then begin
       NAnswer(260,3,NodeTrener105)
       end
-      NAnswer(261,4,NodeTrener103)
+      zNAnswer(261,4,NodeTrener103)
       BAnswer(265,4,NodeTrener104)
       //NAnswerReaction(261,1,NodeTrener103,0,265,NodeTrener104)
    end
@@ -458,7 +458,7 @@ procedure NodeTrener109 begin
    NAnswer(292,1,NodeTrener110)
    end
    else if (get_SLAVA>=250) then begin
-   Reply(294)
+   zReply(294)
    NAnswer(292,1,NodeTrener110)
    end
    else if (getReaction>=75) then begin
@@ -588,7 +588,7 @@ procedure NodeTrener303 begin
    Reply(353)
    end
    else if (local_var(LVAR_Trener_Status) == 3) then begin
-   Reply(352)
+   zReply(352)
    end
    else if (local_var(LVAR_Trener_Status) == 2) then begin
    Reply(351)

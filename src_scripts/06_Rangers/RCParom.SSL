@@ -148,7 +148,7 @@ procedure NodeFstDialog begin
 end
 
 procedure NodeFstDialog2 begin
-   Reply(202)
+   zReply(202)
    NAnswer(203,1,NodeStartDialog)
 end
 
@@ -224,7 +224,7 @@ procedure NodeSndDialog202 begin
    bitDialogExp(bit_2,50)
    item_add(dude_obj,PID_Q_LEBEDKA,1)
    item_remove(self_obj,PID_Q_LEBEDKA,1)
-   Reply(254)
+   zReply(254)
    NAnswer(255,1,Node999)
    BAnswer(256,1,Node999)
 end

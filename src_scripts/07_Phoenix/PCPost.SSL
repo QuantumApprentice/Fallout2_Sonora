@@ -212,7 +212,7 @@ procedure NodeSndDialog begin
    */
 
    if ((bitDialog(bit_3) == 0) and (global_var(GVAR_TITUL_PHENIX_CULT) > 0) and (getQuest(GVAR_PHENIX_CULT_DESTROY) < qEnd)) then begin
-   NAnswer(220,1,NodeCurierSkidka)
+   zNAnswer(220,1,NodeCurierSkidka)
    end
 
    if (bitDialog(bit_2) == 0) then begin

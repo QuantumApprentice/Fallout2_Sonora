@@ -429,7 +429,7 @@ procedure NodeAnswer100 begin
 end
 
 procedure NodeAnswer101 begin
-   Reply(254)
+   zReply(254)
    NAnswer(255,3,NodeAnswer102)
    if (map_var(MVAR_PNX_CASINO_PSWD) <= 0) then begin
    NAnswer(257,3,NodeAnswer103)

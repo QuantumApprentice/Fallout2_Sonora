@@ -214,7 +214,7 @@ procedure NodeFstDialog100 begin
 end
 
 procedure NodeFstDialog101 begin
-   Reply(205)
+   zReply(205)
    NAnswer(206,1,NodeFstDialog102)
 end
 
@@ -232,7 +232,7 @@ procedure NodeSndDialog begin
    zReply(211)
    end
    else begin
-   Reply(210)
+   zReply(210)
    end
 
    //!!! При успешном завершении писарьских квестов можно упросить на расширение товара у интенданта - set_global_var(GVAR_PUERTO_SKLAD_DOPUSK,3);
@@ -454,13 +454,13 @@ procedure NodeAnswer402 begin
 end
 
 procedure NodeAnswer403 begin
-   Reply(289)
+   zReply(289)
    NAnswer(292,1,NodeAnswer)
 end
 
 procedure NodeAnswer501 begin
    Reply(311)
-   NAnswer(312,1,Node999)
+   zNAnswer(312,1,Node999)
    BAnswer(314,1,Node998)
    BAnswer(313,1,Node999)
 end

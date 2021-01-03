@@ -267,7 +267,7 @@ end
 procedure NodeDialogStop3 begin
    zReply(411)
    NAnswer(412,1,NodeDialogStop4)
-   BAnswer(413,1,NodeDialogStop5)
+   zBAnswer(413,1,NodeDialogStop5)
 end
 
 procedure NodeDialogStop4 begin
@@ -282,7 +282,7 @@ end
 
 procedure NodeDialogCult begin
    bitDialogExp(bit_15,25)
-   Reply(404)
+   zReply(404)
    NAnswer(405,1,NodeDialogCult2)
 end
 
@@ -314,7 +314,7 @@ end
 procedure NodeDialogCult6 begin
    bitDialogExp(bit_16,50)
    setBonusReaction(50)
-   Reply(428)
+   zReply(428)
    NAnswer(429,1,Node999)
 end
 
@@ -328,11 +328,11 @@ end
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
    if (dude_iq <= 3) then begin
-   Reply(200)
+   zReply(200)
    NAnswer(287,1,NodeFstDialog1)
    end
    else if (get_SLAVA <= -50) then begin
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog2)
    end
    else if (get_SLAVA >= 100) then begin
@@ -377,7 +377,7 @@ end
 
 procedure NodeSndDialog begin
    if cultKnown then begin
-   Reply(410)
+   zReply(410)
    end
    else begin
    Reply(210)
@@ -520,7 +520,7 @@ end
 
 procedure NodeAnswer begin
    if cultKnown then begin
-   Reply(433)
+   zReply(433)
    end
    else begin
    Reply(213)
@@ -592,7 +592,7 @@ procedure NodeAnswer205 begin
    Reply(434)
    end
    else begin
-   Reply(227)
+   zReply(227)
    end
    NAnswerSkill(228,5,NodeAnswer208,SKILL_SCIENCE,20,229,NodeAnswer206)
 end
@@ -629,7 +629,7 @@ procedure NodeAnswer208 begin
 
    if cultKnown then begin
       Reply(431)
-      NAnswer(432,1,NodeAnswer209)
+      zNAnswer(432,1,NodeAnswer209)
    end
    else begin
       Reply(236)

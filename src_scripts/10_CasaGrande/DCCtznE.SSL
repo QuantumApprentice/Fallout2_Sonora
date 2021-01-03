@@ -184,12 +184,12 @@ end
 
 procedure NodeStopDialog begin
    if DudeTraitHas(TRAIT_espanol) then begin
-   Reply(240)
+   zReply(240)
    end
    else begin
    Reply(243)
    end
-   NAnswer(241,1,Node999)
+   zNAnswer(241,1,Node999)
    NAnswer(242,1,Node999)
 end
 

@@ -130,11 +130,11 @@ end
 
 procedure NodeFstDialog begin
    if (global_var(GVAR_RAIDER_STATUS_ROADBOSS)>0) then begin
-   Reply(211)
+   zReply(211)
    NAnswer(212,1,NodeFstDialog7)
    end
    else begin
-   Reply(200)
+   zReply(200)
    NAnswer(206,1,NodeFstDialog5)
    NAnswer(201,1,NodeFstDialog2)
    end

@@ -199,7 +199,7 @@ procedure NodeFstDialog begin
    Reply(200)
    BAnswer(201,1,NodeFstDialog2)
    if (global_var(GVAR_TITUL_ARIZONA_RANGER) > 0) then begin
-   NAnswer(204,1,NodeFstDialog3)
+   zNAnswer(204,1,NodeFstDialog3)
    end
    NAnswer(207,1,NodeFstDialog4)
 end
@@ -374,7 +374,7 @@ end
 
 procedure NodeQst201 begin
    if (global_var(GVAR_TITUL_ARIZONA_RANGER) > 0) then begin
-   Reply(325)
+   zReply(325)
    end
    else begin
    Reply(314)

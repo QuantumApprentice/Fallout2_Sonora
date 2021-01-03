@@ -277,11 +277,11 @@ end
 
 procedure NodeFstDialog2 begin
    Reply(202)
-   GAnswer(203,1,NodeFstDialog3)
+   zGAnswer(203,1,NodeFstDialog3)
 end
 
 procedure NodeFstDialog3 begin
-   Reply(204)
+   zReply(204)
    NAnswer(205,1,NodeFstDialog4)
    NAnswer(206,1,NodeFstDialog4)
 end
@@ -454,6 +454,6 @@ procedure NodeQst202 begin
    set_REP(35)
    exp_add(1000);
 
-   Reply(289)
+   zReply(289)
    NAnswer(290,1,Node999)
 end

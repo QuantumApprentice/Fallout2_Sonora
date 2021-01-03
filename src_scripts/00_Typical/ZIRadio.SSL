@@ -478,7 +478,7 @@ end
 procedure NodeRanders201 begin
    Reply(271)
    NAnswer(272,1,NodeRanders202)
-   NAnswer(273,1,NodeDialog)
+   zNAnswer(273,1,NodeDialog)
    NAnswer(274,1,NodeDialog)
 end
 
@@ -566,7 +566,7 @@ end
 procedure NodeVault27b begin
    mark_on_map(AREA_VAULT_27)
    Reply(304)
-   NAnswer(305,1,Node999)
+   zNAnswer(305,1,Node999)
 end
 
 //--- ИНФЕРНО

@@ -654,7 +654,7 @@ procedure NodeAnswer204 begin
       Reply(252)
    end
    else begin
-      Reply(251)
+      zReply(251)
    end
    NAnswer(248,1,NodeAnswer203)
    NAnswer(232,1,NodeAnswer)

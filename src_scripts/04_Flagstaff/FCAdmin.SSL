@@ -280,7 +280,7 @@ procedure NodeFstDialog4 begin
    set_global_var(GVAR_STATUS_FLAGSTAFF_ADMIN, 1);
    setBonusReaction(20)
    item_remove(dude_obj,PID_M_TV_DINNER,1)
-   Reply(243)
+   zReply(243)
    NAnswer(244,1,Node999)
 end
 

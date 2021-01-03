@@ -326,7 +326,7 @@ procedure NodeQstCult106 begin
 end
 
 procedure NodeQstCult107 begin
-   Reply(317)
+   zReply(317)
    BAnswer(314,1,Node999)
    NAnswer(315,1,Node999)
 end

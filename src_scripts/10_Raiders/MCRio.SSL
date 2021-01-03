@@ -662,7 +662,7 @@ procedure NodeQst100 begin
 end
 
 procedure NodeQst101 begin
-   Reply(403)
+   zReply(403)
    NAnswer(408,1,NodeQst104)
 end
 
@@ -691,7 +691,7 @@ end
 procedure NodeQst106 begin
    Reply(413)
    NAnswer(414,1,NodeQst107)
-   BAnswer(417,1,Node999)
+   zBAnswer(417,1,Node999)
 end
 
 procedure NodeQst107 begin

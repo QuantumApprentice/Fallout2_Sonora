@@ -215,7 +215,7 @@ end
 
 procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeSndDialog)
 end
 
@@ -779,7 +779,7 @@ procedure NodeQst205 begin
    set_REP(25)
 
    Reply(376)
-   BAnswer(377,1,NodeQst206)
+   zBAnswer(377,1,NodeQst206)
    NAnswer(379,1,NodeQst207)
 end
 
@@ -809,7 +809,7 @@ end
 
 
 procedure NodeQst300 begin
-   Reply(381)
+   zReply(381)
    NAnswer(382,1,NodeQst301)
 end
 
@@ -842,7 +842,7 @@ procedure NodeQst304 begin
    setBonusReaction(-10)
    set_REP(-1)
 
-   Reply(391)
+   zReply(391)
    GAnswer(394,1,Node999)
    NAnswer(392,1,Node999)
    BAnswer(393,1,Node999)

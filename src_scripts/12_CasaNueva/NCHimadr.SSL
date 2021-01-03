@@ -197,7 +197,7 @@ end
 procedure NodeFstDialog3 begin
    setReaction(25)
    set_REP(1)
-   Reply(207)
+   zReply(207)
    NAnswer(208,1,NodeSndDialog)
    BAnswer(209,1,NodeSndDialog)
 end

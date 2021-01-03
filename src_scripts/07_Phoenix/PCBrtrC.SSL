@@ -429,7 +429,7 @@ end
 procedure NodeCombez begin
    inc_local_var(LVAR_Combez);
    Reply(280)
-   NAnswer(281,1,NodeCombez2)
+   zNAnswer(281,1,NodeCombez2)
    NAnswer(282,1,NodeCombez2)
 end
 

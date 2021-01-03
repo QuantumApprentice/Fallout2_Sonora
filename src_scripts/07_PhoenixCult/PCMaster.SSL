@@ -371,7 +371,7 @@ procedure NodeStopDialog200 begin
    Reply(mstr(270)+dude_name+mstr(271))
 
    NAnswer(272,1,NodeFollower200)
-   BAnswer(273,1,NodeFollower200)
+   zBAnswer(273,1,NodeFollower200)
 end
 
 //--- ПЕРВЫЙ ДИАЛОГ
@@ -400,12 +400,12 @@ procedure NodeFstDialog3 begin
    NAnswer(mstr(204)+dude_name+mstr(205),1,NodeFstDialog400)
 
    if ((global_var(GVAR_TITUL_BOS) > 0) or (armor_pid_dude_var == PID_ARMOR_COMBAT_BOS)) then begin
-   GAnswer(264,1,NodeFstDialog104)
+   zGAnswer(264,1,NodeFstDialog104)
    end
 
    GAnswer(206,3,NodeFollower)
    NAnswer(202,1,NodeFstDialog300)
-   BAnswer(210,1,NodeFstDialog100)
+   zBAnswer(210,1,NodeFstDialog100)
 end
 
 procedure NodeFstDialog100 begin
@@ -425,7 +425,7 @@ procedure NodeFstDialog100 begin
 end
 
 procedure NodeFstDialog101 begin
-   Reply(213)
+   zReply(213)
    GAnswer(216,5,NodeFstDialog103)
    NAnswer(214,1,Node998)
    NAnswer(215,1,Node998)
@@ -514,7 +514,7 @@ procedure NodeFstDialog300 begin
    Reply(250)
    GAnswerSkill(254,3,NodeAnswer200,SKILL_CONVERSANT,50,254,NodeAnswer200b)
    NAnswer(251,1,NodeFstDialog302)
-   GAnswer(252,1,Node999)
+   zGAnswer(252,1,Node999)
    NAnswer(253,1,NodeFstDialog301)
 end
 
@@ -547,7 +547,7 @@ procedure NodeFstDialogEnemy01 begin
    BAnswer(226,1,Node999)
    end
    else begin
-   Reply(230)
+   zReply(230)
    BAnswer(231,1,Node998)
    NAnswer(232,1,Node998)
    end
@@ -567,14 +567,14 @@ procedure NodeSndDialog begin
       Reply(304)
       end
       else if (global_var(GVAR_PHENIX_CULT_PREVTITUL) > 0) then begin
-      Reply(305)
+      zReply(305)
       end
       else begin
       Reply(304)
       end
    end
    else if (local_var(LVAR_Dude_Knowing) == 2) then begin
-      Reply(303)
+      zReply(303)
    end
    else if (local_var(LVAR_Dude_Knowing) == 1) then begin
       if (getReaction >= 20) then begin
@@ -584,7 +584,7 @@ procedure NodeSndDialog begin
       Reply(306)
       end
       else begin
-      Reply(301)
+      zReply(301)
       end
    end
    else begin
@@ -974,7 +974,7 @@ procedure NodeAnswer begin
    Reply(320)
    GAnswerSkill(324,3,NodeAnswer200,SKILL_CONVERSANT,35,324,NodeAnswer200b)
    NAnswer(321,1,NodeAnswer101)
-   GAnswer(322,1,NodeSndDialog2)
+   zGAnswer(322,1,NodeSndDialog2)
    NAnswer(323,1,NodeAnswer101a)
    end
 end
@@ -1118,7 +1118,7 @@ end
 
 procedure NodeFollower begin
    if (local_var(LVAR_Dude_Knowing) == 1) then begin
-   Reply(512)
+   zReply(512)
    end
    else begin
    Reply(501)
@@ -1270,7 +1270,7 @@ procedure NodeVilla102 begin
    if (bitDialog(bit_2) == 0) then begin
    Reply(412)
    GAnswer(413,1,NodeMoveTwoSun)
-   BAnswer(414,1,NodeVilla103)
+   zBAnswer(414,1,NodeVilla103)
    end
    else begin
    call NodeSndDialog2;
@@ -1300,7 +1300,7 @@ procedure NodeVilla103 begin
    NAnswer(418,1,Node999)
    end
    else begin
-   Reply(416)
+   zReply(416)
    NAnswer(423,1,NodeVilla102)
    BAnswer(428,1,Node998)
    BAnswer(429,1,Node998)

@@ -169,7 +169,7 @@ end
 
 procedure NodeDialog begin
    if (bitDialog(bit_1) == 0) then begin
-   Reply(200)
+   zReply(200)
    bitDialogExp(bit_1,0)
    end
    else begin

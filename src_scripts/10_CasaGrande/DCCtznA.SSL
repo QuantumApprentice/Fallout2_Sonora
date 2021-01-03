@@ -144,13 +144,28 @@ procedure replyfloat_proc begin
        // Репутация
        if (replyFloat == 5) then begin
           if town_rep_is_liked then begin
-          replyFloat := random(187,189);
+             if dude_is_female then begin
+             replyFloat := random(1187,1189);
+             end
+             else begin
+             replyFloat := random(187,189);
+             end
           end
           else if town_rep_is_hated then begin
-          replyFloat := random(180,182);
+             if dude_is_female then begin
+             replyFloat := random(1180,1182);
+             end
+             else begin
+             replyFloat := random(180,182);
+             end
           end
           else begin
-          replyFloat := random(183,186);
+             if dude_is_female then begin
+             replyFloat := random(1183,1186);
+             end
+             else begin
+             replyFloat := random(183,186);
+             end
           end
        end
 
@@ -215,7 +230,7 @@ end
 
 procedure talk_p_proc begin
    if town_rep_is_liked then begin
-   floater(self_obj,random(220,229),COLOR_MSG_NORMAL);
+   z_floater(self_obj,random(220,229),COLOR_MSG_NORMAL);
    end
    else if town_rep_is_hated then begin
    floater(self_obj,random(210,219),COLOR_MSG_RED);

@@ -321,19 +321,19 @@ end
 procedure NodeGranad104 begin
    call NodeGranadDelete;
    Reply(227)
-   NAnswer(228,1,Node999)
+   zNAnswer(228,1,Node999)
 end
 
 procedure NodeGranad200 begin
    Reply(241)
    NAnswer(243,5,NodeGranad201)
-   NAnswer(242,1,Node999)
+   zNAnswer(242,1,Node999)
 end
 
 procedure NodeGranad201 begin
    Reply(244)
    NAnswer(246,1,NodeGranad202)
-   NAnswer(245,1,Node999)
+   zNAnswer(245,1,Node999)
 end
 
 procedure NodeGranad202 begin

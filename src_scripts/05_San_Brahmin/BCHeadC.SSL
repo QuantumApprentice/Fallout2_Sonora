@@ -224,7 +224,7 @@ end
 procedure NodeStopDialog100 begin
    bitDialogExp(bit_2,0)
    Reply(200)
-   BAnswer(205,1,NodeStopDialog102)
+   zBAnswer(205,1,NodeStopDialog102)
    NAnswer(201,1,NodeStopDialog101)
 end
 
@@ -328,7 +328,7 @@ end
 
 procedure NodeSndDialog begin
    if (getReaction>0) then begin
-   Reply(230)
+   zReply(230)
    end
    else begin
    Reply(231)
@@ -393,7 +393,7 @@ procedure NodeAnswer103 begin
 end
 
 procedure NodeAnswer200 begin
-   Reply(251)
+   zReply(251)
    NAnswer(253,1,NodeAnswer201)
    BAnswer(256,1,NodeAnswer202)
    GAnswer(259,1,NodeAnswer203)
@@ -540,7 +540,7 @@ procedure NodeQst100 begin
 end
 
 procedure NodeQst101 begin
-   Reply(314)
+   zReply(314)
    NAnswerSkill(319,3,NodeQst103,SKILL_CONVERSANT,90,315,NodeQst102)
    NAnswerReaction(327,3,NodeQst105,70,326,NodeQst102)
    NAnswer(329,1,NodeQst106)

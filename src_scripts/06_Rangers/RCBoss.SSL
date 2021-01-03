@@ -424,7 +424,7 @@ end
 //--- ПЕРВЫЙ ДИАЛОГ
 
 procedure NodeFstDialog begin
-   Reply(200)
+   zReply(200)
    NAnswer(201,1,NodeFstDialog2)
 end
 
@@ -895,7 +895,7 @@ procedure NodeFlagstaffRanger4 begin
 end
 
 procedure NodeFlagstaffRanger5 begin
-   set_gvar_bit_on(GVAR_RANGERS_RECOMMENDATION, bit_5);
+   set_gvar_bit_on(GVAR_DIALOGS_FLAGS_BIT, bit_5);
    Reply(242)
    NAnswer(243,1,Node999)
    NAnswer(244,1,Node999)
@@ -1433,9 +1433,14 @@ end
 procedure NodeConcilium101 begin
    /*
    Комментарий: Слишком резкий переход к теме Братства.
-   По идеи здесь должна быть промежуточная миссия в Ногалесе, которая знакомит игрока с Братством.
+   По изначальной идеи, здесь должна быть промежуточная миссия в Ногалесе, которая знакомит игрока с Братством.
    */
+   if dude_is_female then begin
+   Reply(mstr(1592)+dude_name+mstr(1593))
+   end
+   else begin
    Reply(mstr(592)+dude_name+mstr(593))
+   end
    NAnswer(594,1,NodeConcilium102)
 end
 
@@ -1480,7 +1485,7 @@ procedure NodeConcilium108 begin
 end
 
 procedure NodeConcilium109 begin
-   Reply(609)
+   zReply(609)
    BAnswer(611,1,NodeConcilium110)
    NAnswer(610,1,Node999)
 end

@@ -174,7 +174,7 @@ procedure science_proc begin
    end
    else if (scienceIndx == 2) then begin
       mark_world_subtile_visited(400, 450, 4);
-      mark_on_map(AREA_JACKALS)
+      //mark_on_map(AREA_JACKALS) -- рейнджеры не знают местоположение шакалов!
       mark_on_map(AREA_GARAGE)
       mark_on_map(AREA_FLAGSTAFF)
       mark_on_map(AREA_QUARTZ)

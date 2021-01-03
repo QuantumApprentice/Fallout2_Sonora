@@ -203,7 +203,7 @@ end
 procedure NodeFstDialog2 begin
    set_map_var(MVAR_PnxVlt_Dopusk,1);
    bitDialogExp(bit_4,200)
-   Reply(213)
+   zReply(213)
    if (global_var(GVAR_TITUL_PHENIX_CULT) > 0) then begin
    NAnswer(214,1,Node999)
    end

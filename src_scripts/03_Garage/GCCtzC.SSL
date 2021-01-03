@@ -188,8 +188,8 @@ end
 procedure NodeFstDialog2 begin
    setBonusReaction(-35)
    set_REP(-1)
-   Reply(202)
-   NAnswer(204,1,NodeFstDialog3)
+   zReply(202)
+   zNAnswer(204,1,NodeFstDialog3)
    NAnswer(203,1,Node999)
 end
 

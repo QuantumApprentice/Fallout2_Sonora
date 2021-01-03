@@ -288,7 +288,7 @@ procedure NodeFstDialog8 begin
    set_SLAVA(-5)
    set_REP(-2)
    Reply(222)
-   NAnswer(223,1,NodeSndDialog)
+   zNAnswer(223,1,NodeSndDialog)
    NAnswer(224,1,Node999)
 end
 

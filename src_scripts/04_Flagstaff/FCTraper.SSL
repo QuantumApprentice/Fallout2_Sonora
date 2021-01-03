@@ -188,7 +188,7 @@ procedure NodeFstDialog begin
    if (getQuest(GVAR_FLAGSTAFF_QST_TRAPERS) == qStart) then begin
    NAnswer(201,1,NodeFstDialog2)
    end
-   NAnswer(203,1,NodeFstDialog3)
+   zNAnswer(203,1,NodeFstDialog3)
 end
 
 procedure NodeFstDialog2 begin

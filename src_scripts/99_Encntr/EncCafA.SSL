@@ -189,9 +189,9 @@ procedure NodeStopDialog begin
    if (bitDialog(bit_3) == 0) then begin
    NAnswer(259,1,NodeStopDialog2)
    end else begin
-   NAnswer(251,1,NodeStopDialog2)
+   zNAnswer(251,1,NodeStopDialog2)
    end
-   BAnswer(258,1,Node998)
+   zBAnswer(258,1,Node998)
 end
 
 procedure NodeStopDialog1 begin

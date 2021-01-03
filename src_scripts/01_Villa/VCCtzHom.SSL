@@ -145,7 +145,7 @@ procedure NodeFstDialog begin
       NAnswer(208,1,NodeFstDialog3)
       end
       else begin
-      NAnswer(202,1,NodeFstDialog1)
+      zNAnswer(202,1,NodeFstDialog1)
       end
    end
    NAnswer(201,1,Node999)
@@ -158,7 +158,7 @@ end
 
 procedure NodeFstDialog2 begin
    bitDialogExp(bit_2,0)
-   Reply(205)
+   zReply(205)
    BAnswer(206,1,Node999)
    NAnswer(207,1,Node999)
 end

@@ -146,7 +146,7 @@ end
 
 procedure NodeDialog begin
    bitDialogExp(bit_1,0)
-   Reply(200)
+   zReply(200)
    BAnswer(201,1,NodeDialog2)
    NAnswer(202,1,NodeDialog3)
 end

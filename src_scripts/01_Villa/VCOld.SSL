@@ -254,7 +254,7 @@ end
 procedure talk_p_proc begin
    if (global_var(GVAR_GAME_END) != 0) then begin
       if (global_var(GVAR_TITUL_VILLA_TRADITION)>0) then begin
-      floater(self_obj,102,COLOR_MSG_GREEN);
+      z_floater(self_obj,102,COLOR_MSG_GREEN);
       end
       else if (global_var(GVAR_TITUL_VILLA_DISTROY)>0) then begin
       floater(self_obj,103,COLOR_MSG_RED);
@@ -459,7 +459,12 @@ procedure NodeConcuilA105 begin
    end
    else if town_rep_is_liked then begin
       inc_map_var(MVAR_Plaza_OldRespect);
+      if dude_is_female then begin
+      Reply(mstr(270)+dude_name+mstr(1271)+dude_name+mstr(272))
+      end
+      else begin
       Reply(mstr(270)+dude_name+mstr(271)+dude_name+mstr(272))
+      end
       NAnswer(273,1,NodeConcuilA106)
       BAnswer(274,1,NodeConcuilA107)
    end
@@ -496,13 +501,13 @@ procedure NodeConcuilA200 begin
    dec_map_var(MVAR_Plaza_OldRespect);
    Reply(mstr(284)+dude_name+mstr(285))
    BAnswer(287,1,NodeConcuilA201)
-   NAnswer(286,1,NodeConcuilA201)
+   zNAnswer(286,1,NodeConcuilA201)
    end
    else if (global_var(GVAR_VILLA_STATUS_PADRE) > 0) then begin
    inc_map_var(MVAR_Plaza_OldRespect);
    Reply(mstr(280)+dude_name+mstr(281))
    BAnswer(283,1,NodeConcuilA201)
-   NAnswer(282,1,NodeConcuilA201)
+   zNAnswer(282,1,NodeConcuilA201)
    end
    else begin
    call NodeConcuilA201;
@@ -539,7 +544,7 @@ end
 procedure NodeConcuilA300 begin
    //{300}{}{(другой старик подает брюзжащий голос из зала) Не спеши радоваться новым обноскам, мантис-попрыгун. Старики не доверяют молодым. У вас мало опыта. Хоть тебе и удалось спасти людей из рабства, а что еще ты можешь?}
    //{301}{}{Я...}
-   Reply(300)
+   zReply(300)
    BAnswer(302,1,NodeConcuilA301)
    NAnswer(301,1,NodeConcuilA301)
 end
@@ -590,15 +595,15 @@ procedure NodeConcuilA303 begin
    end
 
    if ((bitDialog(bit_4) == 0) and (getQuest(GVAR_VILLA_METEO) >= qEnd)) then begin
-   NAnswer(320,1,NodeConcuilA304)
+   zNAnswer(320,1,NodeConcuilA304)
    end
 
    if ((bitDialog(bit_5) == 0) and (getQuest(GVAR_VILLA_MARAUDERS) >= qEnd)) then begin
-   NAnswer(323,1,NodeConcuilA305)
+   zNAnswer(323,1,NodeConcuilA305)
    end
 
    if ((bitDialog(bit_6) == 0) and (getQuest(GVAR_VILLA_MEDIC_HELP) >= qEnd)) then begin
-   NAnswer(330,1,NodeConcuilA306)
+   zNAnswer(330,1,NodeConcuilA306)
    end
 
    if ((bitDialog(bit_7) == 0) and (getQuest(GVAR_VILLA_KID_RUN) >= qEnd)) then begin
@@ -607,7 +612,7 @@ procedure NodeConcuilA303 begin
 
    if (replyNum > 0) then begin
    NAnswer(314,1,NodeConcuilA308)
-   BAnswer(313,1,NodeConcuilA308)
+   zBAnswer(313,1,NodeConcuilA308)
    end
    else begin
    BAnswer(312,1,NodeConcuilA308)
@@ -627,7 +632,7 @@ procedure NodeConcuilA305 begin
    replyNum += 1;
    if (global_var(GVAR_VILLA_MARAUDERS_RUN) == 11) then begin
    inc_map_var(MVAR_Plaza_OldRespect);
-   Reply(324)
+   zReply(324)
    NAnswer(325,1,NodeConcuilA303)
    BAnswer(326,1,NodeConcuilA303)
    end
@@ -680,17 +685,22 @@ end
 
 procedure NodeConcuilA400 begin
    if (getQuest(GVAR_VILLA_QST_CHRIS) >= 3) then begin
-   dec_map_var(MVAR_Plaza_OldRespect);
-   Reply(mstr(350)+dude_name+mstr(351))
-   NAnswer(352,1,NodeConcuilA402)
+      dec_map_var(MVAR_Plaza_OldRespect);
+      Reply(mstr(350)+dude_name+mstr(351))
+      NAnswer(352,1,NodeConcuilA402)
    end
    else if ((getQuest(GVAR_VILLA_QST_CHRIS) == 2) and (global_var(GVAR_VILLA_STATUS_CHRIS)<2)) then begin
-   inc_map_var(MVAR_Plaza_OldRespect);
-   Reply(mstr(363)+dude_name+mstr(364)+dude_name+mstr(365))
-   NAnswer(366,1,NodeConcuilA405)
+      inc_map_var(MVAR_Plaza_OldRespect);
+      if dude_is_female then begin
+      Reply(mstr(363)+dude_name+mstr(1364)+dude_name+mstr(365))
+      end
+      else begin
+      Reply(mstr(363)+dude_name+mstr(364)+dude_name+mstr(365))
+      end
+      NAnswer(366,1,NodeConcuilA405)
    end
    else begin
-   call NodeConcuilA401;
+      call NodeConcuilA401;
    end
 end
 
@@ -765,7 +775,12 @@ procedure NodeConcuilA409 begin
 end
 
 procedure NodeConcuilA410 begin
+   if dude_is_female then begin
+   Reply(mstr(1385)+dude_name+mstr(386))
+   end
+   else begin
    Reply(mstr(385)+dude_name+mstr(386))
+   end
    NAnswer(387,1,NodeConcuilA411)
    BAnswer(388,1,NodeConcuilA411)
 end
@@ -1107,7 +1122,7 @@ procedure NodeConcuilB210 begin
 end
 
 procedure NodeConcuilB211 begin
-   Reply(507)
+   zReply(507)
    NAnswer(508,1,NodeConcuilB212)
 end
 

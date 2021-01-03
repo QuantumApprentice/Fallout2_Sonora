@@ -116,11 +116,9 @@ procedure goo_proc begin
       //--- Нанесение урона:
 
       if (gooDamageAmnt >0) then begin
-         /*
          if (gooObj == dude_obj) then begin
          radiation_inc(dude_obj, 1);
          end
-         */
          if (get_critter_stat(gooObj,STAT_current_hp) >0) then begin
          critter_dmg(gooObj, gooDamageAmnt, DMG_plasma);
          end

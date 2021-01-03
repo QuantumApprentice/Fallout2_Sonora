@@ -254,7 +254,7 @@ end
 procedure NodeFstDialog103 begin
    bitDialogExp(bit_2,50)
    Reply(211)
-   NAnswer(220,1,NodeFstDialog105)
+   zNAnswer(220,1,NodeFstDialog105)
    BAnswer(260,1,NodeFstDialog150)
    NAnswer(280,1,NodeFstDialog170)
    if (global_var(GVAR_TITUL_ARIZONA_RANGER) > 0) then begin
@@ -474,7 +474,7 @@ procedure NodeAnswer200 begin
    Reply(371)
 
    NAnswer(374,1,NodeAnswer201)
-   NAnswer(378,1,NodeAnswer203)
+   zNAnswer(378,1,NodeAnswer203)
    NAnswer(380,1,NodeAnswer204)
    if (town_known(AREA_RANGERS) == MARK_STATE_UNKNOWN) then begin
    NAnswer(384,1,NodeAnswer206)
@@ -689,7 +689,7 @@ end
 
 procedure NodeAnswer409 begin
    call NodeGoHome;
-   Reply(476)
+   zReply(476)
    NAnswer(477,1,Node999)
    NAnswer(478,1,Node999)
 end

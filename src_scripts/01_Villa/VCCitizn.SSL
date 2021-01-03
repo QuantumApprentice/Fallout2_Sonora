@@ -185,6 +185,10 @@ procedure replyfloat_proc begin
            else begin
            replyFloat += random(3,5);
            end
+
+           if dude_is_female then begin
+           replyFloat += 1000;
+           end
        end
 
        // Очищение реплик на время Совета

@@ -145,7 +145,7 @@ procedure talk_p_proc begin
    floater(self_obj,103,COLOR_MSG_RED);
    end
    else if (global_var(GVAR_PHENIX_CULT_DESTROY_TIMER) != 0) then begin
-   floater(self_obj,104,COLOR_MSG_NORMAL);
+   z_floater(self_obj,104,COLOR_MSG_NORMAL);
    end
    else begin
    setReaction(1) // Отношение к ГГ(1 - персонаж положительный, -1 отрицательный, 0 нейтральный)
@@ -189,7 +189,7 @@ procedure NodeFstDialog3 begin
 end
 
 procedure NodeFstDialog4 begin
-   Reply(206)
+   zReply(206)
    NAnswer(207,1,NodeSndDialog)
    NAnswer(208,1,Node999)
 end
@@ -263,7 +263,7 @@ procedure NodeWater begin
    bitDialogExp(bit_6,25)
    item_add(dude_obj,PID_M_WATER_FLASK,1)
    PLAY_FADE
-   Reply(261)
+   zReply(261)
    BAnswer(262,1,NodeWater1)
    GAnswer(263,1,NodeWater2)
 end
@@ -307,7 +307,7 @@ procedure NodeAnswer begin
 end
 
 procedure NodeAnswer100 begin
-   Reply(223)
+   zReply(223)
    NAnswer(224,4,NodeAnswer101)
    NAnswer(212,1,NodeSndDialog)
 end
@@ -325,14 +325,14 @@ procedure NodeAnswer102 begin
 end
 
 procedure NodeAnswer200 begin
-   Reply(231)
+   zReply(231)
    NAnswer(232,5,NodeAnswer201)
    NAnswer(212,1,NodeSndDialog)
 end
 
 procedure NodeAnswer201 begin
    bitDialogExp(bit_3,25)
-   Reply(233)
+   zReply(233)
    NAnswer(234,1,NodeSndDialog)
 end
 

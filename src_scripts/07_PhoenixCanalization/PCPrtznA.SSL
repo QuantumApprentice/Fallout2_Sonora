@@ -244,13 +244,13 @@ end
 procedure NodeFstDialog200 begin
    Reply(226)
    NAnswer(227,1,NodeFstDialog201)
-   BAnswer(228,1,NodeFstDialog102)
+   zBAnswer(228,1,NodeFstDialog102)
 end
 
 procedure NodeFstDialog201 begin
    Reply(229)
    NAnswer(232,1,NodeFstDialog108)
-   NAnswer(233,1,NodeFstDialog108)
+   zNAnswer(233,1,NodeFstDialog108)
 end
 
 procedure NodeFstDialog202 begin

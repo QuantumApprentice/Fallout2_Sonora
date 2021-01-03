@@ -61,13 +61,23 @@ procedure timed_event_p_proc begin
    end
    if (fixed_param == 2) then begin
        if ((dude_iq <= 2) and (cur_map_index == MAP_SAN_BRAHMIN_GARD)) then begin
-       timer_floater(110,149,COLOR_MSG_LIGHT_GREY,random(70,200))
+          if dude_is_female then begin
+          timer_floater(1120,1149,COLOR_MSG_LIGHT_GREY,random(70,200))
+          end
+          else begin
+          timer_floater(120,149,COLOR_MSG_LIGHT_GREY,random(70,200))
+          end
        end
        else if ((dude_iq <= 2) and (cur_map_index == MAP_HERMO_RANCHO)) then begin
-       timer_floater(110,149,COLOR_MSG_LIGHT_GREY,random(70,200))
+          if dude_is_female then begin
+          timer_floater(1120,1149,COLOR_MSG_LIGHT_GREY,random(70,200))
+          end
+          else begin
+          timer_floater(120,149,COLOR_MSG_LIGHT_GREY,random(70,200))
+          end
        end
        else begin
-       timer_float_reply(110,119)
+          timer_float_reply(110,119)
        end
    end
 end

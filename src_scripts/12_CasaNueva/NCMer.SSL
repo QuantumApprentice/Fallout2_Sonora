@@ -364,7 +364,7 @@ end
 
 procedure NodeSndDialog begin
    if town_rep_is_idolized then begin
-   Reply(253)
+   zReply(253)
    end
    else if town_rep_is_liked then begin
    Reply(252)

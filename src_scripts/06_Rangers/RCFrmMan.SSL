@@ -344,7 +344,7 @@ procedure NodeAnswer134 begin
    setBonusReaction(25)
    set_REP(3)
    bitDialogExp(bit_3,250)
-   Reply(306)
+   zReply(306)
    zNAnswer(307,1,NodeAnswer135)
    NAnswer(315,1,NodeAnswer138)
 end
@@ -354,7 +354,7 @@ procedure NodeAnswer135 begin
    item_add(dude_obj,PID_M_FRUIT,5)
    Reply(308)
    NAnswer(309,1,NodeAnswer136)
-   BAnswer(312,1,NodeAnswer137)
+   zBAnswer(312,1,NodeAnswer137)
 end
 
 procedure NodeAnswer136 begin

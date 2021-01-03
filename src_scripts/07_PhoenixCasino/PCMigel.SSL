@@ -207,7 +207,7 @@ end
 
 procedure NodeFstDialog102 begin
    Reply(206)
-   NAnswer(207,1,NodeFstDialog103)
+   zNAnswer(207,1,NodeFstDialog103)
 end
 
 procedure NodeFstDialog103 begin
@@ -230,7 +230,7 @@ procedure NodeFstDialog103 begin
 end
 
 procedure NodeFstDialog104 begin
-   Reply(210)
+   zReply(210)
    NAnswer(211,1,NodeFstDialog105)
 end
 
@@ -273,7 +273,12 @@ procedure NodeFstDialog109 begin
 end
 
 procedure NodeFstDialog200 begin
+   if dude_is_female then begin
+   Reply(mstr(1230)+dude_name+mstr(1231))
+   end
+   else begin
    Reply(mstr(230)+dude_name+mstr(231))
+   end
    NAnswer(232,1,NodeFstDialog201)
 end
 
@@ -363,7 +368,7 @@ end
 
 procedure NodeAnswer200 begin
    bitDialogExp(bit_3,50)
-   Reply(321)
+   zReply(321)
    NAnswer(322,1,NodeAnswer201)
 end
 
@@ -399,7 +404,7 @@ procedure NodeAnswer206 begin
 end
 
 procedure NodeAnswer207 begin
-   Reply(333)
+   zReply(333)
    NAnswer(334,1,NodeAnswer208)
    BAnswer(335,1,NodeAnswer208)
 end
@@ -416,6 +421,6 @@ end
 
 procedure NodeAnswer210 begin
    bitDialogExp(bit_4,30)
-   Reply(342)
+   zReply(342)
    NAnswer(343,1,NodeAnswer209)
 end

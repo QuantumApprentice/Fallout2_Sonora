@@ -556,7 +556,7 @@ end
 
 procedure NodeJackals101 begin
    Reply(264)
-   if (town_known(AREA_JACKALS) >= MARK_STATE_VISITED) then begin
+   if (town_known(AREA_JACKALS) >= MARK_STATE_KNOWN) then begin
    NAnswer(268,1,NodeJackals103)
    end
    NAnswer(265,1,NodeJackals102)
@@ -582,7 +582,7 @@ procedure NodeJackals200 begin
    bitDialogExp(bit_4,50)
    set_REP(7)
    display_mstr(275);
-   Reply(273)
+   zReply(273)
    NAnswer(274,1,Node999)
 end
 

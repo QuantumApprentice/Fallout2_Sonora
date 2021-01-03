@@ -259,12 +259,12 @@ end
 
 procedure NodeSndDialog102 begin
    bitDialogExp(bit_2,0)
-   Reply(231)
+   zReply(231)
    NAnswer(232,1,NodeSndDialog200)
 end
 
 procedure NodeSndDialog200 begin
-   Reply(212)
+   zReply(212)
    NAnswer(240,1,NodeAnswer100)
    if ((getQuest(GVAR_TWOSUN_QST_PADRE) < qEnd) or (getQuest(GVAR_MAIN_QUEST_TWOSUN) < qEnd)) then begin
    NAnswer(260,1,NodeAnswer200)

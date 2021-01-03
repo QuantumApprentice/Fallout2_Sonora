@@ -241,8 +241,8 @@ procedure NodeAnswer300 begin
 end
 
 procedure NodeAnswer301 begin
-   Reply(215)
-   BAnswer(216,1,NodeAnswer302)
+   zReply(215)
+   zBAnswer(216,1,NodeAnswer302)
    NAnswer(217,1,NodeAnswer303)
    GAnswer(218,1,NodeAnswer304)
 end

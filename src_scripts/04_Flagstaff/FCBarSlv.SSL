@@ -187,7 +187,7 @@ procedure NodeFstDialog begin
    bitDialogExp(bit_1,0)
    Reply(200)
    zNAnswer(201,3,NodeFstDialog1)
-   NAnswer(202,1,NodeFstDialog2)
+   zNAnswer(202,1,NodeFstDialog2)
    BAnswer(203,1,NodeFstDialog3)
 end
 
@@ -203,7 +203,7 @@ end
 
 procedure NodeFstDialog2 begin
    set_REP(-2)
-   Reply(207)
+   zReply(207)
    NAnswer(208,1,Node999)
    BAnswer(209,1,Node998)
 end

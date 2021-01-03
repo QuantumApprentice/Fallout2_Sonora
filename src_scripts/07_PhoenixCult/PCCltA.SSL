@@ -164,6 +164,9 @@ procedure talk_p_proc begin
 
    if (global_var(GVAR_TITUL_PHENIX_CULT) >0) then begin
       replyNumber := random(114,119);
+      if dude_is_female then begin
+      replyNumber := random(1114,1119);
+      end
    end
 
    if (replyNumber == 0) then begin

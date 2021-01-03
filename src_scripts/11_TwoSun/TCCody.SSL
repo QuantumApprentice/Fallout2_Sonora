@@ -235,8 +235,8 @@ procedure NodeQuest101 begin
 end
 
 procedure NodeQuest200 begin
-   Reply(261)
-   NAnswer(262,1,NodeQuest201)
+   zReply(261)
+   zNAnswer(262,1,NodeQuest201)
 end
 
 procedure NodeQuest201 begin
@@ -270,6 +270,6 @@ procedure NodeQuest205 begin
    set_SLAVA(25)
    exp_add(350);
 
-   Reply(268)
+   zReply(268)
    NAnswer(269,1,Node999)
 end

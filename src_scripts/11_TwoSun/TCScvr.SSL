@@ -194,7 +194,7 @@ procedure NodeSndDialog102 begin
 end
 
 procedure NodeSndDialog103 begin
-   Reply(217)
+   zReply(217)
    NAnswer(218,1,NodeSndDialog104)
 end
 
@@ -209,7 +209,7 @@ procedure NodeSndDialog105 begin
 end
 
 procedure NodeSndDialog106 begin
-   Reply(224)
+   zReply(224)
    NAnswer(225,1,Node999)
    BAnswer(226,1,Node999)
 end

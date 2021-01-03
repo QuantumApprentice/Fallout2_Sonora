@@ -195,7 +195,7 @@ procedure NodeFstDialog begin
    BAnswer(213,1,NodeFstDialog104)
    end
    else begin
-   Reply(200)
+   zReply(200)
    GAnswer(201,1,NodeFstDialog101)
    //NAnswer(201,1,NodeFstDialog101)
    BAnswer(203,1,NodeFstDialog102)
@@ -205,14 +205,14 @@ end
 procedure NodeFstDialog101 begin
    set_REP(1)
    setBonusReaction(10)
-   Reply(202)
+   zReply(202)
    NAnswer(205,1,NodeFstDialog105)
 end
 
 procedure NodeFstDialog102 begin
    set_REP(-1)
    setBonusReaction(-10)
-   Reply(204)
+   zReply(204)
    NAnswer(205,1,NodeFstDialog105)
 end
 
@@ -244,7 +244,7 @@ procedure NodeSndDialog begin
    Reply(221)
    end
    else begin
-   Reply(220)
+   zReply(220)
    end
    NAnswer(230,3,NodeAnswer101)
    NAnswer(234,3,NodeAnswer100)
@@ -323,7 +323,7 @@ procedure NodeGame7 begin
    end
    exp_add(35);
    inc_local_var(LVAR_Game_Point);
-   Reply(263)
+   zReply(263)
    NAnswer(264,1,Node999)
    BAnswer(265,1,Node999)
 end
@@ -521,7 +521,7 @@ end
 
 procedure NodeAnswer300 begin
    bitDialogExp(bit_3,100)
-   Reply(341)
+   zReply(341)
    GAnswer(342,1,NodeAnswer301)
    BAnswer(343,1,NodeAnswer301)
 end

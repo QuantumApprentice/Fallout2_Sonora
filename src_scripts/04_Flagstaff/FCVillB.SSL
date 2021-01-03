@@ -238,7 +238,7 @@ end
 
 procedure NodeSndDialog100 begin
    Reply(211)
-   NAnswer(212,1,NodeSndDialog101)
+   zNAnswer(212,1,NodeSndDialog101)
    NAnswer(218,1,Node999)
 end
 

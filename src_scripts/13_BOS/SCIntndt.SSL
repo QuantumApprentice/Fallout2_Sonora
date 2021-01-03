@@ -332,7 +332,14 @@ procedure NodeSndDialog begin
    end
 
    if (get_BarterDopusk == 0) then begin
-   NAnswer(250,1,NodeBarter200)
+      NAnswer(250,1,NodeBarter200)
+   end
+   else if (get_BarterDopusk != 0) then begin
+      if (bitDialog(bit_2) == 0) then begin
+      if (item_amnt(dude_obj,PID_W_LAUNCHER) > 0) then begin
+      NAnswer(290,1,NodeBarter208)
+      end
+      end
    end
 
    //--- Расспросы
@@ -476,6 +483,7 @@ procedure NodeBarter200 begin
    end
 
    NAnswer(253,1,NodeBarter201)
+   NAnswer(258,1,NodeSndDialog)
 end
 
 procedure NodeBarter201 begin

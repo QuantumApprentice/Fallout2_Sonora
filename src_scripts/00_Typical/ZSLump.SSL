@@ -5,6 +5,7 @@ procedure start;
 procedure ID_proc;
 procedure map_enter_p_proc;
 procedure use_obj_on_p_proc;
+procedure damage_p_proc;
 procedure lump_gener;
 procedure delete_lump;
 
@@ -51,6 +52,29 @@ procedure use_obj_on_p_proc begin
        else begin
        display_mstr(102);
        end
+   end
+end
+
+procedure damage_p_proc begin
+   if (target_obj != 0) then begin
+      if (weapon_dmg_type(target_obj) == DMG_fire) then begin
+         call ID_proc;
+         if (lumpPID > 0) then begin
+         call lump_gener;
+         end
+      end
+      else if (weapon_dmg_type(target_obj) == DMG_laser) then begin
+         call ID_proc;
+         if (lumpPID > 0) then begin
+         call lump_gener;
+         end
+      end
+      else if (weapon_dmg_type(target_obj) == DMG_plasma) then begin
+         call ID_proc;
+         if (lumpPID > 0) then begin
+         call lump_gener;
+         end
+      end
    end
 end
 

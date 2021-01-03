@@ -170,7 +170,7 @@ end
 
 procedure NodeSndDialog begin
    if (map_var(MVAR_TWOSUN_PartyVill) == 0) then begin
-   Reply(210)
+   zReply(210)
    NAnswer(220,1,NodeParty)
    end else begin
    Reply(215)

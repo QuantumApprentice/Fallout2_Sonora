@@ -149,10 +149,10 @@ end
 
 procedure NodeSndDialog begin
    if (global_var(GVAR_TITUL_PHENIX_CULT) >0) then begin
-   Reply(201)
+   zReply(201)
    end
    else begin
-   Reply(200)
+   zReply(200)
    end
    NAnswer(210,1,NodeAnswer102)
    NAnswer(212,1,NodeAnswer103)

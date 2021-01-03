@@ -63,7 +63,7 @@ end
 procedure map_enter_p_proc begin
    if (is_loading_game == false) then begin
        set_start_home
-       if (global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN) >= 3) then begin
+       if ((global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN) < 0) or (global_var(GVAR_STATUS_FLAGSTAFF_EXWARDEN) >= 3)) then begin
        rm_timer_event(self_obj);
        set_obj_visibility(self_obj, 1);
        end

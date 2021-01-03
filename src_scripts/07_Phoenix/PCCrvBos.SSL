@@ -362,7 +362,7 @@ procedure NodeTwoSun begin
 end
 
 procedure NodeTwoSun2 begin
-   Reply(306)
+   zReply(306)
    NAnswer(307,1,NodeSndDialog)
 end
 

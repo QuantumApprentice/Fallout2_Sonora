@@ -365,7 +365,7 @@ end
 
 procedure NodeStopDialog403 begin
    setBonusReaction(5)
-   Reply(255)
+   zReply(255)
    NAnswer(256,1,Node999)
    BAnswer(248,1,NodeStopDialog402)
    BAnswer(257,1,Node999)
@@ -446,7 +446,7 @@ end
 
 procedure NodeStopDialog701 begin
    setBonusReaction(-10)
-   Reply(292)
+   zReply(292)
    NAnswer(293,1,NodeStopDialog703)
 end
 
@@ -617,7 +617,7 @@ procedure NodeDudeSlave5 begin
    set_local_var(LVAR_DudeIsSlave_Know,0);
    PLAY_FADE
    game_time_advance(ONE_GAME_HOUR);
-   Reply(320)
+   zReply(320)
    NAnswer(321,1,Node999)
    BAnswer(322,1,Node999)
 end
@@ -711,7 +711,7 @@ end
 procedure NodeAnswer108 begin
    Reply(380)
    NAnswer(381,1,Node999)
-   BAnswer(382,1,Node999)
+   zBAnswer(382,1,Node999)
 end
 
 procedure NodeAnswer109 begin
@@ -1000,7 +1000,7 @@ end
 procedure NodeWanted350 begin
    Reply(481)
    if (item_amnt(dude_obj,PID_HEAD_D) > 0) then begin
-   NAnswer(474,1,NodeWanted370)
+   zNAnswer(474,1,NodeWanted370)
    end
    NAnswer(483,1,NodeWanted351)
    if (bitDialog(bit_14) == 0) then begin
@@ -1059,7 +1059,7 @@ end
 
 procedure NodeWanted360 begin
    Reply(498)
-   NAnswer(499,1,Node999)
+   zNAnswer(499,1,Node999)
 end
 
 procedure NodeWanted370 begin
